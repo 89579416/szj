@@ -5,17 +5,17 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
 import com.szj.library.R;
 
 import org.xutils.x;
 
 /**
- * Created by Administrator on 2016/4/14 0014.
+ * 不解释
+ * 2016-10-13 17:50:52
  */
 public abstract class BaseActivity extends Activity {
-    Context context;
+    public Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
