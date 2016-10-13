@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SzjApplication</string>
+
+    <string name="get_net_type">获取网络类型</string>
+</resources>

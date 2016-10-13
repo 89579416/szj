@@ -1,0 +1,105 @@
+<fupdate xmlns="http://www.facsimilemedia.com/update/response" protocol="1.0">
+    <terminal>
+        <android>
+            <main appid="facsimile_terminal_for_android">
+                <updatecheck codebase="http://192.168.1.118:8080/itel/my_facsimile_android_main_1.0.7.apk" version="1.0.7"/>
+            </main>
+            <branches>
+                <branch appid="facsimile_terminal_for_itel">
+                    <updatecheck codebase="http://dl.facsimilemedia.com/terminal/itel/android/facsimile_android_itel_1.0.3.apk" version="1.0.3"/>
+                </branch>
+                <branch appid="facsimile_terminal_for_cpsino">
+                    <updatecheck codebase="http://192.168.1.118:8080/itel/facsimile_android_main_1.0.3.apk" version="1.0.3"/>
+                </branch>
+            </branches>
+            <plugins>
+                <app appid="facsimile_terminal_init_for_android">
+                     <!-- <updatecheck codebase="http://dl.facsimilemedia.com/terminal/android/facsimile_android_init_1.0.9.apk" version="1.0.9" />  -->
+				  <updatecheck codebase="http://192.168.1.118:8080/itel/facsimile_android_init_1.0.10.apk" version="1.0.10"/> 			
+
+                </app>
+                <app appid="facsimile_terminal_player_for_android">
+                    <updatecheck codebase="http://192.168.1.118:8080/itel/facsimile_android_player_1.1.0.apk" version="1.1.0"/>
+                </app>
+                <app appid="facsimile_terminal_player_for_cpsino">
+                    <updatecheck codebase="http://192.168.1.118:8080/itel/facsimile_android_player_1.0.1.apk" version="1.0.1"/>
+                </app>
+            </plugins>
+        </android>
+        <windows>
+            <main appid="facsimile_terminal_for_windows">
+                <updatecheck codebase="#" version="1.0"/>
+            </main>
+            <plugins>
+                <app appid="facsimile_terminal_player_for_windows">
+                    <updatecheck codebase="#" version="1.0"/>
+                </app>
+            </plugins>
+        </windows>
+        <linux>
+            <main appid="facsimile_terminal_for_linux">
+                <updatecheck codebase="#" version="1.0"/>
+            </main>
+            <plugins>
+                <app appid="facsimile_terminal_for_linux">
+                    <updatecheck codebase="#" version="1.0"/>
+                </app>
+            </plugins>
+        </linux>
+    </terminal>
+    <client>
+        <android>
+            <mobile>
+                <main appid="facsimile_client_for_android_mobile">
+                    <updatecheck codebase="http://dl.facsimilemedia.com/client/android/facsimile_android.apk" version="1.0.1"/>
+                </main>
+            </mobile>
+            <pad>
+                <main appid="facsimile_client_for_android_pad">
+                    <updatecheck codebase="#" version="1.0"/>
+                </main>
+            </pad>
+        </android>
+        <ios>
+            <iphone>
+                <main appid="facsimile_client_for_ios">
+                    <updatecheck codebase="#" version="1.0"/>
+                </main>
+            </iphone>
+            <ipad>
+                <main appid="facsimile_client_for_ios">
+                    <updatecheck codebase="#" version="1.0"/>
+                </main>
+            </ipad>
+        </ios>
+        <windows>
+            <main appid="facsimile_client_for_windows">
+                <updatecheck codebase="#" version="1.0"/>
+            </main>
+        </windows>
+        <linux>
+            <main appid="facsimile_client_for_linux">
+                <updatecheck codebase="#" version="1.0"/>
+            </main>
+        </linux>
+        <osx>
+            <main appid="facsimile_client_for_linux">
+                <updatecheck codebase="#" version="1.0"/>
+            </main>
+        </osx>
+    </client>
+    <pos>
+        <android>
+            <cpsino>
+                <main appid="cpsino_pos">
+                    <updatecheck codebase="http://dl.facsimilemedia.com/pos/android/cpsino_pos_1.0.2.apk" version="1.0.2"/>
+                </main>
+            </cpsino>
+            <newbeemall>
+                <main appid="newbeemall_pos">
+                    <updatecheck codebase="http://dl.facsimilemedia.com/pos/android/newbeemall_pos_1.0.2.apk" version="1.0.2"/>
+                </main>
+            </newbeemall>
+        </android>
+    </pos>
+</fupdate>

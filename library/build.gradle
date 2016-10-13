@@ -1,0 +1,39 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.1"
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    //system
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.1.0'
+    compile 'com.android.support:support-v4:23.1.0'
+    compile 'com.android.support:recyclerview-v7:23.1.0'
+    compile 'com.android.support:design:23.1.0'
+    ///third party
+    compile 'org.xutils:xutils:3.3.32'//xUtils [database & download]
+    compile 'com.squareup.retrofit:retrofit:1.9.0'//base on Okhttp
+    compile 'com.squareup.okhttp:okhttp:2.2.0'//for connection network
+    compile 'com.squareup.okhttp:okhttp-urlconnection:2.2.0'//for connection network
+    compile 'com.squareup.picasso:picasso:2.5.0'//for load picture
+    compile 'com.jakewharton:butterknife:7.0.0'//for annotation [View & Method]
+    compile 'net.steamcrafted:materialiconlib:1.0.5'//for material icon
+    compile files('libs/dom4j-1.6.1.jar')//XML解析
+    compile 'com.kaopiz:kprogresshud:1.0.1'//等待提示框
+}
