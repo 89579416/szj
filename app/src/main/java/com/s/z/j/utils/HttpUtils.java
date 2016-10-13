@@ -174,7 +174,7 @@ public class HttpUtils {
                 return "移动网络";
             }
         }
-        return "没有获取到网络";
+        return "无网络";
     }
 
     /**
