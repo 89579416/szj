@@ -10,11 +10,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.s.z.j.R;
 import com.s.z.j.utils.FileUtil;
 import com.s.z.j.utils.HttpUtils;
 import com.s.z.j.utils.L;
+import com.s.z.j.utils.SpeedUtil;
 import com.squareup.picasso.Picasso;
 import com.szj.library.ui.BaseActivity;
 import com.szj.library.utils.T;
@@ -26,6 +28,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.Timer;
 
 /**
  * 程序主入口
@@ -52,18 +58,25 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private ImageView picImageView;/**显示图片的imageView*/
 
     @ViewInject(R.id.main_load_file_btn)
-    private Button loadFileBtn;
+    private Button loadFileBtn;/**下载文件*/
 
     @ViewInject(R.id.main_load_file_progressBar)
-    private ProgressBar loadProgressBar;
+    private ProgressBar loadProgressBar;/**文件下载进度条*/
 
     @ViewInject(R.id.main_save_current_btn)
-    private Button saveCurrentBtn;
+    private Button saveCurrentBtn;/**截屏*/
+
+    @ViewInject(R.id.main_get_net_speed_btn)
+    private Button getNetSpeedBtn;/**获取当前网速*/
+
+    @ViewInject(R.id.main_show_net_speed_textview)
+    private TextView netSpeedTxt;/**显示网速 */
 
     private Bitmap picBitmap;/**通过url获取的bitmap*/
     private String picUrl = "http://gb.cri.cn/mmsource/images/2010/09/27/eo100927986.jpg";//直接显示图片地址
     private String bitmapUrl = "http://cdn.duitang.com/uploads/item/201408/28/20140828160017_wBrME.jpeg";//获取bitmap地址
     private String defaultPath;
+    private SpeedUtil speedUtil; //网络速度监测
 
     @Override
     public void initialize(Bundle savedInstanceState) {
@@ -75,6 +88,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         netBitmapBtn.setOnClickListener(this);
         loadFileBtn.setOnClickListener(this);
         saveCurrentBtn.setOnClickListener(this);
+        getNetSpeedBtn.setOnClickListener(this);
+        speedUtil = new SpeedUtil( this,speedHandler,new Timer());
     }
 
     /**
@@ -91,13 +106,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 T.s(context, "当前网络类型："+HttpUtils.getNetType(context));
                 break;
             case R.id.main_get_mac_btn:
-                T.s(context,"MAC="+HttpUtils.getMacByWifiManager(context)+"\nMAC="+HttpUtils.getMacByFile());
+                T.s(context,"MAC="+HttpUtils.getMacByWifiManager(context)[0]+"\nMAC="+HttpUtils.getMacByFile());
                 break;
             case R.id.about_version_code:
                 getBitmapByUrl();
                 break;
             case R.id.main_get_ip_btn:
-                T.s(context,HttpUtils.getIpAddress());
+                T.s(context,HttpUtils.getLocalIpAddress(context));
                 break;
             case R.id.main_show_image_by_bitmap_btn:
                 if(picImageView.getVisibility()==View.GONE){
@@ -127,7 +142,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 loadFile();
                 break;
             case R.id.main_save_current_btn:
-                saveCurrentImage();
+                saveScreen();
+                break;
+            case R.id.main_get_net_speed_btn:
+                if("开始获取当前网速".equals(getNetSpeedBtn.getText())){
+                    speedUtil.start();
+                    getNetSpeedBtn.setText("停止");
+                }else{
+                    speedUtil.stop();
+                    getNetSpeedBtn.setText("开始获取当前网速");
+                }
+
+
                 break;
             default:break;
         }
@@ -141,7 +167,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             public void run() {
                 try {
                     //下载文件，参数：第一个URL，第二个存放路径
-                    HttpUtils.down_file(load_handler, "http://dl.facsimilemedia.com/pos/android/newbeemall_pos_1.0.2.apk", Environment.getExternalStorageDirectory() + File.separator + "/ceshi/");
+                    HttpUtils.down_file(loadHandler, "http://dl.facsimilemedia.com/pos/android/newbeemall_pos_1.0.2.apk", Environment.getExternalStorageDirectory() + File.separator + "/ceshi/");
                 } catch (Exception e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
@@ -153,8 +179,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     /**
      * 截屏
      * 这种方法状态栏是空白，显示不了状态栏的信息
+     * 文件命名方式   img_screen_yyyy_MM_dd_HH_mm_ss
      */
-    private void saveCurrentImage() {
+    private void saveScreen() {
         //获取当前屏幕的大小//回家看看获取控件的宽高试试呢
         int width = getWindow().getDecorView().getRootView().getWidth();
         int height = getWindow().getDecorView().getRootView().getHeight();
@@ -167,8 +194,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         view.buildDrawingCache();
         //从缓存中获取当前屏幕的图片
         temBitmap = view.getDrawingCache();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.US);
+        String fname = sdf.format(new Date())  + ".png";
         //输出到sd卡
-        File file = new File(defaultPath+"/my_screen/screen02.jpg");
+        File file = new File(defaultPath+"/my_screen/img_screen_"+fname);
         try {
             if (!file.exists()) {
                 file.createNewFile();
@@ -235,7 +264,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
      * 用来接收线程发送来的文件下载量，进行UI界面的更新
      * 下载文件时，更新界面的handler
      */
-    private Handler load_handler = new Handler() {
+    private Handler loadHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {//定义一个Handler，用于处理下载线程与UI间通讯
             if (!Thread.currentThread().isInterrupted()) {
@@ -256,4 +285,19 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             super.handleMessage(msg);
         }
     };
+
+    private Handler speedHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super .handleMessage(msg);
+            switch (msg. what){
+                case 100:
+                    Log.i("AAAA" ,"当前网速："+msg.obj );//更新UI
+                    netSpeedTxt.setText("当前网速："+msg.obj );
+                    break;
+            }
+        }
+    };
+
+
 }

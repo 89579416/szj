@@ -11,6 +11,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
+import com.s.z.j.R;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -138,6 +140,7 @@ public class HttpUtils {
 
     /**
      * 将输入流转换成字符串
+     *
      * @param is 从网络获取的输入流
      * @return
      */
@@ -161,6 +164,7 @@ public class HttpUtils {
 
     /**
      * 获取网络类型
+     *
      * @param context
      * @return
      */
@@ -236,6 +240,7 @@ public class HttpUtils {
             Log.e("tag", "error: " + ex.getMessage(), ex);
         }
     }
+
     /**
      * 获取MAC地址方法1
      * 通过访问 WifiManager
@@ -243,17 +248,20 @@ public class HttpUtils {
      * @return
      */
     public static String[] getMacByWifiManager(Context context) {
-        String[] other = {"null", "null"};
+        String[] other = {"null", ""};
         WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
         try {
             WifiInfo wifiInfo = wifiManager.getConnectionInfo();
             if (wifiInfo.getMacAddress() != null) {
                 other[0] = wifiInfo.getMacAddress();
+                other[1] = intToIp(wifiInfo.getIpAddress());
             } else {
                 other[0] = "Fail";
+                other[1] = "0";
             }
         } catch (Exception e) {
             other[0] = "Fail";
+            other[1] = "0";
         }
         return other;
     }
@@ -261,6 +269,7 @@ public class HttpUtils {
     /**
      * 获取MAC地址方法2
      * 通过读取文件获取
+     *
      * @return
      */
     public static String getMacByFile() {
@@ -284,26 +293,34 @@ public class HttpUtils {
         return macSerial;
     }
 
+
     /**
      * 获取IP地址
+     * @param context
      * @return
      */
-    public static String getIpAddress() {
-        try {
-            for (Enumeration<NetworkInterface> en = NetworkInterface
-                    .getNetworkInterfaces(); en.hasMoreElements();) {
-                NetworkInterface intf = en.nextElement();
-                for (Enumeration<InetAddress> enumIpAddr = intf
-                        .getInetAddresses(); enumIpAddr.hasMoreElements();) {
-                    InetAddress inetAddress = enumIpAddr.nextElement();
-                    if (!inetAddress.isLoopbackAddress()) {
-                        return inetAddress.getHostAddress().toString();
-                    }
-                }
-            }
-        } catch (SocketException ex) {
-           L.e(ex.toString());
+    public static String getLocalIpAddress(Context context) {
+        //获取wifi服务
+        WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+        //判断wifi是否开启
+        if (!wifiManager.isWifiEnabled()) {
+            wifiManager.setWifiEnabled(true);
         }
-        return "";
+        WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+        int ipAddress = wifiInfo.getIpAddress();
+        String ip = intToIp(ipAddress);
+        return ip;
+    }
+
+    /**
+     * ipAddress转换为ip地址
+     * @param i
+     * @return
+     */
+    private static String intToIp(int i) {
+        return (i & 0xFF ) + "." +
+                ((i >> 8 ) & 0xFF) + "." +
+                ((i >> 16 ) & 0xFF) + "." +
+                ( i >> 24 & 0xFF) ;
     }
 }

@@ -8,5 +8,6 @@
     <string name="show_image_by_net_url">通过第三方工具显示网络图片</string>
     <string name="yincang">隐藏</string>
     <string name="load_file">下载文件</string>
-    <string name="saveCurrent">截屏</string>
+    <string name="save_screen">截屏</string>
+    <string name="get_net_speed">开始获取当前网速</string>
 </resources>
