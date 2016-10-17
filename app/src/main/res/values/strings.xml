@@ -10,4 +10,8 @@
     <string name="load_file">下载文件</string>
     <string name="save_screen">截屏</string>
     <string name="get_net_speed">开始获取当前网速</string>
+    <string name="broad_cast">动态注册广播</string>
+    <string name="register_broad_cast">注册广播</string>
+    <string name="send_broad_cast">发送广播</string>
+    <string name="cancel">取消注册</string>
 </resources>

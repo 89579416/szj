@@ -1,5 +1,6 @@
 package com.s.z.j.ui;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Environment;
@@ -72,6 +73,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @ViewInject(R.id.main_show_net_speed_textview)
     private TextView netSpeedTxt;/**显示网速 */
 
+    @ViewInject(R.id.main_broad_cast_btn)
+    private Button broadCastBtn;
+
     private Bitmap picBitmap;/**通过url获取的bitmap*/
     private String picUrl = "http://gb.cri.cn/mmsource/images/2010/09/27/eo100927986.jpg";//直接显示图片地址
     private String bitmapUrl = "http://cdn.duitang.com/uploads/item/201408/28/20140828160017_wBrME.jpeg";//获取bitmap地址
@@ -89,6 +93,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         loadFileBtn.setOnClickListener(this);
         saveCurrentBtn.setOnClickListener(this);
         getNetSpeedBtn.setOnClickListener(this);
+        broadCastBtn.setOnClickListener(this);
         speedUtil = new SpeedUtil( this,speedHandler,new Timer());
     }
 
@@ -152,8 +157,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     speedUtil.stop();
                     getNetSpeedBtn.setText("开始获取当前网速");
                 }
-
-
+                break;
+            case R.id.main_broad_cast_btn:
+                Intent intent = new Intent(context,BroadCastActivity.class);
+                startActivityForResult(intent, 1);
                 break;
             default:break;
         }
@@ -299,5 +306,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
     };
 
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        L.i("返回啦");
+    }
 }
