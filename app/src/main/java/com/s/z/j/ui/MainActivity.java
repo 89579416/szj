@@ -14,6 +14,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.s.z.j.R;
+import com.s.z.j.ui.nav.NavigationActivity;
+import com.s.z.j.ui.slidingmenu.SlidingMainActivity;
 import com.s.z.j.utils.FileUtil;
 import com.s.z.j.utils.HttpUtils;
 import com.s.z.j.utils.L;
@@ -41,42 +43,91 @@ import java.util.Timer;
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @ViewInject(R.id.main_get_net_type_btn)
-    private Button getNetBtn;/**获取网络*/
+    private Button getNetBtn;
+    /**
+     * 获取网络
+     */
 
     @ViewInject(R.id.main_get_ip_btn)
-    private Button getIpBtn;/**获取IP地址*/
+    private Button getIpBtn;
+    /**
+     * 获取IP地址
+     */
 
     @ViewInject(R.id.main_get_mac_btn)
-    private Button getMacBtn;/**获取MAC地址*/
+    private Button getMacBtn;
+    /**
+     * 获取MAC地址
+     */
 
     @ViewInject(R.id.main_show_image_by_bitmap_btn)
-    private Button bitmapBtn;/**通过URL获取bitmap显示图片*/
+    private Button bitmapBtn;
+    /**
+     * 通过URL获取bitmap显示图片
+     */
 
     @ViewInject(R.id.main_show_image_by_net_btn)
-    private Button netBitmapBtn;/**直接显示网格图片*/
+    private Button netBitmapBtn;
+    /**
+     * 直接显示网格图片
+     */
 
     @ViewInject(R.id.main_show_pic_imageview)
-    private ImageView picImageView;/**显示图片的imageView*/
+    private ImageView picImageView;
+    /**
+     * 显示图片的imageView
+     */
 
     @ViewInject(R.id.main_load_file_btn)
-    private Button loadFileBtn;/**下载文件*/
+    private Button loadFileBtn;
+    /**
+     * 下载文件
+     */
 
     @ViewInject(R.id.main_load_file_progressBar)
-    private ProgressBar loadProgressBar;/**文件下载进度条*/
+    private ProgressBar loadProgressBar;
+    /**
+     * 文件下载进度条
+     */
 
     @ViewInject(R.id.main_save_current_btn)
-    private Button saveCurrentBtn;/**截屏*/
+    private Button saveCurrentBtn;
+    /**
+     * 截屏
+     */
 
     @ViewInject(R.id.main_get_net_speed_btn)
-    private Button getNetSpeedBtn;/**获取当前网速*/
+    private Button getNetSpeedBtn;
+    /**
+     * 获取当前网速
+     */
 
     @ViewInject(R.id.main_show_net_speed_textview)
-    private TextView netSpeedTxt;/**显示网速 */
+    private TextView netSpeedTxt;
+    /**
+     * 显示网速
+     */
 
     @ViewInject(R.id.main_broad_cast_btn)
     private Button broadCastBtn;
+    /**
+     * 动态注册广播
+     */
 
-    private Bitmap picBitmap;/**通过url获取的bitmap*/
+    @ViewInject(R.id.main_sliding_menu_btn)
+    private Button slidingMenuBtn;
+    /**
+     * 测滑菜单
+     */
+
+    @ViewInject(R.id.main_navigation_btn)
+    private Button navigationBtn;
+    /***/
+
+    private Bitmap picBitmap;
+    /**
+     * 通过url获取的bitmap
+     */
     private String picUrl = "http://gb.cri.cn/mmsource/images/2010/09/27/eo100927986.jpg";//直接显示图片地址
     private String bitmapUrl = "http://cdn.duitang.com/uploads/item/201408/28/20140828160017_wBrME.jpeg";//获取bitmap地址
     private String defaultPath;
@@ -94,50 +145,53 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         saveCurrentBtn.setOnClickListener(this);
         getNetSpeedBtn.setOnClickListener(this);
         broadCastBtn.setOnClickListener(this);
-        speedUtil = new SpeedUtil( this,speedHandler,new Timer());
+        slidingMenuBtn.setOnClickListener(this);
+        navigationBtn.setOnClickListener(this);
+        speedUtil = new SpeedUtil(this, speedHandler, new Timer());
     }
 
     /**
      * 创建文件夹
      */
-    public void createFile(){
+    public void createFile() {
         defaultPath = Environment.getExternalStorageDirectory() + "";
         FileUtil.makeRootDirectory(defaultPath + "/my_screen");
     }
+
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.main_get_net_type_btn:
-                T.s(context, "当前网络类型："+HttpUtils.getNetType(context));
+                T.s(context, "当前网络类型：" + HttpUtils.getNetType(context));
                 break;
             case R.id.main_get_mac_btn:
-                T.s(context,"MAC="+HttpUtils.getMacByWifiManager(context)[0]+"\nMAC="+HttpUtils.getMacByFile());
+                T.s(context, "MAC=" + HttpUtils.getMacByWifiManager(context)[0] + "\nMAC=" + HttpUtils.getMacByFile());
                 break;
             case R.id.about_version_code:
                 getBitmapByUrl();
                 break;
             case R.id.main_get_ip_btn:
-                T.s(context,HttpUtils.getLocalIpAddress(context));
+                T.s(context, HttpUtils.getLocalIpAddress(context));
                 break;
             case R.id.main_show_image_by_bitmap_btn:
-                if(picImageView.getVisibility()==View.GONE){
+                if (picImageView.getVisibility() == View.GONE) {
                     picImageView.setVisibility(View.VISIBLE);
                     bitmapBtn.setText(R.string.yincang);
                     netBitmapBtn.setText(R.string.yincang);
                     getBitmapByUrl();
-                }else {
+                } else {
                     bitmapBtn.setText(R.string.show_image_by_net_bitmap);
                     netBitmapBtn.setText(R.string.show_image_by_net_url);
                     picImageView.setVisibility(View.GONE);
                 }
                 break;
             case R.id.main_show_image_by_net_btn:
-                if(picImageView.getVisibility()==View.GONE){
+                if (picImageView.getVisibility() == View.GONE) {
                     picImageView.setVisibility(View.VISIBLE);
                     netBitmapBtn.setText(R.string.yincang);
                     bitmapBtn.setText(R.string.yincang);
                     Picasso.with(context).load(picUrl).into(picImageView);
-                }else {
+                } else {
                     netBitmapBtn.setText(R.string.show_image_by_net_url);
                     bitmapBtn.setText(R.string.show_image_by_net_bitmap);
                     picImageView.setVisibility(View.GONE);
@@ -150,26 +204,35 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 saveScreen();
                 break;
             case R.id.main_get_net_speed_btn:
-                if("开始获取当前网速".equals(getNetSpeedBtn.getText())){
+                if ("开始获取当前网速".equals(getNetSpeedBtn.getText())) {
                     speedUtil.start();
                     getNetSpeedBtn.setText("停止");
-                }else{
+                } else {
                     speedUtil.stop();
                     getNetSpeedBtn.setText("开始获取当前网速");
                 }
                 break;
             case R.id.main_broad_cast_btn:
-                Intent intent = new Intent(context,BroadCastActivity.class);
+                Intent intent = new Intent(context, BroadCastActivity.class);
                 startActivityForResult(intent, 1);
                 break;
-            default:break;
+            case R.id.main_sliding_menu_btn:
+                Intent slidingIntent = new Intent(this,SlidingMainActivity.class);
+                startActivity(slidingIntent);
+                break;
+            case R.id.main_navigation_btn:
+                Intent navegationIntent = new Intent(context,NavigationActivity.class);
+                startActivity(navegationIntent);
+                break;
+            default:
+                break;
         }
     }
 
     /**
      * 下载文件
      */
-    public void loadFile(){
+    public void loadFile() {
         new Thread() {
             public void run() {
                 try {
@@ -202,9 +265,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         //从缓存中获取当前屏幕的图片
         temBitmap = view.getDrawingCache();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.US);
-        String fname = sdf.format(new Date())  + ".png";
+        String fname = sdf.format(new Date()) + ".png";
         //输出到sd卡
-        File file = new File(defaultPath+"/my_screen/img_screen_"+fname);
+        File file = new File(defaultPath + "/my_screen/img_screen_" + fname);
         try {
             if (!file.exists()) {
                 file.createNewFile();
@@ -213,16 +276,17 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             temBitmap.compress(Bitmap.CompressFormat.PNG, 100, foStream);
             foStream.flush();
             foStream.close();
-            T.s(context,"保存成功"+file.getPath());
+            T.s(context, "保存成功" + file.getPath());
         } catch (Exception e) {
             T.s(context, "保存失败" + e.toString());
             Log.e("SZJ", e.toString());
         }
     }
+
     /**
      * 根据URL得到图片bitmap
      */
-    public void getBitmapByUrl(){
+    public void getBitmapByUrl() {
         new Thread() {
             @Override
             public void run() {
@@ -250,7 +314,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 case 2:
                     Bundle bundle = null;
                     bundle = msg.getData();//接受Bundle数据
-                   T.s(context, bundle.getString("String"));
+                    T.s(context, bundle.getString("String"));
                     break;
                 case 3:
                     bundle = msg.getData();//接受Bundle数据
@@ -282,7 +346,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         loadProgressBar.setProgress(msg.arg1);
                         break;
                     case 2:
-                        T.s(context,"文件下载完成");
+                        T.s(context, "文件下载完成");
                         break;
                     case -1:
                         T.s(context, msg.getData().getString("error"));
@@ -293,14 +357,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
     };
 
-    private Handler speedHandler = new Handler(){
+    private Handler speedHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            super .handleMessage(msg);
-            switch (msg. what){
+            super.handleMessage(msg);
+            switch (msg.what) {
                 case 100:
-                    Log.i("AAAA" ,"当前网速："+msg.obj );//更新UI
-                    netSpeedTxt.setText("当前网速："+msg.obj );
+                    Log.i("AAAA", "当前网速：" + msg.obj);//更新UI
+                    netSpeedTxt.setText("当前网速：" + msg.obj);
                     break;
             }
         }

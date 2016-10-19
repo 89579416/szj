@@ -14,4 +14,8 @@
     <string name="register_broad_cast">注册广播</string>
     <string name="send_broad_cast">发送广播</string>
     <string name="cancel">取消注册</string>
+    <string name="sliding_menu">侧划菜单演示</string>
+    <string name="navigation">引导页面</string>
+    <string name="today">今日</string>
+    <string name="settings">设置</string>
 </resources>
