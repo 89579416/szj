@@ -205,7 +205,6 @@ public class FileUtil {
 
     /**
      * 检查扩展名，得到.txt格式的文件
-     *
      * @param fName
      * @return
      */
@@ -316,5 +315,47 @@ public class FileUtil {
                     }
                 }
             }
+    }
+
+    /**
+     * 从内存卡指定目录下获取指定格式的文件
+     *
+     * @return
+     */
+    public static ArrayList<String> getPlayFile(String path) {
+        // 图片列表
+        ArrayList<String> picList = new ArrayList<String>();
+        // 得到该路径文件夹下所有的文件
+        File mfile = new File(path);
+        if (!mfile.exists()) {
+            return null;
+        }
+        File[] files = mfile.listFiles();
+        // 将所有的文件存入ArrayList中,并过滤所有图片格式的文件
+        for (int i = 0; i < files.length; i++) {
+            File file = files[i];
+            if (checkIsPlayFile(file.getPath())) {
+                picList.add(file.getPath());
+            }
+        }
+        // 返回得到的图片列表
+        return picList;
+    }
+    /**
+     * 检查扩展名，得到.mp4格式的文件
+     * @param fName
+     * @return
+     */
+    public static boolean checkIsPlayFile(String fName) {
+        boolean isTxtFile = false;
+        // 获取扩展名
+        String FileEnd = fName.substring(fName.lastIndexOf(".") + 1,
+                fName.length()).toLowerCase();
+        if ("mp4".equals(FileEnd) || "mov".equals(FileEnd)){
+            isTxtFile = true;
+        } else {
+            isTxtFile = false;
+        }
+        return isTxtFile;
     }
 }

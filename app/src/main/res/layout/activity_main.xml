@@ -105,6 +105,14 @@
                 android:layout_height="wrap_content"
                 android:text="@string/navigation"
                 />
+            />
+            <Button
+                android:id="@+id/main_media_player_btn"
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/media_player"
+                />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -25,14 +25,14 @@
 
     <!-- 网络权限 -->
     <uses-permission android:name="android.permission.INTERNET"/>
-    <!-- 操作sd卡权限 -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <!-- 获取网络类型权限 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <!--允许程序获取当前WiFi接入的状态以及WLAN热点的信息-->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <!-- 在SDCard中创建与删除文件权限 -->
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <!-- 操作sd卡权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <!--屏幕自适应配置信息-->
     <supports-screens
@@ -67,6 +67,12 @@
         <!-- 广播的使用 -->
         <activity android:name=".ui.BroadCastActivity"
             ></activity>
+
+        <!-- 播放视频-->
+        <activity android:name=".ui.MediaPlayerActivity"></activity>
+
+        <!-- 播放视频测试-->
+        <activity android:name=".ui.test.MediaPlayerTestActivity"></activity>
     </application>
 
 </manifest>

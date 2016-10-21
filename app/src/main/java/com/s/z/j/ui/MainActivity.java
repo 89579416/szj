@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.s.z.j.R;
 import com.s.z.j.ui.nav.NavigationActivity;
 import com.s.z.j.ui.slidingmenu.SlidingMainActivity;
+import com.s.z.j.ui.test.MediaPlayerTestActivity;
 import com.s.z.j.utils.FileUtil;
 import com.s.z.j.utils.HttpUtils;
 import com.s.z.j.utils.L;
@@ -41,96 +42,100 @@ import java.util.Timer;
  */
 @ContentView(R.layout.activity_main)
 public class MainActivity extends BaseActivity implements View.OnClickListener {
-
-    @ViewInject(R.id.main_get_net_type_btn)
-    private Button getNetBtn;
     /**
      * 获取网络
      */
+    @ViewInject(R.id.main_get_net_type_btn)
+    private Button getNetBtn;
 
-    @ViewInject(R.id.main_get_ip_btn)
-    private Button getIpBtn;
     /**
      * 获取IP地址
      */
+    @ViewInject(R.id.main_get_ip_btn)
+    private Button getIpBtn;
 
-    @ViewInject(R.id.main_get_mac_btn)
-    private Button getMacBtn;
     /**
      * 获取MAC地址
      */
+    @ViewInject(R.id.main_get_mac_btn)
+    private Button getMacBtn;
 
-    @ViewInject(R.id.main_show_image_by_bitmap_btn)
-    private Button bitmapBtn;
     /**
      * 通过URL获取bitmap显示图片
      */
+    @ViewInject(R.id.main_show_image_by_bitmap_btn)
+    private Button bitmapBtn;
 
-    @ViewInject(R.id.main_show_image_by_net_btn)
-    private Button netBitmapBtn;
     /**
      * 直接显示网格图片
      */
+    @ViewInject(R.id.main_show_image_by_net_btn)
+    private Button netBitmapBtn;
 
-    @ViewInject(R.id.main_show_pic_imageview)
-    private ImageView picImageView;
     /**
      * 显示图片的imageView
      */
+    @ViewInject(R.id.main_show_pic_imageview)
+    private ImageView picImageView;
 
-    @ViewInject(R.id.main_load_file_btn)
-    private Button loadFileBtn;
     /**
      * 下载文件
      */
+    @ViewInject(R.id.main_load_file_btn)
+    private Button loadFileBtn;
 
-    @ViewInject(R.id.main_load_file_progressBar)
-    private ProgressBar loadProgressBar;
     /**
      * 文件下载进度条
      */
+    @ViewInject(R.id.main_load_file_progressBar)
+    private ProgressBar loadProgressBar;
 
-    @ViewInject(R.id.main_save_current_btn)
-    private Button saveCurrentBtn;
     /**
      * 截屏
      */
+    @ViewInject(R.id.main_save_current_btn)
+    private Button saveCurrentBtn;
 
-    @ViewInject(R.id.main_get_net_speed_btn)
-    private Button getNetSpeedBtn;
     /**
      * 获取当前网速
      */
+    @ViewInject(R.id.main_get_net_speed_btn)
+    private Button getNetSpeedBtn;
 
-    @ViewInject(R.id.main_show_net_speed_textview)
-    private TextView netSpeedTxt;
     /**
      * 显示网速
      */
+    @ViewInject(R.id.main_show_net_speed_textview)
+    private TextView netSpeedTxt;
 
-    @ViewInject(R.id.main_broad_cast_btn)
-    private Button broadCastBtn;
     /**
      * 动态注册广播
      */
+    @ViewInject(R.id.main_broad_cast_btn)
+    private Button broadCastBtn;
 
-    @ViewInject(R.id.main_sliding_menu_btn)
-    private Button slidingMenuBtn;
     /**
      * 测滑菜单
      */
+    @ViewInject(R.id.main_sliding_menu_btn)
+    private Button slidingMenuBtn;
 
+    /**
+     * 引导页面
+     */
     @ViewInject(R.id.main_navigation_btn)
     private Button navigationBtn;
-    /***/
 
-    private Bitmap picBitmap;
     /**
-     * 通过url获取的bitmap
+     * mediaPlayer播放视频
      */
+    @ViewInject(R.id.main_media_player_btn)
+    private Button medaiPlayerBtn;
+
+    private Bitmap picBitmap;//通过url获取的bitmap
     private String picUrl = "http://gb.cri.cn/mmsource/images/2010/09/27/eo100927986.jpg";//直接显示图片地址
     private String bitmapUrl = "http://cdn.duitang.com/uploads/item/201408/28/20140828160017_wBrME.jpeg";//获取bitmap地址
-    private String defaultPath;
+    private String defaultPath;//SD卡路径
     private SpeedUtil speedUtil; //网络速度监测
 
     @Override
@@ -147,6 +152,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         broadCastBtn.setOnClickListener(this);
         slidingMenuBtn.setOnClickListener(this);
         navigationBtn.setOnClickListener(this);
+        medaiPlayerBtn.setOnClickListener(this);
         speedUtil = new SpeedUtil(this, speedHandler, new Timer());
     }
 
@@ -213,16 +219,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 }
                 break;
             case R.id.main_broad_cast_btn:
-                Intent intent = new Intent(context, BroadCastActivity.class);
-                startActivityForResult(intent, 1);
+                startActivityForResult(new Intent(context, BroadCastActivity.class), 1);
                 break;
             case R.id.main_sliding_menu_btn:
-                Intent slidingIntent = new Intent(this,SlidingMainActivity.class);
-                startActivity(slidingIntent);
+                startActivity(new Intent(this,SlidingMainActivity.class));
                 break;
             case R.id.main_navigation_btn:
-                Intent navegationIntent = new Intent(context,NavigationActivity.class);
-                startActivity(navegationIntent);
+                startActivity(new Intent(context,NavigationActivity.class));
+                break;
+            case R.id.main_media_player_btn:
+                startActivity(new Intent(context,MediaPlayerTestActivity.class));
                 break;
             default:
                 break;

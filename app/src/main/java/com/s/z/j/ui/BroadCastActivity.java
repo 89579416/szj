@@ -20,6 +20,7 @@ import org.xutils.view.annotation.ViewInject;
 import java.util.Calendar;
 
 /**
+ * 动态注册广播示例
  * Created by Administrator on 2016-10-17.
  */
 @ContentView(R.layout.activity_broad_cast)
