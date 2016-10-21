@@ -19,6 +19,7 @@ import org.xutils.view.annotation.ViewInject;
 import java.util.ArrayList;
 
 /**
+ * 循环播放一个目录下的mp4视频
  * Created by Administrator on 2016-10-21.
  */
 @ContentView(R.layout.activity_media_player)

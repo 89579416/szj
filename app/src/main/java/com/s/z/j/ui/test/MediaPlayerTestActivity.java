@@ -17,6 +17,11 @@ import com.s.z.j.utils.FileUtil;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * 播放视频
+ * 资源来源
+ * http://www.cnblogs.com/devinzhang/archive/2012/02/03/2337576.html
+ */
 public class MediaPlayerTestActivity extends Activity implements SurfaceHolder.Callback,MediaPlayer.OnCompletionListener {
     /** Called when the activity is first created. */
     MediaPlayer player;
