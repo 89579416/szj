@@ -22,4 +22,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile project(':library')
     compile project(':slidingmenu_library')
+    compile files('libs/core-2.3.0.jar')
 }

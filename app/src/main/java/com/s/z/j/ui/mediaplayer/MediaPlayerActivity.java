@@ -1,4 +1,4 @@
-package com.s.z.j.ui;
+package com.s.z.j.ui.mediaplayer;
 
 import android.os.Bundle;
 import android.os.Environment;

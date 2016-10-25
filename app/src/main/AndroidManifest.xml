@@ -69,10 +69,17 @@
             ></activity>
 
         <!-- 播放视频-->
-        <activity android:name=".ui.MediaPlayerActivity"></activity>
+        <activity android:name=".ui.mediaplayer.MediaPlayerActivity"></activity>
 
         <!-- 播放视频测试-->
         <activity android:name=".ui.test.MediaPlayerTestActivity"></activity>
+
+        <!-- 二维码生成与扫描 -->
+        <activity android:name=".ui.qrcode.QrCodeActivity"></activity>
+
+        <!-- 二维码扫描 -->
+        <activity android:name="zxing.CaptureActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

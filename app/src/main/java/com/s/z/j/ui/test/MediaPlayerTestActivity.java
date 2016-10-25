@@ -19,15 +19,18 @@ import java.util.ArrayList;
 
 /**
  * 播放视频
+ * 这是一个测试类，和 MediaPlayerActivity 一样的功能
  * 资源来源
  * http://www.cnblogs.com/devinzhang/archive/2012/02/03/2337576.html
  */
-public class MediaPlayerTestActivity extends Activity implements SurfaceHolder.Callback,MediaPlayer.OnCompletionListener {
-    /** Called when the activity is first created. */
+public class MediaPlayerTestActivity extends Activity implements SurfaceHolder.Callback, MediaPlayer.OnCompletionListener {
+    /**
+     * Called when the activity is first created.
+     */
     MediaPlayer player;
     SurfaceView surface;
     SurfaceHolder surfaceHolder;
-    Button play,pause,stop;
+    Button play, pause, stop;
     private int index;
     private String defaultPath;//SD卡路径
     private ArrayList<String> data = new ArrayList<String>();//要播放的路径
@@ -38,31 +41,34 @@ public class MediaPlayerTestActivity extends Activity implements SurfaceHolder.C
         setContentView(R.layout.activity_main_test);
         defaultPath = Environment.getExternalStorageDirectory() + "/aabb";
         data = FileUtil.getPlayFile(defaultPath);
-        play=(Button)findViewById(R.id.button1);
-        pause=(Button)findViewById(R.id.button2);
-        stop=(Button)findViewById(R.id.button3);
-        surface =(SurfaceView)findViewById(R.id.surface);
+        play = (Button) findViewById(R.id.button1);
+        pause = (Button) findViewById(R.id.button2);
+        stop = (Button) findViewById(R.id.button3);
+        surface = (SurfaceView) findViewById(R.id.surface);
 
         surfaceHolder = surface.getHolder();//SurfaceHolder是SurfaceView的控制接口
         surfaceHolder.addCallback(this); //因为这个类实现了SurfaceHolder.Callback接口，所以回调参数直接this
         surfaceHolder.setFixedSize(320, 220);//显示的分辨率,不设置为视频默认
         surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);//Surface类型
 
-        play.setOnClickListener(new View.OnClickListener(){
-             @Override
+        play.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 player.start();
-            }});
-        pause.setOnClickListener(new View.OnClickListener(){
+            }
+        });
+        pause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 player.pause();
-            }});
-        stop.setOnClickListener(new View.OnClickListener(){
-             @Override
+            }
+        });
+        stop.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 player.stop();
-            }});
+            }
+        });
     }
 
     @Override
@@ -77,12 +83,12 @@ public class MediaPlayerTestActivity extends Activity implements SurfaceHolder.C
         player.setAudioStreamType(AudioManager.STREAM_MUSIC);
         player.setDisplay(surfaceHolder);
         //设置显示视频显示在SurfaceView上
-            try {
-                player.setDataSource(data.get(index));
-                player.prepare();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        try {
+            player.setDataSource(data.get(index));
+            player.prepare();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -95,8 +101,8 @@ public class MediaPlayerTestActivity extends Activity implements SurfaceHolder.C
     protected void onDestroy() {
         // TODO Auto-generated method stub
         super.onDestroy();
-        if(player.isPlaying()){
-        player.stop();
+        if (player.isPlaying()) {
+            player.stop();
         }
         player.release();
         //Activity销毁时停止播放，释放资源。不做这个操作，即使退出还是能听到视频播放的声音

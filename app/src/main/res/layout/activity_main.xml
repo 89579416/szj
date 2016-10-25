@@ -113,6 +113,13 @@
                 android:layout_height="wrap_content"
                 android:text="@string/media_player"
                 />
+            <Button
+                android:id="@+id/main_qr_code_btn"
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/qr_code"
+                />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

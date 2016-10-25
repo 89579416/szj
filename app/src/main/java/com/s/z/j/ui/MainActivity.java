@@ -14,9 +14,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.s.z.j.R;
+import com.s.z.j.ui.mediaplayer.MediaPlayerActivity;
 import com.s.z.j.ui.nav.NavigationActivity;
+import com.s.z.j.ui.qrcode.QrCodeActivity;
 import com.s.z.j.ui.slidingmenu.SlidingMainActivity;
-import com.s.z.j.ui.test.MediaPlayerTestActivity;
 import com.s.z.j.utils.FileUtil;
 import com.s.z.j.utils.HttpUtils;
 import com.s.z.j.utils.L;
@@ -132,6 +133,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @ViewInject(R.id.main_media_player_btn)
     private Button medaiPlayerBtn;
 
+    /**
+     * 二维码生成与扫描
+     */
+    @ViewInject(R.id.main_qr_code_btn)
+    private Button qrCodeBtn;
+
     private Bitmap picBitmap;//通过url获取的bitmap
     private String picUrl = "http://gb.cri.cn/mmsource/images/2010/09/27/eo100927986.jpg";//直接显示图片地址
     private String bitmapUrl = "http://cdn.duitang.com/uploads/item/201408/28/20140828160017_wBrME.jpeg";//获取bitmap地址
@@ -153,6 +160,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         slidingMenuBtn.setOnClickListener(this);
         navigationBtn.setOnClickListener(this);
         medaiPlayerBtn.setOnClickListener(this);
+        qrCodeBtn.setOnClickListener(this);
         speedUtil = new SpeedUtil(this, speedHandler, new Timer());
     }
 
@@ -228,7 +236,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 startActivity(new Intent(context,NavigationActivity.class));
                 break;
             case R.id.main_media_player_btn:
-                startActivity(new Intent(context,MediaPlayerTestActivity.class));
+                startActivity(new Intent(context,MediaPlayerActivity.class));
+                break;
+            case R.id.main_qr_code_btn:
+                startActivity(new Intent(context,QrCodeActivity.class));
                 break;
             default:
                 break;
