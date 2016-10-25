@@ -13,3 +13,59 @@
                         新增注册动态广播，带数据发送广播，取消注册
 2016-10-19 17:37:15     新增侧划菜单和引导页面功能
 2016-10-21 17:49:37     添加MedaiPlayer播放视频
+2016-10-25 17:21:50     添加二维码生成和扫描
+                            1.复制jar包 core-2.3.0.jar
+                            2.复制二维码扫描文件到java根目录下
+                            3.修改其中的包名以使程序不报错
+                                复制raw文件夹及里面的内容到res文件夹下
+                                复制布局文件 activity_capture 到layout下
+                                复制图片 ic_back.png 到mipmap-hdpi下
+                                复制以下图片到drawable下
+                                    scan_book.png
+                                    scan_book_hl.png
+                                    scan_btombar_bg.png
+                                    scan_qr.png
+                                    scan_qr_hl.png
+                                    scan_store.png
+                                    scan_store_hl.png
+                                    launcher_icon.png
+                                    qrcode_scan_line.png
+                            4.复制以下内容到 string 文件里面
+                                <string name="scan_qrcode">将二维码放入框内，即可自动扫描</string>
+                                <string name="scan_onecode">将条形码放入框内，即可自动扫描</string>
+                                <string name="scan_qr">二维码</string>
+                                <string name="scan_one">条形码</string>
+                                <string name="scan_help">帮助</string>
+                                <string name="scan_scan">扫一扫</string>
+                                <string name="scan_result">扫描结果</string>
+                                <string name="scan_content">扫描内容</string>
+                                <string name="scan_back">返回</string>
+                                <string name="button_cancel">取消</string>
+                                <string name="button_ok">确定</string>
+                                <string name="msg_camera_framework_bug">抱歉，Android相机可能被占用，您可能需要重启设备。</string>
+                                <string name="msg_default_format">格式</string>
+                                <string name="msg_default_meta">元数据</string>
+                                <string name="msg_default_time">时间</string>
+                                <string name="msg_default_type">类型</string>
+                                <string name="action_settings">Settings</string>
+                            5.复制以下颜色到color文件里面
+                                 <color name="contents_text">#ff000000</color>
+                                 <color name="encode_view">#ffffffff</color>
+                                 <color name="possible_result_points">#c0ffbd21</color> <!-- Android standard ICS color -->
+                                 <color name="result_minor_text">#ffc0c0c0</color>
+                                 <color name="result_points">#c099cc00</color> <!-- Android standard ICS color -->
+                                 <color name="result_text">#ffffffff</color>
+                                 <color name="result_view">#b0000000</color>
+                                 <color name="status_text">#ffffffff</color>
+                                 <color name="transparent">#00000000</color>
+                                 <color name="viewfinder_laser">#ffcc0000</color> <!-- Android standard ICS color -->
+                                 <color name="viewfinder_mask">#60000000</color>
+                            6.复制以下文件到drawable中
+                                scan_mode_book.xml
+                                scan_mode_qr.xml
+                                scan_mode_store.xml.
+                            7.复制以下内容到dimens.xml文件中
+                                <dimen name="crop__bar_height">56dp</dimen>
+                                <dimen name="mm_up_arrow_margin">-16dp</dimen>
+                                <dimen name="standard_padding">8dip</dimen>
+                                <dimen name="half_padding">4dip</dimen>
