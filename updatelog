@@ -13,9 +13,9 @@
                         新增注册动态广播，带数据发送广播，取消注册
 2016-10-19 17:37:15     新增侧划菜单和引导页面功能
 2016-10-21 17:49:37     添加MedaiPlayer播放视频
-2016-10-25 17:21:50     添加二维码生成和扫描
+2016-10-25 17:21:50     添加二维码生成和扫描  QrCodeActivity 页面
                             1.复制jar包 core-2.3.0.jar
-                            2.复制二维码扫描文件到java根目录下
+                            2.复制二维码扫描文件zxing全部文件到java根目录下
                             3.修改其中的包名以使程序不报错
                                 复制raw文件夹及里面的内容到res文件夹下
                                 复制布局文件 activity_capture 到layout下
@@ -69,3 +69,6 @@
                                 <dimen name="mm_up_arrow_margin">-16dp</dimen>
                                 <dimen name="standard_padding">8dip</dimen>
                                 <dimen name="half_padding">4dip</dimen>
+                            8.在页面里面调用CaptureActivity获取数据
+2016-10-27 16:18:51     添加悬浮窗功能，显示在其他程序最前方，直到本程序退出
+                        添加照相和从相册选择功能，功能在library里有实现，这里用就可以了
