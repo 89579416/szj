@@ -120,6 +120,20 @@
                 android:layout_height="wrap_content"
                 android:text="@string/qr_code"
                 />
+            <Button
+                android:id="@+id/main_update_head_btn"
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/update_head"
+                />
+            <Button
+                android:id="@+id/main_floating_window_btn"
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/float_window"
+                />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

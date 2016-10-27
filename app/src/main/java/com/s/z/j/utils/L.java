@@ -7,7 +7,7 @@ import android.util.Log;
  * Created by Administrator on 2016/7/7 0007.
  */
 public class L {
-    public static String TAG = "SZJ";
+    public static String TAG = "AAAA";
 
     public static void i(String str) {
         Log.i(TAG, str);

@@ -6,7 +6,7 @@
     >
 
     <uses-sdk
-        android:minSdkVersion="14"
+        android:minSdkVersion="15"
         android:targetSdkVersion="19" />
 
     <!-- 改变 wifi状态 权限 -->
@@ -16,9 +16,9 @@
     <uses-permission android:name="android.permission.WAKE_LOCK"></uses-permission>
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 允许访问振动设备 -->
     <uses-permission android:name="android.permission.VIBRATE" />
+    <!-- 拍照和从相册选择权限 以下3个 -->
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -33,6 +33,8 @@
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <!-- 操作sd卡权限 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!--  浮动窗口权限  -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <!--屏幕自适应配置信息-->
     <supports-screens
@@ -79,6 +81,17 @@
 
         <!-- 二维码扫描 -->
         <activity android:name="zxing.CaptureActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <!-- 拍照和从相册选择 -->
+        <activity android:name=".ui.photo.PhotographActivity"></activity>
+
+        <activity
+            android:name="com.szj.library.camera.CropImageActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name="com.szj.library.camera.MultiImageSelectorActivity"
             android:screenOrientation="portrait"></activity>
     </application>
 

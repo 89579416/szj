@@ -2,20 +2,26 @@ package com.s.z.j.ui;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.s.z.j.R;
 import com.s.z.j.ui.mediaplayer.MediaPlayerActivity;
 import com.s.z.j.ui.nav.NavigationActivity;
+import com.s.z.j.ui.photo.PhotographActivity;
 import com.s.z.j.ui.qrcode.QrCodeActivity;
 import com.s.z.j.ui.slidingmenu.SlidingMainActivity;
 import com.s.z.j.utils.FileUtil;
@@ -139,6 +145,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @ViewInject(R.id.main_qr_code_btn)
     private Button qrCodeBtn;
 
+    /**
+     * 修改头像
+     */
+    @ViewInject(R.id.main_update_head_btn)
+    private Button updateHeadBtn;
+
+    /**
+     * 浮动窗口
+     */
+    @ViewInject(R.id.main_floating_window_btn)
+    private Button floatWindowBtn;
+
     private Bitmap picBitmap;//通过url获取的bitmap
     private String picUrl = "http://gb.cri.cn/mmsource/images/2010/09/27/eo100927986.jpg";//直接显示图片地址
     private String bitmapUrl = "http://cdn.duitang.com/uploads/item/201408/28/20140828160017_wBrME.jpeg";//获取bitmap地址
@@ -161,6 +179,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         navigationBtn.setOnClickListener(this);
         medaiPlayerBtn.setOnClickListener(this);
         qrCodeBtn.setOnClickListener(this);
+        updateHeadBtn.setOnClickListener(this);
+        floatWindowBtn.setOnClickListener(this);
         speedUtil = new SpeedUtil(this, speedHandler, new Timer());
     }
 
@@ -240,6 +260,36 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.main_qr_code_btn:
                 startActivity(new Intent(context,QrCodeActivity.class));
+                break;
+            case R.id.main_update_head_btn:
+                startActivity(new Intent(context,PhotographActivity.class));
+                break;
+            case R.id.main_floating_window_btn:
+                /** 以下代码是悬浮窗的应用  需要添加浮动窗口权限    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />  */
+                WindowManager.LayoutParams wmParams = new WindowManager.LayoutParams();
+                WindowManager mWindowManager = (WindowManager)getApplication().getSystemService(getApplication().WINDOW_SERVICE);
+                wmParams.type = WindowManager.LayoutParams.TYPE_PHONE;//PHONE级别，保证在最前方！
+                wmParams.format = PixelFormat.RGBA_8888;
+                wmParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
+                wmParams.gravity = Gravity.LEFT | Gravity.TOP;//位置：左上角
+                wmParams.x = 0;
+                wmParams.y = 0;
+                wmParams.width = WindowManager.LayoutParams.WRAP_CONTENT;//宽度自适应
+                wmParams.height = WindowManager.LayoutParams.WRAP_CONTENT;//高度自适应
+                LayoutInflater inflater = LayoutInflater.from(getApplication());
+                LinearLayout view = (LinearLayout) inflater.inflate(R.layout.dialog_floating_window, null);
+                TextView backTxt = (TextView) view.findViewById(R.id.floating_window_one_back_btn);
+                backTxt.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        /** 点击事件，点击后返回桌面 */
+                        Intent intent = new Intent(Intent.ACTION_MAIN);
+                        intent.addCategory(Intent.CATEGORY_HOME);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                    }
+                });
+                mWindowManager.addView(view, wmParams);//在窗口管理器上添加一个View
                 break;
             default:
                 break;

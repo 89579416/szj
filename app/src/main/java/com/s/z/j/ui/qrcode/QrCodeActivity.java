@@ -4,16 +4,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.zxing.WriterException;
 import com.s.z.j.R;
 import com.s.z.j.utils.CodeUtil;
-import com.s.z.j.utils.L;
 import com.szj.library.ui.BaseActivity;
 
 import org.xutils.view.annotation.ContentView;
@@ -25,7 +26,7 @@ import zxing.CaptureActivity;
  * Created by Administrator on 2016-10-25.
  */
 @ContentView(R.layout.activity_qr_code)
-public class QrCodeActivity extends BaseActivity implements View.OnClickListener{
+public class QrCodeActivity extends BaseActivity implements View.OnClickListener {
 
     @ViewInject(R.id.qr_code_msg_edit)
     private EditText msgEdit;
@@ -39,8 +40,8 @@ public class QrCodeActivity extends BaseActivity implements View.OnClickListener
     @ViewInject(R.id.qr_code_show_create_code_imageview)
     private ImageView showCodeImageView;
 
-    @ViewInject(R.id.qr_code_show_sys_imageview)
-    private ImageView showSysImageView;
+    @ViewInject(R.id.qr_code_show_sys_textview)
+    private TextView showSysTxt;
 
     private String str;
     private Context c;
@@ -55,10 +56,10 @@ public class QrCodeActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.qr_code_create_btn:
                 str = msgEdit.getText().toString().trim();
-                if(!"".equals(str)){
+                if (!"".equals(str)) {
                     try {
                         Bitmap bitmap = CodeUtil.Create2DCode(str);
                         showCodeImageView.setImageBitmap(bitmap);
@@ -82,13 +83,9 @@ public class QrCodeActivity extends BaseActivity implements View.OnClickListener
             case SCANNIN_GREQUEST_CODE://扫描二维码返回
                 if (resultCode == RESULT_OK) {//在扫描页面，有结果返回-1，没有结果或点击back键后返回0
                     Bundle bundle = data.getExtras();
-                    String qrcode = bundle.getString("qrcode");
-                    L.i(qrcode);
-                    try {
-                        Bitmap bitmap = CodeUtil.Create2DCode(qrcode);
-                        showSysImageView.setImageBitmap(bitmap);
-                    } catch (WriterException e) {
-                        e.printStackTrace();
+                    String msg = bundle.getString("qrcode");
+                    if (!TextUtils.isEmpty(msg)) {
+                        showSysTxt.setText("扫描结果："+msg);
                     }
                 } else {
                 }
