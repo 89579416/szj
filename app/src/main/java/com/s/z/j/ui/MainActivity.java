@@ -37,8 +37,6 @@ import org.xutils.view.annotation.ViewInject;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -157,6 +155,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @ViewInject(R.id.main_floating_window_btn)
     private Button floatWindowBtn;
 
+    /**
+     * 设置wifi
+     */
+    @ViewInject(R.id.main_wifi_btn)
+    private Button setWifiBtn;
+
     private Bitmap picBitmap;//通过url获取的bitmap
     private String picUrl = "http://gb.cri.cn/mmsource/images/2010/09/27/eo100927986.jpg";//直接显示图片地址
     private String bitmapUrl = "http://cdn.duitang.com/uploads/item/201408/28/20140828160017_wBrME.jpeg";//获取bitmap地址
@@ -181,6 +185,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         qrCodeBtn.setOnClickListener(this);
         updateHeadBtn.setOnClickListener(this);
         floatWindowBtn.setOnClickListener(this);
+        setWifiBtn.setOnClickListener(this);
         speedUtil = new SpeedUtil(this, speedHandler, new Timer());
     }
 
@@ -291,9 +296,25 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 });
                 mWindowManager.addView(view, wmParams);//在窗口管理器上添加一个View
                 break;
+            case R.id.main_wifi_btn:
+                setWifi();
+                break;
             default:
                 break;
         }
+    }
+
+    /**
+     * 跳转到设置wifi页面
+     */
+    public void setWifi(){
+        Intent wifiIntent = new Intent();
+        wifiIntent.setAction("android.net.wifi.PICK_WIFI_NETWORK");//跳转到wifi设置页面
+        wifiIntent.putExtra("extra_prefs_show_button_bar", true);//是否显示button bar,传递值为true的话是显示
+        wifiIntent.putExtra("wifi_enable_next_on_connect", true);//是否打开网络连接检测功能（如果连上wifi，则下一步按钮可被点击）
+        wifiIntent.putExtra("extra_prefs_set_next_text", "完成");//自定义按钮的名字，不传递的话，默认为下一步
+        wifiIntent.putExtra("extra_prefs_set_back_text", "返回");//自定义按钮的名字，不传递的话，默认为上一步
+        startActivity(wifiIntent);
     }
 
     /**
@@ -358,11 +379,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             @Override
             public void run() {
                 try {
-                    picBitmap = HttpUtils.getusericon(new URL(bitmapUrl));
+                    picBitmap = HttpUtils.getHttpBitmap(bitmapUrl);
                     if (picBitmap != null) {
                         handler.sendEmptyMessage(1);
                     }
-                } catch (MalformedURLException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }

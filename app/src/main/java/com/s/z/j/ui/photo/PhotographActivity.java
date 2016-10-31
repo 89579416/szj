@@ -1,12 +1,15 @@
 package com.s.z.j.ui.photo;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.s.z.j.R;
+import com.s.z.j.utils.FileUtil;
 import com.szj.library.camera.ImageUploadGetUrl;
 import com.szj.library.getimg.util.GetPictureBack;
 import com.szj.library.ui.BaseActivity;
@@ -28,6 +31,9 @@ public class PhotographActivity extends BaseActivity implements View.OnClickList
     @ViewInject(R.id.photograph_new_picture_layout)
     LinearLayout pictureLayout;
 
+    @ViewInject(R.id.add_booth_new_picture_img)
+    private ImageView headImageView;
+
     private File file;//最后要上传的图片文件
 
     @Override
@@ -45,6 +51,8 @@ public class PhotographActivity extends BaseActivity implements View.OnClickList
         }
     }
 
+
+
     @Override
     public void getBack(String url) {
         L.i("rl=" + url);
@@ -53,19 +61,10 @@ public class PhotographActivity extends BaseActivity implements View.OnClickList
             T.s(PhotographActivity.this, "图片保存失败");
             return;
         }else{
-            /**这里进行图片压缩*/
-            try {
-//                String myFileName = url.substring(url.lastIndexOf("/") + 1, url.length());
-//                L.i("我截取的名字 " + myFileName);
-//                String myFileUrl = saveDir+"/my"+myFileName;
-//                L.i("我生成的文件路径 " + myFileUrl);
-//                ImageFactory.compressAndGenImage(url,myFileUrl,200,true);//压缩并根据路径生成图片
-                file = new File(url);//压缩后地址，后面上传成功后显示出来
-
-            } catch (Exception e) {
-                e.printStackTrace();
+            Bitmap bitmap = FileUtil.getLoacalBitmap(url);
+            if(bitmap != null){
+                headImageView.setImageBitmap(bitmap);
             }
-            /***/
         }
     }
 

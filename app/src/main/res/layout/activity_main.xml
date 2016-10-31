@@ -134,6 +134,13 @@
                 android:layout_height="wrap_content"
                 android:text="@string/float_window"
                 />
+            <Button
+                android:id="@+id/main_wifi_btn"
+                android:layout_width="match_parent"
+                android:layout_marginTop="20dp"
+                android:textSize="20sp"
+                android:layout_height="wrap_content"
+                android:text="连接wifi"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

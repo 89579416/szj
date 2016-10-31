@@ -11,8 +11,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
-import com.s.z.j.R;
-
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -22,12 +20,9 @@ import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
-import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.net.SocketException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.Enumeration;
 
 /**
  * Created by Administrator on 2016/9/8 0008.
@@ -40,18 +35,24 @@ import java.util.Enumeration;
  */
 public class HttpUtils {
 
+
     /**
-     * 根据一个网络连接(URL)获取bitmap图像
-     *
-     * @param imageUri
+     * 从服务器取图片
+     *http://bbs.3gstdy.com
+     * @param url
      * @return
      */
-    public static Bitmap getusericon(URL imageUri) {
-        // 显示网络上的图片
-        URL myFileUrl = imageUri;
+    public static Bitmap getHttpBitmap(String url) {
+        URL myFileUrl = null;
         Bitmap bitmap = null;
         try {
+            myFileUrl = new URL(url);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        try {
             HttpURLConnection conn = (HttpURLConnection) myFileUrl.openConnection();
+            conn.setConnectTimeout(0);
             conn.setDoInput(true);
             conn.connect();
             InputStream is = conn.getInputStream();
