@@ -5,6 +5,8 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Environment;
 import android.util.Log;
 
 import com.s.z.j.entity.ApkItem;
@@ -16,9 +18,12 @@ import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -36,29 +41,6 @@ public class FileUtil {
     private static String TAG = "FileUtil";
     private static String defaultUrl = "";
 
-    /**
-     * 创建文件夹
-     *
-     * @param filePath
-     */
-    public static boolean makeRootDirectory(String filePath) {
-        java.io.File file = null;
-        boolean success = true;
-        try {
-            file = new java.io.File(filePath);
-            if (!file.exists()) {
-                success = file.mkdir();
-            } else {
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        if (success) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
     /**
      * 精简版：利用dom4j-1.6.1.jar 解析
@@ -377,5 +359,96 @@ public class FileUtil {
             e.printStackTrace();
             return null;
         }
+    }
+
+    /**
+     * create file
+     */
+    public static void  createFile() {
+        defaultUrl = Environment.getExternalStorageDirectory() + "";
+        /**创建我们软件的专用文件夹*/
+        makeRootDirectory(defaultUrl + "/xiaofei");
+        /**创建存放日志的文件夹*/
+        makeRootDirectory(defaultUrl + "/xiaofei/Logs");
+    }
+    /**
+     * 创建文件夹
+     * @param filePath
+     */
+    public static boolean makeRootDirectory(String filePath) {
+        java.io.File file = null;
+        boolean success = true;
+        try {
+            file = new java.io.File(filePath);
+            if (!file.exists()) {
+                success = file.mkdir();
+                L.i("success="+success);
+            } else {
+                L.i("success="+success);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            L.i("创建失败："+e.toString());
+        }
+        if (success) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * 向SD卡写入日志
+     *
+     * @param message 消息内容
+     */
+    public static void writeLog(String message) {
+        BufferedWriter writer = null;
+        try {
+            String str = getFullTime()  +"===="+ message + "\n";
+            Uri uri = Uri.parse(Environment.getExternalStorageDirectory()  + "/xiaofei/Logs/" + "xiaofei_" + getNowTime() + ".txt");
+            File file = new File(uri.getPath());
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            writer = new BufferedWriter(new FileWriter(file, true));
+            writer.write(str);
+            writer.flush();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (null != writer) {
+                    writer.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * 获得当前日期，yyyy-MM-dd HH:mm:ss
+     *
+     * @return
+     */
+    public static String getFullTime() {
+        java.sql.Date cunDate = new java.sql.Date(System.currentTimeMillis());// 获得当前时间
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String date = format.format(cunDate);
+        return date;
+    }
+
+
+    /**
+     * 获得当前日期，yyyyMMdd
+     *
+     * @return
+     */
+    public static String getNowTime() {
+        java.sql.Date cunDate = new java.sql.Date(System.currentTimeMillis());// 获得当前时间
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        String date = format.format(cunDate);
+        return date;
     }
 }

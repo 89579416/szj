@@ -24,6 +24,7 @@ import com.s.z.j.ui.nav.NavigationActivity;
 import com.s.z.j.ui.photo.PhotographActivity;
 import com.s.z.j.ui.qrcode.QrCodeActivity;
 import com.s.z.j.ui.slidingmenu.SlidingMainActivity;
+import com.s.z.j.utils.AppInfoProvider;
 import com.s.z.j.utils.FileUtil;
 import com.s.z.j.utils.HttpUtils;
 import com.s.z.j.utils.L;
@@ -161,6 +162,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @ViewInject(R.id.main_wifi_btn)
     private Button setWifiBtn;
 
+    @ViewInject(R.id.main_get_package_name_btn)
+    private Button getPackageNameBtn;
+
     private Bitmap picBitmap;//通过url获取的bitmap
     private String picUrl = "http://gb.cri.cn/mmsource/images/2010/09/27/eo100927986.jpg";//直接显示图片地址
     private String bitmapUrl = "http://cdn.duitang.com/uploads/item/201408/28/20140828160017_wBrME.jpeg";//获取bitmap地址
@@ -186,6 +190,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         updateHeadBtn.setOnClickListener(this);
         floatWindowBtn.setOnClickListener(this);
         setWifiBtn.setOnClickListener(this);
+        getPackageNameBtn.setOnClickListener(this);
         speedUtil = new SpeedUtil(this, speedHandler, new Timer());
     }
 
@@ -255,24 +260,24 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 startActivityForResult(new Intent(context, BroadCastActivity.class), 1);
                 break;
             case R.id.main_sliding_menu_btn:
-                startActivity(new Intent(this,SlidingMainActivity.class));
+                startActivity(new Intent(this, SlidingMainActivity.class));
                 break;
             case R.id.main_navigation_btn:
-                startActivity(new Intent(context,NavigationActivity.class));
+                startActivity(new Intent(context, NavigationActivity.class));
                 break;
             case R.id.main_media_player_btn:
-                startActivity(new Intent(context,MediaPlayerActivity.class));
+                startActivity(new Intent(context, MediaPlayerActivity.class));
                 break;
             case R.id.main_qr_code_btn:
-                startActivity(new Intent(context,QrCodeActivity.class));
+                startActivity(new Intent(context, QrCodeActivity.class));
                 break;
             case R.id.main_update_head_btn:
-                startActivity(new Intent(context,PhotographActivity.class));
+                startActivity(new Intent(context, PhotographActivity.class));
                 break;
             case R.id.main_floating_window_btn:
                 /** 以下代码是悬浮窗的应用  需要添加浮动窗口权限    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />  */
                 WindowManager.LayoutParams wmParams = new WindowManager.LayoutParams();
-                WindowManager mWindowManager = (WindowManager)getApplication().getSystemService(getApplication().WINDOW_SERVICE);
+                WindowManager mWindowManager = (WindowManager) getApplication().getSystemService(getApplication().WINDOW_SERVICE);
                 wmParams.type = WindowManager.LayoutParams.TYPE_PHONE;//PHONE级别，保证在最前方！
                 wmParams.format = PixelFormat.RGBA_8888;
                 wmParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
@@ -299,6 +304,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case R.id.main_wifi_btn:
                 setWifi();
                 break;
+            case R.id.main_get_package_name_btn:
+                FileUtil.createFile();
+                T.s(context,"app_count="+AppInfoProvider.getAllAppNames(context));
+                break;
             default:
                 break;
         }
@@ -307,7 +316,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     /**
      * 跳转到设置wifi页面
      */
-    public void setWifi(){
+    public void setWifi() {
         Intent wifiIntent = new Intent();
         wifiIntent.setAction("android.net.wifi.PICK_WIFI_NETWORK");//跳转到wifi设置页面
         wifiIntent.putExtra("extra_prefs_show_button_bar", true);//是否显示button bar,传递值为true的话是显示

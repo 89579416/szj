@@ -22,6 +22,8 @@
     <string name="qr_code">二维码生成与扫描</string>
     <string name="update_head">修改头像</string>
     <string name="float_window">浮动窗口</string>
+    <string name="connect_wifi">连接wifi</string>
+    <string name="get_system_all_package_name">获取系统里所有程序个数</string>
 
     <!-- start 二维码扫描 -->
     <string name="scan_qrcode">将二维码放入框内，即可自动扫描</string>
