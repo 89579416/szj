@@ -141,7 +141,13 @@
                 android:textSize="20sp"
                 android:layout_height="wrap_content"
                 android:text="@string/connect_wifi"/>
-
+            <Button
+                android:id="@+id/main_wifi_host_btn"
+                android:layout_width="match_parent"
+                android:layout_marginTop="20dp"
+                android:textSize="20sp"
+                android:layout_height="wrap_content"
+                android:text="@string/set_wifi_hot"/>
             <Button
                 android:id="@+id/main_get_package_name_btn"
                 android:layout_width="match_parent"

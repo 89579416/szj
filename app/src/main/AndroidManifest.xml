@@ -9,8 +9,10 @@
         android:minSdkVersion="15"
         android:targetSdkVersion="19" />
 
-    <!-- 改变 wifi状态 权限 -->
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"></uses-permission>
+    <!-- 改变wifi状态 -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"></uses-permission>
 
     <!-- 一种锁的机制, 只要有人拿着这个锁,系统就无法进入休眠，-->
     <uses-permission android:name="android.permission.WAKE_LOCK"></uses-permission>
@@ -86,6 +88,9 @@
         <!-- 拍照和从相册选择 -->
         <activity android:name=".ui.photo.PhotographActivity"></activity>
 
+        <!-- 设置 wifi热点 -->
+        <activity android:name=".ui.wifihost.SetWifiHostActivity"></activity>
+
         <activity
             android:name="com.szj.library.camera.CropImageActivity"
             android:screenOrientation="portrait"></activity>
@@ -93,6 +98,8 @@
         <activity
             android:name="com.szj.library.camera.MultiImageSelectorActivity"
             android:screenOrientation="portrait"></activity>
+
+        <service android:name=".ui.wifihost.WiFiAPService"></service>
     </application>
 
 </manifest>

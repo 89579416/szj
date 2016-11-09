@@ -24,6 +24,7 @@ import com.s.z.j.ui.nav.NavigationActivity;
 import com.s.z.j.ui.photo.PhotographActivity;
 import com.s.z.j.ui.qrcode.QrCodeActivity;
 import com.s.z.j.ui.slidingmenu.SlidingMainActivity;
+import com.s.z.j.ui.wifihost.SetWifiHostActivity;
 import com.s.z.j.utils.AppInfoProvider;
 import com.s.z.j.utils.FileUtil;
 import com.s.z.j.utils.HttpUtils;
@@ -162,6 +163,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @ViewInject(R.id.main_wifi_btn)
     private Button setWifiBtn;
 
+    /**
+     *设置wifi热点
+     */
+    @ViewInject(R.id.main_wifi_host_btn)
+    private Button setWifiHotBtn;
+
     @ViewInject(R.id.main_get_package_name_btn)
     private Button getPackageNameBtn;
 
@@ -191,6 +198,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         floatWindowBtn.setOnClickListener(this);
         setWifiBtn.setOnClickListener(this);
         getPackageNameBtn.setOnClickListener(this);
+        setWifiHotBtn.setOnClickListener(this);
         speedUtil = new SpeedUtil(this, speedHandler, new Timer());
     }
 
@@ -307,6 +315,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case R.id.main_get_package_name_btn:
                 FileUtil.createFile();
                 T.s(context,"app_count="+AppInfoProvider.getAllAppNames(context));
+                break;
+            case R.id.main_wifi_host_btn:
+                    startActivity(new Intent(context,SetWifiHostActivity.class));
                 break;
             default:
                 break;

@@ -23,6 +23,7 @@
     <string name="update_head">修改头像</string>
     <string name="float_window">浮动窗口</string>
     <string name="connect_wifi">连接wifi</string>
+    <string name="set_wifi_hot">设置wifi热点</string>
     <string name="get_system_all_package_name">获取系统里所有程序个数</string>
 
     <!-- start 二维码扫描 -->
@@ -44,4 +45,14 @@
     <string name="msg_default_type">类型</string>
     <string name="action_settings">Settings</string>
     <!-- end 二维码扫描 -->
+
+    <!-- start  设置wifi热点 -->
+    <string name="input_wifi_host_password">请输入8-16位wifi热点密码</string>
+    <string name="input_wifi_host_name">请输入wifi热点名称</string>
+    <string name="wifi_host_open">开启wifi热点</string>
+    <string name="open_wifi_hot">打开WIFI热点</string>
+    <string name="opening_wifi_hot">正在打开热点...</string>
+    <string name="close_wifi_hot">关闭WIFI热点</string>
+    <string name="closeing_wifi_hot">正在关闭热点...</string>
+    <!-- end   设置wifi热点 -->
 </resources>
