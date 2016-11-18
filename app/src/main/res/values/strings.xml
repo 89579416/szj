@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">SzjApplication</string>
 
+    <string name="get_device_info">获取设备信息</string>
     <string name="get_net_type">获取网络类型</string>
     <string name="get_ip">获取ip地址</string>
     <string name="get_mac">获取MAC</string>
@@ -25,6 +26,7 @@
     <string name="connect_wifi">连接wifi</string>
     <string name="set_wifi_hot">设置wifi热点</string>
     <string name="get_system_all_package_name">获取系统里所有程序个数</string>
+    <string name="get_sdcard_url">获取内存目录和SD卡目录</string>
 
     <!-- start 二维码扫描 -->
     <string name="scan_qrcode">将二维码放入框内，即可自动扫描</string>

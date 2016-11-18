@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/sdcard_path"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="路径1"/>
+    <TextView
+        android:id="@+id/usb_path"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="路径2"/>
+
+    <LinearLayout
+        android:id="@+id/media_player_linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+        <Button
+        android:id="@+id/media_sd_start_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SD卡播放" />
+        <Button
+            android:id="@+id/media_usb_start_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="U盘播放" />
+        <Button
+            android:id="@+id/media_pause_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="暂停" />
+
+        <Button
+            android:id="@+id/media_stop_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="停止" />
+    </LinearLayout>
+    <FrameLayout
+        android:id="@+id/media_player_framelayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+    </FrameLayout>
+</LinearLayout>

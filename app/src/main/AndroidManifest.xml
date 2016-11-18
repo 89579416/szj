@@ -91,6 +91,13 @@
         <!-- 设置 wifi热点 -->
         <activity android:name=".ui.wifihost.SetWifiHostActivity"></activity>
 
+        <!-- 获取SD卡路径-->
+        <activity android:name=".ui.sdcard.SdcardUrlActivity"></activity>
+
+        <!-- 获取设备信息 -->
+        <activity android:name=".ui.device.DeviceInfoActivity"></activity>
+
+
         <activity
             android:name="com.szj.library.camera.CropImageActivity"
             android:screenOrientation="portrait"></activity>
@@ -99,7 +106,9 @@
             android:name="com.szj.library.camera.MultiImageSelectorActivity"
             android:screenOrientation="portrait"></activity>
 
+
         <service android:name=".ui.wifihost.WiFiAPService"></service>
+        
     </application>
 
 </manifest>

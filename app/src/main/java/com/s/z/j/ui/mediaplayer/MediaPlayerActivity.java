@@ -47,6 +47,7 @@ public class MediaPlayerActivity extends BaseActivity {
     private MyVideoPlayer myVideoPlayer;
     @Override
     public void initialize(Bundle savedInstanceState) {
+        FileUtil.createFile("aabb");
         defaultPath = Environment.getExternalStorageDirectory() + "/aabb";
         data = FileUtil.getPlayFile(defaultPath);
         initPlay();

@@ -372,6 +372,13 @@ public class FileUtil {
         makeRootDirectory(defaultUrl + "/xiaofei/Logs");
     }
     /**
+     * create file
+     */
+    public static void  createFile(String name) {
+        defaultUrl = Environment.getExternalStorageDirectory() + "";
+        makeRootDirectory(defaultUrl + "/"+name);
+    }
+    /**
      * 创建文件夹
      * @param filePath
      */
