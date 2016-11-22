@@ -97,6 +97,7 @@
         <!-- 获取设备信息 -->
         <activity android:name=".ui.device.DeviceInfoActivity"></activity>
 
+        <activity android:name=".ui.apppackage.SystemAppPackageNameActivity"></activity>
 
         <activity
             android:name="com.szj.library.camera.CropImageActivity"

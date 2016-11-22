@@ -25,7 +25,7 @@
     <string name="float_window">浮动窗口</string>
     <string name="connect_wifi">连接wifi</string>
     <string name="set_wifi_hot">设置wifi热点</string>
-    <string name="get_system_all_package_name">获取系统里所有程序个数</string>
+    <string name="get_system_all_package_name">获取系统里所有程序包名</string>
     <string name="get_sdcard_url">获取内存目录和SD卡目录</string>
 
     <!-- start 二维码扫描 -->

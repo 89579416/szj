@@ -19,6 +19,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.s.z.j.R;
+import com.s.z.j.ui.apppackage.SystemAppPackageNameActivity;
 import com.s.z.j.ui.device.DeviceInfoActivity;
 import com.s.z.j.ui.mediaplayer.MediaPlayerActivity;
 import com.s.z.j.ui.nav.NavigationActivity;
@@ -27,7 +28,6 @@ import com.s.z.j.ui.qrcode.QrCodeActivity;
 import com.s.z.j.ui.sdcard.SdcardUrlActivity;
 import com.s.z.j.ui.slidingmenu.SlidingMainActivity;
 import com.s.z.j.ui.wifihost.SetWifiHostActivity;
-import com.s.z.j.utils.AppInfoProvider;
 import com.s.z.j.utils.FileUtil;
 import com.s.z.j.utils.HttpUtils;
 import com.s.z.j.utils.L;
@@ -326,8 +326,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 setWifi();
                 break;
             case R.id.main_get_package_name_btn:
-                FileUtil.createFile();
-                T.s(context,"app_count="+AppInfoProvider.getAllAppNames(context));
+                startActivity(new Intent(context, SystemAppPackageNameActivity.class));
                 break;
             case R.id.main_wifi_host_btn:
                     startActivity(new Intent(context,SetWifiHostActivity.class));

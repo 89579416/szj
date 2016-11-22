@@ -16,13 +16,12 @@ import java.util.List;
  *  APK包名检测
  */
 public class AppInfoProvider {
-    public static final String LOTTERY_PACKAGENAME_PREFIX = "com.teamviewer.quicksupport.addon";//购彩app包名
+    public static final String LOTTERY_PACKAGENAME_PREFIX = "com.teamviewer.quicksupport.addon";//
     public static final String LOTTERY_PACKAGENAME_SUFFIX = "ppl";
 
     /**
-     * 获取手机里面购彩app包名
-     * @param context
-     *            上下文
+     * 获取手机里面app包名
+     * @param context  上下文
      * @return
      */
     public static String getLotteryAppPackageName(Context context) {
@@ -39,15 +38,14 @@ public class AppInfoProvider {
         }
         return lotteryPackageName;
     }
-
     /**
-     * 获取android系统安装的所有的应用包名
-     * 本方法是检测该设备上安装的共有多少软件
+     * 返回系统安装的所有应用名和包名
      * @param context
+     * @return
      */
-    public static int getAllAppNames(Context context){
+    public static String getAllAppPackageName(Context context){
         int j=0;//计数，通过这个得到系统安装了多少个应用
-        boolean isHaveTeamAddon = false;//是否安装了某个应用
+        StringBuffer packageNames = new StringBuffer("");
         PackageManager pm = context.getPackageManager();
         List<PackageInfo> list2=pm.getInstalledPackages(PackageManager.GET_UNINSTALLED_PACKAGES);
         for (PackageInfo packageInfo : list2) {
@@ -56,16 +54,10 @@ public class AppInfoProvider {
             //得到应用所在包的名字,即在AndriodMainfest.xml中的package的值。
             String packageName=packageInfo.packageName;
             Log.i("AAAA", "appName:" + appName + "  packageName:" + packageName);
-
-//            if("com.teamviewer.quicksupport.addon.aosp5".equals(packageName)){//检测是否有某一个程序
-//                FileUtil.writeLog("appName:" + appName + "  packageName:" + packageName);
-//                isHaveTeamAddon = true;
-//            }
-
+            packageNames.append(appName+"\n"+packageName+"\n\n");
             j++;
         }
-        Log.i("AAAA", "count:" + j+"  isHaveTeamAddon="+isHaveTeamAddon);
-        FileUtil.writeLog("count:" + j + "  isHaveTeamAddon=" + isHaveTeamAddon);
-        return j;
+        packageNames.append("总个数："+j);
+        return packageNames.toString();
     }
 }
