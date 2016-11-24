@@ -19,8 +19,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.s.z.j.R;
+import com.s.z.j.abcde.navigationdrawer.ui.NavigationdrawerActivity;
 import com.s.z.j.ui.apppackage.SystemAppPackageNameActivity;
 import com.s.z.j.ui.device.DeviceInfoActivity;
+import com.s.z.j.ui.dialog.DialogActivity;
 import com.s.z.j.ui.mediaplayer.MediaPlayerActivity;
 import com.s.z.j.ui.nav.NavigationActivity;
 import com.s.z.j.ui.photo.PhotographActivity;
@@ -180,8 +182,20 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @ViewInject(R.id.main_get_package_name_btn)
     private Button getPackageNameBtn;
 
+    /**
+     *各式Dialog
+     */
+    @ViewInject(R.id.to_dialog_btn)
+    private Button dialogBtn;
+
+    /**
+     * 获取SD卡目录和U盘目录
+     */
     @ViewInject(R.id.main_gget_sdcard_url_btn)
     private Button getSdcardUrlBtn;
+
+    @ViewInject(R.id.main_navigationdrawer_btn)
+    private Button navigationdrawerBtn;
 
     private Bitmap picBitmap;//通过url获取的bitmap
     private String picUrl = "http://gb.cri.cn/mmsource/images/2010/09/27/eo100927986.jpg";//直接显示图片地址
@@ -212,6 +226,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         setWifiHotBtn.setOnClickListener(this);
         getSdcardUrlBtn.setOnClickListener(this);
         getDeviceInfoBtn.setOnClickListener(this);
+        dialogBtn.setOnClickListener(this);
+        navigationdrawerBtn.setOnClickListener(this);
         speedUtil = new SpeedUtil(this, speedHandler, new Timer());
     }
 
@@ -336,6 +352,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.main_get_device_info_btn:
                 startActivity(new Intent(context,DeviceInfoActivity.class));
+                break;
+            case R.id.to_dialog_btn:
+                startActivity(new Intent(context,DialogActivity.class));
+                break;
+            case R.id.main_navigationdrawer_btn:
+                startActivity(new Intent(context,NavigationdrawerActivity.class));
                 break;
             default:
                 break;
@@ -499,7 +521,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        L.i("返回啦");
+        L.i("onActivityResult-->requestCode="+requestCode+"\tresultCode="+resultCode);
     }
 
 }

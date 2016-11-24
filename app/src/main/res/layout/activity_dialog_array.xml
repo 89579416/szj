@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textColor="#ff0000"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="各种Dialog合集" />
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="普通Dialog"
+        android:id="@+id/btn_diaNormal"/>
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="多按钮Dialog"
+        android:id="@+id/btn_diaMulti"/>
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="列表Dialog"
+        android:id="@+id/btn_diaList"/>
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="单项选择Dialog"
+        android:id="@+id/btn_diaSigChos"/>
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="多项选择Dialog"
+        android:id="@+id/btn_diaMultiChos"/>
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="进度条Dialog"
+        android:id="@+id/btn_diaReadProcess"/>
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="读取中Dialog"
+        android:id="@+id/btn_diaProcess"/>
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="自定义Dialog"
+        android:id="@+id/btn_diaCustom"/>
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="PopUpWindow实现的dialog"
+        android:id="@+id/btn_popUpDia"/>
+</LinearLayout>  

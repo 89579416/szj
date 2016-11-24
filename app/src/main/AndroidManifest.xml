@@ -97,12 +97,27 @@
         <!-- 获取设备信息 -->
         <activity android:name=".ui.device.DeviceInfoActivity"></activity>
 
+        <!-- 获取系统里安装的所有程序包名 -->
         <activity android:name=".ui.apppackage.SystemAppPackageNameActivity"></activity>
 
+        <!-- 各种dialog -->
+        <activity android:name=".ui.dialog.DialogActivity"></activity>
+
+        <!-- 抽屉式菜单 -->
+        <activity android:name=".abcde.navigationdrawer.ui.NavigationdrawerActivity"
+           >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.MainActivity"/>
+        </activity>
+
+
+        <!-- 拍照 -->
         <activity
             android:name="com.szj.library.camera.CropImageActivity"
             android:screenOrientation="portrait"></activity>
 
+        <!-- 从相册选择 -->
         <activity
             android:name="com.szj.library.camera.MultiImageSelectorActivity"
             android:screenOrientation="portrait"></activity>

@@ -22,5 +22,10 @@
     <dimen name="half_padding">4dip</dimen>
     <!-- 二维码要用的颜色结束 -->
 
-
+    <color name="list_item_title">#fff</color>
+    <color name="list_background">#303030</color>
+    <color name="list_background_pressed">#992416</color>
+    <color name="list_divider">#272727</color>
+    <color name="counter_text_bg">#626262</color>
+    <color name="counter_text_color">#c5c4c4</color>
 </resources>

@@ -169,6 +169,16 @@
                 android:textSize="20sp"
                 android:layout_height="wrap_content"
                 android:text="@string/get_sdcard_url"/>
+            <Button
+                android:id="@+id/to_dialog_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="跳转到Dialog页面"/>
+            <Button
+                android:id="@+id/main_navigationdrawer_btn"
+                android:text="@string/navigationdrawer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
