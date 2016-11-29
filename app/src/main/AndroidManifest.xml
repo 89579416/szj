@@ -103,13 +103,16 @@
         <!-- 各种dialog -->
         <activity android:name=".ui.dialog.DialogActivity"></activity>
 
-        <!-- 抽屉式菜单 -->
+        <!-- 示完成的抽屉式菜单 -->
         <activity android:name=".abcde.navigationdrawer.ui.NavigationdrawerActivity"
            >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.MainActivity"/>
         </activity>
+
+        <!-- 分屏播放视频和网页  -->
+        <activity android:name=".fenping.ui.FenPingActivity"></activity>
 
 
         <!-- 拍照 -->

@@ -28,6 +28,7 @@
     <string name="get_system_all_package_name">获取系统里所有程序包名</string>
     <string name="get_sdcard_url">获取内存目录和SD卡目录</string>
     <string name="navigationdrawer">Android导航抽屉-Navigation Drawer</string>
+    <string name="fenping">分屏显示广告和网页</string>
 
     <!-- start 二维码扫描 -->
     <string name="scan_qrcode">将二维码放入框内，即可自动扫描</string>

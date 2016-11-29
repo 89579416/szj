@@ -8,6 +8,7 @@
         android:id="@+id/qr_code_msg_edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="http://weixin.qq.com/r/SUR5YTXEtGjLrXEC9xFb?id=12345"
         android:hint="请输入你要生成二维码的文字信息" />
 
     <Button

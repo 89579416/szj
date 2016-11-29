@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.s.z.j.R;
 import com.s.z.j.abcde.navigationdrawer.ui.NavigationdrawerActivity;
+import com.s.z.j.fenping.ui.FenPingActivity;
 import com.s.z.j.ui.apppackage.SystemAppPackageNameActivity;
 import com.s.z.j.ui.device.DeviceInfoActivity;
 import com.s.z.j.ui.dialog.DialogActivity;
@@ -194,8 +195,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @ViewInject(R.id.main_gget_sdcard_url_btn)
     private Button getSdcardUrlBtn;
 
+    /**
+     * 未完成的侧滑菜单
+     */
     @ViewInject(R.id.main_navigationdrawer_btn)
     private Button navigationdrawerBtn;
+
+    @ViewInject(R.id.main_fenping_btn)
+    private Button fenpingBtn;
 
     private Bitmap picBitmap;//通过url获取的bitmap
     private String picUrl = "http://gb.cri.cn/mmsource/images/2010/09/27/eo100927986.jpg";//直接显示图片地址
@@ -228,6 +235,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         getDeviceInfoBtn.setOnClickListener(this);
         dialogBtn.setOnClickListener(this);
         navigationdrawerBtn.setOnClickListener(this);
+        fenpingBtn.setOnClickListener(this);
         speedUtil = new SpeedUtil(this, speedHandler, new Timer());
     }
 
@@ -358,6 +366,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.main_navigationdrawer_btn:
                 startActivity(new Intent(context,NavigationdrawerActivity.class));
+                break;
+            case R.id.main_fenping_btn:
+                startActivity(new Intent(context,FenPingActivity.class));
                 break;
             default:
                 break;
