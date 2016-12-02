@@ -16,12 +16,14 @@ import android.widget.FrameLayout;
 
 import com.s.z.j.R;
 import com.s.z.j.utils.FileUtil;
+import com.s.z.j.utils.L;
 import com.s.z.j.widget.mediaplayer.MyVideoPlayer;
 import com.szj.library.ui.BaseActivity;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 
+import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -45,18 +47,20 @@ public class FenPingActivity extends BaseActivity {
     private FrameLayout lframerLayout;//显示播放视频的控件
 
     private boolean isPause = false;//是否暂停
-    private String defaultPath;//SD卡路径
     private ArrayList<String> data = new ArrayList<String>();//要播放的路径
 
     private MyVideoPlayer myVideoPlayer;
 
     @ViewInject(R.id.fenping_webview)
     private WebView webView;
+
+    private File file;
     @Override
     public void initialize(Bundle savedInstanceState) {
         FileUtil.createFile("aabb");
-        defaultPath = Environment.getExternalStorageDirectory() + "/aabb";
-        data = FileUtil.getPlayFile(defaultPath);
+        file = Environment.getExternalStorageDirectory();
+        data = FileUtil.getFile(file);
+//        data = FileUtil.myListFiles(file.getPath());
         initPlay();
         initWebView();
         startBtn.setOnClickListener(new View.OnClickListener() {
@@ -101,10 +105,14 @@ public class FenPingActivity extends BaseActivity {
     }
 
     public  void initPlay(){
-        String path = data.get(0);
-        Log.i("AAAA", "path=" + path);
-        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT);
-        myVideoPlayer = new MyVideoPlayer(FenPingActivity.this, layoutParams, path);
+        if(data.size()>0) {
+            String path = data.get(0);
+            Log.i("AAAA", "path=" + path);
+            FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT);
+            myVideoPlayer = new MyVideoPlayer(FenPingActivity.this, layoutParams, path);
+        }else {
+            L.i("没有获取到MP4文件");
+        }
     }
 
     @Override
@@ -144,7 +152,9 @@ public class FenPingActivity extends BaseActivity {
         webView.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
-                Log.i("AAAA", "已加载 " + newProgress + "%");
+                if(newProgress == 100) {
+                    Log.i("AAAA", "已加载 " + newProgress + "%");
+                }
             }
         });
         webView.addJavascriptInterface(new JsInteration(), "control");

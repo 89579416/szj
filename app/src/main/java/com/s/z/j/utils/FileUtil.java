@@ -20,6 +20,7 @@ import org.dom4j.io.SAXReader;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -28,6 +29,7 @@ import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -317,11 +319,13 @@ public class FileUtil {
             return null;
         }
         File[] files = mfile.listFiles();
-        // 将所有的文件存入ArrayList中,并过滤所有图片格式的文件
-        for (int i = 0; i < files.length; i++) {
-            File file = files[i];
-            if (checkIsPlayFile(file.getPath())) {
-                picList.add(file.getPath());
+        if(files != null){
+            // 将所有的文件存入ArrayList中,并过滤所有图片格式的文件
+            for (int i = 0; i < files.length; i++) {
+                File file = files[i];
+                if (checkIsPlayFile(file.getPath())) {
+                    picList.add(file.getPath());
+                }
             }
         }
         // 返回得到的图片列表
@@ -458,4 +462,116 @@ public class FileUtil {
         String date = format.format(cunDate);
         return date;
     }
+
+    public static ArrayList  getAllMp4File(){
+        File path = Environment.getExternalStorageDirectory();// 获得SD卡路径
+        // File path = new File("/mnt/sdcard/");
+        File[] files = path.listFiles();// 读取
+        return getFileName(files);
+    }
+
+    public static ArrayList name =  new ArrayList();
+    public static ArrayList getFileName(File[] files) {
+        if (files != null) {// 先判断目录是否为空，否则会报空指针
+            for (File file : files) {
+                if (file.isDirectory()) {
+                    Log.i("BBBB", "若是文件目录。继续读1" + file.getName().toString() + file.getPath().toString());
+                    getFileName(file.listFiles());
+                    Log.i("BBBB", "若是文件目录。继续读2" + file.getName().toString() + file.getPath().toString());
+                } else {
+                    String fileName = file.getName();
+                    if (fileName.endsWith(".txt")) {
+                        HashMap map = new HashMap();
+                        String s = fileName.substring(0,
+                                fileName.lastIndexOf(".")).toString();
+                        Log.i("zeng", "文件名txt：：   " + s);
+                        map.put("Name", fileName.substring(0,
+                                fileName.lastIndexOf(".")));
+                        name.add(map);
+                    }
+                }
+            }
+        }
+        L.i("当前有"+name.size()+"个视频");
+        return name;
+    }
+
+    /**
+     * 获取一个目录下的某种类型的文件
+     * @param dir
+     * @return
+     */
+    public static  ArrayList <String>  myListFiles(String dir) {
+        ArrayList <String> data = new ArrayList<String>();
+        File directory = new File(dir);
+        if (!directory.isDirectory()) {
+            System.out.println("No directory provided");
+            L.i("没有目录");
+            return data;
+        }else{
+            L.i("有目录");
+        }
+        File[] files = directory.listFiles(filefilter);
+        if(files != null) {
+            for (File f : files) {
+                data.add(f.getPath());
+                System.out.println(f.getName());
+                L.i("myListFiles：" + f.getName());
+            }
+        }
+        L.i("data.size="+data.size());
+        return data;
+    }
+
+    /**
+     * 文件名过滤
+     */
+    public static FileFilter filefilter = new FileFilter() {
+        public boolean accept(File file) {
+            if (file.getName().endsWith(".mp4")) {
+                return true;
+            }
+            return false;
+        }
+    };
+    /**
+     * 保存查找到的指定格式文件路径
+     */
+    public  static ArrayList <String> data;
+
+    /**
+     * 获取MP4文件
+     * @param root
+     * @return
+     */
+    public  static ArrayList <String> getFile(File root){
+        data = new  ArrayList <String>();
+        getAllFiles(root);
+        return data;
+    }
+
+    /**
+     * 遍历接收一个文件路径，然后把文件子目录中的所有文件遍历并输出来
+     * @param root
+     */
+    public static  void   getAllFiles(File root){
+        File files[] = root.listFiles();
+        if(files != null){
+            for (File f : files){
+                if(f.isDirectory()){
+                    getAllFiles(f);
+                }else{
+                    if(f.getName().endsWith(".mp4")){
+                        L.i("检测到mp4文件：" + f.getPath());
+                        data.add(f.getPath());
+                    }
+                    if(f.getName().endsWith(".mov")){
+                        L.i("检测到mov文件：" + f.getPath());
+                        data.add(f.getPath());
+                    }
+                }
+            }
+        }
+    }
+
 }
