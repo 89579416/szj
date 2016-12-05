@@ -75,7 +75,6 @@
                 />
             <Button
                 android:id="@+id/main_save_current_btn"
-                android:layout_marginTop="1dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/save_screen"
@@ -90,24 +89,25 @@
             <TextView
                 android:id="@+id/main_show_net_speed_textview"
                 android:layout_width="match_parent"
+                android:text="当前网速：0kb/s"
                 android:layout_height="wrap_content" />
             <Button
                 android:id="@+id/main_broad_cast_btn"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="1dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/broad_cast"
                 />
             <Button
                 android:id="@+id/main_sliding_menu_btn"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="1dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/sliding_menu"
                 />
             <Button
                 android:id="@+id/main_navigation_btn"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="1dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/navigation"
@@ -115,73 +115,81 @@
             />
             <Button
                 android:id="@+id/main_media_player_btn"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="1dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/media_player"
                 />
             <Button
                 android:id="@+id/main_qr_code_btn"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="1dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/qr_code"
                 />
             <Button
                 android:id="@+id/main_update_head_btn"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="1dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/update_head"
                 />
             <Button
                 android:id="@+id/main_floating_window_btn"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="1dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/float_window"
                 />
             <Button
                 android:id="@+id/main_wifi_btn"
+                android:layout_marginTop="1dp"
                 android:layout_width="match_parent"
-                android:layout_marginTop="20dp"
                 android:textSize="20sp"
                 android:layout_height="wrap_content"
                 android:text="@string/connect_wifi"/>
             <Button
                 android:id="@+id/main_wifi_host_btn"
                 android:layout_width="match_parent"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="1dp"
                 android:textSize="20sp"
                 android:layout_height="wrap_content"
                 android:text="@string/set_wifi_hot"/>
             <Button
                 android:id="@+id/main_get_package_name_btn"
+                android:layout_marginTop="1dp"
                 android:layout_width="match_parent"
-                android:layout_marginTop="20dp"
                 android:textSize="20sp"
                 android:layout_height="wrap_content"
                 android:text="@string/get_system_all_package_name"/>
             <Button
                 android:id="@+id/main_gget_sdcard_url_btn"
+                android:layout_marginTop="1dp"
                 android:layout_width="match_parent"
-                android:layout_marginTop="20dp"
                 android:textSize="20sp"
                 android:layout_height="wrap_content"
                 android:text="@string/get_sdcard_url"/>
             <Button
                 android:id="@+id/to_dialog_btn"
+                android:layout_marginTop="1dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="跳转到Dialog页面"/>
             <Button
                 android:id="@+id/main_navigationdrawer_btn"
+                android:layout_marginTop="1dp"
                 android:text="@string/navigationdrawer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <Button
                 android:id="@+id/main_fenping_btn"
+                android:layout_marginTop="1dp"
                 android:text="@string/fenping"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/main_weixin_fragment"
+                android:text="仿微信布局"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>

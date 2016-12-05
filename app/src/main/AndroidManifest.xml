@@ -125,6 +125,8 @@
             android:name="com.szj.library.camera.MultiImageSelectorActivity"
             android:screenOrientation="portrait"></activity>
 
+        <!-- 仿微信布局-->
+        <activity android:name=".fragment.weixin.WeiXinFragmentActivity"></activity>
 
         <service android:name=".ui.wifihost.WiFiAPService"></service>
         

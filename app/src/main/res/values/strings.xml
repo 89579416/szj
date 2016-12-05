@@ -68,4 +68,9 @@
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
 
+
+    <string name="chat">主页</string>
+    <string name="find">相册</string>
+    <string name="tongxunlu">页面</string>
+
 </resources>
