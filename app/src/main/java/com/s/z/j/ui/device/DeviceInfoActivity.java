@@ -14,6 +14,7 @@ import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 
 /**
+ * 设备信息
  * Created by Administrator on 2016-11-18.
  */
 @ContentView(R.layout.activity_device_info)
@@ -56,7 +57,28 @@ public class DeviceInfoActivity extends BaseActivity {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case 1:
-                    messageTxt.setText(info.toString());
+                    messageTxt.setText("deviceId:"+info.getDeviceId()+
+                                    "\nSDK版本::"+info.getVersion_sdk()+
+                                    "\n最大CPU的频率:"+info.getMaxCpuFreq()+
+                                    "\n最小CPU的频率:"+info.getMinCpuFreq()+
+                                    "\n当前CPU的频率:"+info.getCurCpuFreq()+
+                                    "\ncpu名字:"+info.getCpuName()+
+                                    "\n内存条总大小:"+info.getRam_total()+
+                                    "\n内存条剩余大小:"+info.getRam_free()+
+                                    "\n内存卡总大小:"+info.getDisk_total()+
+                                    "\n内存卡剩余大小:"+info.getDisk_free()+
+                                    "\n音量:"+info.getCurrentVolume()+
+                                    "\n屏幕宽度:"+info.getWidth()+
+                                    "\n屏幕高度:"+info.getHeight()+
+                                    "\n密度:"+info.getDensity()+
+                                    "\n是否禁用快门声音:"+info.isCanDisableShutterSound()+
+                                    "\n网络是否连接:"+info.isNetavailable()+
+                                    "\nGPS是否打开:" +info.isGpsIsOpen()+
+                                    "\nWIFI是否可用:"+info.isWifiavailable()+
+                                    "\nSD卡是否存在:"+info.isSdCardIsExist()+
+                                    "\n摄相头能否使用:"+ info.isCameraIsUse()
+
+                    );
                     break;
             }
         }
