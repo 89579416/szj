@@ -3,6 +3,8 @@ package com.s.z.j.ui.sdcard;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.AssetFileDescriptor;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -22,8 +24,12 @@ import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.util.ArrayList;
 
 /**
@@ -44,8 +50,8 @@ public class SdcardUrlActivity extends BaseActivity {
     @ViewInject(R.id.media_usb_start_btn)
     Button startUsbBtn;//获取“播放”按钮
 
-    @ViewInject(R.id.media_pause_btn)
-    Button pauseBtn;//获取“暂停/继续”按钮
+    @ViewInject(R.id.media_assets_btn)
+    Button assetsBtn;//
 
     @ViewInject(R.id.media_stop_btn)
     Button stopBtn;//获取“停止”按钮
@@ -62,6 +68,7 @@ public class SdcardUrlActivity extends BaseActivity {
 
     private ArrayList<String> sdcardData = new ArrayList<String>();//要播放的路径
     private ArrayList<String> usbData = new ArrayList<String>();//要播放的路径
+    private ArrayList<String> assetsData = new ArrayList<String>();//要播放的路径
 
     private MyVideoPlayer myVideoPlayer;
 
@@ -71,18 +78,32 @@ public class SdcardUrlActivity extends BaseActivity {
 
     String sd_path = "";//内存卡地址
     String usb_path = "";//usb插口地址
-
+    File file;
 
     @Override
     public void initialize(Bundle savedInstanceState) {
         context = this;
+        FileUtil.createFile("aabb");
+        defaultPath = Environment.getExternalStorageDirectory() + "/aabb";
+
         sdCardTxt = (TextView) findViewById(R.id.sdcard_path);
         usbPathTxt = (TextView) findViewById(R.id.usb_path);
         getPath2();
         sdCardTxt.setText(sd_path);
         usbPathTxt.setText(usb_path);
+        /**
+         * 获取assets中的视频转为流
+         * 流转为文件保存在SD卡
+         */
+        InputStream is = null;
+        try {
+            is = context.getAssets().open("a1.mp4");
+            file = new File(defaultPath + "/a2.mp4");
+            inputstreamtofile(is, file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        FileUtil.createFile("aabb");
 
         startSdcardBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,7 +115,7 @@ public class SdcardUrlActivity extends BaseActivity {
                 myVideoPlayer.startPlay();
                 lframerLayout.removeAllViewsInLayout();
                 lframerLayout.addView(myVideoPlayer);
-                pauseBtn.setEnabled(true);//“暂停/继续”按钮可用
+                assetsBtn.setEnabled(true);//“暂停/继续”按钮可用
                 stopBtn.setEnabled(true);//"停止"按钮可用
                 startSdcardBtn.setEnabled(false);//“播放”按钮不可用
             }
@@ -104,38 +125,30 @@ public class SdcardUrlActivity extends BaseActivity {
             public void onClick(View v) {
                 usbPath = getPath2();
                 usbData = FileUtil.getPlayFile(usbPath);
-                if(usbData == null || usbData.size()<0){
-                    T.s(context,"没有发现USB设备");
-                }else {
+                if (usbData == null || usbData.size() < 0) {
+                    T.s(context, "没有发现USB设备");
+                } else {
                     initUsbPlay();
                     myVideoPlayer.setDataSources(usbData);
                     myVideoPlayer.startPlay();
                     lframerLayout.removeAllViewsInLayout();
                     lframerLayout.addView(myVideoPlayer);
-                    pauseBtn.setEnabled(true);//“暂停/继续”按钮可用
+                    assetsBtn.setEnabled(true);//“暂停/继续”按钮可用
                     stopBtn.setEnabled(true);//"停止"按钮可用
                     startUsbBtn.setEnabled(false);//“播放”按钮不可用
                 }
             }
         });
-        pauseBtn.setOnClickListener(new View.OnClickListener() {
+        assetsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (myVideoPlayer.isPlaying()) {
-                    myVideoPlayer.pausePlay();//暂停播放
-                    isPause = true;
-                    ((Button) v).setText("继续");
-                    hint.setText("暂停播放...");
-                    startSdcardBtn.setEnabled(true);//“播放”按钮可用
-                    startUsbBtn.setEnabled(true);//“播放”按钮可用
-                } else {
-                    myVideoPlayer.startPlay();//继续播放
-                    ((Button) v).setText("暂停");
-                    hint.setText("正在播放...");
-                    isPause = false;
-                    startSdcardBtn.setEnabled(false);//“播放”按钮不可用
-                    startUsbBtn.setEnabled(false);//“播放”按钮可用
-                }
+                assetsData.add(file.getPath());
+                initAssetsPlay();
+                myVideoPlayer.setDataSources(assetsData);
+                myVideoPlayer.startPlay();
+                lframerLayout.removeAllViewsInLayout();
+                lframerLayout.addView(myVideoPlayer);
+                stopBtn.setEnabled(true);//"停止"按钮可用
             }
         });
 
@@ -144,7 +157,7 @@ public class SdcardUrlActivity extends BaseActivity {
             public void onClick(View v) {
                 myVideoPlayer.stopPlay();
                 hint.setText("停止播放...");
-                pauseBtn.setEnabled(false);//“暂停/继续”按钮不可用
+                assetsBtn.setEnabled(false);//“暂停/继续”按钮不可用
                 stopBtn.setEnabled(false);//“停止”按钮不可用
                 startSdcardBtn.setEnabled(true);//“播放”按钮可用
                 startUsbBtn.setEnabled(true);//“播放”按钮可用
@@ -153,9 +166,29 @@ public class SdcardUrlActivity extends BaseActivity {
 
     }
 
+    /**
+     * 输入流转文件
+     * @param ins
+     * @param file
+     */
+    public static void inputstreamtofile(InputStream ins, File file) {
+        try {
+            OutputStream os = new FileOutputStream(file);
+            int bytesRead = 0;
+            byte[] buffer = new byte[8192];
+            while ((bytesRead = ins.read(buffer, 0, 8192)) != -1) {
+                os.write(buffer, 0, bytesRead);
+            }
+            os.close();
+            ins.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @SuppressLint("SdCardPath")
     public String getPath2() {
-        sd_path = Environment.getExternalStorageDirectory() .getAbsolutePath();
+        sd_path = Environment.getExternalStorageDirectory().getAbsolutePath();
         L.i("sd_path=" + sd_path);
         if (sd_path.endsWith("/")) {
             sd_path = sd_path.substring(0, sd_path.length() - 1);
@@ -198,18 +231,28 @@ public class SdcardUrlActivity extends BaseActivity {
         L.i("usb_path=" + usb_path);
         return usb_path;
     }
-    public  void initPlay(){
+
+    public void initPlay() {
         String path = sdcardData.get(0);
         Log.i("AAAA", "path=" + path);
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT);
         myVideoPlayer = new MyVideoPlayer(context, layoutParams, path);
     }
-    public  void initUsbPlay(){
+
+    public void initUsbPlay() {
         String path = usbData.get(0);
         Log.i("AAAA", "path=" + path);
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT);
         myVideoPlayer = new MyVideoPlayer(context, layoutParams, path);
     }
+
+    public void initAssetsPlay() {
+        String path = assetsData.get(0);
+        Log.i("AAAA", "path=" + path);
+        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT);
+        myVideoPlayer = new MyVideoPlayer(context, layoutParams, path);
+    }
+
     @Override
     protected void onDestroy() {
         myVideoPlayer.stopPlay();

@@ -29,11 +29,10 @@
             android:layout_height="wrap_content"
             android:text="U盘播放" />
         <Button
-            android:id="@+id/media_pause_btn"
+            android:id="@+id/media_assets_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:enabled="false"
-            android:text="暂停" />
+            android:text="播放assets中视频" />
 
         <Button
             android:id="@+id/media_stop_btn"

@@ -26,6 +26,7 @@ import com.s.z.j.ui.apppackage.SystemAppPackageNameActivity;
 import com.s.z.j.ui.device.DeviceInfoActivity;
 import com.s.z.j.ui.dialog.DialogActivity;
 import com.s.z.j.ui.mediaplayer.MediaPlayerActivity;
+import com.s.z.j.ui.myassets.PlayAssetsFileActivity;
 import com.s.z.j.ui.nav.NavigationActivity;
 import com.s.z.j.ui.photo.PhotographActivity;
 import com.s.z.j.ui.qrcode.QrCodeActivity;
@@ -208,9 +209,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @ViewInject(R.id.main_fenping_btn)
     private Button fenpingBtn;
 
+    /**.
+     * 仿微信布局
+     */
     @ViewInject(R.id.main_weixin_fragment)
     private Button weixinBtn;
 
+    @ViewInject(R.id.main_play_assets_btn)
+    private Button playAssetsBtn;
 
 
     private Bitmap picBitmap;//通过url获取的bitmap
@@ -246,6 +252,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         navigationdrawerBtn.setOnClickListener(this);
         fenpingBtn.setOnClickListener(this);
         weixinBtn.setOnClickListener(this);
+        playAssetsBtn.setOnClickListener(this);
         speedUtil = new SpeedUtil(this, speedHandler, new Timer());
     }
 
@@ -382,6 +389,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.main_weixin_fragment:
                 startActivity(new Intent(context,WeiXinFragmentActivity.class));
+                break;
+            case R.id.main_play_assets_btn:
+                startActivity(new Intent(context,PlayAssetsFileActivity.class));
                 break;
             default:
                 break;
