@@ -129,7 +129,8 @@
         <activity android:name=".fragment.weixin.WeiXinFragmentActivity"></activity>
 
         <!-- 播放assets下的mp4 -->
-        <activity android:name=".ui.myassets.PlayAssetsFileActivity"></activity>
+        <activity android:name=".ui.videoplay.PlayActivity"></activity>
+
 
         <service android:name=".ui.wifihost.WiFiAPService"></service>
         

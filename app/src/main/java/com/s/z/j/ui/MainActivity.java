@@ -26,12 +26,12 @@ import com.s.z.j.ui.apppackage.SystemAppPackageNameActivity;
 import com.s.z.j.ui.device.DeviceInfoActivity;
 import com.s.z.j.ui.dialog.DialogActivity;
 import com.s.z.j.ui.mediaplayer.MediaPlayerActivity;
-import com.s.z.j.ui.myassets.PlayAssetsFileActivity;
 import com.s.z.j.ui.nav.NavigationActivity;
 import com.s.z.j.ui.photo.PhotographActivity;
 import com.s.z.j.ui.qrcode.QrCodeActivity;
 import com.s.z.j.ui.sdcard.SdcardUrlActivity;
 import com.s.z.j.ui.slidingmenu.SlidingMainActivity;
+import com.s.z.j.ui.videoplay.PlayActivity;
 import com.s.z.j.ui.wifihost.SetWifiHostActivity;
 import com.s.z.j.utils.FileUtil;
 import com.s.z.j.utils.HttpUtils;
@@ -218,6 +218,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @ViewInject(R.id.main_play_assets_btn)
     private Button playAssetsBtn;
 
+    @ViewInject(R.id.main_play_img_and_video_btn)
+    private Button playBtn;
 
     private Bitmap picBitmap;//通过url获取的bitmap
     private String picUrl = "http://gb.cri.cn/mmsource/images/2010/09/27/eo100927986.jpg";//直接显示图片地址
@@ -253,6 +255,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         fenpingBtn.setOnClickListener(this);
         weixinBtn.setOnClickListener(this);
         playAssetsBtn.setOnClickListener(this);
+        playBtn.setOnClickListener(this);
         speedUtil = new SpeedUtil(this, speedHandler, new Timer());
     }
 
@@ -390,9 +393,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case R.id.main_weixin_fragment:
                 startActivity(new Intent(context,WeiXinFragmentActivity.class));
                 break;
-            case R.id.main_play_assets_btn:
-                startActivity(new Intent(context,PlayAssetsFileActivity.class));
+            case R.id.main_play_img_and_video_btn:
+                startActivity(new Intent(context, PlayActivity.class));
                 break;
+
+
             default:
                 break;
         }

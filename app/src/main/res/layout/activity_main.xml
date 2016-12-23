@@ -197,6 +197,12 @@
                 android:layout_width="match_parent"
                 android:text="布局测试"
                 android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/main_play_img_and_video_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="播放一个目录下的视频和图片"
+                />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
