@@ -19,6 +19,7 @@ import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 
 /**
+ * 设置wifi热点
  * Created by Administrator on 2016-11-09.
  */
 @ContentView(R.layout.activity_set_wifihost)

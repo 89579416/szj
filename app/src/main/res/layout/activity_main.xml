@@ -142,6 +142,20 @@
                 android:text="@string/float_window"
                 />
             <Button
+                android:id="@+id/main_floating_window_360_btn"
+                android:layout_marginTop="1dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/float_window_360"
+                />
+            <Button
+                android:id="@+id/main_floating_window_qq_btn"
+                android:layout_marginTop="1dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/float_window_qq"
+                />
+            <Button
                 android:id="@+id/main_wifi_btn"
                 android:layout_marginTop="1dp"
                 android:layout_width="match_parent"

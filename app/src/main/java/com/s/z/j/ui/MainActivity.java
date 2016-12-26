@@ -37,6 +37,8 @@ import com.s.z.j.utils.FileUtil;
 import com.s.z.j.utils.HttpUtils;
 import com.s.z.j.utils.L;
 import com.s.z.j.utils.SpeedUtil;
+import com.s.z.j.xuanfuchuang_360.Xuanfu360MainActivity;
+import com.s.z.j.xuanfuchuang_qq.XuanFuQqMainActivity;
 import com.squareup.picasso.Picasso;
 import com.szj.library.ui.BaseActivity;
 import com.szj.library.utils.T;
@@ -168,6 +170,19 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private Button floatWindowBtn;
 
     /**
+     * 仿360手机卫士悬浮窗效果
+     */
+    @ViewInject(R.id.main_floating_window_360_btn)
+    private Button floatWindow360Btn;
+
+
+    /**
+     * QQ手机管家小火箭效果实现
+     */
+    @ViewInject(R.id.main_floating_window_qq_btn)
+    private Button floatWindowqqBtn;
+
+    /**
      * 设置wifi
      */
     @ViewInject(R.id.main_wifi_btn)
@@ -256,6 +271,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         weixinBtn.setOnClickListener(this);
         playAssetsBtn.setOnClickListener(this);
         playBtn.setOnClickListener(this);
+        floatWindow360Btn.setOnClickListener(this);
+        floatWindowqqBtn.setOnClickListener(this);
         speedUtil = new SpeedUtil(this, speedHandler, new Timer());
     }
 
@@ -365,6 +382,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     }
                 });
                 mWindowManager.addView(view, wmParams);//在窗口管理器上添加一个View
+                break;
+            case R.id.main_floating_window_360_btn:
+                startActivity(new Intent(context, Xuanfu360MainActivity.class));
+                break;
+            case R.id.main_floating_window_qq_btn:
+                startActivity(new Intent(context, XuanFuQqMainActivity.class));
                 break;
             case R.id.main_wifi_btn:
                 setWifi();

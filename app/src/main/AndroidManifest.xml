@@ -37,6 +37,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <!--  浮动窗口权限  -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.GET_TASKS"/>
 
     <!--屏幕自适应配置信息-->
     <supports-screens
@@ -131,7 +132,15 @@
         <!-- 播放assets下的mp4 -->
         <activity android:name=".ui.videoplay.PlayActivity"></activity>
 
+        <!-- 仿360卫士实现悬浮窗口显示当前使用内存-->
+        <activity android:name=".xuanfuchuang_360.Xuanfu360MainActivity"></activity>
+        <service android:name=".xuanfuchuang_360.FloatWindow360Service"/>
 
+        <!-- QQ手机管家小火箭效果实现 -->
+        <activity android:name=".xuanfuchuang_qq.XuanFuQqMainActivity"></activity>
+        <service android:name=".xuanfuchuang_qq.FloatWindowQqService"/>
+
+        <!-- wifi热点打开关闭监测 -->
         <service android:name=".ui.wifihost.WiFiAPService"></service>
         
     </application>

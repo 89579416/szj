@@ -9,6 +9,7 @@ import android.os.IBinder;
 import android.util.Log;
 
 /**
+ * wifi热点开启关闭监测服务
  * @ClassName:  WiFiAPService   
  * @Description:  wifi hot manage service
  * @author: jajuan.wang  
