@@ -23,4 +23,5 @@ dependencies {
     compile project(':library')
     compile project(':slidingmenu_library')
     compile files('libs/core-2.3.0.jar')
+    compile files('libs/universal-image-loader-1.9.3.jar')
 }

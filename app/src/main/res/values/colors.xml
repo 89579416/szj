@@ -36,5 +36,5 @@
     <!--亮海蓝色 -->
     <color name="black">#000000</color>
     <!-- 黑色 -->
-
+    <color name="gray_bg">#fff0f0f0</color>
 </resources>

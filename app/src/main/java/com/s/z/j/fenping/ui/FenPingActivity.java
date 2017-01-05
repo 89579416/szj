@@ -128,7 +128,7 @@ public class FenPingActivity extends BaseActivity {
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 //        String url1 = "http://wxgx.cpsino.com/gxlottery/my/gc.html";//无反应
-        String url1 = "http://www.cpsino.com";//无反应
+        String url1 = "https://i.ys7.com/h5/qrcode/intro?qrId=aaa411ea8be842c5a68bc14c5ecb15ce";//无反应
         /**下面是方法1*/
         WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(true);

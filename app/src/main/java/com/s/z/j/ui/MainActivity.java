@@ -236,6 +236,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @ViewInject(R.id.main_play_img_and_video_btn)
     private Button playBtn;
 
+    @ViewInject(R.id.main_huadong_tupian_btn)
+    private Button huadongImgBtn;
+
     private Bitmap picBitmap;//通过url获取的bitmap
     private String picUrl = "http://gb.cri.cn/mmsource/images/2010/09/27/eo100927986.jpg";//直接显示图片地址
     private String bitmapUrl = "http://cdn.duitang.com/uploads/item/201408/28/20140828160017_wBrME.jpeg";//获取bitmap地址
@@ -273,6 +276,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         playBtn.setOnClickListener(this);
         floatWindow360Btn.setOnClickListener(this);
         floatWindowqqBtn.setOnClickListener(this);
+        huadongImgBtn.setOnClickListener(this);
         speedUtil = new SpeedUtil(this, speedHandler, new Timer());
     }
 
@@ -419,7 +423,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case R.id.main_play_img_and_video_btn:
                 startActivity(new Intent(context, PlayActivity.class));
                 break;
-
+            case R.id.main_huadong_tupian_btn:
+                startActivity(new Intent(context, com.s.z.j.tupianhuadong.MainActivity.class));
+                break;
 
             default:
                 break;
