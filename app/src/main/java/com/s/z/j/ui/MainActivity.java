@@ -1,6 +1,10 @@
 package com.s.z.j.ui;
 
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
@@ -50,6 +54,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.Timer;
 
@@ -426,9 +431,60 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case R.id.main_huadong_tupian_btn:
                 startActivity(new Intent(context, com.s.z.j.tupianhuadong.MainActivity.class));
                 break;
-
+            case R.id.main_play_assets_btn:
+                doStartApplicationWithPackageName("com.liantuo.cashierdesk");
+                break;
             default:
                 break;
+        }
+    }
+
+    /**
+     * 通过包名获取类名
+     * 然后跳转到另一个APP
+     * @param packagename
+     */
+    private void doStartApplicationWithPackageName(String packagename) {
+
+        // 通过包名获取此APP详细信息，包括Activities、services、versioncode、name等等
+        PackageInfo packageinfo = null;
+        try {
+            packageinfo = getPackageManager().getPackageInfo(packagename, 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        if (packageinfo == null) {
+            return;
+        }
+
+        // 创建一个类别为CATEGORY_LAUNCHER的该包名的Intent
+        Intent resolveIntent = new Intent(Intent.ACTION_MAIN, null);
+        resolveIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+        resolveIntent.setPackage(packageinfo.packageName);
+
+        // 通过getPackageManager()的queryIntentActivities方法遍历
+        List<ResolveInfo> resolveinfoList = getPackageManager()
+                .queryIntentActivities(resolveIntent, 0);
+
+        ResolveInfo resolveinfo = resolveinfoList.iterator().next();
+        if (resolveinfo != null) {
+            // packagename = 参数packname
+            String packageName = resolveinfo.activityInfo.packageName;
+            // 这个就是我们要找的该APP的LAUNCHER的Activity[组织形式：packagename.mainActivityname]
+            String className = resolveinfo.activityInfo.name;
+            // LAUNCHER Intent
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_LAUNCHER);
+
+            // 设置ComponentName参数1:packagename参数2:MainActivity路径
+            ComponentName cn = new ComponentName(packageName, className);
+            L.i("className"+className);
+            intent.setComponent(cn);
+            if (intent != null) {
+                startActivityForResult(intent, 111);
+            } else {
+                T.s(context,"打开快收银失败，有可能是没有安装快收银");
+            }
         }
     }
 
