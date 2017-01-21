@@ -145,6 +145,13 @@
 
         <!-- 图片左右滑动 -->
         <activity android:name=".tupianhuadong.MainActivity"></activity>
+
+        <!-- webView加载html并播放视频 -->
+        <activity android:name=".html.HtmlActivity"></activity>
+
+        <activity android:name=".choose_images.imageloader.ChooseImageMainActivity"></activity>
     </application>
+
+
 
 </manifest>

@@ -24,8 +24,10 @@ import android.widget.TextView;
 
 import com.s.z.j.R;
 import com.s.z.j.abcde.navigationdrawer.ui.NavigationdrawerActivity;
+import com.s.z.j.choose_images.imageloader.ChooseImageMainActivity;
 import com.s.z.j.fenping.ui.FenPingActivity;
 import com.s.z.j.fragment.weixin.WeiXinFragmentActivity;
+import com.s.z.j.html.HtmlActivity;
 import com.s.z.j.ui.apppackage.SystemAppPackageNameActivity;
 import com.s.z.j.ui.device.DeviceInfoActivity;
 import com.s.z.j.ui.dialog.DialogActivity;
@@ -41,6 +43,7 @@ import com.s.z.j.utils.FileUtil;
 import com.s.z.j.utils.HttpUtils;
 import com.s.z.j.utils.L;
 import com.s.z.j.utils.SpeedUtil;
+import com.s.z.j.utils.VibratorUtil;
 import com.s.z.j.xuanfuchuang_360.Xuanfu360MainActivity;
 import com.s.z.j.xuanfuchuang_qq.XuanFuQqMainActivity;
 import com.squareup.picasso.Picasso;
@@ -50,13 +53,23 @@ import com.szj.library.utils.T;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Timer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * 程序主入口
@@ -77,6 +90,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
      */
     @ViewInject(R.id.main_get_ip_btn)
     private Button getIpBtn;
+
+    /**
+     * 获取公网IP
+     */
+    @ViewInject(R.id.main_get_net_ip_btn)
+    private Button getNetIpBtn;
 
     /**
      * 获取MAC地址
@@ -235,20 +254,35 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @ViewInject(R.id.main_weixin_fragment)
     private Button weixinBtn;
 
+    /**播放assets里面的视频*/
     @ViewInject(R.id.main_play_assets_btn)
     private Button playAssetsBtn;
 
+    /**
+     * 播放本地图片和视频
+     */
     @ViewInject(R.id.main_play_img_and_video_btn)
     private Button playBtn;
 
+    /**
+     * 图片滑动效果
+     */
     @ViewInject(R.id.main_huadong_tupian_btn)
     private Button huadongImgBtn;
+
+    /**播放本地html并播放视频*/
+    @ViewInject(R.id.main_html_btn)
+    private Button htmlBtn;
+
+    @ViewInject(R.id.main_choose_image_btn)
+    private Button chooseImageBtn;
 
     private Bitmap picBitmap;//通过url获取的bitmap
     private String picUrl = "http://gb.cri.cn/mmsource/images/2010/09/27/eo100927986.jpg";//直接显示图片地址
     private String bitmapUrl = "http://cdn.duitang.com/uploads/item/201408/28/20140828160017_wBrME.jpeg";//获取bitmap地址
     private String defaultPath;//SD卡路径
     private SpeedUtil speedUtil; //网络速度监测
+    private String net_ip = "";
 
     @Override
     public void initialize(Bundle savedInstanceState) {
@@ -282,6 +316,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         floatWindow360Btn.setOnClickListener(this);
         floatWindowqqBtn.setOnClickListener(this);
         huadongImgBtn.setOnClickListener(this);
+        htmlBtn.setOnClickListener(this);
+        getNetIpBtn.setOnClickListener(this);
+        chooseImageBtn.setOnClickListener(this);
         speedUtil = new SpeedUtil(this, speedHandler, new Timer());
     }
 
@@ -307,6 +344,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.main_get_ip_btn:
                 T.s(context, HttpUtils.getLocalIpAddress(context));
+                break;
+            case R.id.main_get_net_ip_btn:
+                VibratorUtil.Vibrate(MainActivity.this,100);//点击按钮后震动
+                new Thread(){
+                    @Override
+                    public void run() {
+                        net_ip = HttpUtils.GetNetIp();
+                        L.i("ip=" + net_ip);
+                        handler.sendEmptyMessage(5);
+                    }
+                }.start();
+
                 break;
             case R.id.main_show_image_by_bitmap_btn:
                 if (picImageView.getVisibility() == View.GONE) {
@@ -434,11 +483,53 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case R.id.main_play_assets_btn:
                 doStartApplicationWithPackageName("com.liantuo.cashierdesk");
                 break;
+            case R.id.main_html_btn:
+                startActivity(new Intent(context, HtmlActivity.class));
+                break;
+            case R.id.main_choose_image_btn:
+                startActivity(new Intent(context, ChooseImageMainActivity.class));
+                break;
             default:
                 break;
         }
     }
-
+    /**
+     * 获取外网的IP(要访问Url，要放到后台线程里处理)
+     *
+     * @Title: GetNetIp
+     * @Description:
+     * @param @return
+     * @return String
+     * @throws
+     */
+    String GetNetIp(String ipaddr){
+        URL infoUrl = null;
+        InputStream inStream = null;
+        try {
+            infoUrl = new URL(ipaddr);
+            URLConnection connection = infoUrl.openConnection();
+            HttpURLConnection httpConnection = (HttpURLConnection)connection;
+            int responseCode = httpConnection.getResponseCode();
+            if(responseCode == HttpURLConnection.HTTP_OK)
+            {
+                inStream = httpConnection.getInputStream();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(inStream,"utf-8"));
+                StringBuilder strber = new StringBuilder();
+                String line = null;
+                while ((line = reader.readLine()) != null)
+                    strber.append(line + "\n");
+                inStream.close();
+                return strber.toString();
+            }
+        } catch (MalformedURLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return "";
+    }
     /**
      * 通过包名获取类名
      * 然后跳转到另一个APP
@@ -597,7 +688,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 //                    textView1.setText(bundle.getString("String"));
                     break;
                 case 5:
-//                    textView1.setText("己下载：" + msg.obj + "%");
+                    T.s(context,"公网IP："+net_ip);
                     break;
             }
         }

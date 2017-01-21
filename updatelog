@@ -90,7 +90,10 @@
                         2.新增仿QQ管家发射小火箭功能
 2017-1-5 15:23:12       1.添加图片左右滑动，下面的小点一起滑动
                         2.libary包里面的values下的attrs里面的一个值被注释了， <!--<attr name="radius" format="dimension" />-->  不然会报错。
-
+2017-1-17 12:45:23      1. webView显示SD卡里面的html网页， 网页里面显示一个视频和两张图片
+2017-1-21 14:56:29      1.在HttpUtils类里面添加了获取公网IP的方法GetNetIp,是通过http://ipecho.net/plain来获取的
+                        2.添加了一个震动类。VibratorUtil，点击获取公网ip按钮时会震动。
+                        3.新增仿微信选择图片
 
 
 

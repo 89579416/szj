@@ -20,4 +20,9 @@
         <item name="android:clickable">true</item>
         <item name="android:onClick">LayoutOnclick</item>
     </style>
+
+    <style name="anim_popup_dir">
+        <item name="android:windowEnterAnimation">@anim/slide_in</item>
+        <item name="android:windowExitAnimation">@anim/slide_out</item>
+    </style>
 </resources>

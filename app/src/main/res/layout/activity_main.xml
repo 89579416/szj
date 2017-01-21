@@ -33,6 +33,12 @@
                 android:layout_height="wrap_content"
                 android:text="@string/get_ip"
                 />
+            <Button
+                android:id="@+id/main_get_net_ip_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="获取公网IP"
+                />
            <Button
                android:id="@+id/main_get_mac_btn"
                android:layout_marginTop="1dp"
@@ -222,6 +228,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="左右滑动图片+圆点效果"
+                />
+            <Button
+                android:id="@+id/main_html_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="打开本地html并播放本地视频"
+                />
+            <Button
+                android:id="@+id/main_choose_image_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="仿微信从相册选择相片"
                 />
         </LinearLayout>
     </ScrollView>

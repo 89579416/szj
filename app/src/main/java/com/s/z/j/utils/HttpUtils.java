@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
+import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -324,4 +325,37 @@ public class HttpUtils {
                 ((i >> 16 ) & 0xFF) + "." +
                 ( i >> 24 & 0xFF) ;
     }
+
+    /**
+     * 获取公网IP
+     * @return
+     */
+    public static String GetNetIp() {
+        String IP = "";
+        try {
+            String address = "http://ipecho.net/plain";
+            URL url = new URL(address);
+            HttpURLConnection connection = (HttpURLConnection) url .openConnection();
+            connection.setUseCaches(false);
+            if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                InputStream in = connection.getInputStream();
+                // 将流转化为字符串
+                BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+                String tmpString = "";
+                StringBuilder retJSON = new StringBuilder();
+                while ((tmpString = reader.readLine()) != null) {
+                    retJSON.append(tmpString);
+                }
+                IP = retJSON.toString();
+            } else {
+                IP = "";
+                Log.e("提示", "网络连接异常，无法获取IP地址！");
+            }
+        } catch (Exception e) {
+            IP = "";
+            Log.e("提示", "获取IP地址时出现异常，异常信息是：" + e.toString());
+        }
+        return IP;
+    }
+
 }
