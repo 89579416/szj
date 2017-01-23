@@ -25,6 +25,7 @@ import android.widget.TextView;
 import com.s.z.j.R;
 import com.s.z.j.abcde.navigationdrawer.ui.NavigationdrawerActivity;
 import com.s.z.j.choose_images.imageloader.ChooseImageMainActivity;
+import com.s.z.j.danmu.DanMuActivity;
 import com.s.z.j.fenping.ui.FenPingActivity;
 import com.s.z.j.fragment.weixin.WeiXinFragmentActivity;
 import com.s.z.j.html.HtmlActivity;
@@ -274,8 +275,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @ViewInject(R.id.main_html_btn)
     private Button htmlBtn;
 
+    /**模仿微信选择相册*/
     @ViewInject(R.id.main_choose_image_btn)
     private Button chooseImageBtn;
+
+    /** 发送弹幕并显示*/
+    @ViewInject(R.id.main_danmu_btn)
+    private Button danmuBtn;
 
     private Bitmap picBitmap;//通过url获取的bitmap
     private String picUrl = "http://gb.cri.cn/mmsource/images/2010/09/27/eo100927986.jpg";//直接显示图片地址
@@ -319,6 +325,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         htmlBtn.setOnClickListener(this);
         getNetIpBtn.setOnClickListener(this);
         chooseImageBtn.setOnClickListener(this);
+        danmuBtn.setOnClickListener(this);
         speedUtil = new SpeedUtil(this, speedHandler, new Timer());
     }
 
@@ -488,6 +495,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.main_choose_image_btn:
                 startActivity(new Intent(context, ChooseImageMainActivity.class));
+                break;
+            case R.id.main_danmu_btn:
+                startActivity(new Intent(context, DanMuActivity.class));
                 break;
             default:
                 break;

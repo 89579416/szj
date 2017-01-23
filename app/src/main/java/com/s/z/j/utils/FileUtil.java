@@ -546,7 +546,7 @@ public class FileUtil {
     public  static ArrayList <String> data;
 
     /**
-     * 获取MP4文件
+     * 获取一个路径下的所有MP4文件，包括子文件夹里面的
      * @param root
      * @return
      */

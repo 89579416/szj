@@ -241,6 +241,12 @@
                 android:layout_height="wrap_content"
                 android:text="仿微信从相册选择相片"
                 />
+            <Button
+                android:id="@+id/main_danmu_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="发送弹幕"
+                />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

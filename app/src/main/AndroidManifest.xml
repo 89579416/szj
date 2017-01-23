@@ -38,7 +38,6 @@
     <!--  浮动窗口权限  -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.GET_TASKS"/>
-
     <!--屏幕自适应配置信息-->
     <supports-screens
         android:anyDensity="true"
@@ -149,7 +148,11 @@
         <!-- webView加载html并播放视频 -->
         <activity android:name=".html.HtmlActivity"></activity>
 
+        <!-- 模仿微信从相册选择图片 -->
         <activity android:name=".choose_images.imageloader.ChooseImageMainActivity"></activity>
+
+        <!-- 弹幕实现 -->
+        <activity android:name=".danmu.DanMuActivity"></activity>
     </application>
 
 

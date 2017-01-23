@@ -257,7 +257,13 @@ public class ChooseImageMainActivity extends Activity implements ListImageDirPop
         okTxt.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                L.i("当前选择的图片数量为："+mAdapter.getSelectImage().size());
+                L.i("当前选择的图片数量为：" + mAdapter.getSelectImage().size());
+                List<String> imgList = mAdapter.getSelectImage();
+                if(imgList != null && imgList.size()>0){
+                    for (int i=0;i<imgList.size();i++){
+                        L.i("图片名："+imgList.get(i));
+                    }
+                }
             }
         });
     }
@@ -300,6 +306,7 @@ public class ChooseImageMainActivity extends Activity implements ListImageDirPop
         mAdapter = new MyAdapter(getApplicationContext(), mImgs,
                 R.layout.grid_item, mImgDir.getAbsolutePath());
         mGirdView.setAdapter(mAdapter);
+        mAdapter.setHandler(selectHandler);
         // mAdapter.notifyDataSetChanged();
         mImageCount.setText(floder.getCount() + "张");
         mChooseDir.setText(floder.getName());

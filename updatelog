@@ -94,7 +94,7 @@
 2017-1-21 14:56:29      1.在HttpUtils类里面添加了获取公网IP的方法GetNetIp,是通过http://ipecho.net/plain来获取的
                         2.添加了一个震动类。VibratorUtil，点击获取公网ip按钮时会震动。
                         3.新增仿微信选择图片
-
+2017-1-23 17:32:50      1.添加了用VideoView播放SD卡中的视频并且显示发送的弹幕
 
 
 
