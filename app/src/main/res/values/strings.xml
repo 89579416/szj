@@ -71,8 +71,14 @@
     <string name="drawer_close">Close navigation drawer</string>
 
 
+    <!-- 从相册选择图片  -->
     <string name="chat">主页</string>
     <string name="find">相册</string>
     <string name="tongxunlu">页面</string>
 
+    <!-- 相片查看器 -->
+    <string name="hello_world">Hello world!</string>
+    <string name="border_top">Border Top</string>
+    <string name="border_bottom">Border Bottom</string>
+    <string name="image_url">Image Url</string>
 </resources>

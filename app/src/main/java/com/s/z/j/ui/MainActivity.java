@@ -29,6 +29,7 @@ import com.s.z.j.danmu.DanMuActivity;
 import com.s.z.j.fenping.ui.FenPingActivity;
 import com.s.z.j.fragment.weixin.WeiXinFragmentActivity;
 import com.s.z.j.html.HtmlActivity;
+import com.s.z.j.photo_wall_falls_demo.PhotoWallFallsActivity;
 import com.s.z.j.ui.apppackage.SystemAppPackageNameActivity;
 import com.s.z.j.ui.device.DeviceInfoActivity;
 import com.s.z.j.ui.dialog.DialogActivity;
@@ -283,6 +284,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @ViewInject(R.id.main_danmu_btn)
     private Button danmuBtn;
 
+    /** Android照片墙加强版，使用ViewPager实现画廊效果Demo */
+    @ViewInject(R.id.main_photo_wall_falls_btn)
+    private Button photoWallFallsBtn;
+
     private Bitmap picBitmap;//通过url获取的bitmap
     private String picUrl = "http://gb.cri.cn/mmsource/images/2010/09/27/eo100927986.jpg";//直接显示图片地址
     private String bitmapUrl = "http://cdn.duitang.com/uploads/item/201408/28/20140828160017_wBrME.jpeg";//获取bitmap地址
@@ -326,6 +331,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         getNetIpBtn.setOnClickListener(this);
         chooseImageBtn.setOnClickListener(this);
         danmuBtn.setOnClickListener(this);
+        photoWallFallsBtn.setOnClickListener(this);
         speedUtil = new SpeedUtil(this, speedHandler, new Timer());
     }
 
@@ -498,6 +504,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.main_danmu_btn:
                 startActivity(new Intent(context, DanMuActivity.class));
+                break;
+            case R.id.main_photo_wall_falls_btn:
+                startActivity(new Intent(context, PhotoWallFallsActivity.class));
                 break;
             default:
                 break;

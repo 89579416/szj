@@ -247,6 +247,12 @@
                 android:layout_height="wrap_content"
                 android:text="发送弹幕"
                 />
+            <Button
+                android:id="@+id/main_photo_wall_falls_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="图片瀑布流查看"
+                />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

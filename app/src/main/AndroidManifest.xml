@@ -153,6 +153,12 @@
 
         <!-- 弹幕实现 -->
         <activity android:name=".danmu.DanMuActivity"></activity>
+
+        <!-- Android照片墙加强版，使用ViewPager实现画廊效果Demo -->
+        <activity android:name=".photo_wall_falls_demo.PhotoWallFallsActivity"></activity>
+
+        <!-- 图片详情查看 -->
+        <activity android:name=".photo_wall_falls_demo.ImageDetailsActivity"></activity>
     </application>
 
 
