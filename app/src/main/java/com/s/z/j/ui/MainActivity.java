@@ -26,9 +26,10 @@ import com.s.z.j.R;
 import com.s.z.j.abcde.navigationdrawer.ui.NavigationdrawerActivity;
 import com.s.z.j.choose_images.imageloader.ChooseImageMainActivity;
 import com.s.z.j.danmu.DanMuActivity;
-import com.s.z.j.fenping.ui.FenPingActivity;
+import com.s.z.j.fenping.FenPingActivity;
 import com.s.z.j.fragment.weixin.WeiXinFragmentActivity;
 import com.s.z.j.html.HtmlActivity;
+import com.s.z.j.newUtils.AppUtils;
 import com.s.z.j.photo_wall_falls_demo.PhotoWallFallsActivity;
 import com.s.z.j.ui.apppackage.SystemAppPackageNameActivity;
 import com.s.z.j.ui.device.DeviceInfoActivity;
@@ -70,8 +71,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Timer;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * 程序主入口
@@ -257,8 +256,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private Button weixinBtn;
 
     /**播放assets里面的视频*/
-    @ViewInject(R.id.main_play_assets_btn)
-    private Button playAssetsBtn;
+    @ViewInject(R.id.main_text_share_btn)
+    private Button textShareBtn;
 
     /**
      * 播放本地图片和视频
@@ -322,7 +321,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         navigationdrawerBtn.setOnClickListener(this);
         fenpingBtn.setOnClickListener(this);
         weixinBtn.setOnClickListener(this);
-        playAssetsBtn.setOnClickListener(this);
+        textShareBtn.setOnClickListener(this);
         playBtn.setOnClickListener(this);
         floatWindow360Btn.setOnClickListener(this);
         floatWindowqqBtn.setOnClickListener(this);
@@ -493,8 +492,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case R.id.main_huadong_tupian_btn:
                 startActivity(new Intent(context, com.s.z.j.tupianhuadong.MainActivity.class));
                 break;
-            case R.id.main_play_assets_btn:
-                doStartApplicationWithPackageName("com.liantuo.cashierdesk");
+            case R.id.main_text_share_btn:
+                AppUtils.shareAppInfo(context,"这是分享测试内容");
+                doStartApplicationWithPackageName("com.liantuo.cashierdesk");//跳转到另一个APP
                 break;
             case R.id.main_html_btn:
                 startActivity(new Intent(context, HtmlActivity.class));

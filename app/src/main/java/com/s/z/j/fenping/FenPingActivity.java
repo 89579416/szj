@@ -1,4 +1,4 @@
-package com.s.z.j.fenping.ui;
+package com.s.z.j.fenping;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;

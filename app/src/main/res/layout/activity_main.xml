@@ -213,9 +213,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <Button
-                android:id="@+id/main_play_assets_btn"
+                android:id="@+id/main_text_share_btn"
                 android:layout_width="match_parent"
-                android:text="布局测试"
+                android:text="文字分享"
                 android:layout_height="wrap_content" />
             <Button
                 android:id="@+id/main_play_img_and_video_btn"
