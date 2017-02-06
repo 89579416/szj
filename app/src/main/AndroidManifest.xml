@@ -159,6 +159,9 @@
 
         <!-- 图片详情查看 -->
         <activity android:name=".photo_wall_falls_demo.ImageDetailsActivity"></activity>
+
+
+        <service android:name=".service.TopWindowService" />
     </application>
 
 

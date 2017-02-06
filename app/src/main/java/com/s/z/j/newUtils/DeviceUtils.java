@@ -14,7 +14,7 @@ import java.io.LineNumberReader;
  *     author: Blankj
  *     blog  : http://blankj.com
  *     time  : 2016/8/1
- *     desc  : Éè±¸Ïà¹Ø¹¤¾ßÀà
+ *     desc  : è®¾å¤‡ç›¸å…³å·¥å…·ç±»
  * </pre>
  */
 public class DeviceUtils {
@@ -24,11 +24,11 @@ public class DeviceUtils {
     }
 
     /**
-     * »ñÈ¡Éè±¸MACµØÖ·
-     * <p>ĞèÌí¼ÓÈ¨ÏŞ {@code <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>}</p>
+     * è·å–è®¾å¤‡MACåœ°å€
+     * <p>éœ€æ·»åŠ æƒé™ {@code <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>}</p>
      *
-     * @param context ÉÏÏÂÎÄ
-     * @return MACµØÖ·
+     * @param context ä¸Šä¸‹æ–‡
+     * @return MACåœ°å€
      */
     public static String getMacAddress(Context context) {
         WifiManager wifi = (WifiManager) context
@@ -39,11 +39,11 @@ public class DeviceUtils {
     }
 
     /**
-     * »ñÈ¡Éè±¸MACµØÖ·
+     * è·å–è®¾å¤‡MACåœ°å€
      *
-     * <p>ĞèÌí¼ÓÈ¨ÏŞ {@code <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>}</p>
+     * <p>éœ€æ·»åŠ æƒé™ {@code <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>}</p>
      *
-     * @return MACµØÖ·
+     * @return MACåœ°å€
      */
     public static String getMacAddress() {
         String macAddress = null;
@@ -66,18 +66,18 @@ public class DeviceUtils {
     }
 
     /**
-     * »ñÈ¡Éè±¸³§ÉÌ£¬ÈçXiaomi
+     * è·å–è®¾å¤‡å‚å•†ï¼Œå¦‚Xiaomi
      *
-     * @return Éè±¸³§ÉÌ
+     * @return è®¾å¤‡å‚å•†
      */
     public static String getManufacturer() {
         return Build.MANUFACTURER;
     }
 
     /**
-     * »ñÈ¡Éè±¸ĞÍºÅ£¬ÈçMI2SC
+     * è·å–è®¾å¤‡å‹å·ï¼Œå¦‚MI2SC
      *
-     * @return Éè±¸ĞÍºÅ
+     * @return è®¾å¤‡å‹å·
      */
     public static String getModel() {
         String model = Build.MODEL;

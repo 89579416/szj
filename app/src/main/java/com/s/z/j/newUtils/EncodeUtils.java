@@ -13,7 +13,7 @@ import java.net.URLEncoder;
  *     author: Blankj
  *     blog  : http://blankj.com
  *     time  : 2016/8/7
- *     desc  : ±àÂë½âÂëÏà¹Ø¹¤¾ßÀà
+ *     desc  : ç¼–ç è§£ç ç›¸å…³å·¥å…·ç±»
  * </pre>
  */
 public class EncodeUtils {
@@ -23,23 +23,23 @@ public class EncodeUtils {
     }
 
     /**
-     * URL±àÂë
-     * <p>ÈôÏë×Ô¼ºÖ¸¶¨×Ö·û¼¯,¿ÉÒÔÊ¹ÓÃ{@link #urlEncode(String input, String charset)}·½·¨</p>
+     * URLç¼–ç 
+     * <p>è‹¥æƒ³è‡ªå·±æŒ‡å®šå­—ç¬¦é›†,å¯ä»¥ä½¿ç”¨{@link #urlEncode(String input, String charset)}æ–¹æ³•</p>
      *
-     * @param input Òª±àÂëµÄ×Ö·û
-     * @return ±àÂëÎªUTF-8µÄ×Ö·û´®
+     * @param input è¦ç¼–ç çš„å­—ç¬¦
+     * @return ç¼–ç ä¸ºUTF-8çš„å­—ç¬¦ä¸²
      */
     public static String urlEncode(String input) {
         return urlEncode(input, "UTF-8");
     }
 
     /**
-     * URL±àÂë
-     * <p>ÈôÏµÍ³²»Ö§³ÖÖ¸¶¨µÄ±àÂë×Ö·û¼¯,ÔòÖ±½Ó½«inputÔ­Ñù·µ»Ø</p>
+     * URLç¼–ç 
+     * <p>è‹¥ç³»ç»Ÿä¸æ”¯æŒæŒ‡å®šçš„ç¼–ç å­—ç¬¦é›†,åˆ™ç›´æ¥å°†inputåŸæ ·è¿”å›</p>
      *
-     * @param input   Òª±àÂëµÄ×Ö·û
-     * @param charset ×Ö·û¼¯
-     * @return ±àÂëÎª×Ö·û¼¯µÄ×Ö·û´®
+     * @param input   è¦ç¼–ç çš„å­—ç¬¦
+     * @param charset å­—ç¬¦é›†
+     * @return ç¼–ç ä¸ºå­—ç¬¦é›†çš„å­—ç¬¦ä¸²
      */
     public static String urlEncode(String input, String charset) {
         try {
@@ -50,23 +50,23 @@ public class EncodeUtils {
     }
 
     /**
-     * URL½âÂë
-     * <p>ÈôÏë×Ô¼ºÖ¸¶¨×Ö·û¼¯,¿ÉÒÔÊ¹ÓÃ {@link #urlDecode(String input, String charset)}·½·¨</p>
+     * URLè§£ç 
+     * <p>è‹¥æƒ³è‡ªå·±æŒ‡å®šå­—ç¬¦é›†,å¯ä»¥ä½¿ç”¨ {@link #urlDecode(String input, String charset)}æ–¹æ³•</p>
      *
-     * @param input Òª½âÂëµÄ×Ö·û´®
-     * @return URL½âÂëºóµÄ×Ö·û´®
+     * @param input è¦è§£ç çš„å­—ç¬¦ä¸²
+     * @return URLè§£ç åçš„å­—ç¬¦ä¸²
      */
     public static String urlDecode(String input) {
         return urlDecode(input, "UTF-8");
     }
 
     /**
-     * URL½âÂë
-     * <p>ÈôÏµÍ³²»Ö§³ÖÖ¸¶¨µÄ½âÂë×Ö·û¼¯,ÔòÖ±½Ó½«inputÔ­Ñù·µ»Ø</p>
+     * URLè§£ç 
+     * <p>è‹¥ç³»ç»Ÿä¸æ”¯æŒæŒ‡å®šçš„è§£ç å­—ç¬¦é›†,åˆ™ç›´æ¥å°†inputåŸæ ·è¿”å›</p>
      *
-     * @param input   Òª½âÂëµÄ×Ö·û´®
-     * @param charset ×Ö·û¼¯
-     * @return URL½âÂëÎªÖ¸¶¨×Ö·û¼¯µÄ×Ö·û´®
+     * @param input   è¦è§£ç çš„å­—ç¬¦ä¸²
+     * @param charset å­—ç¬¦é›†
+     * @return URLè§£ç ä¸ºæŒ‡å®šå­—ç¬¦é›†çš„å­—ç¬¦ä¸²
      */
     public static String urlDecode(String input, String charset) {
         try {
@@ -77,77 +77,77 @@ public class EncodeUtils {
     }
 
     /**
-     * Base64±àÂë
+     * Base64ç¼–ç 
      *
-     * @param input Òª±àÂëµÄ×Ö·û´®
-     * @return Base64±àÂëºóµÄ×Ö·û´®
+     * @param input è¦ç¼–ç çš„å­—ç¬¦ä¸²
+     * @return Base64ç¼–ç åçš„å­—ç¬¦ä¸²
      */
     public static byte[] base64Encode(String input) {
         return base64Encode(input.getBytes());
     }
 
     /**
-     * Base64±àÂë
+     * Base64ç¼–ç 
      *
-     * @param input Òª±àÂëµÄ×Ö½ÚÊı×é
-     * @return Base64±àÂëºóµÄ×Ö·û´®
+     * @param input è¦ç¼–ç çš„å­—èŠ‚æ•°ç»„
+     * @return Base64ç¼–ç åçš„å­—ç¬¦ä¸²
      */
     public static byte[] base64Encode(byte[] input) {
         return Base64.encode(input, Base64.NO_WRAP);
     }
 
     /**
-     * Base64±àÂë
+     * Base64ç¼–ç 
      *
-     * @param input Òª±àÂëµÄ×Ö½ÚÊı×é
-     * @return Base64±àÂëºóµÄ×Ö·û´®
+     * @param input è¦ç¼–ç çš„å­—èŠ‚æ•°ç»„
+     * @return Base64ç¼–ç åçš„å­—ç¬¦ä¸²
      */
     public static String base64Encode2String(byte[] input) {
         return Base64.encodeToString(input, Base64.NO_WRAP);
     }
 
     /**
-     * Base64½âÂë
+     * Base64è§£ç 
      *
-     * @param input Òª½âÂëµÄ×Ö·û´®
-     * @return Base64½âÂëºóµÄ×Ö·û´®
+     * @param input è¦è§£ç çš„å­—ç¬¦ä¸²
+     * @return Base64è§£ç åçš„å­—ç¬¦ä¸²
      */
     public static byte[] base64Decode(String input) {
         return Base64.decode(input, Base64.NO_WRAP);
     }
 
     /**
-     * Base64½âÂë
+     * Base64è§£ç 
      *
-     * @param input Òª½âÂëµÄ×Ö·û´®
-     * @return Base64½âÂëºóµÄ×Ö·û´®
+     * @param input è¦è§£ç çš„å­—ç¬¦ä¸²
+     * @return Base64è§£ç åçš„å­—ç¬¦ä¸²
      */
     public static byte[] base64Decode(byte[] input) {
         return Base64.decode(input, Base64.NO_WRAP);
     }
 
     /**
-     * Base64URL°²È«±àÂë
-     * <p>½«Base64ÖĞµÄURL·Ç·¨×Ö·û??,/=×ªÎªÆäËû×Ö·û, ¼ûRFC3548</p>
+     * Base64URLå®‰å…¨ç¼–ç 
+     * <p>å°†Base64ä¸­çš„URLéæ³•å­—ç¬¦??,/=è½¬ä¸ºå…¶ä»–å­—ç¬¦, è§RFC3548</p>
      *
-     * @param input ÒªBase64URL°²È«±àÂëµÄ×Ö·û´®
-     * @return Base64URL°²È«±àÂëºóµÄ×Ö·û´®
+     * @param input è¦Base64URLå®‰å…¨ç¼–ç çš„å­—ç¬¦ä¸²
+     * @return Base64URLå®‰å…¨ç¼–ç åçš„å­—ç¬¦ä¸²
      */
     public static byte[] base64UrlSafeEncode(String input) {
         return Base64.encode(input.getBytes(), Base64.URL_SAFE);
     }
 
     /**
-     * Html±àÂë
+     * Htmlç¼–ç 
      *
-     * @param input ÒªHtml±àÂëµÄ×Ö·û´®
-     * @return Html±àÂëºóµÄ×Ö·û´®
+     * @param input è¦Htmlç¼–ç çš„å­—ç¬¦ä¸²
+     * @return Htmlç¼–ç åçš„å­—ç¬¦ä¸²
      */
     public static String htmlEncode(String input) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             return Html.escapeHtml(input);
         } else {
-            // ²ÎÕÕHtml.escapeHtml()ÖĞ´úÂë
+            // å‚ç…§Html.escapeHtml()ä¸­ä»£ç 
             StringBuilder out = new StringBuilder();
             for (int i = 0, len = input.length(); i < len; i++) {
                 char c = input.charAt(i);
@@ -183,10 +183,10 @@ public class EncodeUtils {
     }
 
     /**
-     * Html½âÂë
+     * Htmlè§£ç 
      *
-     * @param input ´ı½âÂëµÄ×Ö·û´®
-     * @return Html½âÂëºóµÄ×Ö·û´®
+     * @param input å¾…è§£ç çš„å­—ç¬¦ä¸²
+     * @return Htmlè§£ç åçš„å­—ç¬¦ä¸²
      */
     public static String htmlDecode(String input) {
         return Html.fromHtml(input).toString();

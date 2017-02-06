@@ -1,5 +1,6 @@
 package com.s.z.j.ui;
 
+import android.app.ActivityManager;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -31,6 +32,7 @@ import com.s.z.j.fragment.weixin.WeiXinFragmentActivity;
 import com.s.z.j.html.HtmlActivity;
 import com.s.z.j.newUtils.AppUtils;
 import com.s.z.j.photo_wall_falls_demo.PhotoWallFallsActivity;
+import com.s.z.j.service.TopWindowService;
 import com.s.z.j.ui.apppackage.SystemAppPackageNameActivity;
 import com.s.z.j.ui.device.DeviceInfoActivity;
 import com.s.z.j.ui.dialog.DialogActivity;
@@ -427,31 +429,35 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 startActivity(new Intent(context, PhotographActivity.class));
                 break;
             case R.id.main_floating_window_btn:
-                /** 以下代码是悬浮窗的应用  需要添加浮动窗口权限    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />  */
-                WindowManager.LayoutParams wmParams = new WindowManager.LayoutParams();
-                WindowManager mWindowManager = (WindowManager) getApplication().getSystemService(getApplication().WINDOW_SERVICE);
-                wmParams.type = WindowManager.LayoutParams.TYPE_PHONE;//PHONE级别，保证在最前方！
-                wmParams.format = PixelFormat.RGBA_8888;
-                wmParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
-                wmParams.gravity = Gravity.LEFT | Gravity.TOP;//位置：左上角
-                wmParams.x = 0;
-                wmParams.y = 0;
-                wmParams.width = WindowManager.LayoutParams.WRAP_CONTENT;//宽度自适应
-                wmParams.height = WindowManager.LayoutParams.WRAP_CONTENT;//高度自适应
-                LayoutInflater inflater = LayoutInflater.from(getApplication());
-                LinearLayout view = (LinearLayout) inflater.inflate(R.layout.dialog_floating_window, null);
-                TextView backTxt = (TextView) view.findViewById(R.id.floating_window_one_back_btn);
-                backTxt.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        /** 点击事件，点击后返回桌面 */
-                        Intent intent = new Intent(Intent.ACTION_MAIN);
-                        intent.addCategory(Intent.CATEGORY_HOME);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(intent);
-                    }
-                });
-                mWindowManager.addView(view, wmParams);//在窗口管理器上添加一个View
+                Intent show = new Intent(this, TopWindowService.class);
+                show.putExtra(TopWindowService.OPERATION, TopWindowService.OPERATION_SHOW);
+                startService(show);
+                finish();
+//                /** 以下代码是悬浮窗的应用  需要添加浮动窗口权限    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />  */
+//                WindowManager.LayoutParams wmParams = new WindowManager.LayoutParams();
+//                WindowManager mWindowManager = (WindowManager) getApplication().getSystemService(getApplication().WINDOW_SERVICE);
+//                wmParams.type = WindowManager.LayoutParams.TYPE_PHONE;//PHONE级别，保证在最前方！
+//                wmParams.format = PixelFormat.RGBA_8888;
+//                wmParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
+//                wmParams.gravity = Gravity.LEFT | Gravity.TOP;//位置：左上角
+//                wmParams.x = 0;
+//                wmParams.y = 0;
+//                wmParams.width = WindowManager.LayoutParams.WRAP_CONTENT;//宽度自适应
+//                wmParams.height = WindowManager.LayoutParams.WRAP_CONTENT;//高度自适应
+//                LayoutInflater inflater = LayoutInflater.from(getApplication());
+//                LinearLayout view = (LinearLayout) inflater.inflate(R.layout.dialog_floating_window, null);
+//                TextView backTxt = (TextView) view.findViewById(R.id.floating_window_one_back_btn);
+//                backTxt.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        /** 点击事件，点击后返回桌面 */
+//                        Intent intent = new Intent(Intent.ACTION_MAIN);
+//                        intent.addCategory(Intent.CATEGORY_HOME);
+//                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                        startActivity(intent);
+//                    }
+//                });
+//                mWindowManager.addView(view, wmParams);//在窗口管理器上添加一个View
                 break;
             case R.id.main_floating_window_360_btn:
                 startActivity(new Intent(context, Xuanfu360MainActivity.class));

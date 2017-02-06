@@ -13,7 +13,7 @@ import java.io.UnsupportedEncodingException;
  *     author: Blankj
  *     blog  : http://blankj.com
  *     time  : 2016/8/13
- *     desc  : ×ª»»Ïà¹Ø¹¤¾ßÀà
+ *     desc  : è½¬æ¢ç›¸å…³å·¥å…·ç±»
  * </pre>
  */
 public class ConvertUtils {
@@ -21,12 +21,12 @@ public class ConvertUtils {
     static final char hexDigits[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
 
     /**
-     * Ã¿1¸öbyte×ªÎª2¸öhex×Ö·û
-     * <p>ÀıÈç£º</p>
+     * æ¯1ä¸ªbyteè½¬ä¸º2ä¸ªhexå­—ç¬¦
+     * <p>ä¾‹å¦‚ï¼š</p>
      * bytes2HexString(new byte[] { 0, (byte) 0xa8 }) returns 00A8
      *
-     * @param src byteÊı×é
-     * @return 16½øÖÆ´óĞ´×Ö·û´®
+     * @param src byteæ•°ç»„
+     * @return 16è¿›åˆ¶å¤§å†™å­—ç¬¦ä¸²
      */
     public static String bytes2HexString(byte[] src) {
         char[] res = new char[src.length << 1];
@@ -38,17 +38,17 @@ public class ConvertUtils {
     }
 
     /**
-     * Ã¿2¸öhex×Ö·û×ªÎª1¸öbyte
-     * <p>ÀıÈç£º</p>
+     * æ¯2ä¸ªhexå­—ç¬¦è½¬ä¸º1ä¸ªbyte
+     * <p>ä¾‹å¦‚ï¼š</p>
      * hexString2Bytes("00A8") returns { 0, (byte) 0xA8 }
      *
-     * @param hexString Ê®Áù½øÖÆ×Ö·û´®
-     * @return byteÊı×é
+     * @param hexString åå…­è¿›åˆ¶å­—ç¬¦ä¸²
+     * @return byteæ•°ç»„
      */
     public static byte[] hexString2Bytes(String hexString) {
         int len = hexString.length();
         if (len % 2 != 0) {
-            throw new IllegalArgumentException("³¤¶È²»ÊÇÅ¼Êı");
+            throw new IllegalArgumentException("é•¿åº¦ä¸æ˜¯å¶æ•°");
         }
         char[] hexBytes = hexString.toUpperCase().toCharArray();
         byte[] res = new byte[len >>> 1];
@@ -59,9 +59,9 @@ public class ConvertUtils {
     }
 
     /**
-     * µ¥¸öhex×Ö·û×ªÎª10½øÖÆ
+     * å•ä¸ªhexå­—ç¬¦è½¬ä¸º10è¿›åˆ¶
      *
-     * @param hexChar hexµ¥¸ö×Ö½Ú
+     * @param hexChar hexå•ä¸ªå­—èŠ‚
      * @return 0..15
      */
     private static int hex2Dec(char hexChar) {
@@ -75,10 +75,10 @@ public class ConvertUtils {
     }
 
     /**
-     * charArr×ªbyteArr
+     * charArrè½¬byteArr
      *
-     * @param chars ´ı×ªµÄcharÊı×é
-     * @return byteÊı×é
+     * @param chars å¾…è½¬çš„charæ•°ç»„
+     * @return byteæ•°ç»„
      */
     public static byte[] chars2Bytes(char[] chars) {
         int len = chars.length;
@@ -90,10 +90,10 @@ public class ConvertUtils {
     }
 
     /**
-     * byteArr×ªcharArr
+     * byteArrè½¬charArr
      *
-     * @param bytes ´ı×ªµÄbyteÊı×é
-     * @return charÊı×é
+     * @param bytes å¾…è½¬çš„byteæ•°ç»„
+     * @return charæ•°ç»„
      */
     public static char[] bytes2Chars(byte[] bytes) {
         int len = bytes.length;
@@ -105,10 +105,10 @@ public class ConvertUtils {
     }
 
     /**
-     * ½«ÊäÈëÁ÷×ªÎª×Ö½ÚÊı×é
+     * å°†è¾“å…¥æµè½¬ä¸ºå­—èŠ‚æ•°ç»„
      *
-     * @param is ÊäÈëÁ÷
-     * @return ×Ö½ÚÊı×é
+     * @param is è¾“å…¥æµ
+     * @return å­—èŠ‚æ•°ç»„
      */
     public static byte[] inputStream2Bytes(InputStream is) {
         if (is == null) return null;
@@ -129,21 +129,21 @@ public class ConvertUtils {
     }
 
     /**
-     * ½«×Ö½ÚÊı×é×ªÎªÊäÈëÁ÷
+     * å°†å­—èŠ‚æ•°ç»„è½¬ä¸ºè¾“å…¥æµ
      *
-     * @param bytes ×Ö½ÚÊı×é
-     * @return ÊäÈëÁ÷
+     * @param bytes å­—èŠ‚æ•°ç»„
+     * @return è¾“å…¥æµ
      */
     public static InputStream bytes2InputStream(byte[] bytes) {
         return new ByteArrayInputStream(bytes);
     }
 
     /**
-     * Ö¸¶¨±àÂë½«ÊäÈëÁ÷×ªÎª×Ö·û´®
+     * æŒ‡å®šç¼–ç å°†è¾“å…¥æµè½¬ä¸ºå­—ç¬¦ä¸²
      *
-     * @param is          ÊäÈëÁ÷
-     * @param charsetName ±àÂë¸ñÊ½
-     * @return ×Ö·û´®
+     * @param is          è¾“å…¥æµ
+     * @param charsetName ç¼–ç æ ¼å¼
+     * @return å­—ç¬¦ä¸²
      */
     public static String inputStream2String(InputStream is, String charsetName) {
         if (is == null) return null;
@@ -157,9 +157,9 @@ public class ConvertUtils {
             }
             String line;
             while ((line = reader.readLine()) != null) {
-                sb.append(line).append("\r\n");// windowsÏµÍ³»»ĞĞÎª\r\n£¬LinuxÎª\n
+                sb.append(line).append("\r\n");// windowsç³»ç»Ÿæ¢è¡Œä¸º\r\nï¼ŒLinuxä¸º\n
             }
-            // ÒªÈ¥³ı×îºóµÄ»»ĞĞ·û
+            // è¦å»é™¤æœ€åçš„æ¢è¡Œç¬¦
             return sb.delete(sb.length() - 2, sb.length()).toString();
         } catch (IOException e) {
             e.printStackTrace();
@@ -170,11 +170,11 @@ public class ConvertUtils {
     }
 
     /**
-     * Ö¸¶¨±àÂë½«×Ö·û´®×ªÎªÊäÈëÁ÷
+     * æŒ‡å®šç¼–ç å°†å­—ç¬¦ä¸²è½¬ä¸ºè¾“å…¥æµ
      *
-     * @param string      ×Ö·û´®
-     * @param charsetName ±àÂë¸ñÊ½
-     * @return ÊäÈëÁ÷
+     * @param string      å­—ç¬¦ä¸²
+     * @param charsetName ç¼–ç æ ¼å¼
+     * @return è¾“å…¥æµ
      */
     public static InputStream string2InputStream(String string, String charsetName) {
         if (string == null || StringUtils.isSpace(charsetName)) return null;
