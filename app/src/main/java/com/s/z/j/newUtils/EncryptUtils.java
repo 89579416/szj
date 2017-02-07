@@ -12,7 +12,6 @@ import java.security.SecureRandom;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
-import static com.s.z.j.newUtils.ConvertUtils.*;
 import static com.s.z.j.newUtils.ConvertUtils.bytes2HexString;
 import static com.s.z.j.newUtils.ConvertUtils.hexString2Bytes;
 
@@ -21,7 +20,7 @@ import static com.s.z.j.newUtils.ConvertUtils.hexString2Bytes;
  *     author: Blankj
  *     blog  : http://blankj.com
  *     time  : 2016/8/2
- *     desc  : ¼ÓÃÜ½âÃÜÏà¹ØµÄ¹¤¾ßÀà
+ *     desc  : åŠ å¯†è§£å¯†ç›¸å…³çš„å·¥å…·ç±»
  * </pre>
  */
 public class EncryptUtils {
@@ -30,74 +29,74 @@ public class EncryptUtils {
         throw new UnsupportedOperationException("u can't fuck me...");
     }
 
-    /*********************** ¹şÏ£¼ÓÃÜÏà¹Ø ***********************/
+    /*********************** å“ˆå¸ŒåŠ å¯†ç›¸å…³ ***********************/
     /**
-     * MD2¼ÓÃÜ
+     * MD2åŠ å¯†
      *
-     * @param data Ã÷ÎÄ×Ö·û´®
-     * @return 16½øÖÆÃÜÎÄ
+     * @param data æ˜æ–‡å­—ç¬¦ä¸²
+     * @return 16è¿›åˆ¶å¯†æ–‡
      */
     public static String encryptMD2ToString(String data) {
         return encryptMD2ToString(data.getBytes());
     }
 
     /**
-     * MD2¼ÓÃÜ
+     * MD2åŠ å¯†
      *
-     * @param data Ã÷ÎÄ×Ö½ÚÊı×é
-     * @return 16½øÖÆÃÜÎÄ
+     * @param data æ˜æ–‡å­—èŠ‚æ•°ç»„
+     * @return 16è¿›åˆ¶å¯†æ–‡
      */
     public static String encryptMD2ToString(byte[] data) {
         return bytes2HexString(encryptMD2(data));
     }
 
     /**
-     * MD2¼ÓÃÜ
+     * MD2åŠ å¯†
      *
-     * @param data Ã÷ÎÄ×Ö½ÚÊı×é
-     * @return ÃÜÎÄ×Ö½ÚÊı×é
+     * @param data æ˜æ–‡å­—èŠ‚æ•°ç»„
+     * @return å¯†æ–‡å­—èŠ‚æ•°ç»„
      */
     public static byte[] encryptMD2(byte[] data) {
         return encryptAlgorithm(data, "MD2");
     }
 
     /**
-     * MD5¼ÓÃÜ
+     * MD5åŠ å¯†
      *
-     * @param data Ã÷ÎÄ×Ö·û´®
-     * @return 16½øÖÆÃÜÎÄ
+     * @param data æ˜æ–‡å­—ç¬¦ä¸²
+     * @return 16è¿›åˆ¶å¯†æ–‡
      */
     public static String encryptMD5ToString(String data) {
         return encryptMD5ToString(data.getBytes());
     }
 
     /**
-     * MD5¼ÓÃÜ
+     * MD5åŠ å¯†
      *
-     * @param data Ã÷ÎÄ×Ö·û´®
-     * @param salt ÑÎ
-     * @return 16½øÖÆ¼ÓÑÎÃÜÎÄ
+     * @param data æ˜æ–‡å­—ç¬¦ä¸²
+     * @param salt ç›
+     * @return 16è¿›åˆ¶åŠ ç›å¯†æ–‡
      */
     public static String encryptMD5ToString(String data, String salt) {
         return bytes2HexString(encryptMD5((data + salt).getBytes()));
     }
 
     /**
-     * MD5¼ÓÃÜ
+     * MD5åŠ å¯†
      *
-     * @param data Ã÷ÎÄ×Ö½ÚÊı×é
-     * @return 16½øÖÆÃÜÎÄ
+     * @param data æ˜æ–‡å­—èŠ‚æ•°ç»„
+     * @return 16è¿›åˆ¶å¯†æ–‡
      */
     public static String encryptMD5ToString(byte[] data) {
         return bytes2HexString(encryptMD5(data));
     }
 
     /**
-     * MD5¼ÓÃÜ
+     * MD5åŠ å¯†
      *
-     * @param data Ã÷ÎÄ×Ö½ÚÊı×é
-     * @param salt ÑÎ×Ö½ÚÊı×é
-     * @return 16½øÖÆ¼ÓÑÎÃÜÎÄ
+     * @param data æ˜æ–‡å­—èŠ‚æ•°ç»„
+     * @param salt ç›å­—èŠ‚æ•°ç»„
+     * @return 16è¿›åˆ¶åŠ ç›å¯†æ–‡
      */
     public static String encryptMD5ToString(byte[] data, byte[] salt) {
         byte[] dataSalt = new byte[data.length + salt.length];
@@ -107,171 +106,171 @@ public class EncryptUtils {
     }
 
     /**
-     * MD5¼ÓÃÜ
+     * MD5åŠ å¯†
      *
-     * @param data Ã÷ÎÄ×Ö½ÚÊı×é
-     * @return ÃÜÎÄ×Ö½ÚÊı×é
+     * @param data æ˜æ–‡å­—èŠ‚æ•°ç»„
+     * @return å¯†æ–‡å­—èŠ‚æ•°ç»„
      */
     public static byte[] encryptMD5(byte[] data) {
         return encryptAlgorithm(data, "MD5");
     }
 
     /**
-     * SHA1¼ÓÃÜ
+     * SHA1åŠ å¯†
      *
-     * @param data Ã÷ÎÄ×Ö·û´®
-     * @return 16½øÖÆÃÜÎÄ
+     * @param data æ˜æ–‡å­—ç¬¦ä¸²
+     * @return 16è¿›åˆ¶å¯†æ–‡
      */
     public static String encryptSHA1ToString(String data) {
         return encryptSHA1ToString(data.getBytes());
     }
 
     /**
-     * SHA1¼ÓÃÜ
+     * SHA1åŠ å¯†
      *
-     * @param data Ã÷ÎÄ×Ö½ÚÊı×é
-     * @return 16½øÖÆÃÜÎÄ
+     * @param data æ˜æ–‡å­—èŠ‚æ•°ç»„
+     * @return 16è¿›åˆ¶å¯†æ–‡
      */
     public static String encryptSHA1ToString(byte[] data) {
         return bytes2HexString(encryptSHA1(data));
     }
 
     /**
-     * SHA1¼ÓÃÜ
+     * SHA1åŠ å¯†
      *
-     * @param data Ã÷ÎÄ×Ö½ÚÊı×é
-     * @return ÃÜÎÄ×Ö½ÚÊı×é
+     * @param data æ˜æ–‡å­—èŠ‚æ•°ç»„
+     * @return å¯†æ–‡å­—èŠ‚æ•°ç»„
      */
     public static byte[] encryptSHA1(byte[] data) {
         return encryptAlgorithm(data, "SHA-1");
     }
 
     /**
-     * SHA224¼ÓÃÜ
+     * SHA224åŠ å¯†
      *
-     * @param data Ã÷ÎÄ×Ö·û´®
-     * @return 16½øÖÆÃÜÎÄ
+     * @param data æ˜æ–‡å­—ç¬¦ä¸²
+     * @return 16è¿›åˆ¶å¯†æ–‡
      */
     public static String encryptSHA224ToString(String data) {
         return encryptSHA224ToString(data.getBytes());
     }
 
     /**
-     * SHA224¼ÓÃÜ
+     * SHA224åŠ å¯†
      *
-     * @param data Ã÷ÎÄ×Ö½ÚÊı×é
-     * @return 16½øÖÆÃÜÎÄ
+     * @param data æ˜æ–‡å­—èŠ‚æ•°ç»„
+     * @return 16è¿›åˆ¶å¯†æ–‡
      */
     public static String encryptSHA224ToString(byte[] data) {
         return bytes2HexString(encryptSHA224(data));
     }
 
     /**
-     * SHA224¼ÓÃÜ
+     * SHA224åŠ å¯†
      *
-     * @param data Ã÷ÎÄ×Ö½ÚÊı×é
-     * @return ÃÜÎÄ×Ö½ÚÊı×é
+     * @param data æ˜æ–‡å­—èŠ‚æ•°ç»„
+     * @return å¯†æ–‡å­—èŠ‚æ•°ç»„
      */
     public static byte[] encryptSHA224(byte[] data) {
         return encryptAlgorithm(data, "SHA-224");
     }
 
     /**
-     * SHA256¼ÓÃÜ
+     * SHA256åŠ å¯†
      *
-     * @param data Ã÷ÎÄ×Ö·û´®
-     * @return 16½øÖÆÃÜÎÄ
+     * @param data æ˜æ–‡å­—ç¬¦ä¸²
+     * @return 16è¿›åˆ¶å¯†æ–‡
      */
     public static String encryptSHA256ToString(String data) {
         return encryptSHA256ToString(data.getBytes());
     }
 
     /**
-     * SHA256¼ÓÃÜ
+     * SHA256åŠ å¯†
      *
-     * @param data Ã÷ÎÄ×Ö½ÚÊı×é
-     * @return 16½øÖÆÃÜÎÄ
+     * @param data æ˜æ–‡å­—èŠ‚æ•°ç»„
+     * @return 16è¿›åˆ¶å¯†æ–‡
      */
     public static String encryptSHA256ToString(byte[] data) {
         return bytes2HexString(encryptSHA256(data));
     }
 
     /**
-     * SHA256¼ÓÃÜ
+     * SHA256åŠ å¯†
      *
-     * @param data Ã÷ÎÄ×Ö½ÚÊı×é
-     * @return ÃÜÎÄ×Ö½ÚÊı×é
+     * @param data æ˜æ–‡å­—èŠ‚æ•°ç»„
+     * @return å¯†æ–‡å­—èŠ‚æ•°ç»„
      */
     public static byte[] encryptSHA256(byte[] data) {
         return encryptAlgorithm(data, "SHA-256");
     }
 
     /**
-     * SHA384¼ÓÃÜ
+     * SHA384åŠ å¯†
      *
-     * @param data Ã÷ÎÄ×Ö·û´®
-     * @return 16½øÖÆÃÜÎÄ
+     * @param data æ˜æ–‡å­—ç¬¦ä¸²
+     * @return 16è¿›åˆ¶å¯†æ–‡
      */
     public static String encryptSHA384ToString(String data) {
         return encryptSHA384ToString(data.getBytes());
     }
 
     /**
-     * SHA384¼ÓÃÜ
+     * SHA384åŠ å¯†
      *
-     * @param data Ã÷ÎÄ×Ö½ÚÊı×é
-     * @return 16½øÖÆÃÜÎÄ
+     * @param data æ˜æ–‡å­—èŠ‚æ•°ç»„
+     * @return 16è¿›åˆ¶å¯†æ–‡
      */
     public static String encryptSHA384ToString(byte[] data) {
         return bytes2HexString(encryptSHA384(data));
     }
 
     /**
-     * SHA384¼ÓÃÜ
+     * SHA384åŠ å¯†
      *
-     * @param data Ã÷ÎÄ×Ö½ÚÊı×é
-     * @return ÃÜÎÄ×Ö½ÚÊı×é
+     * @param data æ˜æ–‡å­—èŠ‚æ•°ç»„
+     * @return å¯†æ–‡å­—èŠ‚æ•°ç»„
      */
     public static byte[] encryptSHA384(byte[] data) {
         return encryptAlgorithm(data, "SHA-384");
     }
 
     /**
-     * SHA512¼ÓÃÜ
+     * SHA512åŠ å¯†
      *
-     * @param data Ã÷ÎÄ×Ö·û´®
-     * @return 16½øÖÆÃÜÎÄ
+     * @param data æ˜æ–‡å­—ç¬¦ä¸²
+     * @return 16è¿›åˆ¶å¯†æ–‡
      */
     public static String encryptSHA512ToString(String data) {
         return encryptSHA512ToString(data.getBytes());
     }
 
     /**
-     * SHA512¼ÓÃÜ
+     * SHA512åŠ å¯†
      *
-     * @param data Ã÷ÎÄ×Ö½ÚÊı×é
-     * @return 16½øÖÆÃÜÎÄ
+     * @param data æ˜æ–‡å­—èŠ‚æ•°ç»„
+     * @return 16è¿›åˆ¶å¯†æ–‡
      */
     public static String encryptSHA512ToString(byte[] data) {
         return bytes2HexString(encryptSHA512(data));
     }
 
     /**
-     * SHA512¼ÓÃÜ
+     * SHA512åŠ å¯†
      *
-     * @param data Ã÷ÎÄ×Ö½ÚÊı×é
-     * @return ÃÜÎÄ×Ö½ÚÊı×é
+     * @param data æ˜æ–‡å­—èŠ‚æ•°ç»„
+     * @return å¯†æ–‡å­—èŠ‚æ•°ç»„
      */
     public static byte[] encryptSHA512(byte[] data) {
         return encryptAlgorithm(data, "SHA-512");
     }
 
     /**
-     * ¶Ôdata½øĞĞalgorithmËã·¨¼ÓÃÜ
+     * å¯¹dataè¿›è¡Œalgorithmç®—æ³•åŠ å¯†
      *
-     * @param data      Ã÷ÎÄ×Ö½ÚÊı×é
-     * @param algorithm ¼ÓÃÜËã·¨
-     * @return ÃÜÎÄ×Ö½ÚÊı×é
+     * @param data      æ˜æ–‡å­—èŠ‚æ•°ç»„
+     * @param algorithm åŠ å¯†ç®—æ³•
+     * @return å¯†æ–‡å­—èŠ‚æ•°ç»„
      */
     private static byte[] encryptAlgorithm(byte[] data, String algorithm) {
         try {
@@ -285,40 +284,40 @@ public class EncryptUtils {
     }
 
     /**
-     * »ñÈ¡ÎÄ¼şµÄMD5Ğ£ÑéÂë
+     * è·å–æ–‡ä»¶çš„MD5æ ¡éªŒç 
      *
-     * @param filePath ÎÄ¼şÂ·¾¶
-     * @return ÎÄ¼şµÄ16½øÖÆÃÜÎÄ
+     * @param filePath æ–‡ä»¶è·¯å¾„
+     * @return æ–‡ä»¶çš„16è¿›åˆ¶å¯†æ–‡
      */
     public static String encryptMD5File2String(String filePath) {
         return encryptMD5File2String(new File(filePath));
     }
 
     /**
-     * »ñÈ¡ÎÄ¼şµÄMD5Ğ£ÑéÂë
+     * è·å–æ–‡ä»¶çš„MD5æ ¡éªŒç 
      *
-     * @param filePath ÎÄ¼şÂ·¾¶
-     * @return ÎÄ¼şµÄMD5Ğ£ÑéÂë
+     * @param filePath æ–‡ä»¶è·¯å¾„
+     * @return æ–‡ä»¶çš„MD5æ ¡éªŒç 
      */
     public static byte[] encryptMD5File(String filePath) {
         return encryptMD5File(new File(filePath));
     }
 
     /**
-     * »ñÈ¡ÎÄ¼şµÄMD5Ğ£ÑéÂë
+     * è·å–æ–‡ä»¶çš„MD5æ ¡éªŒç 
      *
-     * @param file ÎÄ¼ş
-     * @return ÎÄ¼şµÄ16½øÖÆÃÜÎÄ
+     * @param file æ–‡ä»¶
+     * @return æ–‡ä»¶çš„16è¿›åˆ¶å¯†æ–‡
      */
     public static String encryptMD5File2String(File file) {
         return encryptMD5File(file) != null ? bytes2HexString(encryptMD5File(file)) : "";
     }
 
     /**
-     * »ñÈ¡ÎÄ¼şµÄMD5Ğ£ÑéÂë
+     * è·å–æ–‡ä»¶çš„MD5æ ¡éªŒç 
      *
-     * @param file ÎÄ¼ş
-     * @return ÎÄ¼şµÄMD5Ğ£ÑéÂë
+     * @param file æ–‡ä»¶
+     * @return æ–‡ä»¶çš„MD5æ ¡éªŒç 
      */
     public static byte[] encryptMD5File(File file) {
         FileInputStream in = null;
@@ -342,23 +341,23 @@ public class EncryptUtils {
         return null;
     }
 
-    /************************ DES¼ÓÃÜÏà¹Ø ***********************/
+    /************************ DESåŠ å¯†ç›¸å…³ ***********************/
     /**
-     * DES×ª±ä
-     * <p>·¨Ëã·¨Ãû³Æ/¼ÓÃÜÄ£Ê½/Ìî³ä·½Ê½</p>
-     * <p>¼ÓÃÜÄ£Ê½ÓĞ£ºµç×ÓÃÜÂë±¾Ä£Ê½ECB¡¢¼ÓÃÜ¿éÁ´Ä£Ê½CBC¡¢¼ÓÃÜ·´À¡Ä£Ê½CFB¡¢Êä³ö·´À¡Ä£Ê½OFB</p>
-     * <p>Ìî³ä·½Ê½ÓĞ£ºNoPadding¡¢ZerosPadding¡¢PKCS5Padding</p>
+     * DESè½¬å˜
+     * <p>æ³•ç®—æ³•åç§°/åŠ å¯†æ¨¡å¼/å¡«å……æ–¹å¼</p>
+     * <p>åŠ å¯†æ¨¡å¼æœ‰ï¼šç”µå­å¯†ç æœ¬æ¨¡å¼ECBã€åŠ å¯†å—é“¾æ¨¡å¼CBCã€åŠ å¯†åé¦ˆæ¨¡å¼CFBã€è¾“å‡ºåé¦ˆæ¨¡å¼OFB</p>
+     * <p>å¡«å……æ–¹å¼æœ‰ï¼šNoPaddingã€ZerosPaddingã€PKCS5Padding</p>
      */
     public static String DES_Transformation = "DES/ECB/NoPadding";
     private static final String DES_Algorithm = "DES";
 
     /**
-     * @param data           Êı¾İ
-     * @param key            ÃØÔ¿
-     * @param algorithm      ²ÉÓÃºÎÖÖDESËã·¨
-     * @param transformation ×ª±ä
-     * @param isEncrypt      ÊÇ·ñ¼ÓÃÜ
-     * @return ÃÜÎÄ»òÕßÃ÷ÎÄ£¬ÊÊÓÃÓÚDES£¬3DES£¬AES
+     * @param data           æ•°æ®
+     * @param key            ç§˜é’¥
+     * @param algorithm      é‡‡ç”¨ä½•ç§DESç®—æ³•
+     * @param transformation è½¬å˜
+     * @param isEncrypt      æ˜¯å¦åŠ å¯†
+     * @return å¯†æ–‡æˆ–è€…æ˜æ–‡ï¼Œé€‚ç”¨äºDESï¼Œ3DESï¼ŒAES
      */
     public static byte[] DESTemplet(byte[] data, byte[] key, String algorithm, String transformation, boolean isEncrypt) {
         try {
@@ -374,220 +373,220 @@ public class EncryptUtils {
     }
 
     /**
-     * DES¼ÓÃÜºó×ªÎªBase64±àÂë
+     * DESåŠ å¯†åè½¬ä¸ºBase64ç¼–ç 
      *
-     * @param data Ã÷ÎÄ
-     * @param key  8×Ö½ÚÃØÔ¿
-     * @return Base64ÃÜÎÄ
+     * @param data æ˜æ–‡
+     * @param key  8å­—èŠ‚ç§˜é’¥
+     * @return Base64å¯†æ–‡
      */
     public static byte[] encryptDES2Base64(byte[] data, byte[] key) {
         return EncodeUtils.base64Encode(encryptDES(data, key));
     }
 
     /**
-     * DES¼ÓÃÜºó×ªÎª16½øÖÆ
+     * DESåŠ å¯†åè½¬ä¸º16è¿›åˆ¶
      *
-     * @param data Ã÷ÎÄ
-     * @param key  8×Ö½ÚÃØÔ¿
-     * @return 16½øÖÆÃÜÎÄ
+     * @param data æ˜æ–‡
+     * @param key  8å­—èŠ‚ç§˜é’¥
+     * @return 16è¿›åˆ¶å¯†æ–‡
      */
     public static String encryptDES2HexString(byte[] data, byte[] key) {
         return bytes2HexString(encryptDES(data, key));
     }
 
     /**
-     * DES¼ÓÃÜ
+     * DESåŠ å¯†
      *
-     * @param data Ã÷ÎÄ
-     * @param key  8×Ö½ÚÃØÔ¿
-     * @return ÃÜÎÄ
+     * @param data æ˜æ–‡
+     * @param key  8å­—èŠ‚ç§˜é’¥
+     * @return å¯†æ–‡
      */
     public static byte[] encryptDES(byte[] data, byte[] key) {
         return DESTemplet(data, key, DES_Algorithm, DES_Transformation, true);
     }
 
     /**
-     * DES½âÃÜBase64±àÂëÃÜÎÄ
+     * DESè§£å¯†Base64ç¼–ç å¯†æ–‡
      *
-     * @param data Base64±àÂëÃÜÎÄ
-     * @param key  8×Ö½ÚÃØÔ¿
-     * @return Ã÷ÎÄ
+     * @param data Base64ç¼–ç å¯†æ–‡
+     * @param key  8å­—èŠ‚ç§˜é’¥
+     * @return æ˜æ–‡
      */
     public static byte[] decryptBase64DES(byte[] data, byte[] key) {
         return decryptDES(EncodeUtils.base64Decode(data), key);
     }
 
     /**
-     * DES½âÃÜ16½øÖÆÃÜÎÄ
+     * DESè§£å¯†16è¿›åˆ¶å¯†æ–‡
      *
-     * @param data 16½øÖÆÃÜÎÄ
-     * @param key  8×Ö½ÚÃØÔ¿
-     * @return Ã÷ÎÄ
+     * @param data 16è¿›åˆ¶å¯†æ–‡
+     * @param key  8å­—èŠ‚ç§˜é’¥
+     * @return æ˜æ–‡
      */
     public static byte[] decryptHexStringDES(String data, byte[] key) {
         return decryptDES(hexString2Bytes(data), key);
     }
 
     /**
-     * DES½âÃÜ
+     * DESè§£å¯†
      *
-     * @param data ÃÜÎÄ
-     * @param key  8×Ö½ÚÃØÔ¿
-     * @return Ã÷ÎÄ
+     * @param data å¯†æ–‡
+     * @param key  8å­—èŠ‚ç§˜é’¥
+     * @return æ˜æ–‡
      */
     public static byte[] decryptDES(byte[] data, byte[] key) {
         return DESTemplet(data, key, DES_Algorithm, DES_Transformation, false);
     }
 
-    /************************ 3DES¼ÓÃÜÏà¹Ø ***********************/
+    /************************ 3DESåŠ å¯†ç›¸å…³ ***********************/
     /**
-     * 3DES×ª±ä
-     * <p>·¨Ëã·¨Ãû³Æ/¼ÓÃÜÄ£Ê½/Ìî³ä·½Ê½</p>
-     * <p>¼ÓÃÜÄ£Ê½ÓĞ£ºµç×ÓÃÜÂë±¾Ä£Ê½ECB¡¢¼ÓÃÜ¿éÁ´Ä£Ê½CBC¡¢¼ÓÃÜ·´À¡Ä£Ê½CFB¡¢Êä³ö·´À¡Ä£Ê½OFB</p>
-     * <p>Ìî³ä·½Ê½ÓĞ£ºNoPadding¡¢ZerosPadding¡¢PKCS5Padding</p>
+     * 3DESè½¬å˜
+     * <p>æ³•ç®—æ³•åç§°/åŠ å¯†æ¨¡å¼/å¡«å……æ–¹å¼</p>
+     * <p>åŠ å¯†æ¨¡å¼æœ‰ï¼šç”µå­å¯†ç æœ¬æ¨¡å¼ECBã€åŠ å¯†å—é“¾æ¨¡å¼CBCã€åŠ å¯†åé¦ˆæ¨¡å¼CFBã€è¾“å‡ºåé¦ˆæ¨¡å¼OFB</p>
+     * <p>å¡«å……æ–¹å¼æœ‰ï¼šNoPaddingã€ZerosPaddingã€PKCS5Padding</p>
      */
     public static String TripleDES_Transformation = "DESede/ECB/NoPadding";
     private static final String TripleDES_Algorithm = "DESede";
 
 
     /**
-     * 3DES¼ÓÃÜºó×ªÎªBase64±àÂë
+     * 3DESåŠ å¯†åè½¬ä¸ºBase64ç¼–ç 
      *
-     * @param data Ã÷ÎÄ
-     * @param key  24×Ö½ÚÃØÔ¿
-     * @return Base64ÃÜÎÄ
+     * @param data æ˜æ–‡
+     * @param key  24å­—èŠ‚ç§˜é’¥
+     * @return Base64å¯†æ–‡
      */
     public static byte[] encrypt3DES2Base64(byte[] data, byte[] key) {
         return EncodeUtils.base64Encode(encrypt3DES(data, key));
     }
 
     /**
-     * 3DES¼ÓÃÜºó×ªÎª16½øÖÆ
+     * 3DESåŠ å¯†åè½¬ä¸º16è¿›åˆ¶
      *
-     * @param data Ã÷ÎÄ
-     * @param key  24×Ö½ÚÃØÔ¿
-     * @return 16½øÖÆÃÜÎÄ
+     * @param data æ˜æ–‡
+     * @param key  24å­—èŠ‚ç§˜é’¥
+     * @return 16è¿›åˆ¶å¯†æ–‡
      */
     public static String encrypt3DES2HexString(byte[] data, byte[] key) {
         return bytes2HexString(encrypt3DES(data, key));
     }
 
     /**
-     * 3DES¼ÓÃÜ
+     * 3DESåŠ å¯†
      *
-     * @param data Ã÷ÎÄ
-     * @param key  24×Ö½ÚÃÜÔ¿
-     * @return ÃÜÎÄ
+     * @param data æ˜æ–‡
+     * @param key  24å­—èŠ‚å¯†é’¥
+     * @return å¯†æ–‡
      */
     public static byte[] encrypt3DES(byte[] data, byte[] key) {
         return DESTemplet(data, key, TripleDES_Algorithm, TripleDES_Transformation, true);
     }
 
     /**
-     * 3DES½âÃÜBase64±àÂëÃÜÎÄ
+     * 3DESè§£å¯†Base64ç¼–ç å¯†æ–‡
      *
-     * @param data Base64±àÂëÃÜÎÄ
-     * @param key  24×Ö½ÚÃØÔ¿
-     * @return Ã÷ÎÄ
+     * @param data Base64ç¼–ç å¯†æ–‡
+     * @param key  24å­—èŠ‚ç§˜é’¥
+     * @return æ˜æ–‡
      */
     public static byte[] decryptBase64_3DES(byte[] data, byte[] key) {
         return decrypt3DES(EncodeUtils.base64Decode(data), key);
     }
 
     /**
-     * 3DES½âÃÜ16½øÖÆÃÜÎÄ
+     * 3DESè§£å¯†16è¿›åˆ¶å¯†æ–‡
      *
-     * @param data 16½øÖÆÃÜÎÄ
-     * @param key  24×Ö½ÚÃØÔ¿
-     * @return Ã÷ÎÄ
+     * @param data 16è¿›åˆ¶å¯†æ–‡
+     * @param key  24å­—èŠ‚ç§˜é’¥
+     * @return æ˜æ–‡
      */
     public static byte[] decryptHexString3DES(String data, byte[] key) {
         return decrypt3DES(hexString2Bytes(data), key);
     }
 
     /**
-     * 3DES½âÃÜ
+     * 3DESè§£å¯†
      *
-     * @param data ÃÜÎÄ
-     * @param key  24×Ö½ÚÃÜÔ¿
-     * @return Ã÷ÎÄ
+     * @param data å¯†æ–‡
+     * @param key  24å­—èŠ‚å¯†é’¥
+     * @return æ˜æ–‡
      */
     public static byte[] decrypt3DES(byte[] data, byte[] key) {
         return DESTemplet(data, key, TripleDES_Algorithm, TripleDES_Transformation, false);
     }
 
-    /************************ AES¼ÓÃÜÏà¹Ø ***********************/
+    /************************ AESåŠ å¯†ç›¸å…³ ***********************/
     /**
-     * AES×ª±ä
-     * <p>·¨Ëã·¨Ãû³Æ/¼ÓÃÜÄ£Ê½/Ìî³ä·½Ê½</p>
-     * <p>¼ÓÃÜÄ£Ê½ÓĞ£ºµç×ÓÃÜÂë±¾Ä£Ê½ECB¡¢¼ÓÃÜ¿éÁ´Ä£Ê½CBC¡¢¼ÓÃÜ·´À¡Ä£Ê½CFB¡¢Êä³ö·´À¡Ä£Ê½OFB</p>
-     * <p>Ìî³ä·½Ê½ÓĞ£ºNoPadding¡¢ZerosPadding¡¢PKCS5Padding</p>
+     * AESè½¬å˜
+     * <p>æ³•ç®—æ³•åç§°/åŠ å¯†æ¨¡å¼/å¡«å……æ–¹å¼</p>
+     * <p>åŠ å¯†æ¨¡å¼æœ‰ï¼šç”µå­å¯†ç æœ¬æ¨¡å¼ECBã€åŠ å¯†å—é“¾æ¨¡å¼CBCã€åŠ å¯†åé¦ˆæ¨¡å¼CFBã€è¾“å‡ºåé¦ˆæ¨¡å¼OFB</p>
+     * <p>å¡«å……æ–¹å¼æœ‰ï¼šNoPaddingã€ZerosPaddingã€PKCS5Padding</p>
      */
     public static String AES_Transformation = "AES/ECB/NoPadding";
     private static final String AES_Algorithm = "AES";
 
 
     /**
-     * AES¼ÓÃÜºó×ªÎªBase64±àÂë
+     * AESåŠ å¯†åè½¬ä¸ºBase64ç¼–ç 
      *
-     * @param data Ã÷ÎÄ
-     * @param key  16¡¢24¡¢32×Ö½ÚÃØÔ¿
-     * @return Base64ÃÜÎÄ
+     * @param data æ˜æ–‡
+     * @param key  16ã€24ã€32å­—èŠ‚ç§˜é’¥
+     * @return Base64å¯†æ–‡
      */
     public static byte[] encryptAES2Base64(byte[] data, byte[] key) {
         return EncodeUtils.base64Encode(encryptAES(data, key));
     }
 
     /**
-     * AES¼ÓÃÜºó×ªÎª16½øÖÆ
+     * AESåŠ å¯†åè½¬ä¸º16è¿›åˆ¶
      *
-     * @param data Ã÷ÎÄ
-     * @param key  16¡¢24¡¢32×Ö½ÚÃØÔ¿
-     * @return 16½øÖÆÃÜÎÄ
+     * @param data æ˜æ–‡
+     * @param key  16ã€24ã€32å­—èŠ‚ç§˜é’¥
+     * @return 16è¿›åˆ¶å¯†æ–‡
      */
     public static String encryptAES2HexString(byte[] data, byte[] key) {
         return bytes2HexString(encryptAES(data, key));
     }
 
     /**
-     * AES¼ÓÃÜ
+     * AESåŠ å¯†
      *
-     * @param data Ã÷ÎÄ
-     * @param key  16¡¢24¡¢32×Ö½ÚÃØÔ¿
-     * @return ÃÜÎÄ
+     * @param data æ˜æ–‡
+     * @param key  16ã€24ã€32å­—èŠ‚ç§˜é’¥
+     * @return å¯†æ–‡
      */
     public static byte[] encryptAES(byte[] data, byte[] key) {
         return DESTemplet(data, key, AES_Algorithm, AES_Transformation, true);
     }
 
     /**
-     * AES½âÃÜBase64±àÂëÃÜÎÄ
+     * AESè§£å¯†Base64ç¼–ç å¯†æ–‡
      *
-     * @param data Base64±àÂëÃÜÎÄ
-     * @param key  16¡¢24¡¢32×Ö½ÚÃØÔ¿
-     * @return Ã÷ÎÄ
+     * @param data Base64ç¼–ç å¯†æ–‡
+     * @param key  16ã€24ã€32å­—èŠ‚ç§˜é’¥
+     * @return æ˜æ–‡
      */
     public static byte[] decryptBase64AES(byte[] data, byte[] key) {
         return decryptAES(EncodeUtils.base64Decode(data), key);
     }
 
     /**
-     * AES½âÃÜ16½øÖÆÃÜÎÄ
+     * AESè§£å¯†16è¿›åˆ¶å¯†æ–‡
      *
-     * @param data 16½øÖÆÃÜÎÄ
-     * @param key  16¡¢24¡¢32×Ö½ÚÃØÔ¿
-     * @return Ã÷ÎÄ
+     * @param data 16è¿›åˆ¶å¯†æ–‡
+     * @param key  16ã€24ã€32å­—èŠ‚ç§˜é’¥
+     * @return æ˜æ–‡
      */
     public static byte[] decryptHexStringAES(String data, byte[] key) {
         return decryptAES(hexString2Bytes(data), key);
     }
 
     /**
-     * AES½âÃÜ
+     * AESè§£å¯†
      *
-     * @param data ÃÜÎÄ
-     * @param key  16¡¢24¡¢32×Ö½ÚÃØÔ¿
-     * @return Ã÷ÎÄ
+     * @param data å¯†æ–‡
+     * @param key  16ã€24ã€32å­—èŠ‚ç§˜é’¥
+     * @return æ˜æ–‡
      */
     public static byte[] decryptAES(byte[] data, byte[] key) {
         return DESTemplet(data, key, AES_Algorithm, AES_Transformation, false);
