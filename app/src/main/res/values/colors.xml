@@ -37,4 +37,5 @@
     <color name="black">#000000</color>
     <!-- 黑色 -->
     <color name="gray_bg">#fff0f0f0</color>
+    <color name="base_text">#000000</color>
 </resources>

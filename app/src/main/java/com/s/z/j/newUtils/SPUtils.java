@@ -10,7 +10,7 @@ import java.util.Map;
  *     author: Blankj
  *     blog  : http://blankj.com
  *     time  : 2016/8/2
- *     desc  : SPÏà¹Ø¹¤¾ßÀà
+ *     desc  : SPç›¸å…³å·¥å…·ç±»
  * </pre>
  */
 public class SPUtils {
@@ -19,9 +19,9 @@ public class SPUtils {
     private SharedPreferences.Editor editor;
 
     /**
-     * SPUtils¹¹Ôìº¯Êı
+     * SPUtilsæ„é€ å‡½æ•°
      *
-     * @param context ÉÏÏÂÎÄ
+     * @param context ä¸Šä¸‹æ–‡
      * @param spName  spName
      */
     public SPUtils(Context context, String spName) {
@@ -31,190 +31,190 @@ public class SPUtils {
     }
 
     /**
-     * SPÖĞĞ´ÈëStringÀàĞÍvalue
+     * SPä¸­å†™å…¥Stringç±»å‹value
      *
-     * @param key   ¼ü
-     * @param value Öµ
+     * @param key   é”®
+     * @param value å€¼
      */
     public void putString(String key, String value) {
         editor.putString(key, value).apply();
     }
 
     /**
-     * SPÖĞ¶ÁÈ¡String
+     * SPä¸­è¯»å–String
      *
-     * @param key ¼ü
-     * @return ´æÔÚ·µ»Ø¶ÔÓ¦Öµ£¬²»´æÔÚ·µ»ØÄ¬ÈÏÖµ{@code null}
+     * @param key é”®
+     * @return å­˜åœ¨è¿”å›å¯¹åº”å€¼ï¼Œä¸å­˜åœ¨è¿”å›é»˜è®¤å€¼{@code null}
      */
     public String getString(String key) {
         return getString(key, null);
     }
 
     /**
-     * SPÖĞ¶ÁÈ¡String
+     * SPä¸­è¯»å–String
      *
-     * @param key          ¼ü
-     * @param defaultValue Ä¬ÈÏÖµ
-     * @return ´æÔÚ·µ»Ø¶ÔÓ¦Öµ£¬²»´æÔÚ·µ»ØÄ¬ÈÏÖµ{@code defaultValue}
+     * @param key          é”®
+     * @param defaultValue é»˜è®¤å€¼
+     * @return å­˜åœ¨è¿”å›å¯¹åº”å€¼ï¼Œä¸å­˜åœ¨è¿”å›é»˜è®¤å€¼{@code defaultValue}
      */
     public String getString(String key, String defaultValue) {
         return sp.getString(key, defaultValue);
     }
 
     /**
-     * SPÖĞĞ´ÈëintÀàĞÍvalue
+     * SPä¸­å†™å…¥intç±»å‹value
      *
-     * @param key   ¼ü
-     * @param value Öµ
+     * @param key   é”®
+     * @param value å€¼
      */
     public void putInt(String key, int value) {
         editor.putInt(key, value).apply();
     }
 
     /**
-     * SPÖĞ¶ÁÈ¡int
+     * SPä¸­è¯»å–int
      *
-     * @param key ¼ü
-     * @return ´æÔÚ·µ»Ø¶ÔÓ¦Öµ£¬²»´æÔÚ·µ»ØÄ¬ÈÏÖµ-1
+     * @param key é”®
+     * @return å­˜åœ¨è¿”å›å¯¹åº”å€¼ï¼Œä¸å­˜åœ¨è¿”å›é»˜è®¤å€¼-1
      */
     public int getInt(String key) {
         return getInt(key, -1);
     }
 
     /**
-     * SPÖĞ¶ÁÈ¡int
+     * SPä¸­è¯»å–int
      *
-     * @param key          ¼ü
-     * @param defaultValue Ä¬ÈÏÖµ
-     * @return ´æÔÚ·µ»Ø¶ÔÓ¦Öµ£¬²»´æÔÚ·µ»ØÄ¬ÈÏÖµ{@code defaultValue}
+     * @param key          é”®
+     * @param defaultValue é»˜è®¤å€¼
+     * @return å­˜åœ¨è¿”å›å¯¹åº”å€¼ï¼Œä¸å­˜åœ¨è¿”å›é»˜è®¤å€¼{@code defaultValue}
      */
     public int getInt(String key, int defaultValue) {
         return sp.getInt(key, defaultValue);
     }
 
     /**
-     * SPÖĞĞ´ÈëlongÀàĞÍvalue
+     * SPä¸­å†™å…¥longç±»å‹value
      *
-     * @param key   ¼ü
-     * @param value Öµ
+     * @param key   é”®
+     * @param value å€¼
      */
     public void putLong(String key, long value) {
         editor.putLong(key, value).apply();
     }
 
     /**
-     * SPÖĞ¶ÁÈ¡long
+     * SPä¸­è¯»å–long
      *
-     * @param key ¼ü
-     * @return ´æÔÚ·µ»Ø¶ÔÓ¦Öµ£¬²»´æÔÚ·µ»ØÄ¬ÈÏÖµ-1
+     * @param key é”®
+     * @return å­˜åœ¨è¿”å›å¯¹åº”å€¼ï¼Œä¸å­˜åœ¨è¿”å›é»˜è®¤å€¼-1
      */
     public long getLong(String key) {
         return getLong(key, -1L);
     }
 
     /**
-     * SPÖĞ¶ÁÈ¡long
+     * SPä¸­è¯»å–long
      *
-     * @param key          ¼ü
-     * @param defaultValue Ä¬ÈÏÖµ
-     * @return ´æÔÚ·µ»Ø¶ÔÓ¦Öµ£¬²»´æÔÚ·µ»ØÄ¬ÈÏÖµ{@code defaultValue}
+     * @param key          é”®
+     * @param defaultValue é»˜è®¤å€¼
+     * @return å­˜åœ¨è¿”å›å¯¹åº”å€¼ï¼Œä¸å­˜åœ¨è¿”å›é»˜è®¤å€¼{@code defaultValue}
      */
     public long getLong(String key, long defaultValue) {
         return sp.getLong(key, defaultValue);
     }
 
     /**
-     * SPÖĞĞ´ÈëfloatÀàĞÍvalue
+     * SPä¸­å†™å…¥floatç±»å‹value
      *
-     * @param key   ¼ü
-     * @param value Öµ
+     * @param key   é”®
+     * @param value å€¼
      */
     public void putFloat(String key, float value) {
         editor.putFloat(key, value).apply();
     }
 
     /**
-     * SPÖĞ¶ÁÈ¡float
+     * SPä¸­è¯»å–float
      *
-     * @param key ¼ü
-     * @return ´æÔÚ·µ»Ø¶ÔÓ¦Öµ£¬²»´æÔÚ·µ»ØÄ¬ÈÏÖµ-1
+     * @param key é”®
+     * @return å­˜åœ¨è¿”å›å¯¹åº”å€¼ï¼Œä¸å­˜åœ¨è¿”å›é»˜è®¤å€¼-1
      */
     public float getFloat(String key) {
         return getFloat(key, -1f);
     }
 
     /**
-     * SPÖĞ¶ÁÈ¡float
+     * SPä¸­è¯»å–float
      *
-     * @param key          ¼ü
-     * @param defaultValue Ä¬ÈÏÖµ
-     * @return ´æÔÚ·µ»Ø¶ÔÓ¦Öµ£¬²»´æÔÚ·µ»ØÄ¬ÈÏÖµ{@code defaultValue}
+     * @param key          é”®
+     * @param defaultValue é»˜è®¤å€¼
+     * @return å­˜åœ¨è¿”å›å¯¹åº”å€¼ï¼Œä¸å­˜åœ¨è¿”å›é»˜è®¤å€¼{@code defaultValue}
      */
     public float getFloat(String key, float defaultValue) {
         return sp.getFloat(key, defaultValue);
     }
 
     /**
-     * SPÖĞĞ´ÈëbooleanÀàĞÍvalue
+     * SPä¸­å†™å…¥booleanç±»å‹value
      *
-     * @param key   ¼ü
-     * @param value Öµ
+     * @param key   é”®
+     * @param value å€¼
      */
     public void putBoolean(String key, boolean value) {
         editor.putBoolean(key, value).apply();
     }
 
     /**
-     * SPÖĞ¶ÁÈ¡boolean
+     * SPä¸­è¯»å–boolean
      *
-     * @param key ¼ü
-     * @return ´æÔÚ·µ»Ø¶ÔÓ¦Öµ£¬²»´æÔÚ·µ»ØÄ¬ÈÏÖµ{@code false}
+     * @param key é”®
+     * @return å­˜åœ¨è¿”å›å¯¹åº”å€¼ï¼Œä¸å­˜åœ¨è¿”å›é»˜è®¤å€¼{@code false}
      */
     public boolean getBoolean(String key) {
         return getBoolean(key, false);
     }
 
     /**
-     * SPÖĞ¶ÁÈ¡boolean
+     * SPä¸­è¯»å–boolean
      *
-     * @param key          ¼ü
-     * @param defaultValue Ä¬ÈÏÖµ
-     * @return ´æÔÚ·µ»Ø¶ÔÓ¦Öµ£¬²»´æÔÚ·µ»ØÄ¬ÈÏÖµ{@code defaultValue}
+     * @param key          é”®
+     * @param defaultValue é»˜è®¤å€¼
+     * @return å­˜åœ¨è¿”å›å¯¹åº”å€¼ï¼Œä¸å­˜åœ¨è¿”å›é»˜è®¤å€¼{@code defaultValue}
      */
     public boolean getBoolean(String key, boolean defaultValue) {
         return sp.getBoolean(key, defaultValue);
     }
 
     /**
-     * »ñÈ¡SPÖĞËùÓĞ¼üÖµ¶Ô
+     * è·å–SPä¸­æ‰€æœ‰é”®å€¼å¯¹
      *
-     * @return Map¶ÔÏó
+     * @return Mapå¯¹è±¡
      */
     public Map<String, ?> getAll() {
         return sp.getAll();
     }
 
     /**
-     * ´ÓSPÖĞÒÆ³ı¸Ãkey
+     * ä»SPä¸­ç§»é™¤è¯¥key
      *
-     * @param key ¼ü
+     * @param key é”®
      */
     public void remove(String key) {
         editor.remove(key).apply();
     }
 
     /**
-     * ÅĞ¶ÏSPÖĞÊÇ·ñ´æÔÚ¸Ãkey
+     * åˆ¤æ–­SPä¸­æ˜¯å¦å­˜åœ¨è¯¥key
      *
-     * @param key ¼ü
-     * @return {@code true}: ´æÔÚ<br>{@code false}: ²»´æÔÚ
+     * @param key é”®
+     * @return {@code true}: å­˜åœ¨<br>{@code false}: ä¸å­˜åœ¨
      */
     public boolean contains(String key) {
         return sp.contains(key);
     }
 
     /**
-     * Çå³ıSPÖĞËùÓĞÊı¾İ
+     * æ¸…é™¤SPä¸­æ‰€æœ‰æ•°æ®
      */
     public void clear() {
         editor.clear().apply();

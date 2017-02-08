@@ -20,7 +20,7 @@ import java.lang.reflect.Method;
  *     author: Blankj
  *     blog  : http://blankj.com
  *     time  : 2016/8/2
- *     desc  : ÆÁÄ»Ïà¹Ø¹¤¾ßÀà
+ *     desc  : å±å¹•ç›¸å…³å·¥å…·ç±»
  * </pre>
  */
 public class ScreenUtils {
@@ -30,35 +30,35 @@ public class ScreenUtils {
     }
 
     /**
-     * »ñÈ¡ÆÁÄ»µÄ¿í¶Èpx
+     * è·å–å±å¹•çš„å®½åº¦px
      *
-     * @param context ÉÏÏÂÎÄ
-     * @return ÆÁÄ»¿ípx
+     * @param context ä¸Šä¸‹æ–‡
+     * @return å±å¹•å®½px
      */
     public static int getScreenWidth(Context context) {
         WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        DisplayMetrics outMetrics = new DisplayMetrics();// ´´½¨ÁËÒ»ÕÅ°×Ö½
-        windowManager.getDefaultDisplay().getMetrics(outMetrics);// ¸ø°×Ö½ÉèÖÃ¿í¸ß
+        DisplayMetrics outMetrics = new DisplayMetrics();// åˆ›å»ºäº†ä¸€å¼ ç™½çº¸
+        windowManager.getDefaultDisplay().getMetrics(outMetrics);// ç»™ç™½çº¸è®¾ç½®å®½é«˜
         return outMetrics.widthPixels;
     }
 
     /**
-     * »ñÈ¡ÆÁÄ»µÄ¸ß¶Èpx
+     * è·å–å±å¹•çš„é«˜åº¦px
      *
-     * @param context ÉÏÏÂÎÄ
-     * @return ÆÁÄ»¸ßpx
+     * @param context ä¸Šä¸‹æ–‡
+     * @return å±å¹•é«˜px
      */
     public static int getScreenHeight(Context context) {
         WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        DisplayMetrics outMetrics = new DisplayMetrics();// ´´½¨ÁËÒ»ÕÅ°×Ö½
-        windowManager.getDefaultDisplay().getMetrics(outMetrics);// ¸ø°×Ö½ÉèÖÃ¿í¸ß
+        DisplayMetrics outMetrics = new DisplayMetrics();// åˆ›å»ºäº†ä¸€å¼ ç™½çº¸
+        windowManager.getDefaultDisplay().getMetrics(outMetrics);// ç»™ç™½çº¸è®¾ç½®å®½é«˜
         return outMetrics.heightPixels;
     }
 
     /**
-     * ÉèÖÃÍ¸Ã÷×´Ì¬À¸(api´óÓÚ19·½¿ÉÊ¹ÓÃ)
-     * <p>¿ÉÔÚActivityµÄonCreat()ÖĞµ÷ÓÃ</p>
-     * <p>ĞèÔÚ¶¥²¿¿Ø¼ş²¼¾ÖÖĞ¼ÓÈëÒÔÏÂÊôĞÔÈÃÄÚÈİ³öÏÖÔÚ×´Ì¬À¸Ö®ÏÂ</p>
+     * è®¾ç½®é€æ˜çŠ¶æ€æ (apiå¤§äº19æ–¹å¯ä½¿ç”¨)
+     * <p>å¯åœ¨Activityçš„onCreat()ä¸­è°ƒç”¨</p>
+     * <p>éœ€åœ¨é¡¶éƒ¨æ§ä»¶å¸ƒå±€ä¸­åŠ å…¥ä»¥ä¸‹å±æ€§è®©å†…å®¹å‡ºç°åœ¨çŠ¶æ€æ ä¹‹ä¸‹</p>
      * <p>android:clipToPadding="true"</p>
      * <p>android:fitsSystemWindows="true"</p>
      *
@@ -66,20 +66,20 @@ public class ScreenUtils {
      */
     public static void setTransparentStatusBar(Activity activity) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            //Í¸Ã÷×´Ì¬À¸
+            //é€æ˜çŠ¶æ€æ 
             activity.getWindow().addFlags(LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            //Í¸Ã÷µ¼º½À¸
+            //é€æ˜å¯¼èˆªæ 
             activity.getWindow().addFlags(LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
     }
 
     /**
-     * Òş²Ø×´Ì¬À¸
-     * <p>Ò²¾ÍÊÇÉèÖÃÈ«ÆÁ£¬Ò»¶¨ÒªÔÚsetContentViewÖ®Ç°µ÷ÓÃ£¬·ñÔò±¨´í</p>
-     * <p>´Ë·½·¨Activity¿ÉÒÔ¼Ì³ĞAppCompatActivity</p>
-     * <p>Æô¶¯µÄÊ±ºò×´Ì¬À¸»áÏÔÊ¾Ò»ÏÂÔÙÒş²Ø£¬±ÈÈçQQµÄ»¶Ó­½çÃæ</p>
-     * <p>ÔÚÅäÖÃÎÄ¼şÖĞActivity¼ÓÊôĞÔandroid:theme="@android:style/Theme.NoTitleBar.Fullscreen"</p>
-     * <p>Èç¼ÓÁËÒÔÉÏÅäÖÃActivity²»ÄÜ¼Ì³ĞAppCompatActivity£¬»á±¨´í</p>
+     * éšè—çŠ¶æ€æ 
+     * <p>ä¹Ÿå°±æ˜¯è®¾ç½®å…¨å±ï¼Œä¸€å®šè¦åœ¨setContentViewä¹‹å‰è°ƒç”¨ï¼Œå¦åˆ™æŠ¥é”™</p>
+     * <p>æ­¤æ–¹æ³•Activityå¯ä»¥ç»§æ‰¿AppCompatActivity</p>
+     * <p>å¯åŠ¨çš„æ—¶å€™çŠ¶æ€æ ä¼šæ˜¾ç¤ºä¸€ä¸‹å†éšè—ï¼Œæ¯”å¦‚QQçš„æ¬¢è¿ç•Œé¢</p>
+     * <p>åœ¨é…ç½®æ–‡ä»¶ä¸­ActivityåŠ å±æ€§android:theme="@android:style/Theme.NoTitleBar.Fullscreen"</p>
+     * <p>å¦‚åŠ äº†ä»¥ä¸Šé…ç½®Activityä¸èƒ½ç»§æ‰¿AppCompatActivityï¼Œä¼šæŠ¥é”™</p>
      *
      * @param activity activity
      */
@@ -90,10 +90,10 @@ public class ScreenUtils {
     }
 
     /**
-     * »ñÈ¡×´Ì¬À¸¸ß¶È
+     * è·å–çŠ¶æ€æ é«˜åº¦
      *
-     * @param context ÉÏÏÂÎÄ
-     * @return ×´Ì¬À¸¸ß¶È
+     * @param context ä¸Šä¸‹æ–‡
+     * @return çŠ¶æ€æ é«˜åº¦
      */
     public static int getStatusBarHeight(Context context) {
         int result = 0;
@@ -106,10 +106,10 @@ public class ScreenUtils {
     }
 
     /**
-     * ÅĞ¶Ï×´Ì¬À¸ÊÇ·ñ´æÔÚ
+     * åˆ¤æ–­çŠ¶æ€æ æ˜¯å¦å­˜åœ¨
      *
      * @param activity activity
-     * @return {@code true}: ´æÔÚ<br>{@code false}: ²»´æÔÚ
+     * @return {@code true}: å­˜åœ¨<br>{@code false}: ä¸å­˜åœ¨
      */
     public static boolean isStatusBarExists(Activity activity) {
         LayoutParams params = activity.getWindow().getAttributes();
@@ -117,10 +117,10 @@ public class ScreenUtils {
     }
 
     /**
-     * »ñÈ¡ActionBar¸ß¶È
+     * è·å–ActionBaré«˜åº¦
      *
      * @param activity activity
-     * @return ActionBar¸ß¶È
+     * @return ActionBaré«˜åº¦
      */
     public static int getActionBarHeight(Activity activity) {
         TypedValue tv = new TypedValue();
@@ -131,11 +131,11 @@ public class ScreenUtils {
     }
 
     /**
-     * ÏÔÊ¾Í¨ÖªÀ¸
-     * <p>ĞèÌí¼ÓÈ¨ÏŞ {@code <uses-permission android:name="android.permission.EXPAND_STATUS_BAR"/>}</p>
+     * æ˜¾ç¤ºé€šçŸ¥æ 
+     * <p>éœ€æ·»åŠ æƒé™ {@code <uses-permission android:name="android.permission.EXPAND_STATUS_BAR"/>}</p>
      *
-     * @param context        ÉÏÏÂÎÄ
-     * @param isSettingPanel {@code true}: ´ò¿ªÉèÖÃ<br>{@code false}: ´ò¿ªÍ¨Öª
+     * @param context        ä¸Šä¸‹æ–‡
+     * @param isSettingPanel {@code true}: æ‰“å¼€è®¾ç½®<br>{@code false}: æ‰“å¼€é€šçŸ¥
      */
     public static void showNotificationBar(Context context, boolean isSettingPanel) {
         String methodName = (Build.VERSION.SDK_INT <= 16) ? "expand"
@@ -144,10 +144,10 @@ public class ScreenUtils {
     }
 
     /**
-     * Òş²ØÍ¨ÖªÀ¸
-     * <p>ĞèÌí¼ÓÈ¨ÏŞ {@code <uses-permission android:name="android.permission.EXPAND_STATUS_BAR"/>}</p>
+     * éšè—é€šçŸ¥æ 
+     * <p>éœ€æ·»åŠ æƒé™ {@code <uses-permission android:name="android.permission.EXPAND_STATUS_BAR"/>}</p>
      *
-     * @param context ÉÏÏÂÎÄ
+     * @param context ä¸Šä¸‹æ–‡
      */
     public static void hideNotificationBar(Context context) {
         String methodName = (Build.VERSION.SDK_INT <= 16) ? "collapse" : "collapsePanels";
@@ -155,10 +155,10 @@ public class ScreenUtils {
     }
 
     /**
-     * ·´Éä»½ĞÑÍ¨ÖªÀ¸
+     * åå°„å”¤é†’é€šçŸ¥æ 
      *
-     * @param context    ÉÏÏÂÎÄ
-     * @param methodName ·½·¨Ãû
+     * @param context    ä¸Šä¸‹æ–‡
+     * @param methodName æ–¹æ³•å
      */
     private static void invokePanels(Context context, String methodName) {
         try {
@@ -172,12 +172,12 @@ public class ScreenUtils {
     }
 
     /**
-     * ÉèÖÃÆÁÄ»ÎªºáÆÁ
-     * <p>»¹ÓĞÒ»ÖÖ¾ÍÊÇÔÚActivityÖĞ¼ÓÊôĞÔandroid:screenOrientation="landscape"</p>
-     * <p>²»ÉèÖÃActivityµÄandroid:configChangesÊ±£¬ÇĞÆÁ»áÖØĞÂµ÷ÓÃ¸÷¸öÉúÃüÖÜÆÚ£¬ÇĞºáÆÁÊ±»áÖ´ĞĞÒ»´Î£¬ÇĞÊúÆÁÊ±»áÖ´ĞĞÁ½´Î</p>
-     * <p>ÉèÖÃActivityµÄandroid:configChanges="orientation"Ê±£¬ÇĞÆÁ»¹ÊÇ»áÖØĞÂµ÷ÓÃ¸÷¸öÉúÃüÖÜÆÚ£¬ÇĞºá¡¢ÊúÆÁÊ±Ö»»áÖ´ĞĞÒ»´Î</p>
-     * <p>ÉèÖÃActivityµÄandroid:configChanges="orientation|keyboardHidden|screenSize"£¨4.0ÒÔÉÏ±ØĞë´ø×îºóÒ»¸ö²ÎÊı£©Ê±
-     * ÇĞÆÁ²»»áÖØĞÂµ÷ÓÃ¸÷¸öÉúÃüÖÜÆÚ£¬Ö»»áÖ´ĞĞonConfigurationChanged·½·¨</p>
+     * è®¾ç½®å±å¹•ä¸ºæ¨ªå±
+     * <p>è¿˜æœ‰ä¸€ç§å°±æ˜¯åœ¨Activityä¸­åŠ å±æ€§android:screenOrientation="landscape"</p>
+     * <p>ä¸è®¾ç½®Activityçš„android:configChangesæ—¶ï¼Œåˆ‡å±ä¼šé‡æ–°è°ƒç”¨å„ä¸ªç”Ÿå‘½å‘¨æœŸï¼Œåˆ‡æ¨ªå±æ—¶ä¼šæ‰§è¡Œä¸€æ¬¡ï¼Œåˆ‡ç«–å±æ—¶ä¼šæ‰§è¡Œä¸¤æ¬¡</p>
+     * <p>è®¾ç½®Activityçš„android:configChanges="orientation"æ—¶ï¼Œåˆ‡å±è¿˜æ˜¯ä¼šé‡æ–°è°ƒç”¨å„ä¸ªç”Ÿå‘½å‘¨æœŸï¼Œåˆ‡æ¨ªã€ç«–å±æ—¶åªä¼šæ‰§è¡Œä¸€æ¬¡</p>
+     * <p>è®¾ç½®Activityçš„android:configChanges="orientation|keyboardHidden|screenSize"ï¼ˆ4.0ä»¥ä¸Šå¿…é¡»å¸¦æœ€åä¸€ä¸ªå‚æ•°ï¼‰æ—¶
+     * åˆ‡å±ä¸ä¼šé‡æ–°è°ƒç”¨å„ä¸ªç”Ÿå‘½å‘¨æœŸï¼Œåªä¼šæ‰§è¡ŒonConfigurationChangedæ–¹æ³•</p>
      *
      * @param activity activity
      */
@@ -186,7 +186,7 @@ public class ScreenUtils {
     }
 
     /**
-     * »ñÈ¡µ±Ç°ÆÁÄ»½ØÍ¼£¬°üº¬×´Ì¬À¸
+     * è·å–å½“å‰å±å¹•æˆªå›¾ï¼ŒåŒ…å«çŠ¶æ€æ 
      *
      * @param activity activity
      * @return Bitmap
@@ -204,8 +204,8 @@ public class ScreenUtils {
     }
 
     /**
-     * »ñÈ¡µ±Ç°ÆÁÄ»½ØÍ¼£¬²»°üº¬×´Ì¬À¸
-     * <p>ĞèÒªÓÃµ½ÉÏÃæ»ñÈ¡×´Ì¬À¸¸ß¶ÈgetStatusBarHeightµÄ·½·¨</p>
+     * è·å–å½“å‰å±å¹•æˆªå›¾ï¼Œä¸åŒ…å«çŠ¶æ€æ 
+     * <p>éœ€è¦ç”¨åˆ°ä¸Šé¢è·å–çŠ¶æ€æ é«˜åº¦getStatusBarHeightçš„æ–¹æ³•</p>
      *
      * @param activity activity
      * @return Bitmap
@@ -224,10 +224,10 @@ public class ScreenUtils {
     }
 
     /**
-     * ÅĞ¶ÏÊÇ·ñËøÆÁ
+     * åˆ¤æ–­æ˜¯å¦é”å±
      *
-     * @param context ÉÏÏÂÎÄ
-     * @return {@code true}: ÊÇ<br>{@code false}: ·ñ
+     * @param context ä¸Šä¸‹æ–‡
+     * @return {@code true}: æ˜¯<br>{@code false}: å¦
      */
     public static boolean isScreenLock(Context context) {
         KeyguardManager km = (KeyguardManager) context

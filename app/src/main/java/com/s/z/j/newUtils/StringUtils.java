@@ -5,7 +5,7 @@ package com.s.z.j.newUtils;
  *     author: Blankj
  *     blog  : http://blankj.com
  *     time  : 2016/8/16
- *     desc  : ×Ö·û´®Ïà¹Ø¹¤¾ßÀà
+ *     desc  : å­—ç¬¦ä¸²ç›¸å…³å·¥å…·ç±»
  * </pre>
  */
 public class StringUtils {
@@ -15,50 +15,50 @@ public class StringUtils {
     }
 
     /**
-     * ÅĞ¶Ï×Ö·û´®ÊÇ·ñÎªnull»ò³¤¶ÈÎª0
+     * åˆ¤æ–­å­—ç¬¦ä¸²æ˜¯å¦ä¸ºnullæˆ–é•¿åº¦ä¸º0
      *
-     * @param string ´ıĞ£Ñé×Ö·û´®
-     * @return {@code true}: ¿Õ<br> {@code false}: ²»Îª¿Õ
+     * @param string å¾…æ ¡éªŒå­—ç¬¦ä¸²
+     * @return {@code true}: ç©º<br> {@code false}: ä¸ä¸ºç©º
      */
     public static boolean isEmpty(CharSequence string) {
         return string == null || string.length() == 0;
     }
 
     /**
-     * ÅĞ¶Ï×Ö·û´®ÊÇ·ñÎªnull»òÈ«Îª¿Õ¸ñ
+     * åˆ¤æ–­å­—ç¬¦ä¸²æ˜¯å¦ä¸ºnullæˆ–å…¨ä¸ºç©ºæ ¼
      *
-     * @param string ´ıĞ£Ñé×Ö·û´®
-     * @return {@code true}: null»òÈ«¿Õ¸ñ<br> {@code false}: ²»ÎªnullÇÒ²»È«¿Õ¸ñ
+     * @param string å¾…æ ¡éªŒå­—ç¬¦ä¸²
+     * @return {@code true}: nullæˆ–å…¨ç©ºæ ¼<br> {@code false}: ä¸ä¸ºnullä¸”ä¸å…¨ç©ºæ ¼
      */
     public static boolean isSpace(String string) {
         return (string == null || string.trim().length() == 0);
     }
 
     /**
-     * null×ªÎª³¤¶ÈÎª0µÄ×Ö·û´®
+     * nullè½¬ä¸ºé•¿åº¦ä¸º0çš„å­—ç¬¦ä¸²
      *
-     * @param string ´ı×ª×Ö·û´®
-     * @return stringÎªnull×ªÎª³¤¶ÈÎª0×Ö·û´®£¬·ñÔò²»¸Ä±ä
+     * @param string å¾…è½¬å­—ç¬¦ä¸²
+     * @return stringä¸ºnullè½¬ä¸ºé•¿åº¦ä¸º0å­—ç¬¦ä¸²ï¼Œå¦åˆ™ä¸æ”¹å˜
      */
     public static String null2Length0(String string) {
         return string == null ? "" : string;
     }
 
     /**
-     * ·µ»Ø×Ö·û´®³¤¶È
+     * è¿”å›å­—ç¬¦ä¸²é•¿åº¦
      *
-     * @param string ×Ö·û´®
-     * @return null·µ»Ø0£¬ÆäËû·µ»Ø×ÔÉí³¤¶È
+     * @param string å­—ç¬¦ä¸²
+     * @return nullè¿”å›0ï¼Œå…¶ä»–è¿”å›è‡ªèº«é•¿åº¦
      */
     public static int length(CharSequence string) {
         return string == null ? 0 : string.length();
     }
 
     /**
-     * Ê××ÖÄ¸´óĞ´
+     * é¦–å­—æ¯å¤§å†™
      *
-     * @param string ´ı×ª×Ö·û´®
-     * @return Ê××ÖÄ¸´óĞ´×Ö·û´®
+     * @param string å¾…è½¬å­—ç¬¦ä¸²
+     * @return é¦–å­—æ¯å¤§å†™å­—ç¬¦ä¸²
      */
     public static String upperFirstLetter(String string) {
         if (isEmpty(string) || !Character.isLowerCase(string.charAt(0))) {
@@ -68,10 +68,10 @@ public class StringUtils {
     }
 
     /**
-     * Ê××ÖÄ¸Ğ¡Ğ´
+     * é¦–å­—æ¯å°å†™
      *
-     * @param string ´ı×ª×Ö·û´®
-     * @return Ê××ÖÄ¸Ğ¡Ğ´×Ö·û´®
+     * @param string å¾…è½¬å­—ç¬¦ä¸²
+     * @return é¦–å­—æ¯å°å†™å­—ç¬¦ä¸²
      */
     public static String lowerFirstLetter(String string) {
         if (isEmpty(string) || !Character.isUpperCase(string.charAt(0))) {
@@ -81,10 +81,10 @@ public class StringUtils {
     }
 
     /**
-     * ×ª»¯Îª°ë½Ç×Ö·û
+     * è½¬åŒ–ä¸ºåŠè§’å­—ç¬¦
      *
-     * @param string ´ı×ª×Ö·û´®
-     * @return °ë½Ç×Ö·û´®
+     * @param string å¾…è½¬å­—ç¬¦ä¸²
+     * @return åŠè§’å­—ç¬¦ä¸²
      */
     public static String toDBC(String string) {
         if (isEmpty(string)) {
@@ -104,10 +104,10 @@ public class StringUtils {
     }
 
     /**
-     * ×ª»¯ÎªÈ«½Ç×Ö·û
+     * è½¬åŒ–ä¸ºå…¨è§’å­—ç¬¦
      *
-     * @param string ´ı×ª×Ö·û´®
-     * @return È«½Ç×Ö·û´®
+     * @param string å¾…è½¬å­—ç¬¦ä¸²
+     * @return å…¨è§’å­—ç¬¦ä¸²
      */
     public static String toSBC(String string) {
         if (isEmpty(string)) {

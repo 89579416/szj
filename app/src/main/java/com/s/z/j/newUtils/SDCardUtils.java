@@ -10,7 +10,7 @@ import java.io.File;
  *     author: Blankj
  *     blog  : http://blankj.com
  *     time  : 2016/8/11
- *     desc  : SD¿¨Ïà¹Ø¹¤¾ßÀà
+ *     desc  : SDå¡ç›¸å…³å·¥å…·ç±»
  * </pre>
  */
 public class SDCardUtils {
@@ -20,19 +20,19 @@ public class SDCardUtils {
     }
 
     /**
-     * »ñÈ¡Éè±¸SD¿¨ÊÇ·ñ¿ÉÓÃ
+     * è·å–è®¾å¤‡SDå¡æ˜¯å¦å¯ç”¨
      *
-     * @return true : ¿ÉÓÃ<br>false : ²»¿ÉÓÃ
+     * @return true : å¯ç”¨<br>false : ä¸å¯ç”¨
      */
     public static boolean isSDCardEnable() {
         return Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState());
     }
 
     /**
-     * »ñÈ¡Éè±¸SD¿¨Â·¾¶
-     * <p>Ò»°ãÊÇ/storage/emulated/0/</p>
+     * è·å–è®¾å¤‡SDå¡è·¯å¾„
+     * <p>ä¸€èˆ¬æ˜¯/storage/emulated/0/</p>
      *
-     * @return SD¿¨Â·¾¶
+     * @return SDå¡è·¯å¾„
      */
     public static String getSDCardPath() {
         return Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator;
@@ -43,9 +43,9 @@ public class SDCardUtils {
     }
 
 //    /**
-//     * ¼ÆËãSD¿¨µÄÊ£Óà¿Õ¼ä
+//     * è®¡ç®—SDå¡çš„å‰©ä½™ç©ºé—´
 //     *
-//     * @return ·µ»Ø-1£¬ËµÃ÷Ã»ÓĞ°²×°sd¿¨
+//     * @return è¿”å›-1ï¼Œè¯´æ˜æ²¡æœ‰å®‰è£…sdå¡
 //     */
 //    public static long getFreeBytes(int unit) {
 //        long freeSpace = 0;
@@ -71,16 +71,16 @@ public class SDCardUtils {
 
 
 //    /**
-//     * »ñÈ¡SD¿¨µÄÊ£ÓàÈİÁ¿ µ¥Î»byte
+//     * è·å–SDå¡çš„å‰©ä½™å®¹é‡ å•ä½byte
 //     *
 //     * @return
 //     */
 //    public static long getSDCardAllSize() {
 //        if (isSDCardEnable()) {
 //            StatFs stat = new StatFs(getSDCardPath());
-//            // »ñÈ¡¿ÕÏĞµÄÊı¾İ¿éµÄÊıÁ¿
+//            // è·å–ç©ºé—²çš„æ•°æ®å—çš„æ•°é‡
 //            long availableBlocks = (long) stat.getAvailableBlocks() - 4;
-//            // »ñÈ¡µ¥¸öÊı¾İ¿éµÄ´óĞ¡£¨byte£©
+//            // è·å–å•ä¸ªæ•°æ®å—çš„å¤§å°ï¼ˆbyteï¼‰
 //            long freeBlocks = stat.getAvailableBlocks();
 //            return freeBlocks * availableBlocks;
 //        }
@@ -88,16 +88,16 @@ public class SDCardUtils {
 //    }
 //
 //    /**
-//     * »ñÈ¡Ö¸¶¨Â·¾¶ËùÔÚ¿Õ¼äµÄÊ£Óà¿ÉÓÃÈİÁ¿×Ö½ÚÊı£¬µ¥Î»byte
+//     * è·å–æŒ‡å®šè·¯å¾„æ‰€åœ¨ç©ºé—´çš„å‰©ä½™å¯ç”¨å®¹é‡å­—èŠ‚æ•°ï¼Œå•ä½byte
 //     *
 //     * @param filePath
-//     * @return ÈİÁ¿×Ö½Ú SDCard¿ÉÓÃ¿Õ¼ä£¬ÄÚ²¿´æ´¢¿ÉÓÃ¿Õ¼ä
+//     * @return å®¹é‡å­—èŠ‚ SDCardå¯ç”¨ç©ºé—´ï¼Œå†…éƒ¨å­˜å‚¨å¯ç”¨ç©ºé—´
 //     */
 //    public static long getFreeBytes(String filePath) {
-//        // Èç¹ûÊÇsd¿¨µÄÏÂµÄÂ·¾¶£¬Ôò»ñÈ¡sd¿¨¿ÉÓÃÈİÁ¿
+//        // å¦‚æœæ˜¯sdå¡çš„ä¸‹çš„è·¯å¾„ï¼Œåˆ™è·å–sdå¡å¯ç”¨å®¹é‡
 //        if (filePath.startsWith(getSDCardPath())) {
 //            filePath = getSDCardPath();
-//        } else {// Èç¹ûÊÇÄÚ²¿´æ´¢µÄÂ·¾¶£¬Ôò»ñÈ¡ÄÚ´æ´æ´¢µÄ¿ÉÓÃÈİÁ¿
+//        } else {// å¦‚æœæ˜¯å†…éƒ¨å­˜å‚¨çš„è·¯å¾„ï¼Œåˆ™è·å–å†…å­˜å­˜å‚¨çš„å¯ç”¨å®¹é‡
 //            filePath = Environment.getDataDirectory().getAbsolutePath();
 //        }
 //        StatFs stat = new StatFs(filePath);
@@ -106,7 +106,7 @@ public class SDCardUtils {
 //    }
 //
 //    /**
-//     * »ñÈ¡ÏµÍ³´æ´¢Â·¾¶
+//     * è·å–ç³»ç»Ÿå­˜å‚¨è·¯å¾„
 //     *
 //     * @return
 //     */

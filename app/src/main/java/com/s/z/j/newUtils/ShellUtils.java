@@ -11,7 +11,7 @@ import java.util.List;
  *     author: Blankj
  *     blog  : http://blankj.com
  *     time  : 2016/8/7
- *     desc  : ShellÏà¹Ø¹¤¾ßÀà
+ *     desc  : Shellç›¸å…³å·¥å…·ç±»
  * </pre>
  */
 public class ShellUtils {
@@ -26,18 +26,18 @@ public class ShellUtils {
     public static final String COMMAND_LINE_END = "\n";
 
     /**
-     * ÅĞ¶ÏÉè±¸ÊÇ·ñroot
-     * @return {@code true}: root<br>{@code false}: Ã»root
+     * åˆ¤æ–­è®¾å¤‡æ˜¯å¦root
+     * @return {@code true}: root<br>{@code false}: æ²¡root
      */
     public static boolean isRoot() {
         return execCmd("echo root", true, false).result == 0;
     }
 
     /**
-     * ÊÇ·ñÊÇÔÚrootÏÂÖ´ĞĞÃüÁî
+     * æ˜¯å¦æ˜¯åœ¨rootä¸‹æ‰§è¡Œå‘½ä»¤
      *
-     * @param command ÃüÁî
-     * @param isRoot  ÊÇ·ñroot
+     * @param command å‘½ä»¤
+     * @param isRoot  æ˜¯å¦root
      * @return CommandResult
      */
     public static CommandResult execCmd(String command, boolean isRoot) {
@@ -45,10 +45,10 @@ public class ShellUtils {
     }
 
     /**
-     * ÊÇ·ñÊÇÔÚrootÏÂÖ´ĞĞÃüÁî
+     * æ˜¯å¦æ˜¯åœ¨rootä¸‹æ‰§è¡Œå‘½ä»¤
      *
-     * @param commands ¶àÌõÃüÁîÁ´±í
-     * @param isRoot   ÊÇ·ñroot
+     * @param commands å¤šæ¡å‘½ä»¤é“¾è¡¨
+     * @param isRoot   æ˜¯å¦root
      * @return CommandResult
      */
     public static CommandResult execCmd(List<String> commands, boolean isRoot) {
@@ -56,10 +56,10 @@ public class ShellUtils {
     }
 
     /**
-     * ÊÇ·ñÊÇÔÚrootÏÂÖ´ĞĞÃüÁî
+     * æ˜¯å¦æ˜¯åœ¨rootä¸‹æ‰§è¡Œå‘½ä»¤
      *
-     * @param commands ¶àÌõÃüÁîÊı×é
-     * @param isRoot   ÊÇ·ñroot
+     * @param commands å¤šæ¡å‘½ä»¤æ•°ç»„
+     * @param isRoot   æ˜¯å¦root
      * @return CommandResult
      */
     public static CommandResult execCmd(String[] commands, boolean isRoot) {
@@ -67,11 +67,11 @@ public class ShellUtils {
     }
 
     /**
-     * ÊÇ·ñÊÇÔÚrootÏÂÖ´ĞĞÃüÁî
+     * æ˜¯å¦æ˜¯åœ¨rootä¸‹æ‰§è¡Œå‘½ä»¤
      *
-     * @param command         ÃüÁî
-     * @param isRoot          ÊÇ·ñroot
-     * @param isNeedResultMsg ÊÇ·ñĞèÒª½á¹ûÏûÏ¢
+     * @param command         å‘½ä»¤
+     * @param isRoot          æ˜¯å¦root
+     * @param isNeedResultMsg æ˜¯å¦éœ€è¦ç»“æœæ¶ˆæ¯
      * @return CommandResult
      */
     public static CommandResult execCmd(String command, boolean isRoot, boolean isNeedResultMsg) {
@@ -79,11 +79,11 @@ public class ShellUtils {
     }
 
     /**
-     * ÊÇ·ñÊÇÔÚrootÏÂÖ´ĞĞÃüÁî
+     * æ˜¯å¦æ˜¯åœ¨rootä¸‹æ‰§è¡Œå‘½ä»¤
      *
-     * @param commands        ÃüÁîÁ´±í
-     * @param isRoot          ÊÇ·ñroot
-     * @param isNeedResultMsg ÊÇ·ñĞèÒª½á¹ûÏûÏ¢
+     * @param commands        å‘½ä»¤é“¾è¡¨
+     * @param isRoot          æ˜¯å¦root
+     * @param isNeedResultMsg æ˜¯å¦éœ€è¦ç»“æœæ¶ˆæ¯
      * @return CommandResult
      */
     public static CommandResult execCmd(List<String> commands, boolean isRoot, boolean isNeedResultMsg) {
@@ -91,11 +91,11 @@ public class ShellUtils {
     }
 
     /**
-     * ÊÇ·ñÊÇÔÚrootÏÂÖ´ĞĞÃüÁî
+     * æ˜¯å¦æ˜¯åœ¨rootä¸‹æ‰§è¡Œå‘½ä»¤
      *
-     * @param commands        ÃüÁîÊı×é
-     * @param isRoot          ÊÇ·ñroot
-     * @param isNeedResultMsg ÊÇ·ñĞèÒª½á¹ûÏûÏ¢
+     * @param commands        å‘½ä»¤æ•°ç»„
+     * @param isRoot          æ˜¯å¦root
+     * @param isNeedResultMsg æ˜¯å¦éœ€è¦ç»“æœæ¶ˆæ¯
      * @return CommandResult
      */
     public static CommandResult execCmd(String[] commands, boolean isRoot, boolean isNeedResultMsg) {
@@ -163,20 +163,20 @@ public class ShellUtils {
     }
 
     /**
-     * ·µ»ØµÄÃüÁî½á¹û
+     * è¿”å›çš„å‘½ä»¤ç»“æœ
      */
     public static class CommandResult {
 
         /**
-         * ½á¹ûÂë
+         * ç»“æœç 
          **/
         public int result;
         /**
-         * ³É¹¦µÄĞÅÏ¢
+         * æˆåŠŸçš„ä¿¡æ¯
          **/
         public String successMsg;
         /**
-         * ´íÎóĞÅÏ¢
+         * é”™è¯¯ä¿¡æ¯
          **/
         public String errorMsg;
 

@@ -12,10 +12,15 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -27,6 +32,7 @@ import com.s.z.j.R;
 import com.s.z.j.abcde.navigationdrawer.ui.NavigationdrawerActivity;
 import com.s.z.j.choose_images.imageloader.ChooseImageMainActivity;
 import com.s.z.j.danmu.DanMuActivity;
+import com.s.z.j.entity.Menu;
 import com.s.z.j.fenping.FenPingActivity;
 import com.s.z.j.fragment.weixin.WeiXinFragmentActivity;
 import com.s.z.j.html.HtmlActivity;
@@ -54,6 +60,11 @@ import com.s.z.j.xuanfuchuang_qq.XuanFuQqMainActivity;
 import com.squareup.picasso.Picasso;
 import com.szj.library.ui.BaseActivity;
 import com.szj.library.utils.T;
+import com.szj.library.widget.recyclerview.MTFEndlessRecyclerOnScrollListener;
+import com.szj.library.widget.recyclerview.MTFLoadingFooter;
+import com.szj.library.widget.recyclerview.MTFRecyclerViewAdapterWrapper;
+import com.szj.library.widget.recyclerview.MTFRecyclerViewStateUtils;
+import com.szj.library.widget.recyclerview.MTFRecyclerViewUtils;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
@@ -69,54 +80,34 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Timer;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 /**
  * 程序主入口
  */
 @ContentView(R.layout.activity_main)
-public class MainActivity extends BaseActivity implements View.OnClickListener {
+public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener{
 
-    @ViewInject(R.id.main_get_device_info_btn)
-    private Button getDeviceInfoBtn;
-    /**
-     * 获取网络
-     */
-    @ViewInject(R.id.main_get_net_type_btn)
-    private Button getNetBtn;
+    @ViewInject(R.id.fragment_home_recyclerView_refreshLayout)
+    SwipeRefreshLayout refreshLayout;
 
-    /**
-     * 获取IP地址
-     */
-    @ViewInject(R.id.main_get_ip_btn)
-    private Button getIpBtn;
+    @ViewInject(R.id.fragment_home_recyclerView)
+    RecyclerView recyclerView;
 
-    /**
-     * 获取公网IP
-     */
-    @ViewInject(R.id.main_get_net_ip_btn)
-    private Button getNetIpBtn;
-
-    /**
-     * 获取MAC地址
-     */
-    @ViewInject(R.id.main_get_mac_btn)
-    private Button getMacBtn;
-
-    /**
-     * 通过URL获取bitmap显示图片
-     */
-    @ViewInject(R.id.main_show_image_by_bitmap_btn)
-    private Button bitmapBtn;
-
-    /**
-     * 直接显示网格图片
-     */
-    @ViewInject(R.id.main_show_image_by_net_btn)
-    private Button netBitmapBtn;
+    private ArrayList<Menu> commentdata = new ArrayList<>();//菜单
+    private final int PAGE_COUNT = 33;//总大小
+    private final int PAGE_SIZE  = 10;//每页大小
+    private MTFRecyclerViewAdapterWrapper adapterWrapper;
+    private MyAdapter adapter;
+    private LayoutInflater mLayoutInflater;
+    private GridLayoutManager gridLayoutManager;
 
     /**
      * 显示图片的imageView
@@ -125,28 +116,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private ImageView picImageView;
 
     /**
-     * 下载文件
-     */
-    @ViewInject(R.id.main_load_file_btn)
-    private Button loadFileBtn;
-
-    /**
      * 文件下载进度条
      */
     @ViewInject(R.id.main_load_file_progressBar)
     private ProgressBar loadProgressBar;
-
-    /**
-     * 截屏
-     */
-    @ViewInject(R.id.main_save_current_btn)
-    private Button saveCurrentBtn;
-
-    /**
-     * 获取当前网速
-     */
-    @ViewInject(R.id.main_get_net_speed_btn)
-    private Button getNetSpeedBtn;
 
     /**
      * 显示网速
@@ -154,188 +127,100 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @ViewInject(R.id.main_show_net_speed_textview)
     private TextView netSpeedTxt;
 
-    /**
-     * 动态注册广播
-     */
-    @ViewInject(R.id.main_broad_cast_btn)
-    private Button broadCastBtn;
-
-    /**
-     * 测滑菜单
-     */
-    @ViewInject(R.id.main_sliding_menu_btn)
-    private Button slidingMenuBtn;
-
-    /**
-     * 引导页面
-     */
-    @ViewInject(R.id.main_navigation_btn)
-    private Button navigationBtn;
-
-    /**
-     * mediaPlayer播放视频
-     */
-    @ViewInject(R.id.main_media_player_btn)
-    private Button medaiPlayerBtn;
-
-    /**
-     * 二维码生成与扫描
-     */
-    @ViewInject(R.id.main_qr_code_btn)
-    private Button qrCodeBtn;
-
-    /**
-     * 修改头像
-     */
-    @ViewInject(R.id.main_update_head_btn)
-    private Button updateHeadBtn;
-
-    /**
-     * 浮动窗口
-     */
-    @ViewInject(R.id.main_floating_window_btn)
-    private Button floatWindowBtn;
-
-    /**
-     * 仿360手机卫士悬浮窗效果
-     */
-    @ViewInject(R.id.main_floating_window_360_btn)
-    private Button floatWindow360Btn;
-
-
-    /**
-     * QQ手机管家小火箭效果实现
-     */
-    @ViewInject(R.id.main_floating_window_qq_btn)
-    private Button floatWindowqqBtn;
-
-    /**
-     * 设置wifi
-     */
-    @ViewInject(R.id.main_wifi_btn)
-    private Button setWifiBtn;
-
-    /**
-     *设置wifi热点
-     */
-    @ViewInject(R.id.main_wifi_host_btn)
-    private Button setWifiHotBtn;
-
-    /**
-     * 获取包名
-     */
-    @ViewInject(R.id.main_get_package_name_btn)
-    private Button getPackageNameBtn;
-
-    /**
-     *各式Dialog
-     */
-    @ViewInject(R.id.to_dialog_btn)
-    private Button dialogBtn;
-
-    /**
-     * 获取SD卡目录和U盘目录
-     */
-    @ViewInject(R.id.main_gget_sdcard_url_btn)
-    private Button getSdcardUrlBtn;
-
-    /**
-     * 未完成的侧滑菜单
-     */
-    @ViewInject(R.id.main_navigationdrawer_btn)
-    private Button navigationdrawerBtn;
-
-    /**
-     * 分屏显示视频播放和网页显示
-     */
-    @ViewInject(R.id.main_fenping_btn)
-    private Button fenpingBtn;
-
-    /**.
-     * 仿微信布局
-     */
-    @ViewInject(R.id.main_weixin_fragment)
-    private Button weixinBtn;
-
-    /**播放assets里面的视频*/
-    @ViewInject(R.id.main_text_share_btn)
-    private Button textShareBtn;
-
-    /**
-     * 播放本地图片和视频
-     */
-    @ViewInject(R.id.main_play_img_and_video_btn)
-    private Button playBtn;
-
-    /**
-     * 图片滑动效果
-     */
-    @ViewInject(R.id.main_huadong_tupian_btn)
-    private Button huadongImgBtn;
-
-    /**播放本地html并播放视频*/
-    @ViewInject(R.id.main_html_btn)
-    private Button htmlBtn;
-
-    /**模仿微信选择相册*/
-    @ViewInject(R.id.main_choose_image_btn)
-    private Button chooseImageBtn;
-
-    /** 发送弹幕并显示*/
-    @ViewInject(R.id.main_danmu_btn)
-    private Button danmuBtn;
-
-    /** Android照片墙加强版，使用ViewPager实现画廊效果Demo */
-    @ViewInject(R.id.main_photo_wall_falls_btn)
-    private Button photoWallFallsBtn;
 
     private Bitmap picBitmap;//通过url获取的bitmap
     private String picUrl = "http://gb.cri.cn/mmsource/images/2010/09/27/eo100927986.jpg";//直接显示图片地址
     private String bitmapUrl = "http://cdn.duitang.com/uploads/item/201408/28/20140828160017_wBrME.jpeg";//获取bitmap地址
     private String defaultPath;//SD卡路径
     private SpeedUtil speedUtil; //网络速度监测
-    private String net_ip = "";
+    private String localIp = "";//本地IP
+    private String net_ip = "";//公网IP
+    private boolean isSpeed;//是否在获取网速
 
     @Override
     public void initialize(Bundle savedInstanceState) {
         createFile();
-        getNetBtn.setOnClickListener(this);
-        getMacBtn.setOnClickListener(this);
-        getIpBtn.setOnClickListener(this);
-        bitmapBtn.setOnClickListener(this);
-        netBitmapBtn.setOnClickListener(this);
-        loadFileBtn.setOnClickListener(this);
-        saveCurrentBtn.setOnClickListener(this);
-        getNetSpeedBtn.setOnClickListener(this);
-        broadCastBtn.setOnClickListener(this);
-        slidingMenuBtn.setOnClickListener(this);
-        navigationBtn.setOnClickListener(this);
-        medaiPlayerBtn.setOnClickListener(this);
-        qrCodeBtn.setOnClickListener(this);
-        updateHeadBtn.setOnClickListener(this);
-        floatWindowBtn.setOnClickListener(this);
-        setWifiBtn.setOnClickListener(this);
-        getPackageNameBtn.setOnClickListener(this);
-        setWifiHotBtn.setOnClickListener(this);
-        getSdcardUrlBtn.setOnClickListener(this);
-        getDeviceInfoBtn.setOnClickListener(this);
-        dialogBtn.setOnClickListener(this);
-        navigationdrawerBtn.setOnClickListener(this);
-        fenpingBtn.setOnClickListener(this);
-        weixinBtn.setOnClickListener(this);
-        textShareBtn.setOnClickListener(this);
-        playBtn.setOnClickListener(this);
-        floatWindow360Btn.setOnClickListener(this);
-        floatWindowqqBtn.setOnClickListener(this);
-        huadongImgBtn.setOnClickListener(this);
-        htmlBtn.setOnClickListener(this);
-        getNetIpBtn.setOnClickListener(this);
-        chooseImageBtn.setOnClickListener(this);
-        danmuBtn.setOnClickListener(this);
-        photoWallFallsBtn.setOnClickListener(this);
         speedUtil = new SpeedUtil(this, speedHandler, new Timer());
+        commentdata.add(new Menu(1, "获取设备信息"));
+        commentdata.add(new Menu(2,"获取网络类型"));
+        commentdata.add(new Menu(3,"获取本地ip地址和公网IP"));
+        commentdata.add(new Menu(4,"获取MAC"));
+        commentdata.add(new Menu(5,"通过URL获取bitmap图像"));
+        commentdata.add(new Menu(6,"通过第三方工具显示网络图片"));
+        commentdata.add(new Menu(7,"下载文件"));
+        commentdata.add(new Menu(8,"截屏"));
+        commentdata.add(new Menu(9,"开始获取当前网速"));
+        commentdata.add(new Menu(10,"动态注册广播"));
+        commentdata.add(new Menu(11,"侧划菜单演示"));
+        commentdata.add(new Menu(12,"引导页面"));
+        commentdata.add(new Menu(13,"MediaPlayer播放视频"));
+        commentdata.add(new Menu(14,"二维码生成与扫描"));
+        commentdata.add(new Menu(15,"1.浮动窗口"));
+        commentdata.add(new Menu(16,"2.仿360手机卫士悬浮窗效果"));
+        commentdata.add(new Menu(17,"3.QQ手机管家小火箭效果实现"));
+        commentdata.add(new Menu(18,"连接wifi"));
+        commentdata.add(new Menu(19,"设置wifi热点"));
+        commentdata.add(new Menu(20,"获取系统里所有程序包名"));
+        commentdata.add(new Menu(21,"获取内存目录和SD卡目录"));
+        commentdata.add(new Menu(22,"跳转到Dialog页面"));
+        commentdata.add(new Menu(23,"Android导航抽屉-Navigation Drawer"));
+        commentdata.add(new Menu(24,"分屏显示广告和网页"));
+        commentdata.add(new Menu(25,"仿微信布局"));
+        commentdata.add(new Menu(26,"文字分享"));
+        commentdata.add(new Menu(27,"播放一个目录下的视频和图片"));
+        commentdata.add(new Menu(28,"左右滑动图片+圆点效果"));
+        commentdata.add(new Menu(29,"打开本地html并播放本地视频"));
+        commentdata.add(new Menu(30,"仿微信从相册选择相片"));
+        commentdata.add(new Menu(31,"播放视频时发送弹幕"));
+        commentdata.add(new Menu(32,"图片瀑布流查看"));
+        commentdata.add(new Menu(33,"修改头像"));
+
+        mLayoutInflater = LayoutInflater.from(context);
+        adapter = new MyAdapter();
+        adapterWrapper = new MTFRecyclerViewAdapterWrapper(adapter);
+        recyclerView.setAdapter(adapterWrapper);
+        /** 1.设置线性布局 */
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        /** 2.设置GridLayout布局 */
+//        gridLayoutManager = new GridLayoutManager(context, 3);//几列或几行
+//        gridLayoutManager.setOrientation(GridLayoutManager.VERTICAL);//横向还是纵向
+//        recyclerView.setLayoutManager(gridLayoutManager);
+
+        /**添加下拉刷新监听*/
+        refreshLayout.setOnRefreshListener(this);
+        /**这2句是添加headView*/
+//        View headerView = LayoutInflater.from(context).inflate(R.layout.test_recyclerview_header, null, false);
+//        MTFRecyclerViewUtils.setHeaderView(recyclerView, headerView);
+        /**添加上拉加载监听*/
+        recyclerView.addOnScrollListener(mOnScrollListener);
     }
 
+    /**
+     * 上拉加载处理
+     */
+    private MTFEndlessRecyclerOnScrollListener mOnScrollListener = new MTFEndlessRecyclerOnScrollListener() {
+        @Override
+        public void onLoadNextPage(View view) {
+            super.onLoadNextPage(view);
+            MTFLoadingFooter.State state = MTFRecyclerViewStateUtils.getFooterViewState(recyclerView);
+            if(state == MTFLoadingFooter.State.Loading) {
+                return;
+            }
+
+            if (recyclerView.getAdapter().getItemCount() < PAGE_COUNT) {
+                // 当前数据小于总大小时，显示加载中并且去加载，加载完成后消失
+                MTFRecyclerViewStateUtils.setFooterViewState(activity, recyclerView, PAGE_SIZE, MTFLoadingFooter.State.Loading, null);
+                requestData();
+            } else {
+                // 当前数据大于等于总大小时，显示已经到底了
+                MTFRecyclerViewStateUtils.setFooterViewState(activity, recyclerView, PAGE_SIZE, MTFLoadingFooter.State.TheEnd, null);
+            }
+        }
+    };
+
+    private void requestData() {
+        handler.sendEmptyMessageDelayed(0, 1500);
+    }
     /**
      * 创建文件夹
      */
@@ -344,91 +229,76 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         FileUtil.makeRootDirectory(defaultPath + "/my_screen");
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.main_get_net_type_btn:
+    /**
+     * 处理点击事件
+     * @param position
+     */
+    public void onMyClick(int position) {
+        switch (position) {
+            case 1:
+                startActivity(new Intent(context, DeviceInfoActivity.class));
+                break;
+            case 2:
                 T.s(context, "当前网络类型：" + HttpUtils.getNetType(context));
                 break;
-            case R.id.main_get_mac_btn:
-                T.s(context, "MAC=" + HttpUtils.getMacByWifiManager(context)[0] + "\nMAC=" + HttpUtils.getMacByFile());
-                break;
-            case R.id.about_version_code:
-                getBitmapByUrl();
-                break;
-            case R.id.main_get_ip_btn:
-                T.s(context, HttpUtils.getLocalIpAddress(context));
-                break;
-            case R.id.main_get_net_ip_btn:
+            case 3:
+                localIp = HttpUtils.getLocalIpAddress(context);//本地IP
                 VibratorUtil.Vibrate(MainActivity.this,100);//点击按钮后震动
                 new Thread(){
                     @Override
                     public void run() {
-                        net_ip = HttpUtils.GetNetIp();
+                        net_ip = HttpUtils.GetNetIp();//公网IP
                         L.i("ip=" + net_ip);
                         handler.sendEmptyMessage(5);
                     }
                 }.start();
 
                 break;
-            case R.id.main_show_image_by_bitmap_btn:
-                if (picImageView.getVisibility() == View.GONE) {
-                    picImageView.setVisibility(View.VISIBLE);
-                    bitmapBtn.setText(R.string.yincang);
-                    netBitmapBtn.setText(R.string.yincang);
-                    getBitmapByUrl();
-                } else {
-                    bitmapBtn.setText(R.string.show_image_by_net_bitmap);
-                    netBitmapBtn.setText(R.string.show_image_by_net_url);
-                    picImageView.setVisibility(View.GONE);
-                }
+            case 4:
+                T.s(context, "MAC=" + HttpUtils.getMacByWifiManager(context)[0] + "\nMAC=" + HttpUtils.getMacByFile());
                 break;
-            case R.id.main_show_image_by_net_btn:
-                if (picImageView.getVisibility() == View.GONE) {
-                    picImageView.setVisibility(View.VISIBLE);
-                    netBitmapBtn.setText(R.string.yincang);
-                    bitmapBtn.setText(R.string.yincang);
-                    Picasso.with(context).load(picUrl).into(picImageView);
-                } else {
-                    netBitmapBtn.setText(R.string.show_image_by_net_url);
-                    bitmapBtn.setText(R.string.show_image_by_net_bitmap);
-                    picImageView.setVisibility(View.GONE);
-                }
+            case R.id.about_version_code:
+                getBitmapByUrl(1);
                 break;
-            case R.id.main_load_file_btn:
+            case 5:
+                getBitmapByUrl(1);
+                break;
+            case 6:
+                getBitmapByUrl(2);
+                break;
+            case 7:
                 loadFile();
                 break;
-            case R.id.main_save_current_btn:
+            case 8:
                 saveScreen();
                 break;
-            case R.id.main_get_net_speed_btn:
-                if ("开始获取当前网速".equals(getNetSpeedBtn.getText())) {
-                    speedUtil.start();
-                    getNetSpeedBtn.setText("停止");
-                } else {
-                    speedUtil.stop();
-                    getNetSpeedBtn.setText("开始获取当前网速");
+            case 9:
+                if(netSpeedTxt.getVisibility()==View.GONE) {
+                    netSpeedTxt.setVisibility(View.VISIBLE);
+                    if(isSpeed == false) {
+                        speedUtil.start();
+                        isSpeed = true;
+                    }
+                }else {
+                    netSpeedTxt.setVisibility(View.GONE);
                 }
                 break;
-            case R.id.main_broad_cast_btn:
+            case 10:
                 startActivityForResult(new Intent(context, BroadCastActivity.class), 1);
                 break;
-            case R.id.main_sliding_menu_btn:
+            case 11:
                 startActivity(new Intent(this, SlidingMainActivity.class));
                 break;
-            case R.id.main_navigation_btn:
+            case 12:
                 startActivity(new Intent(context, NavigationActivity.class));
                 break;
-            case R.id.main_media_player_btn:
+            case 13:
                 startActivity(new Intent(context, MediaPlayerActivity.class));
                 break;
-            case R.id.main_qr_code_btn:
+            case 14:
                 startActivity(new Intent(context, QrCodeActivity.class));
                 break;
-            case R.id.main_update_head_btn:
-                startActivity(new Intent(context, PhotographActivity.class));
-                break;
-            case R.id.main_floating_window_btn:
+            case 15:
                 Intent show = new Intent(this, TopWindowService.class);
                 show.putExtra(TopWindowService.OPERATION, TopWindowService.OPERATION_SHOW);
                 startService(show);
@@ -459,60 +329,60 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 //                });
 //                mWindowManager.addView(view, wmParams);//在窗口管理器上添加一个View
                 break;
-            case R.id.main_floating_window_360_btn:
+            case 16:
                 startActivity(new Intent(context, Xuanfu360MainActivity.class));
                 break;
-            case R.id.main_floating_window_qq_btn:
+            case 17:
                 startActivity(new Intent(context, XuanFuQqMainActivity.class));
                 break;
-            case R.id.main_wifi_btn:
+            case 18:
                 setWifi();
                 break;
-            case R.id.main_get_package_name_btn:
+            case 19:
+                startActivity(new Intent(context, SetWifiHostActivity.class));
+                break;
+            case 20:
                 startActivity(new Intent(context, SystemAppPackageNameActivity.class));
                 break;
-            case R.id.main_wifi_host_btn:
-                    startActivity(new Intent(context,SetWifiHostActivity.class));
-                break;
-            case R.id.main_gget_sdcard_url_btn:
+            case 21:
                 startActivity(new Intent(context,SdcardUrlActivity.class));
                 break;
-            case R.id.main_get_device_info_btn:
-                startActivity(new Intent(context,DeviceInfoActivity.class));
-                break;
-            case R.id.to_dialog_btn:
+            case 22:
                 startActivity(new Intent(context,DialogActivity.class));
                 break;
-            case R.id.main_navigationdrawer_btn:
+            case 23:
                 startActivity(new Intent(context,NavigationdrawerActivity.class));
                 break;
-            case R.id.main_fenping_btn:
+            case 24:
                 startActivity(new Intent(context,FenPingActivity.class));
                 break;
-            case R.id.main_weixin_fragment:
+            case 25:
                 startActivity(new Intent(context,WeiXinFragmentActivity.class));
                 break;
-            case R.id.main_play_img_and_video_btn:
+            case 26:
+                AppUtils.shareAppInfo(context, "这是分享测试内容");
+//                doStartApplicationWithPackageName("com.liantuo.cashierdesk");//跳转到另一个APP
+                break;
+            case 27:
                 startActivity(new Intent(context, PlayActivity.class));
                 break;
-            case R.id.main_huadong_tupian_btn:
+            case 28:
                 startActivity(new Intent(context, com.s.z.j.tupianhuadong.MainActivity.class));
                 break;
-            case R.id.main_text_share_btn:
-                AppUtils.shareAppInfo(context,"这是分享测试内容");
-                doStartApplicationWithPackageName("com.liantuo.cashierdesk");//跳转到另一个APP
-                break;
-            case R.id.main_html_btn:
+            case 29:
                 startActivity(new Intent(context, HtmlActivity.class));
                 break;
-            case R.id.main_choose_image_btn:
+            case 30:
                 startActivity(new Intent(context, ChooseImageMainActivity.class));
                 break;
-            case R.id.main_danmu_btn:
+            case 31:
                 startActivity(new Intent(context, DanMuActivity.class));
                 break;
-            case R.id.main_photo_wall_falls_btn:
+            case 32:
                 startActivity(new Intent(context, PhotoWallFallsActivity.class));
+                break;
+            case 33:
+                startActivity(new Intent(context, PhotographActivity.class));
                 break;
             default:
                 break;
@@ -674,31 +544,67 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     /**
      * 根据URL得到图片bitmap
      */
-    public void getBitmapByUrl() {
-        new Thread() {
-            @Override
-            public void run() {
-                try {
-                    picBitmap = HttpUtils.getHttpBitmap(bitmapUrl);
-                    if (picBitmap != null) {
-                        handler.sendEmptyMessage(1);
+    public void getBitmapByUrl(final int type) {
+        if(picImageView.getVisibility()==View.GONE){
+            picImageView.setVisibility(View.VISIBLE);
+            if(type == 1) {
+                new Thread() {
+                    @Override
+                    public void run() {
+                        try {
+                            picBitmap = HttpUtils.getHttpBitmap(bitmapUrl);
+                            if (picBitmap != null) {
+                                handler.sendEmptyMessage(1);
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                }.start();
+            }else {
+                Picasso.with(context).load(picUrl).into(picImageView);
             }
-        }.start();
+        }else {
+            picImageView.setVisibility(View.GONE);
+        }
     }
-
+    /**
+     * 根据URL得到图片bitmap
+     */
+    public void getBitmapByUrl() {
+        if(picImageView.getVisibility()==View.GONE){
+            picImageView.setVisibility(View.VISIBLE);
+            new Thread() {
+                @Override
+                public void run() {
+                    try {
+                        picBitmap = HttpUtils.getHttpBitmap(bitmapUrl);
+                        if (picBitmap != null) {
+                            handler.sendEmptyMessage(1);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }.start();
+        }else {
+            picImageView.setVisibility(View.GONE);
+        }
+    }
     Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             switch (msg.what) {
-                case 1:
-                    L.i("handler==1");
-                    picImageView.setImageBitmap(picBitmap);
+                case 0:
+                    for (int i = 11; i < 21; i++) {
+                        commentdata.add(new Menu(i,"西游"+i+"记"));
+                    }
+                    adapter.notifyDataSetChanged();
+                    MTFRecyclerViewStateUtils.setFooterViewState(recyclerView, MTFLoadingFooter.State.Normal);
                     break;
+                case 1:
+                    picImageView.setImageBitmap(picBitmap);
                 case 2:
                     Bundle bundle = null;
                     bundle = msg.getData();//接受Bundle数据
@@ -713,7 +619,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 //                    textView1.setText(bundle.getString("String"));
                     break;
                 case 5:
-                    T.s(context,"公网IP："+net_ip);
+                    T.s(context,"本地Ip"+localIp+"\n公网IP："+net_ip);
+                    break;
+                case 6:
+                    refreshLayout.setRefreshing(false);
+                    MTFRecyclerViewStateUtils.setFooterViewState(recyclerView, MTFLoadingFooter.State.Normal);
                     break;
             }
         }
@@ -731,10 +641,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     case 0:
                         loadProgressBar.setMax(msg.arg2);
                     case 1:
+                        loadProgressBar.setVisibility(View.VISIBLE);
                         loadProgressBar.setProgress(msg.arg1);
                         break;
                     case 2:
                         T.s(context, "文件下载完成");
+                        loadProgressBar.setVisibility(View.GONE);
                         break;
                     case -1:
                         T.s(context, msg.getData().getString("error"));
@@ -764,4 +676,50 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         L.i("onActivityResult-->requestCode="+requestCode+"\tresultCode="+resultCode);
     }
 
+    @Override
+    public void onRefresh() {
+        T.s(context,"刷新了");
+        handler.sendEmptyMessageDelayed(6,1000);
+//        refreshLayout.setRefreshing(false);
+//        MTFRecyclerViewStateUtils.setFooterViewState(recyclerView, MTFLoadingFooter.State.Normal);
+    }
+
+    public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MTFViewHolder> {
+
+        @Override
+        public MTFViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            return new MTFViewHolder(mLayoutInflater.inflate(R.layout.item_main, parent, false));
+        }
+
+        @Override
+        public void onBindViewHolder(MTFViewHolder holder, final int position) {
+            Menu menu = commentdata.get(position);
+            holder.nameTextView.setText(menu.getName());
+            holder.layout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onMyClick(1+position);
+                }
+            });
+        }
+
+        @Override
+        public int getItemCount() {
+            return commentdata.size();
+        }
+
+        public class MTFViewHolder extends RecyclerView.ViewHolder {
+
+            @Bind(R.id.item_main_name_textivew)
+            TextView nameTextView;
+
+            @Bind(R.id.item_main_layout)
+            LinearLayout layout;
+
+            public MTFViewHolder(View itemView) {
+                super(itemView);
+                ButterKnife.bind(this, itemView);
+            }
+        }
+    }
 }

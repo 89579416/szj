@@ -11,7 +11,7 @@ import android.view.View;
  *     author: Blankj
  *     blog  : http://blankj.com
  *     time  : 2016/8/2
- *     desc  : ³ß´çÏà¹Ø¹¤¾ßÀà
+ *     desc  : å°ºå¯¸ç›¸å…³å·¥å…·ç±»
  * </pre>
  */
 public class SizeUtils {
@@ -21,11 +21,11 @@ public class SizeUtils {
     }
 
     /**
-     * dp×ªpx
+     * dpè½¬px
      *
-     * @param context ÉÏÏÂÎÄ
-     * @param dpValue dpÖµ
-     * @return pxÖµ
+     * @param context ä¸Šä¸‹æ–‡
+     * @param dpValue dpå€¼
+     * @return pxå€¼
      */
     public static int dp2px(Context context, float dpValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
@@ -33,11 +33,11 @@ public class SizeUtils {
     }
 
     /**
-     * px×ªdp
+     * pxè½¬dp
      *
-     * @param context ÉÏÏÂÎÄ
-     * @param pxValue pxÖµ
-     * @return dpÖµ
+     * @param context ä¸Šä¸‹æ–‡
+     * @param pxValue pxå€¼
+     * @return dpå€¼
      */
     public static int px2dp(Context context, float pxValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
@@ -45,11 +45,11 @@ public class SizeUtils {
     }
 
     /**
-     * sp×ªpx
+     * spè½¬px
      *
-     * @param context ÉÏÏÂÎÄ
-     * @param spValue spÖµ
-     * @return pxÖµ
+     * @param context ä¸Šä¸‹æ–‡
+     * @param spValue spå€¼
+     * @return pxå€¼
      */
     public static int sp2px(Context context, float spValue) {
         final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
@@ -57,11 +57,11 @@ public class SizeUtils {
     }
 
     /**
-     * px×ªsp
+     * pxè½¬sp
      *
-     * @param context ÉÏÏÂÎÄ
-     * @param pxValue pxÖµ
-     * @return spÖµ
+     * @param context ä¸Šä¸‹æ–‡
+     * @param pxValue pxå€¼
+     * @return spå€¼
      */
     public static int px2sp(Context context, float pxValue) {
         final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
@@ -69,13 +69,13 @@ public class SizeUtils {
     }
 
     /**
-     * ¸÷ÖÖµ¥Î»×ª»»
-     * <p>¸Ã·½·¨´æÔÚÓÚTypedValue</p>
+     * å„ç§å•ä½è½¬æ¢
+     * <p>è¯¥æ–¹æ³•å­˜åœ¨äºTypedValue</p>
      *
-     * @param unit    µ¥Î»
-     * @param value   Öµ
+     * @param unit    å•ä½
+     * @param value   å€¼
      * @param metrics DisplayMetrics
-     * @return ×ª»»½á¹û
+     * @return è½¬æ¢ç»“æœ
      */
     public static float applyDimension(int unit, float value, DisplayMetrics metrics) {
         switch (unit) {
@@ -96,9 +96,9 @@ public class SizeUtils {
     }
 
     /**
-     * ÔÚonCreate()¼´¿ÉÇ¿ĞĞ»ñÈ¡ViewµÄ³ß´ç
-     * <p>Ğè»Øµ÷onGetSizeListener½Ó¿Ú£¬ÔÚonGetSizeÖĞ»ñÈ¡view¿í¸ß</p>
-     * <p>ÓÃ·¨Ê¾ÀıÈçÏÂËùÊ¾</p>
+     * åœ¨onCreate()å³å¯å¼ºè¡Œè·å–Viewçš„å°ºå¯¸
+     * <p>éœ€å›è°ƒonGetSizeListeneræ¥å£ï¼Œåœ¨onGetSizeä¸­è·å–viewå®½é«˜</p>
+     * <p>ç”¨æ³•ç¤ºä¾‹å¦‚ä¸‹æ‰€ç¤º</p>
      * <pre>
      * SizeUtils.forceGetViewSize(view);
      * SizeUtils.setListener(new SizeUtils.onGetSizeListener() {
@@ -109,7 +109,7 @@ public class SizeUtils {
      * });
      * </pre>
      *
-     * @param view ÊÓÍ¼
+     * @param view è§†å›¾
      */
     public static void forceGetViewSize(final View view) {
         view.post(new Runnable() {
@@ -123,7 +123,7 @@ public class SizeUtils {
     }
 
     /**
-     * »ñÈ¡µ½View³ß´çµÄ¼àÌı
+     * è·å–åˆ°Viewå°ºå¯¸çš„ç›‘å¬
      */
     public interface onGetSizeListener {
         void onGetSize(View view);
@@ -136,11 +136,11 @@ public class SizeUtils {
     private static onGetSizeListener mListener;
 
     /**
-     * ListViewÖĞÌáÇ°²âÁ¿View³ß´ç£¬ÈçheaderView
-     * <p>ÓÃµÄÊ±ºòÈ¥µô×¢ÊÍ¿½±´µ½ListViewÖĞ¼´¿É</p>
-     * <p>²ÎÕÕÒÔÏÂ×¢ÊÍ´úÂë</p>
+     * ListViewä¸­æå‰æµ‹é‡Viewå°ºå¯¸ï¼Œå¦‚headerView
+     * <p>ç”¨çš„æ—¶å€™å»æ‰æ³¨é‡Šæ‹·è´åˆ°ListViewä¸­å³å¯</p>
+     * <p>å‚ç…§ä»¥ä¸‹æ³¨é‡Šä»£ç </p>
      *
-     * @param view ÊÓÍ¼
+     * @param view è§†å›¾
      */
     public static void measureViewInLV(View view) {
         Log.i("tips", "U should copy the following code.");

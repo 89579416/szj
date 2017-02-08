@@ -20,7 +20,7 @@ import static com.s.z.j.newUtils.ConstUtils.REGEX_USERNAME;
  *     author: Blankj
  *     blog  : http://blankj.com
  *     time  : 2016/8/2
- *     desc  : ÕıÔòÏà¹Ø¹¤¾ßÀà
+ *     desc  : æ­£åˆ™ç›¸å…³å·¥å…·ç±»
  * </pre>
  */
 public class RegularUtils {
@@ -34,122 +34,122 @@ public class RegularUtils {
      */
 
     /**
-     * ÑéÖ¤ÊÖ»úºÅ£¨¼òµ¥£©
+     * éªŒè¯æ‰‹æœºå·ï¼ˆç®€å•ï¼‰
      *
-     * @param string ´ıÑéÖ¤ÎÄ±¾
-     * @return {@code true}: Æ¥Åä<br>{@code false}: ²»Æ¥Åä
+     * @param string å¾…éªŒè¯æ–‡æœ¬
+     * @return {@code true}: åŒ¹é…<br>{@code false}: ä¸åŒ¹é…
      */
     public static boolean isMobileSimple(String string) {
         return isMatch(REGEX_MOBILE_SIMPLE, string);
     }
 
     /**
-     * ÑéÖ¤ÊÖ»úºÅ£¨¾«È·£©
+     * éªŒè¯æ‰‹æœºå·ï¼ˆç²¾ç¡®ï¼‰
      *
-     * @param string ´ıÑéÖ¤ÎÄ±¾
-     * @return {@code true}: Æ¥Åä<br>{@code false}: ²»Æ¥Åä
+     * @param string å¾…éªŒè¯æ–‡æœ¬
+     * @return {@code true}: åŒ¹é…<br>{@code false}: ä¸åŒ¹é…
      */
     public static boolean isMobileExact(String string) {
         return isMatch(REGEX_MOBILE_EXACT, string);
     }
 
     /**
-     * ÑéÖ¤µç»°ºÅÂë
+     * éªŒè¯ç”µè¯å·ç 
      *
-     * @param string ´ıÑéÖ¤ÎÄ±¾
-     * @return {@code true}: Æ¥Åä<br>{@code false}: ²»Æ¥Åä
+     * @param string å¾…éªŒè¯æ–‡æœ¬
+     * @return {@code true}: åŒ¹é…<br>{@code false}: ä¸åŒ¹é…
      */
     public static boolean isTel(String string) {
         return isMatch(REGEX_TEL, string);
     }
 
     /**
-     * ÑéÖ¤Éí·İÖ¤ºÅÂë15Î»
+     * éªŒè¯èº«ä»½è¯å·ç 15ä½
      *
-     * @param string ´ıÑéÖ¤ÎÄ±¾
-     * @return {@code true}: Æ¥Åä<br>{@code false}: ²»Æ¥Åä
+     * @param string å¾…éªŒè¯æ–‡æœ¬
+     * @return {@code true}: åŒ¹é…<br>{@code false}: ä¸åŒ¹é…
      */
     public static boolean isIDCard15(String string) {
         return isMatch(REGEX_IDCARD15, string);
     }
 
     /**
-     * ÑéÖ¤Éí·İÖ¤ºÅÂë18Î»
+     * éªŒè¯èº«ä»½è¯å·ç 18ä½
      *
-     * @param string ´ıÑéÖ¤ÎÄ±¾
-     * @return {@code true}: Æ¥Åä<br>{@code false}: ²»Æ¥Åä
+     * @param string å¾…éªŒè¯æ–‡æœ¬
+     * @return {@code true}: åŒ¹é…<br>{@code false}: ä¸åŒ¹é…
      */
     public static boolean isIDCard18(String string) {
         return isMatch(REGEX_IDCARD18, string);
     }
 
     /**
-     * ÑéÖ¤ÓÊÏä
+     * éªŒè¯é‚®ç®±
      *
-     * @param string ´ıÑéÖ¤ÎÄ±¾
-     * @return {@code true}: Æ¥Åä<br>{@code false}: ²»Æ¥Åä
+     * @param string å¾…éªŒè¯æ–‡æœ¬
+     * @return {@code true}: åŒ¹é…<br>{@code false}: ä¸åŒ¹é…
      */
     public static boolean isEmail(String string) {
         return isMatch(REGEX_EMAIL, string);
     }
 
     /**
-     * ÑéÖ¤URL
+     * éªŒè¯URL
      *
-     * @param string ´ıÑéÖ¤ÎÄ±¾
-     * @return {@code true}: Æ¥Åä<br>{@code false}: ²»Æ¥Åä
+     * @param string å¾…éªŒè¯æ–‡æœ¬
+     * @return {@code true}: åŒ¹é…<br>{@code false}: ä¸åŒ¹é…
      */
     public static boolean isURL(String string) {
         return isMatch(REGEX_URL, string);
     }
 
     /**
-     * ÑéÖ¤ºº×Ö
+     * éªŒè¯æ±‰å­—
      *
-     * @param string ´ıÑéÖ¤ÎÄ±¾
-     * @return {@code true}: Æ¥Åä<br>{@code false}: ²»Æ¥Åä
+     * @param string å¾…éªŒè¯æ–‡æœ¬
+     * @return {@code true}: åŒ¹é…<br>{@code false}: ä¸åŒ¹é…
      */
     public static boolean isChz(String string) {
         return isMatch(REGEX_CHZ, string);
     }
 
     /**
-     * ÑéÖ¤ÓÃ»§Ãû
-     * <p>È¡Öµ·¶Î§Îªa-z,A-Z,0-9,"_",ºº×Ö£¬²»ÄÜÒÔ"_"½áÎ²,ÓÃ»§Ãû±ØĞëÊÇ6-20Î»</p>
+     * éªŒè¯ç”¨æˆ·å
+     * <p>å–å€¼èŒƒå›´ä¸ºa-z,A-Z,0-9,"_",æ±‰å­—ï¼Œä¸èƒ½ä»¥"_"ç»“å°¾,ç”¨æˆ·åå¿…é¡»æ˜¯6-20ä½</p>
      *
-     * @param string ´ıÑéÖ¤ÎÄ±¾
-     * @return {@code true}: Æ¥Åä<br>{@code false}: ²»Æ¥Åä
+     * @param string å¾…éªŒè¯æ–‡æœ¬
+     * @return {@code true}: åŒ¹é…<br>{@code false}: ä¸åŒ¹é…
      */
     public static boolean isUsername(String string) {
         return isMatch(REGEX_USERNAME, string);
     }
 
     /**
-     * ÑéÖ¤yyyy-MM-dd¸ñÊ½µÄÈÕÆÚĞ£Ñé£¬ÒÑ¿¼ÂÇÆ½ÈòÄê
+     * éªŒè¯yyyy-MM-ddæ ¼å¼çš„æ—¥æœŸæ ¡éªŒï¼Œå·²è€ƒè™‘å¹³é—°å¹´
      *
-     * @param string ´ıÑéÖ¤ÎÄ±¾
-     * @return {@code true}: Æ¥Åä<br>{@code false}: ²»Æ¥Åä
+     * @param string å¾…éªŒè¯æ–‡æœ¬
+     * @return {@code true}: åŒ¹é…<br>{@code false}: ä¸åŒ¹é…
      */
     public static boolean isDate(String string) {
         return isMatch(REGEX_DATE, string);
     }
 
     /**
-     * ÑéÖ¤IPµØÖ·
+     * éªŒè¯IPåœ°å€
      *
-     * @param string ´ıÑéÖ¤ÎÄ±¾
-     * @return {@code true}: Æ¥Åä<br>{@code false}: ²»Æ¥Åä
+     * @param string å¾…éªŒè¯æ–‡æœ¬
+     * @return {@code true}: åŒ¹é…<br>{@code false}: ä¸åŒ¹é…
      */
     public static boolean isIP(String string) {
         return isMatch(REGEX_IP, string);
     }
 
     /**
-     * stringÊÇ·ñÆ¥Åäregex
+     * stringæ˜¯å¦åŒ¹é…regex
      *
-     * @param regex  ÕıÔò±í´ïÊ½×Ö·û´®
-     * @param string ÒªÆ¥ÅäµÄ×Ö·û´®
-     * @return {@code true}: Æ¥Åä<br>{@code false}: ²»Æ¥Åä
+     * @param regex  æ­£åˆ™è¡¨è¾¾å¼å­—ç¬¦ä¸²
+     * @param string è¦åŒ¹é…çš„å­—ç¬¦ä¸²
+     * @return {@code true}: åŒ¹é…<br>{@code false}: ä¸åŒ¹é…
      */
     public static boolean isMatch(String regex, String string) {
         return !StringUtils.isEmpty(string) && Pattern.matches(regex, string);

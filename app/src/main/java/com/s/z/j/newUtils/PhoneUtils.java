@@ -24,7 +24,7 @@ import java.util.List;
  *     author: Blankj
  *     blog  : http://blankj.com
  *     time  : 2016/8/2
- *     desc  : ÊÖ»úÏà¹Ø¹¤¾ßÀà
+ *     desc  : æ‰‹æœºç›¸å…³å·¥å…·ç±»
  * </pre>
  */
 public class PhoneUtils {
@@ -34,10 +34,10 @@ public class PhoneUtils {
     }
 
     /**
-     * ÅĞ¶ÏÉè±¸ÊÇ·ñÊÇÊÖ»ú
+     * åˆ¤æ–­è®¾å¤‡æ˜¯å¦æ˜¯æ‰‹æœº
      *
-     * @param context ÉÏÏÂÎÄ
-     * @return {@code true}: ÊÇ<br>{@code false}: ·ñ
+     * @param context ä¸Šä¸‹æ–‡
+     * @return {@code true}: æ˜¯<br>{@code false}: å¦
      */
     public static boolean isPhone(Context context) {
         TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
@@ -45,12 +45,12 @@ public class PhoneUtils {
     }
 
     /**
-     * »ñÈ¡ÊÖ»úµÄIMIE
-     * <p>ĞèÓë{@link #isPhone(Context)}Ò»ÆğÊ¹ÓÃ</p>
-     * <p>ĞèÌí¼ÓÈ¨ÏŞ {@code <uses-permission android:name="android.permission.READ_PHONE_STATE"/>}</p>
+     * è·å–æ‰‹æœºçš„IMIE
+     * <p>éœ€ä¸{@link #isPhone(Context)}ä¸€èµ·ä½¿ç”¨</p>
+     * <p>éœ€æ·»åŠ æƒé™ {@code <uses-permission android:name="android.permission.READ_PHONE_STATE"/>}</p>
      *
-     * @param context ÉÏÏÂÎÄ
-     * @return IMIEÂë
+     * @param context ä¸Šä¸‹æ–‡
+     * @return IMIEç 
      */
     public static String getPhoneIMEI(Context context) {
         String deviceId;
@@ -64,21 +64,21 @@ public class PhoneUtils {
     }
 
     /**
-     * »ñÈ¡ÊÖ»ú×´Ì¬ĞÅÏ¢
-     * <p>ĞèÌí¼ÓÈ¨ÏŞ {@code <uses-permission android:name="android.permission.READ_PHONE_STATE"/>}</p>
+     * è·å–æ‰‹æœºçŠ¶æ€ä¿¡æ¯
+     * <p>éœ€æ·»åŠ æƒé™ {@code <uses-permission android:name="android.permission.READ_PHONE_STATE"/>}</p>
      *
-     * @param context ÉÏÏÂÎÄ
+     * @param context ä¸Šä¸‹æ–‡
      * @return DeviceId(IMEI) = 99000311726612<br>
      * DeviceSoftwareVersion = 00<br>
      * Line1Number =<br>
      * NetworkCountryIso = cn<br>
      * NetworkOperator = 46003<br>
-     * NetworkOperatorName = ÖĞ¹úµçĞÅ<br>
+     * NetworkOperatorName = ä¸­å›½ç”µä¿¡<br>
      * NetworkType = 6<br>
      * honeType = 2<br>
      * SimCountryIso = cn<br>
      * SimOperator = 46003<br>
-     * SimOperatorName = ÖĞ¹úµçĞÅ<br>
+     * SimOperatorName = ä¸­å›½ç”µä¿¡<br>
      * SimSerialNumber = 89860315045710604022<br>
      * SimState = 5<br>
      * SubscriberId(IMSI) = 460030419724900<br>
@@ -107,32 +107,32 @@ public class PhoneUtils {
     }
 
     /**
-     * ÌøÖÁÌî³äºÃphoneNumberµÄ²¦ºÅ½çÃæ
+     * è·³è‡³å¡«å……å¥½phoneNumberçš„æ‹¨å·ç•Œé¢
      *
-     * @param context     ÉÏÏÂÎÄ
-     * @param phoneNumber µç»°ºÅÂë
+     * @param context     ä¸Šä¸‹æ–‡
+     * @param phoneNumber ç”µè¯å·ç 
      */
     public static void dial(Context context, String phoneNumber) {
         context.startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneNumber)));
     }
 
     /**
-     * ²¦´òphoneNumber
-     * <p>ĞèÌí¼ÓÈ¨ÏŞ {@code <uses-permission android:name="android.permission.CALL_PHONE"/>}</p>
+     * æ‹¨æ‰“phoneNumber
+     * <p>éœ€æ·»åŠ æƒé™ {@code <uses-permission android:name="android.permission.CALL_PHONE"/>}</p>
      *
-     * @param context     ÉÏÏÂÎÄ
-     * @param phoneNumber µç»°ºÅÂë
+     * @param context     ä¸Šä¸‹æ–‡
+     * @param phoneNumber ç”µè¯å·ç 
      */
     public static void call(Context context, String phoneNumber) {
         context.startActivity(new Intent("android.intent.action.CALL", Uri.parse("tel:" + phoneNumber)));
     }
 
     /**
-     * ·¢ËÍ¶ÌĞÅ
+     * å‘é€çŸ­ä¿¡
      *
-     * @param context     ÉÏÏÂÎÄ
-     * @param phoneNumber µç»°ºÅÂë
-     * @param content     ÄÚÈİ
+     * @param context     ä¸Šä¸‹æ–‡
+     * @param phoneNumber ç”µè¯å·ç 
+     * @param content     å†…å®¹
      */
     public static void sendSms(Context context, String phoneNumber, String content) {
         Uri uri = Uri.parse("smsto:" + (StringUtils.isEmpty(phoneNumber) ? "" : phoneNumber));
@@ -142,73 +142,73 @@ public class PhoneUtils {
     }
 
     /**
-     * »ñÈ¡ÊÖ»úÁªÏµÈË
-     * <p>ĞèÌí¼ÓÈ¨ÏŞ {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}</p>
-     * <p>ĞèÌí¼ÓÈ¨ÏŞ {@code <uses-permission android:name="android.permission.READ_CONTACTS"/>}</p>
+     * è·å–æ‰‹æœºè”ç³»äºº
+     * <p>éœ€æ·»åŠ æƒé™ {@code <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>}</p>
+     * <p>éœ€æ·»åŠ æƒé™ {@code <uses-permission android:name="android.permission.READ_CONTACTS"/>}</p>
      *
-     * @param context ÉÏÏÂÎÄ;
-     * @return ÁªÏµÈËÁ´±í
+     * @param context ä¸Šä¸‹æ–‡;
+     * @return è”ç³»äººé“¾è¡¨
      */
     public static List<HashMap<String, String>> getAllContactInfo(Context context) {
         SystemClock.sleep(3000);
         ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
-        // 1.»ñÈ¡ÄÚÈİ½âÎöÕß
+        // 1.è·å–å†…å®¹è§£æè€…
         ContentResolver resolver = context.getContentResolver();
-        // 2.»ñÈ¡ÄÚÈİÌá¹©ÕßµÄµØÖ·:com.android.contacts
-        // raw_contacts±íµÄµØÖ· :raw_contacts
-        // view_data±íµÄµØÖ· : data
-        // 3.Éú³É²éÑ¯µØÖ·
+        // 2.è·å–å†…å®¹æä¾›è€…çš„åœ°å€:com.android.contacts
+        // raw_contactsè¡¨çš„åœ°å€ :raw_contacts
+        // view_dataè¡¨çš„åœ°å€ : data
+        // 3.ç”ŸæˆæŸ¥è¯¢åœ°å€
         Uri raw_uri = Uri.parse("content://com.android.contacts/raw_contacts");
         Uri date_uri = Uri.parse("content://com.android.contacts/data");
-        // 4.²éÑ¯²Ù×÷,ÏÈ²éÑ¯raw_contacts,²éÑ¯contact_id
-        // projection : ²éÑ¯µÄ×Ö¶Î
+        // 4.æŸ¥è¯¢æ“ä½œ,å…ˆæŸ¥è¯¢raw_contacts,æŸ¥è¯¢contact_id
+        // projection : æŸ¥è¯¢çš„å­—æ®µ
         Cursor cursor = resolver.query(raw_uri, new String[]{"contact_id"},
                 null, null, null);
-        // 5.½âÎöcursor
+        // 5.è§£æcursor
         while (cursor.moveToNext()) {
-            // 6.»ñÈ¡²éÑ¯µÄÊı¾İ
+            // 6.è·å–æŸ¥è¯¢çš„æ•°æ®
             String contact_id = cursor.getString(0);
             // cursor.getString(cursor.getColumnIndex("contact_id"));//getColumnIndex
-            // : ²éÑ¯×Ö¶ÎÔÚcursorÖĞË÷ÒıÖµ,Ò»°ã¶¼ÊÇÓÃÔÚ²éÑ¯×Ö¶Î±È½Ï¶àµÄÊ±ºò
-            // ÅĞ¶Ïcontact_idÊÇ·ñÎª¿Õ
+            // : æŸ¥è¯¢å­—æ®µåœ¨cursorä¸­ç´¢å¼•å€¼,ä¸€èˆ¬éƒ½æ˜¯ç”¨åœ¨æŸ¥è¯¢å­—æ®µæ¯”è¾ƒå¤šçš„æ—¶å€™
+            // åˆ¤æ–­contact_idæ˜¯å¦ä¸ºç©º
             if (!StringUtils.isEmpty(contact_id)) {//null   ""
-                // 7.¸ù¾İcontact_id²éÑ¯view_data±íÖĞµÄÊı¾İ
-                // selection : ²éÑ¯Ìõ¼ş
-                // selectionArgs :²éÑ¯Ìõ¼şµÄ²ÎÊı
-                // sortOrder : ÅÅĞò
-                // ¿ÕÖ¸Õë: 1.null.·½·¨ 2.²ÎÊıÎªnull
+                // 7.æ ¹æ®contact_idæŸ¥è¯¢view_dataè¡¨ä¸­çš„æ•°æ®
+                // selection : æŸ¥è¯¢æ¡ä»¶
+                // selectionArgs :æŸ¥è¯¢æ¡ä»¶çš„å‚æ•°
+                // sortOrder : æ’åº
+                // ç©ºæŒ‡é’ˆ: 1.null.æ–¹æ³• 2.å‚æ•°ä¸ºnull
                 Cursor c = resolver.query(date_uri, new String[]{"data1",
                                 "mimetype"}, "raw_contact_id=?",
                         new String[]{contact_id}, null);
                 HashMap<String, String> map = new HashMap<String, String>();
-                // 8.½âÎöc
+                // 8.è§£æc
                 while (c.moveToNext()) {
-                    // 9.»ñÈ¡Êı¾İ
+                    // 9.è·å–æ•°æ®
                     String data1 = c.getString(0);
                     String mimetype = c.getString(1);
-                    // 10.¸ù¾İÀàĞÍÈ¥ÅĞ¶Ï»ñÈ¡µÄdata1Êı¾İ²¢±£´æ
+                    // 10.æ ¹æ®ç±»å‹å»åˆ¤æ–­è·å–çš„data1æ•°æ®å¹¶ä¿å­˜
                     if (mimetype.equals("vnd.android.cursor.item/phone_v2")) {
-                        // µç»°
+                        // ç”µè¯
                         map.put("phone", data1);
                     } else if (mimetype.equals("vnd.android.cursor.item/name")) {
-                        // ĞÕÃû
+                        // å§“å
                         map.put("name", data1);
                     }
                 }
-                // 11.Ìí¼Óµ½¼¯ºÏÖĞÊı¾İ
+                // 11.æ·»åŠ åˆ°é›†åˆä¸­æ•°æ®
                 list.add(map);
-                // 12.¹Ø±Õcursor
+                // 12.å…³é—­cursor
                 c.close();
             }
         }
-        // 12.¹Ø±Õcursor
+        // 12.å…³é—­cursor
         cursor.close();
         return list;
     }
 
     /**
-     * ´ò¿ªÊÖ»úÁªÏµÈË½çÃæµã»÷ÁªÏµÈËºó±ã»ñÈ¡¸ÃºÅÂë
-     * <p>²ÎÕÕÒÔÏÂ×¢ÊÍ´úÂë</p>
+     * æ‰“å¼€æ‰‹æœºè”ç³»äººç•Œé¢ç‚¹å‡»è”ç³»äººåä¾¿è·å–è¯¥å·ç 
+     * <p>å‚ç…§ä»¥ä¸‹æ³¨é‡Šä»£ç </p>
      */
     public static void getContantNum() {
         Log.i("tips", "U should copy the following code.");
@@ -224,7 +224,7 @@ public class PhoneUtils {
             if (data != null) {
                 Uri uri = data.getData();
                 String num = null;
-                // ´´½¨ÄÚÈİ½âÎöÕß
+                // åˆ›å»ºå†…å®¹è§£æè€…
                 ContentResolver contentResolver = getContentResolver();
                 Cursor cursor = contentResolver.query(uri,
                         null, null, null, null);
@@ -232,56 +232,56 @@ public class PhoneUtils {
                     num = cursor.getString(cursor.getColumnIndex("data1"));
                 }
                 cursor.close();
-                num = num.replaceAll("-", "");//Ìæ»»µÄ²Ù×÷,555-6 -> 5556
+                num = num.replaceAll("-", "");//æ›¿æ¢çš„æ“ä½œ,555-6 -> 5556
             }
         }
         */
     }
 
     /**
-     * »ñÈ¡ÊÖ»ú¶ÌĞÅ²¢±£´æµ½xmlÖĞ
-     * <p>ĞèÌí¼ÓÈ¨ÏŞ {@code <uses-permission android:name="android.permission.READ_SMS"/>}</p>
-     * <p>ĞèÌí¼ÓÈ¨ÏŞ {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}</p>
+     * è·å–æ‰‹æœºçŸ­ä¿¡å¹¶ä¿å­˜åˆ°xmlä¸­
+     * <p>éœ€æ·»åŠ æƒé™ {@code <uses-permission android:name="android.permission.READ_SMS"/>}</p>
+     * <p>éœ€æ·»åŠ æƒé™ {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}</p>
      *
-     * @param context ÉÏÏÂÎÄ
+     * @param context ä¸Šä¸‹æ–‡
      */
     public static void getAllSMS(Context context) {
-        // 1.»ñÈ¡¶ÌĞÅ
-        // 1.1»ñÈ¡ÄÚÈİ½âÎöÕß
+        // 1.è·å–çŸ­ä¿¡
+        // 1.1è·å–å†…å®¹è§£æè€…
         ContentResolver resolver = context.getContentResolver();
-        // 1.2»ñÈ¡ÄÚÈİÌá¹©ÕßµØÖ·   sms,sms±íµÄµØÖ·:null  ²»Ğ´
-        // 1.3»ñÈ¡²éÑ¯Â·¾¶
+        // 1.2è·å–å†…å®¹æä¾›è€…åœ°å€   sms,smsè¡¨çš„åœ°å€:null  ä¸å†™
+        // 1.3è·å–æŸ¥è¯¢è·¯å¾„
         Uri uri = Uri.parse("content://sms");
-        // 1.4.²éÑ¯²Ù×÷
-        // projection : ²éÑ¯µÄ×Ö¶Î
-        // selection : ²éÑ¯µÄÌõ¼ş
-        // selectionArgs : ²éÑ¯Ìõ¼şµÄ²ÎÊı
-        // sortOrder : ÅÅĞò
+        // 1.4.æŸ¥è¯¢æ“ä½œ
+        // projection : æŸ¥è¯¢çš„å­—æ®µ
+        // selection : æŸ¥è¯¢çš„æ¡ä»¶
+        // selectionArgs : æŸ¥è¯¢æ¡ä»¶çš„å‚æ•°
+        // sortOrder : æ’åº
         Cursor cursor = resolver.query(uri, new String[]{"address", "date", "type", "body"}, null, null, null);
-        // ÉèÖÃ×î´ó½ø¶È
-        int count = cursor.getCount();//»ñÈ¡¶ÌĞÅµÄ¸öÊı
-        // 2.±¸·İ¶ÌĞÅ
-        // 2.1»ñÈ¡xmlĞòÁĞÆ÷
+        // è®¾ç½®æœ€å¤§è¿›åº¦
+        int count = cursor.getCount();//è·å–çŸ­ä¿¡çš„ä¸ªæ•°
+        // 2.å¤‡ä»½çŸ­ä¿¡
+        // 2.1è·å–xmlåºåˆ—å™¨
         XmlSerializer xmlSerializer = Xml.newSerializer();
         try {
-            // 2.2ÉèÖÃxmlÎÄ¼ş±£´æµÄÂ·¾¶
-            // os : ±£´æµÄÎ»ÖÃ
-            // encoding : ±àÂë¸ñÊ½
+            // 2.2è®¾ç½®xmlæ–‡ä»¶ä¿å­˜çš„è·¯å¾„
+            // os : ä¿å­˜çš„ä½ç½®
+            // encoding : ç¼–ç æ ¼å¼
             xmlSerializer.setOutput(new FileOutputStream(new File("/mnt/sdcard/backupsms.xml")), "utf-8");
-            // 2.3ÉèÖÃÍ·ĞÅÏ¢
-            // standalone : ÊÇ·ñ¶ÀÁ¢±£´æ
+            // 2.3è®¾ç½®å¤´ä¿¡æ¯
+            // standalone : æ˜¯å¦ç‹¬ç«‹ä¿å­˜
             xmlSerializer.startDocument("utf-8", true);
-            // 2.4ÉèÖÃ¸ù±êÇ©
+            // 2.4è®¾ç½®æ ¹æ ‡ç­¾
             xmlSerializer.startTag(null, "smss");
-            // 1.5.½âÎöcursor
+            // 1.5.è§£æcursor
             while (cursor.moveToNext()) {
                 SystemClock.sleep(1000);
-                // 2.5ÉèÖÃ¶ÌĞÅµÄ±êÇ©
+                // 2.5è®¾ç½®çŸ­ä¿¡çš„æ ‡ç­¾
                 xmlSerializer.startTag(null, "sms");
-                // 2.6ÉèÖÃÎÄ±¾ÄÚÈİµÄ±êÇ©
+                // 2.6è®¾ç½®æ–‡æœ¬å†…å®¹çš„æ ‡ç­¾
                 xmlSerializer.startTag(null, "address");
                 String address = cursor.getString(0);
-                // 2.7ÉèÖÃÎÄ±¾ÄÚÈİ
+                // 2.7è®¾ç½®æ–‡æœ¬å†…å®¹
                 xmlSerializer.text(address);
                 xmlSerializer.endTag(null, "address");
                 xmlSerializer.startTag(null, "date");
@@ -301,7 +301,7 @@ public class PhoneUtils {
             }
             xmlSerializer.endTag(null, "smss");
             xmlSerializer.endDocument();
-            // 2.8½«Êı¾İË¢ĞÂµ½ÎÄ¼şÖĞ
+            // 2.8å°†æ•°æ®åˆ·æ–°åˆ°æ–‡ä»¶ä¸­
             xmlSerializer.flush();
         } catch (Exception e) {
             e.printStackTrace();

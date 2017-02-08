@@ -7,7 +7,7 @@ import android.app.Activity;
 import com.s.z.j.R;
 
 /**
- * Android照片墙加强版，使用ViewPager实现画廊效果Demo
+ * Android鐓х墖澧欏姞寮虹増锛屼娇鐢╒iewPager瀹炵幇鐢诲粖鏁堟灉Demo
  */
 public class PhotoWallFallsActivity extends Activity {
 

@@ -23,7 +23,7 @@ import java.io.ByteArrayOutputStream;
  *     author: Blankj
  *     blog  : http://blankj.com
  *     time  : 2016/8/12
- *     desc  : Í¼Æ¬Ïà¹Ø¹¤¾ßÀà
+ *     desc  : å›¾ç‰‡ç›¸å…³å·¥å…·ç±»
  * </pre>
  */
 public class ImageUtils {

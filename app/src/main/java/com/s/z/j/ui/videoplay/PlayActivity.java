@@ -312,8 +312,8 @@ public class PlayActivity extends Activity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if(keyCode == event.KEYCODE_BACK){
-            fl.removeAllViews();
             try {
+                fl.removeAllViews();
                 imageView1.stopPlay();
                 imageView2.stopPlay();
                 videoView1.stopPlay();

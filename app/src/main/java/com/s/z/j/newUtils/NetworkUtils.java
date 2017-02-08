@@ -11,7 +11,7 @@ import android.telephony.TelephonyManager;
  *     author: Blankj
  *     blog  : http://blankj.com
  *     time  : 2016/8/2
- *     desc  : ÍøÂçÏà¹Ø¹¤¾ßÀà
+ *     desc  : ç½‘ç»œç›¸å…³å·¥å…·ç±»
  * </pre>
  */
 public class NetworkUtils {
@@ -32,10 +32,10 @@ public class NetworkUtils {
     private static final int NETWORK_TYPE_IWLAN = 18;
 
     /**
-     * ´ò¿ªÍøÂçÉèÖÃ½çÃæ
-     * <p>3.0ÒÔÏÂ´ò¿ªÉèÖÃ½çÃæ</p>
+     * æ‰“å¼€ç½‘ç»œè®¾ç½®ç•Œé¢
+     * <p>3.0ä»¥ä¸‹æ‰“å¼€è®¾ç½®ç•Œé¢</p>
      *
-     * @param context ÉÏÏÂÎÄ
+     * @param context ä¸Šä¸‹æ–‡
      */
     public static void openWirelessSettings(Context context) {
         if (android.os.Build.VERSION.SDK_INT > 10) {
@@ -46,9 +46,9 @@ public class NetworkUtils {
     }
 
     /**
-     * »ñÈ¡»î¶¯ÍøÂçĞÅÏ¢
+     * è·å–æ´»åŠ¨ç½‘ç»œä¿¡æ¯
      *
-     * @param context ÉÏÏÂÎÄ
+     * @param context ä¸Šä¸‹æ–‡
      * @return NetworkInfo
      */
     private static NetworkInfo getActiveNetworkInfo(Context context) {
@@ -58,11 +58,11 @@ public class NetworkUtils {
     }
 
     /**
-     * ÅĞ¶ÏÍøÂçÊÇ·ñ¿ÉÓÃ
-     * <p>ĞèÌí¼ÓÈ¨ÏŞ {@code <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>}</p>
+     * åˆ¤æ–­ç½‘ç»œæ˜¯å¦å¯ç”¨
+     * <p>éœ€æ·»åŠ æƒé™ {@code <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>}</p>
      *
-     * @param context ÉÏÏÂÎÄ
-     * @return {@code true}: ¿ÉÓÃ<br>{@code false}: ²»¿ÉÓÃ
+     * @param context ä¸Šä¸‹æ–‡
+     * @return {@code true}: å¯ç”¨<br>{@code false}: ä¸å¯ç”¨
      */
     public static boolean isAvailable(Context context) {
         NetworkInfo info = getActiveNetworkInfo(context);
@@ -70,11 +70,11 @@ public class NetworkUtils {
     }
 
     /**
-     * ÅĞ¶ÏÍøÂçÊÇ·ñÁ¬½Ó
-     * <p>ĞèÌí¼ÓÈ¨ÏŞ {@code <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>}</p>
+     * åˆ¤æ–­ç½‘ç»œæ˜¯å¦è¿æ¥
+     * <p>éœ€æ·»åŠ æƒé™ {@code <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>}</p>
      *
-     * @param context ÉÏÏÂÎÄ
-     * @return {@code true}: ÊÇ<br>{@code false}: ·ñ
+     * @param context ä¸Šä¸‹æ–‡
+     * @return {@code true}: æ˜¯<br>{@code false}: å¦
      */
     public static boolean isConnected(Context context) {
         NetworkInfo info = getActiveNetworkInfo(context);
@@ -82,11 +82,11 @@ public class NetworkUtils {
     }
 
     /**
-     * ÅĞ¶ÏÍøÂçÊÇ·ñÊÇ4G
-     * <p>ĞèÌí¼ÓÈ¨ÏŞ {@code <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>}</p>
+     * åˆ¤æ–­ç½‘ç»œæ˜¯å¦æ˜¯4G
+     * <p>éœ€æ·»åŠ æƒé™ {@code <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>}</p>
      *
-     * @param context ÉÏÏÂÎÄ
-     * @return {@code true}: ÊÇ<br>{@code false}: ²»ÊÇ
+     * @param context ä¸Šä¸‹æ–‡
+     * @return {@code true}: æ˜¯<br>{@code false}: ä¸æ˜¯
      */
     public static boolean is4G(Context context) {
         NetworkInfo info = getActiveNetworkInfo(context);
@@ -94,11 +94,11 @@ public class NetworkUtils {
     }
 
     /**
-     * ÅĞ¶ÏwifiÊÇ·ñÁ¬½Ó×´Ì¬
-     * <p>ĞèÌí¼ÓÈ¨ÏŞ {@code <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>}</p>
+     * åˆ¤æ–­wifiæ˜¯å¦è¿æ¥çŠ¶æ€
+     * <p>éœ€æ·»åŠ æƒé™ {@code <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>}</p>
      *
-     * @param context ÉÏÏÂÎÄ
-     * @return {@code true}: Á¬½Ó<br>{@code false}: Î´Á¬½Ó
+     * @param context ä¸Šä¸‹æ–‡
+     * @return {@code true}: è¿æ¥<br>{@code false}: æœªè¿æ¥
      */
     public static boolean isWifiConnected(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context
@@ -107,11 +107,11 @@ public class NetworkUtils {
     }
 
     /**
-     * »ñÈ¡ÒÆ¶¯ÍøÂçÔËÓªÉÌÃû³Æ
-     * <p>ÈçÖĞ¹úÁªÍ¨¡¢ÖĞ¹úÒÆ¶¯¡¢ÖĞ¹úµçĞÅ</p>
+     * è·å–ç§»åŠ¨ç½‘ç»œè¿è¥å•†åç§°
+     * <p>å¦‚ä¸­å›½è”é€šã€ä¸­å›½ç§»åŠ¨ã€ä¸­å›½ç”µä¿¡</p>
      *
-     * @param context ÉÏÏÂÎÄ
-     * @return ÒÆ¶¯ÍøÂçÔËÓªÉÌÃû³Æ
+     * @param context ä¸Šä¸‹æ–‡
+     * @return ç§»åŠ¨ç½‘ç»œè¿è¥å•†åç§°
      */
     public static String getNetworkOperatorName(Context context) {
         TelephonyManager tm = (TelephonyManager) context
@@ -120,14 +120,14 @@ public class NetworkUtils {
     }
 
     /**
-     * »ñÈ¡ÒÆ¶¯ÖÕ¶ËÀàĞÍ
+     * è·å–ç§»åŠ¨ç»ˆç«¯ç±»å‹
      *
-     * @param context ÉÏÏÂÎÄ
-     * @return ÊÖ»úÖÆÊ½
+     * @param context ä¸Šä¸‹æ–‡
+     * @return æ‰‹æœºåˆ¶å¼
      * <ul>
-     * <li>{@link TelephonyManager#PHONE_TYPE_NONE } : 0 ÊÖ»úÖÆÊ½Î´Öª</li>
-     * <li>{@link TelephonyManager#PHONE_TYPE_GSM  } : 1 ÊÖ»úÖÆÊ½ÎªGSM£¬ÒÆ¶¯ºÍÁªÍ¨</li>
-     * <li>{@link TelephonyManager#PHONE_TYPE_CDMA } : 2 ÊÖ»úÖÆÊ½ÎªCDMA£¬µçĞÅ</li>
+     * <li>{@link TelephonyManager#PHONE_TYPE_NONE } : 0 æ‰‹æœºåˆ¶å¼æœªçŸ¥</li>
+     * <li>{@link TelephonyManager#PHONE_TYPE_GSM  } : 1 æ‰‹æœºåˆ¶å¼ä¸ºGSMï¼Œç§»åŠ¨å’Œè”é€š</li>
+     * <li>{@link TelephonyManager#PHONE_TYPE_CDMA } : 2 æ‰‹æœºåˆ¶å¼ä¸ºCDMAï¼Œç”µä¿¡</li>
      * <li>{@link TelephonyManager#PHONE_TYPE_SIP  } : 3</li>
      * </ul>
      */
@@ -139,11 +139,11 @@ public class NetworkUtils {
 
 
     /**
-     * »ñÈ¡µ±Ç°µÄÍøÂçÀàĞÍ(WIFI,2G,3G,4G)
-     * <p>ĞèÌí¼ÓÈ¨ÏŞ {@code <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>}</p>
+     * è·å–å½“å‰çš„ç½‘ç»œç±»å‹(WIFI,2G,3G,4G)
+     * <p>éœ€æ·»åŠ æƒé™ {@code <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>}</p>
      *
-     * @param context ÉÏÏÂÎÄ
-     * @return ÍøÂçÀàĞÍ
+     * @param context ä¸Šä¸‹æ–‡
+     * @return ç½‘ç»œç±»å‹
      * <ul>
      * <li>{@link #NETWORK_WIFI   } = 1;</li>
      * <li>{@link #NETWORK_4G     } = 4;</li>
@@ -209,11 +209,11 @@ public class NetworkUtils {
     }
 
     /**
-     * »ñÈ¡µ±Ç°µÄÍøÂçÀàĞÍ(WIFI,2G,3G,4G)
-     * <p>ÒÀÀµÉÏÃæµÄ·½·¨</p>
+     * è·å–å½“å‰çš„ç½‘ç»œç±»å‹(WIFI,2G,3G,4G)
+     * <p>ä¾èµ–ä¸Šé¢çš„æ–¹æ³•</p>
      *
-     * @param context ÉÏÏÂÎÄ
-     * @return ÍøÂçÀàĞÍÃû³Æ
+     * @param context ä¸Šä¸‹æ–‡
+     * @return ç½‘ç»œç±»å‹åç§°
      * <ul>
      * <li>NETWORK_WIFI   </li>
      * <li>NETWORK_4G     </li>

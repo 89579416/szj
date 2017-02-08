@@ -18,7 +18,7 @@ import static com.s.z.j.newUtils.ConstUtils.SEC;
  *     author: Blankj
  *     blog  : http://blankj.com
  *     time  : 2016/8/2
- *     desc  : Ê±¼äÏà¹Ø¹¤¾ßÀà
+ *     desc  : æ—¶é—´ç›¸å…³å·¥å…·ç±»
  * </pre>
  */
 public class TimeUtils {
@@ -28,205 +28,205 @@ public class TimeUtils {
     }
 
     /**
-     * <p>ÔÚ¹¤¾ßÀàÖĞ¾­³£Ê¹ÓÃµ½¹¤¾ßÀàµÄ¸ñÊ½»¯ÃèÊö£¬Õâ¸öÖ÷ÒªÊÇÒ»¸öÈÕÆÚµÄ²Ù×÷Àà£¬ËùÒÔÈÕÖ¾¸ñÊ½Ö÷ÒªÊ¹ÓÃ SimpleDateFormatµÄ¶¨Òå¸ñÊ½.</p>
-     * ¸ñÊ½µÄÒâÒåÈçÏÂ£º ÈÕÆÚºÍÊ±¼äÄ£Ê½ <br>
-     * <p>ÈÕÆÚºÍÊ±¼ä¸ñÊ½ÓÉÈÕÆÚºÍÊ±¼äÄ£Ê½×Ö·û´®Ö¸¶¨¡£ÔÚÈÕÆÚºÍÊ±¼äÄ£Ê½×Ö·û´®ÖĞ£¬Î´¼ÓÒıºÅµÄ×ÖÄ¸ 'A' µ½ 'Z' ºÍ 'a' µ½ 'z'
-     * ±»½âÊÍÎªÄ£Ê½×ÖÄ¸£¬ÓÃÀ´±íÊ¾ÈÕÆÚ»òÊ±¼ä×Ö·û´®ÔªËØ¡£ÎÄ±¾¿ÉÒÔÊ¹ÓÃµ¥ÒıºÅ (') ÒıÆğÀ´£¬ÒÔÃâ½øĞĞ½âÊÍ¡£"''"
-     * ±íÊ¾µ¥ÒıºÅ¡£ËùÓĞÆäËû×Ö·û¾ù²»½âÊÍ£»Ö»ÊÇÔÚ¸ñÊ½»¯Ê±½«ËüÃÇ¼òµ¥¸´ÖÆµ½Êä³ö×Ö·û´®£¬»òÕßÔÚ·ÖÎöÊ±ÓëÊäÈë×Ö·û´®½øĞĞÆ¥Åä¡£
+     * <p>åœ¨å·¥å…·ç±»ä¸­ç»å¸¸ä½¿ç”¨åˆ°å·¥å…·ç±»çš„æ ¼å¼åŒ–æè¿°ï¼Œè¿™ä¸ªä¸»è¦æ˜¯ä¸€ä¸ªæ—¥æœŸçš„æ“ä½œç±»ï¼Œæ‰€ä»¥æ—¥å¿—æ ¼å¼ä¸»è¦ä½¿ç”¨ SimpleDateFormatçš„å®šä¹‰æ ¼å¼.</p>
+     * æ ¼å¼çš„æ„ä¹‰å¦‚ä¸‹ï¼š æ—¥æœŸå’Œæ—¶é—´æ¨¡å¼ <br>
+     * <p>æ—¥æœŸå’Œæ—¶é—´æ ¼å¼ç”±æ—¥æœŸå’Œæ—¶é—´æ¨¡å¼å­—ç¬¦ä¸²æŒ‡å®šã€‚åœ¨æ—¥æœŸå’Œæ—¶é—´æ¨¡å¼å­—ç¬¦ä¸²ä¸­ï¼ŒæœªåŠ å¼•å·çš„å­—æ¯ 'A' åˆ° 'Z' å’Œ 'a' åˆ° 'z'
+     * è¢«è§£é‡Šä¸ºæ¨¡å¼å­—æ¯ï¼Œç”¨æ¥è¡¨ç¤ºæ—¥æœŸæˆ–æ—¶é—´å­—ç¬¦ä¸²å…ƒç´ ã€‚æ–‡æœ¬å¯ä»¥ä½¿ç”¨å•å¼•å· (') å¼•èµ·æ¥ï¼Œä»¥å…è¿›è¡Œè§£é‡Šã€‚"''"
+     * è¡¨ç¤ºå•å¼•å·ã€‚æ‰€æœ‰å…¶ä»–å­—ç¬¦å‡ä¸è§£é‡Šï¼›åªæ˜¯åœ¨æ ¼å¼åŒ–æ—¶å°†å®ƒä»¬ç®€å•å¤åˆ¶åˆ°è¾“å‡ºå­—ç¬¦ä¸²ï¼Œæˆ–è€…åœ¨åˆ†ææ—¶ä¸è¾“å…¥å­—ç¬¦ä¸²è¿›è¡ŒåŒ¹é…ã€‚
      * </p>
-     * ¶¨ÒåÁËÒÔÏÂÄ£Ê½×ÖÄ¸£¨ËùÓĞÆäËû×Ö·û 'A' µ½ 'Z' ºÍ 'a' µ½ 'z' ¶¼±»±£Áô£©£º <br>
+     * å®šä¹‰äº†ä»¥ä¸‹æ¨¡å¼å­—æ¯ï¼ˆæ‰€æœ‰å…¶ä»–å­—ç¬¦ 'A' åˆ° 'Z' å’Œ 'a' åˆ° 'z' éƒ½è¢«ä¿ç•™ï¼‰ï¼š <br>
      * <table border="1" cellspacing="1" cellpadding="1" summary="Chart shows pattern letters, date/time component,
      * presentation, and examples.">
      * <tr>
-     * <th align="left">×ÖÄ¸</th>
-     * <th align="left">ÈÕÆÚ»òÊ±¼äÔªËØ</th>
-     * <th align="left">±íÊ¾</th>
-     * <th align="left">Ê¾Àı</th>
+     * <th align="left">å­—æ¯</th>
+     * <th align="left">æ—¥æœŸæˆ–æ—¶é—´å…ƒç´ </th>
+     * <th align="left">è¡¨ç¤º</th>
+     * <th align="left">ç¤ºä¾‹</th>
      * </tr>
      * <tr>
      * <td><code>G</code></td>
-     * <td>Era ±êÖ¾·û</td>
+     * <td>Era æ ‡å¿—ç¬¦</td>
      * <td>Text</td>
      * <td><code>AD</code></td>
      * </tr>
      * <tr>
      * <td><code>y</code> </td>
-     * <td>Äê </td>
+     * <td>å¹´ </td>
      * <td>Year </td>
      * <td><code>1996</code>; <code>96</code> </td>
      * </tr>
      * <tr>
      * <td><code>M</code> </td>
-     * <td>ÄêÖĞµÄÔÂ·İ </td>
+     * <td>å¹´ä¸­çš„æœˆä»½ </td>
      * <td>Month </td>
      * <td><code>July</code>; <code>Jul</code>; <code>07</code> </td>
      * </tr>
      * <tr>
      * <td><code>w</code> </td>
-     * <td>ÄêÖĞµÄÖÜÊı </td>
+     * <td>å¹´ä¸­çš„å‘¨æ•° </td>
      * <td>Number </td>
      * <td><code>27</code> </td>
      * </tr>
      * <tr>
      * <td><code>W</code> </td>
-     * <td>ÔÂ·İÖĞµÄÖÜÊı </td>
+     * <td>æœˆä»½ä¸­çš„å‘¨æ•° </td>
      * <td>Number </td>
      * <td><code>2</code> </td>
      * </tr>
      * <tr>
      * <td><code>D</code> </td>
-     * <td>ÄêÖĞµÄÌìÊı </td>
+     * <td>å¹´ä¸­çš„å¤©æ•° </td>
      * <td>Number </td>
      * <td><code>189</code> </td>
      * </tr>
      * <tr>
      * <td><code>d</code> </td>
-     * <td>ÔÂ·İÖĞµÄÌìÊı </td>
+     * <td>æœˆä»½ä¸­çš„å¤©æ•° </td>
      * <td>Number </td>
      * <td><code>10</code> </td>
      * </tr>
      * <tr>
      * <td><code>F</code> </td>
-     * <td>ÔÂ·İÖĞµÄĞÇÆÚ </td>
+     * <td>æœˆä»½ä¸­çš„æ˜ŸæœŸ </td>
      * <td>Number </td>
      * <td><code>2</code> </td>
      * </tr>
      * <tr>
      * <td><code>E</code> </td>
-     * <td>ĞÇÆÚÖĞµÄÌìÊı </td>
+     * <td>æ˜ŸæœŸä¸­çš„å¤©æ•° </td>
      * <td>Text </td>
      * <td><code>Tuesday</code>; <code>Tue</code> </td>
      * </tr>
      * <tr>
      * <td><code>a</code> </td>
-     * <td>Am/pm ±ê¼Ç </td>
+     * <td>Am/pm æ ‡è®° </td>
      * <td>Text </td>
      * <td><code>PM</code> </td>
      * </tr>
      * <tr>
      * <td><code>H</code> </td>
-     * <td>Ò»ÌìÖĞµÄĞ¡Ê±Êı£¨0-23£© </td>
+     * <td>ä¸€å¤©ä¸­çš„å°æ—¶æ•°ï¼ˆ0-23ï¼‰ </td>
      * <td>Number </td>
      * <td><code>0</code> </td>
      * </tr>
      * <tr>
      * <td><code>k</code> </td>
-     * <td>Ò»ÌìÖĞµÄĞ¡Ê±Êı£¨1-24£© </td>
+     * <td>ä¸€å¤©ä¸­çš„å°æ—¶æ•°ï¼ˆ1-24ï¼‰ </td>
      * <td>Number </td>
      * <td><code>24</code> </td>
      * </tr>
      * <tr>
      * <td><code>K</code> </td>
-     * <td>am/pm ÖĞµÄĞ¡Ê±Êı£¨0-11£© </td>
+     * <td>am/pm ä¸­çš„å°æ—¶æ•°ï¼ˆ0-11ï¼‰ </td>
      * <td>Number </td>
      * <td><code>0</code> </td>
      * </tr>
      * <tr>
      * <td><code>h</code> </td>
-     * <td>am/pm ÖĞµÄĞ¡Ê±Êı£¨1-12£© </td>
+     * <td>am/pm ä¸­çš„å°æ—¶æ•°ï¼ˆ1-12ï¼‰ </td>
      * <td>Number </td>
      * <td><code>12</code> </td>
      * </tr>
      * <tr>
      * <td><code>m</code> </td>
-     * <td>Ğ¡Ê±ÖĞµÄ·ÖÖÓÊı </td>
+     * <td>å°æ—¶ä¸­çš„åˆ†é’Ÿæ•° </td>
      * <td>Number </td>
      * <td><code>30</code> </td>
      * </tr>
      * <tr>
      * <td><code>s</code> </td>
-     * <td>·ÖÖÓÖĞµÄÃëÊı </td>
+     * <td>åˆ†é’Ÿä¸­çš„ç§’æ•° </td>
      * <td>Number </td>
      * <td><code>55</code> </td>
      * </tr>
      * <tr>
      * <td><code>S</code> </td>
-     * <td>ºÁÃëÊı </td>
+     * <td>æ¯«ç§’æ•° </td>
      * <td>Number </td>
      * <td><code>978</code> </td>
      * </tr>
      * <tr>
      * <td><code>z</code> </td>
-     * <td>Ê±Çø </td>
+     * <td>æ—¶åŒº </td>
      * <td>General time zone </td>
      * <td><code>Pacific Standard Time</code>; <code>PST</code>; <code>GMT-08:00</code> </td>
      * </tr>
      * <tr>
      * <td><code>Z</code> </td>
-     * <td>Ê±Çø </td>
+     * <td>æ—¶åŒº </td>
      * <td>RFC 822 time zone </td>
      * <td><code>-0800</code> </td>
      * </tr>
      * </table>
      * <pre>
      *                          HH:mm    15:44
-     *                         h:mm a    3:44 ÏÂÎç
+     *                         h:mm a    3:44 ä¸‹åˆ
      *                        HH:mm z    15:44 CST
      *                        HH:mm Z    15:44 +0800
-     *                     HH:mm zzzz    15:44 ÖĞ¹ú±ê×¼Ê±¼ä
+     *                     HH:mm zzzz    15:44 ä¸­å›½æ ‡å‡†æ—¶é—´
      *                       HH:mm:ss    15:44:40
      *                     yyyy-MM-dd    2016-08-12
      *               yyyy-MM-dd HH:mm    2016-08-12 15:44
      *            yyyy-MM-dd HH:mm:ss    2016-08-12 15:44:40
-     *       yyyy-MM-dd HH:mm:ss zzzz    2016-08-12 15:44:40 ÖĞ¹ú±ê×¼Ê±¼ä
-     *  EEEE yyyy-MM-dd HH:mm:ss zzzz    ĞÇÆÚÎå 2016-08-12 15:44:40 ÖĞ¹ú±ê×¼Ê±¼ä
+     *       yyyy-MM-dd HH:mm:ss zzzz    2016-08-12 15:44:40 ä¸­å›½æ ‡å‡†æ—¶é—´
+     *  EEEE yyyy-MM-dd HH:mm:ss zzzz    æ˜ŸæœŸäº” 2016-08-12 15:44:40 ä¸­å›½æ ‡å‡†æ—¶é—´
      *       yyyy-MM-dd HH:mm:ss.SSSZ    2016-08-12 15:44:40.461+0800
      *     yyyy-MM-dd'T'HH:mm:ss.SSSZ    2016-08-12T15:44:40.461+0800
-     *   yyyy.MM.dd G 'at' HH:mm:ss z    2016.08.12 ¹«Ôª at 15:44:40 CST
-     *                         K:mm a    3:44 ÏÂÎç
-     *               EEE, MMM d, ''yy    ĞÇÆÚÎå, °ËÔÂ 12, '16
-     *          hh 'o''clock' a, zzzz    03 o'clock ÏÂÎç, ÖĞ¹ú±ê×¼Ê±¼ä
-     *   yyyyy.MMMMM.dd GGG hh:mm aaa    02016.°ËÔÂ.12 ¹«Ôª 03:44 ÏÂÎç
-     *     EEE, d MMM yyyy HH:mm:ss Z    ĞÇÆÚÎå, 12 °ËÔÂ 2016 15:44:40 +0800
+     *   yyyy.MM.dd G 'at' HH:mm:ss z    2016.08.12 å…¬å…ƒ at 15:44:40 CST
+     *                         K:mm a    3:44 ä¸‹åˆ
+     *               EEE, MMM d, ''yy    æ˜ŸæœŸäº”, å…«æœˆ 12, '16
+     *          hh 'o''clock' a, zzzz    03 o'clock ä¸‹åˆ, ä¸­å›½æ ‡å‡†æ—¶é—´
+     *   yyyyy.MMMMM.dd GGG hh:mm aaa    02016.å…«æœˆ.12 å…¬å…ƒ 03:44 ä¸‹åˆ
+     *     EEE, d MMM yyyy HH:mm:ss Z    æ˜ŸæœŸäº”, 12 å…«æœˆ 2016 15:44:40 +0800
      *                  yyMMddHHmmssZ    160812154440+0800
      *     yyyy-MM-dd'T'HH:mm:ss.SSSZ    2016-08-12T15:44:40.461+0800
-     * EEEE 'DATE('yyyy-MM-dd')' 'TIME('HH:mm:ss')' zzzz    ĞÇÆÚÎå DATE(2016-08-12) TIME(15:44:40) ÖĞ¹ú±ê×¼Ê±¼ä
+     * EEEE 'DATE('yyyy-MM-dd')' 'TIME('HH:mm:ss')' zzzz    æ˜ŸæœŸäº” DATE(2016-08-12) TIME(15:44:40) ä¸­å›½æ ‡å‡†æ—¶é—´
      * </pre>
      */
     public static final SimpleDateFormat DEFAULT_SDF = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
 
 
     /**
-     * ½«Ê±¼ä´Á×ªÎªÊ±¼ä×Ö·û´®
-     * <p>¸ñÊ½Îªyyyy-MM-dd HH:mm:ss</p>
+     * å°†æ—¶é—´æˆ³è½¬ä¸ºæ—¶é—´å­—ç¬¦ä¸²
+     * <p>æ ¼å¼ä¸ºyyyy-MM-dd HH:mm:ss</p>
      *
-     * @param milliseconds ºÁÃëÊ±¼ä´Á
-     * @return Ê±¼ä×Ö·û´®
+     * @param milliseconds æ¯«ç§’æ—¶é—´æˆ³
+     * @return æ—¶é—´å­—ç¬¦ä¸²
      */
     public static String milliseconds2String(long milliseconds) {
         return milliseconds2String(milliseconds, DEFAULT_SDF);
     }
 
     /**
-     * ½«Ê±¼ä´Á×ªÎªÊ±¼ä×Ö·û´®
-     * <p>¸ñÊ½ÎªÓÃ»§×Ô¶¨Òå</p>
+     * å°†æ—¶é—´æˆ³è½¬ä¸ºæ—¶é—´å­—ç¬¦ä¸²
+     * <p>æ ¼å¼ä¸ºç”¨æˆ·è‡ªå®šä¹‰</p>
      *
-     * @param milliseconds ºÁÃëÊ±¼ä´Á
-     * @param format       Ê±¼ä¸ñÊ½
-     * @return Ê±¼ä×Ö·û´®
+     * @param milliseconds æ¯«ç§’æ—¶é—´æˆ³
+     * @param format       æ—¶é—´æ ¼å¼
+     * @return æ—¶é—´å­—ç¬¦ä¸²
      */
     public static String milliseconds2String(long milliseconds, SimpleDateFormat format) {
         return format.format(new Date(milliseconds));
     }
 
     /**
-     * ½«Ê±¼ä×Ö·û´®×ªÎªÊ±¼ä´Á
-     * <p>¸ñÊ½Îªyyyy-MM-dd HH:mm:ss</p>
+     * å°†æ—¶é—´å­—ç¬¦ä¸²è½¬ä¸ºæ—¶é—´æˆ³
+     * <p>æ ¼å¼ä¸ºyyyy-MM-dd HH:mm:ss</p>
      *
-     * @param time Ê±¼ä×Ö·û´®
-     * @return ºÁÃëÊ±¼ä´Á
+     * @param time æ—¶é—´å­—ç¬¦ä¸²
+     * @return æ¯«ç§’æ—¶é—´æˆ³
      */
     public static long string2Milliseconds(String time) {
         return string2Milliseconds(time, DEFAULT_SDF);
     }
 
     /**
-     * ½«Ê±¼ä×Ö·û´®×ªÎªÊ±¼ä´Á
-     * <p>¸ñÊ½ÎªÓÃ»§×Ô¶¨Òå</p>
+     * å°†æ—¶é—´å­—ç¬¦ä¸²è½¬ä¸ºæ—¶é—´æˆ³
+     * <p>æ ¼å¼ä¸ºç”¨æˆ·è‡ªå®šä¹‰</p>
      *
-     * @param time   Ê±¼ä×Ö·û´®
-     * @param format Ê±¼ä¸ñÊ½
-     * @return ºÁÃëÊ±¼ä´Á
+     * @param time   æ—¶é—´å­—ç¬¦ä¸²
+     * @param format æ—¶é—´æ ¼å¼
+     * @return æ¯«ç§’æ—¶é—´æˆ³
      */
     public static long string2Milliseconds(String time, SimpleDateFormat format) {
         try {
@@ -238,83 +238,83 @@ public class TimeUtils {
     }
 
     /**
-     * ½«Ê±¼ä×Ö·û´®×ªÎªDateÀàĞÍ
-     * <p>¸ñÊ½Îªyyyy-MM-dd HH:mm:ss</p>
+     * å°†æ—¶é—´å­—ç¬¦ä¸²è½¬ä¸ºDateç±»å‹
+     * <p>æ ¼å¼ä¸ºyyyy-MM-dd HH:mm:ss</p>
      *
-     * @param time Ê±¼ä×Ö·û´®
-     * @return DateÀàĞÍ
+     * @param time æ—¶é—´å­—ç¬¦ä¸²
+     * @return Dateç±»å‹
      */
     public static Date string2Date(String time) {
         return string2Date(time, DEFAULT_SDF);
     }
 
     /**
-     * ½«Ê±¼ä×Ö·û´®×ªÎªDateÀàĞÍ
-     * <p>¸ñÊ½ÎªÓÃ»§×Ô¶¨Òå</p>
+     * å°†æ—¶é—´å­—ç¬¦ä¸²è½¬ä¸ºDateç±»å‹
+     * <p>æ ¼å¼ä¸ºç”¨æˆ·è‡ªå®šä¹‰</p>
      *
-     * @param time   Ê±¼ä×Ö·û´®
-     * @param format Ê±¼ä¸ñÊ½
-     * @return DateÀàĞÍ
+     * @param time   æ—¶é—´å­—ç¬¦ä¸²
+     * @param format æ—¶é—´æ ¼å¼
+     * @return Dateç±»å‹
      */
     public static Date string2Date(String time, SimpleDateFormat format) {
         return new Date(string2Milliseconds(time, format));
     }
 
     /**
-     * ½«DateÀàĞÍ×ªÎªÊ±¼ä×Ö·û´®
-     * <p>¸ñÊ½Îªyyyy-MM-dd HH:mm:ss</p>
+     * å°†Dateç±»å‹è½¬ä¸ºæ—¶é—´å­—ç¬¦ä¸²
+     * <p>æ ¼å¼ä¸ºyyyy-MM-dd HH:mm:ss</p>
      *
-     * @param time DateÀàĞÍÊ±¼ä
-     * @return Ê±¼ä×Ö·û´®
+     * @param time Dateç±»å‹æ—¶é—´
+     * @return æ—¶é—´å­—ç¬¦ä¸²
      */
     public static String date2String(Date time) {
         return date2String(time, DEFAULT_SDF);
     }
 
     /**
-     * ½«DateÀàĞÍ×ªÎªÊ±¼ä×Ö·û´®
-     * <p>¸ñÊ½ÎªÓÃ»§×Ô¶¨Òå</p>
+     * å°†Dateç±»å‹è½¬ä¸ºæ—¶é—´å­—ç¬¦ä¸²
+     * <p>æ ¼å¼ä¸ºç”¨æˆ·è‡ªå®šä¹‰</p>
      *
-     * @param time   DateÀàĞÍÊ±¼ä
-     * @param format Ê±¼ä¸ñÊ½
-     * @return Ê±¼ä×Ö·û´®
+     * @param time   Dateç±»å‹æ—¶é—´
+     * @param format æ—¶é—´æ ¼å¼
+     * @return æ—¶é—´å­—ç¬¦ä¸²
      */
     public static String date2String(Date time, SimpleDateFormat format) {
         return format.format(time);
     }
 
     /**
-     * ½«DateÀàĞÍ×ªÎªÊ±¼ä´Á
+     * å°†Dateç±»å‹è½¬ä¸ºæ—¶é—´æˆ³
      *
-     * @param time DateÀàĞÍÊ±¼ä
-     * @return ºÁÃëÊ±¼ä´Á
+     * @param time Dateç±»å‹æ—¶é—´
+     * @return æ¯«ç§’æ—¶é—´æˆ³
      */
     public static long date2Milliseconds(Date time) {
         return time.getTime();
     }
 
     /**
-     * ½«Ê±¼ä´Á×ªÎªDateÀàĞÍ
+     * å°†æ—¶é—´æˆ³è½¬ä¸ºDateç±»å‹
      *
-     * @param milliseconds ºÁÃëÊ±¼ä´Á
-     * @return DateÀàĞÍÊ±¼ä
+     * @param milliseconds æ¯«ç§’æ—¶é—´æˆ³
+     * @return Dateç±»å‹æ—¶é—´
      */
     public static Date milliseconds2Date(long milliseconds) {
         return new Date(milliseconds);
     }
 
     /**
-     * ºÁÃëÊ±¼ä´Áµ¥Î»×ª»»£¨µ¥Î»£ºunit£©
+     * æ¯«ç§’æ—¶é—´æˆ³å•ä½è½¬æ¢ï¼ˆå•ä½ï¼šunitï¼‰
      *
-     * @param milliseconds ºÁÃëÊ±¼ä´Á
+     * @param milliseconds æ¯«ç§’æ—¶é—´æˆ³
      * @param unit         <ul>
-     *                     <li>{@link TimeUnit#MSEC}: ºÁÃë</li>
-     *                     <li>{@link TimeUnit#SEC }: Ãë</li>
-     *                     <li>{@link TimeUnit#MIN }: ·Ö</li>
-     *                     <li>{@link TimeUnit#HOUR}: Ğ¡Ê±</li>
-     *                     <li>{@link TimeUnit#DAY }: Ìì</li>
+     *                     <li>{@link TimeUnit#MSEC}: æ¯«ç§’</li>
+     *                     <li>{@link TimeUnit#SEC }: ç§’</li>
+     *                     <li>{@link TimeUnit#MIN }: åˆ†</li>
+     *                     <li>{@link TimeUnit#HOUR}: å°æ—¶</li>
+     *                     <li>{@link TimeUnit#DAY }: å¤©</li>
      *                     </ul>
-     * @return unitÊ±¼ä´Á
+     * @return unitæ—¶é—´æˆ³
      */
     private static long milliseconds2Unit(long milliseconds, TimeUnit unit) {
         switch (unit) {
@@ -333,39 +333,39 @@ public class TimeUtils {
     }
 
     /**
-     * »ñÈ¡Á½¸öÊ±¼ä²î£¨µ¥Î»£ºunit£©
-     * <p>time1ºÍtime2¸ñÊ½¶¼Îªyyyy-MM-dd HH:mm:ss</p>
+     * è·å–ä¸¤ä¸ªæ—¶é—´å·®ï¼ˆå•ä½ï¼šunitï¼‰
+     * <p>time1å’Œtime2æ ¼å¼éƒ½ä¸ºyyyy-MM-dd HH:mm:ss</p>
      *
-     * @param time0 Ê±¼ä×Ö·û´®1
-     * @param time1 Ê±¼ä×Ö·û´®2
+     * @param time0 æ—¶é—´å­—ç¬¦ä¸²1
+     * @param time1 æ—¶é—´å­—ç¬¦ä¸²2
      * @param unit  <ul>
-     *              <li>{@link TimeUnit#MSEC}: ºÁÃë</li>
-     *              <li>{@link TimeUnit#SEC }: Ãë</li>
-     *              <li>{@link TimeUnit#MIN }: ·Ö</li>
-     *              <li>{@link TimeUnit#HOUR}: Ğ¡Ê±</li>
-     *              <li>{@link TimeUnit#DAY }: Ìì</li>
+     *              <li>{@link TimeUnit#MSEC}: æ¯«ç§’</li>
+     *              <li>{@link TimeUnit#SEC }: ç§’</li>
+     *              <li>{@link TimeUnit#MIN }: åˆ†</li>
+     *              <li>{@link TimeUnit#HOUR}: å°æ—¶</li>
+     *              <li>{@link TimeUnit#DAY }: å¤©</li>
      *              </ul>
-     * @return unitÊ±¼ä´Á
+     * @return unitæ—¶é—´æˆ³
      */
     public static long getIntervalTime(String time0, String time1, TimeUnit unit) {
         return getIntervalTime(time0, time1, unit, DEFAULT_SDF);
     }
 
     /**
-     * »ñÈ¡Á½¸öÊ±¼ä²î£¨µ¥Î»£ºunit£©
-     * <p>time1ºÍtime2¸ñÊ½¶¼Îªformat</p>
+     * è·å–ä¸¤ä¸ªæ—¶é—´å·®ï¼ˆå•ä½ï¼šunitï¼‰
+     * <p>time1å’Œtime2æ ¼å¼éƒ½ä¸ºformat</p>
      *
-     * @param time0  Ê±¼ä×Ö·û´®1
-     * @param time1  Ê±¼ä×Ö·û´®2
+     * @param time0  æ—¶é—´å­—ç¬¦ä¸²1
+     * @param time1  æ—¶é—´å­—ç¬¦ä¸²2
      * @param unit   <ul>
-     *               <li>{@link TimeUnit#MSEC}: ºÁÃë</li>
-     *               <li>{@link TimeUnit#SEC }: Ãë</li>
-     *               <li>{@link TimeUnit#MIN }: ·Ö</li>
-     *               <li>{@link TimeUnit#HOUR}: Ğ¡Ê±</li>
-     *               <li>{@link TimeUnit#DAY }: Ìì</li>
+     *               <li>{@link TimeUnit#MSEC}: æ¯«ç§’</li>
+     *               <li>{@link TimeUnit#SEC }: ç§’</li>
+     *               <li>{@link TimeUnit#MIN }: åˆ†</li>
+     *               <li>{@link TimeUnit#HOUR}: å°æ—¶</li>
+     *               <li>{@link TimeUnit#DAY }: å¤©</li>
      *               </ul>
-     * @param format Ê±¼ä¸ñÊ½
-     * @return unitÊ±¼ä´Á
+     * @param format æ—¶é—´æ ¼å¼
+     * @return unitæ—¶é—´æˆ³
      */
     public static long getIntervalTime(String time0, String time1, TimeUnit unit, SimpleDateFormat format) {
         return Math.abs(milliseconds2Unit(string2Milliseconds(time0, format)
@@ -373,19 +373,19 @@ public class TimeUtils {
     }
 
     /**
-     * »ñÈ¡Á½¸öÊ±¼ä²î£¨µ¥Î»£ºunit£©
-     * <p>time1ºÍtime2¶¼ÎªDateÀàĞÍ</p>
+     * è·å–ä¸¤ä¸ªæ—¶é—´å·®ï¼ˆå•ä½ï¼šunitï¼‰
+     * <p>time1å’Œtime2éƒ½ä¸ºDateç±»å‹</p>
      *
-     * @param time0 DateÀàĞÍÊ±¼ä1
-     * @param time1 DateÀàĞÍÊ±¼ä2
+     * @param time0 Dateç±»å‹æ—¶é—´1
+     * @param time1 Dateç±»å‹æ—¶é—´2
      * @param unit  <ul>
-     *              <li>{@link TimeUnit#MSEC}: ºÁÃë</li>
-     *              <li>{@link TimeUnit#SEC }: Ãë</li>
-     *              <li>{@link TimeUnit#MIN }: ·Ö</li>
-     *              <li>{@link TimeUnit#HOUR}: Ğ¡Ê±</li>
-     *              <li>{@link TimeUnit#DAY }: Ìì</li>
+     *              <li>{@link TimeUnit#MSEC}: æ¯«ç§’</li>
+     *              <li>{@link TimeUnit#SEC }: ç§’</li>
+     *              <li>{@link TimeUnit#MIN }: åˆ†</li>
+     *              <li>{@link TimeUnit#HOUR}: å°æ—¶</li>
+     *              <li>{@link TimeUnit#DAY }: å¤©</li>
      *              </ul>
-     * @return unitÊ±¼ä´Á
+     * @return unitæ—¶é—´æˆ³
      */
     public static long getIntervalTime(Date time0, Date time1, TimeUnit unit) {
         return Math.abs(milliseconds2Unit(date2Milliseconds(time1)
@@ -393,105 +393,105 @@ public class TimeUtils {
     }
 
     /**
-     * »ñÈ¡µ±Ç°Ê±¼ä
+     * è·å–å½“å‰æ—¶é—´
      *
-     * @return ºÁÃëÊ±¼ä´Á
+     * @return æ¯«ç§’æ—¶é—´æˆ³
      */
     public static long getCurTimeMills() {
         return System.currentTimeMillis();
     }
 
     /**
-     * »ñÈ¡µ±Ç°Ê±¼ä
-     * <p>¸ñÊ½Îªyyyy-MM-dd HH:mm:ss</p>
+     * è·å–å½“å‰æ—¶é—´
+     * <p>æ ¼å¼ä¸ºyyyy-MM-dd HH:mm:ss</p>
      *
-     * @return Ê±¼ä×Ö·û´®
+     * @return æ—¶é—´å­—ç¬¦ä¸²
      */
     public static String getCurTimeString() {
         return date2String(new Date());
     }
 
     /**
-     * »ñÈ¡µ±Ç°Ê±¼ä
-     * <p>¸ñÊ½ÎªÓÃ»§×Ô¶¨Òå</p>
+     * è·å–å½“å‰æ—¶é—´
+     * <p>æ ¼å¼ä¸ºç”¨æˆ·è‡ªå®šä¹‰</p>
      *
-     * @param format Ê±¼ä¸ñÊ½
-     * @return Ê±¼ä×Ö·û´®
+     * @param format æ—¶é—´æ ¼å¼
+     * @return æ—¶é—´å­—ç¬¦ä¸²
      */
     public static String getCurTimeString(SimpleDateFormat format) {
         return date2String(new Date(), format);
     }
 
     /**
-     * »ñÈ¡µ±Ç°Ê±¼ä
-     * <p>DateÀàĞÍ</p>
+     * è·å–å½“å‰æ—¶é—´
+     * <p>Dateç±»å‹</p>
      *
-     * @return DateÀàĞÍÊ±¼ä
+     * @return Dateç±»å‹æ—¶é—´
      */
     public static Date getCurTimeDate() {
         return new Date();
     }
 
     /**
-     * »ñÈ¡Óëµ±Ç°Ê±¼äµÄ²î£¨µ¥Î»£ºunit£©
-     * <p>time¸ñÊ½Îªyyyy-MM-dd HH:mm:ss</p>
+     * è·å–ä¸å½“å‰æ—¶é—´çš„å·®ï¼ˆå•ä½ï¼šunitï¼‰
+     * <p>timeæ ¼å¼ä¸ºyyyy-MM-dd HH:mm:ss</p>
      *
-     * @param time Ê±¼ä×Ö·û´®
+     * @param time æ—¶é—´å­—ç¬¦ä¸²
      * @param unit <ul>
-     *             <li>{@link TimeUnit#MSEC}:ºÁÃë</li>
-     *             <li>{@link TimeUnit#SEC }:Ãë</li>
-     *             <li>{@link TimeUnit#MIN }:·Ö</li>
-     *             <li>{@link TimeUnit#HOUR}:Ğ¡Ê±</li>
-     *             <li>{@link TimeUnit#DAY }:Ìì</li>
+     *             <li>{@link TimeUnit#MSEC}:æ¯«ç§’</li>
+     *             <li>{@link TimeUnit#SEC }:ç§’</li>
+     *             <li>{@link TimeUnit#MIN }:åˆ†</li>
+     *             <li>{@link TimeUnit#HOUR}:å°æ—¶</li>
+     *             <li>{@link TimeUnit#DAY }:å¤©</li>
      *             </ul>
-     * @return unitÊ±¼ä´Á
+     * @return unitæ—¶é—´æˆ³
      */
     public static long getIntervalByNow(String time, TimeUnit unit) {
         return getIntervalByNow(time, unit, DEFAULT_SDF);
     }
 
     /**
-     * »ñÈ¡Óëµ±Ç°Ê±¼äµÄ²î£¨µ¥Î»£ºunit£©
-     * <p>time¸ñÊ½Îªformat</p>
+     * è·å–ä¸å½“å‰æ—¶é—´çš„å·®ï¼ˆå•ä½ï¼šunitï¼‰
+     * <p>timeæ ¼å¼ä¸ºformat</p>
      *
-     * @param time   Ê±¼ä×Ö·û´®
+     * @param time   æ—¶é—´å­—ç¬¦ä¸²
      * @param unit   <ul>
-     *               <li>{@link TimeUnit#MSEC}: ºÁÃë</li>
-     *               <li>{@link TimeUnit#SEC }: Ãë</li>
-     *               <li>{@link TimeUnit#MIN }: ·Ö</li>
-     *               <li>{@link TimeUnit#HOUR}: Ğ¡Ê±</li>
-     *               <li>{@link TimeUnit#DAY }: Ìì</li>
+     *               <li>{@link TimeUnit#MSEC}: æ¯«ç§’</li>
+     *               <li>{@link TimeUnit#SEC }: ç§’</li>
+     *               <li>{@link TimeUnit#MIN }: åˆ†</li>
+     *               <li>{@link TimeUnit#HOUR}: å°æ—¶</li>
+     *               <li>{@link TimeUnit#DAY }: å¤©</li>
      *               </ul>
-     * @param format Ê±¼ä¸ñÊ½
-     * @return unitÊ±¼ä´Á
+     * @param format æ—¶é—´æ ¼å¼
+     * @return unitæ—¶é—´æˆ³
      */
     public static long getIntervalByNow(String time, TimeUnit unit, SimpleDateFormat format) {
         return getIntervalTime(getCurTimeString(), time, unit, format);
     }
 
     /**
-     * »ñÈ¡Óëµ±Ç°Ê±¼äµÄ²î£¨µ¥Î»£ºunit£©
-     * <p>timeÎªDateÀàĞÍ</p>
+     * è·å–ä¸å½“å‰æ—¶é—´çš„å·®ï¼ˆå•ä½ï¼šunitï¼‰
+     * <p>timeä¸ºDateç±»å‹</p>
      *
-     * @param time DateÀàĞÍÊ±¼ä
+     * @param time Dateç±»å‹æ—¶é—´
      * @param unit <ul>
-     *             <li>{@link TimeUnit#MSEC}: ºÁÃë</li>
-     *             <li>{@link TimeUnit#SEC }: Ãë</li>
-     *             <li>{@link TimeUnit#MIN }: ·Ö</li>
-     *             <li>{@link TimeUnit#HOUR}: Ğ¡Ê±</li>
-     *             <li>{@link TimeUnit#DAY }: Ìì</li>
+     *             <li>{@link TimeUnit#MSEC}: æ¯«ç§’</li>
+     *             <li>{@link TimeUnit#SEC }: ç§’</li>
+     *             <li>{@link TimeUnit#MIN }: åˆ†</li>
+     *             <li>{@link TimeUnit#HOUR}: å°æ—¶</li>
+     *             <li>{@link TimeUnit#DAY }: å¤©</li>
      *             </ul>
-     * @return unitÊ±¼ä´Á
+     * @return unitæ—¶é—´æˆ³
      */
     public static long getIntervalByNow(Date time, TimeUnit unit) {
         return getIntervalTime(getCurTimeDate(), time, unit);
     }
 
     /**
-     * ÅĞ¶ÏÈòÄê
+     * åˆ¤æ–­é—°å¹´
      *
-     * @param year Äê·İ
-     * @return {@code true}: ÈòÄê<br>{@code false}: Æ½Äê
+     * @param year å¹´ä»½
+     * @return {@code true}: é—°å¹´<br>{@code false}: å¹³å¹´
      */
     public static boolean isLeapYear(int year) {
         return year % 4 == 0 && year % 100 != 0 || year % 400 == 0;

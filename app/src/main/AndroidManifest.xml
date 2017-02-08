@@ -112,7 +112,7 @@
         </activity>
 
         <!-- 分屏播放视频和网页  -->
-        <activity android:name=".fenping.ui.FenPingActivity"></activity>
+        <activity android:name=".fenping.FenPingActivity"></activity>
 
 
         <!-- 拍照 -->

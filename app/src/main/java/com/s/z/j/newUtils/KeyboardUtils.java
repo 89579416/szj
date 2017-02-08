@@ -12,7 +12,7 @@ import android.widget.EditText;
  *     author: Blankj
  *     blog  : http://blankj.com
  *     time  : 2016/8/2
- *     desc  : ¼üÅÌÏà¹Ø¹¤¾ßÀà
+ *     desc  : é”®ç›˜ç›¸å…³å·¥å…·ç±»
  * </pre>
  */
 public class KeyboardUtils {
@@ -22,13 +22,13 @@ public class KeyboardUtils {
     }
 
     /**
-     * ±ÜÃâÊäÈë·¨Ãæ°åÕÚµ²
-     * <p>ÔÚmanifest.xmlÖĞactivityÖĞÉèÖÃ</p>
+     * é¿å…è¾“å…¥æ³•é¢æ¿é®æŒ¡
+     * <p>åœ¨manifest.xmlä¸­activityä¸­è®¾ç½®</p>
      * <p>android:windowSoftInputMode="stateVisible|adjustResize"</p>
      */
 
     /**
-     * ¶¯Ì¬Òş²ØÈí¼üÅÌ
+     * åŠ¨æ€éšè—è½¯é”®ç›˜
      *
      * @param activity activity
      */
@@ -42,10 +42,10 @@ public class KeyboardUtils {
     }
 
     /**
-     * ¶¯Ì¬Òş²ØÈí¼üÅÌ
+     * åŠ¨æ€éšè—è½¯é”®ç›˜
      *
-     * @param context ÉÏÏÂÎÄ
-     * @param edit    ÊäÈë¿ò
+     * @param context ä¸Šä¸‹æ–‡
+     * @param edit    è¾“å…¥æ¡†
      */
     public static void hideSoftInput(Context context, EditText edit) {
         edit.clearFocus();
@@ -55,9 +55,9 @@ public class KeyboardUtils {
     }
 
     /**
-     * µã»÷ÆÁÄ»¿Õ°×ÇøÓòÒş²ØÈí¼üÅÌ£¨·½·¨1£©
-     * <p>ÔÚonTouchÖĞ´¦Àí£¬Î´»ñ½¹µãÔòÒş²Ø</p>
-     * <p>²ÎÕÕÒÔÏÂ×¢ÊÍ´úÂë</p>
+     * ç‚¹å‡»å±å¹•ç©ºç™½åŒºåŸŸéšè—è½¯é”®ç›˜ï¼ˆæ–¹æ³•1ï¼‰
+     * <p>åœ¨onTouchä¸­å¤„ç†ï¼Œæœªè·ç„¦ç‚¹åˆ™éšè—</p>
+     * <p>å‚ç…§ä»¥ä¸‹æ³¨é‡Šä»£ç </p>
      */
     public static void clickBlankArea2HideSoftInput0() {
         Log.i("tips", "U should copy the following code.");
@@ -74,10 +74,10 @@ public class KeyboardUtils {
     }
 
     /**
-     * µã»÷ÆÁÄ»¿Õ°×ÇøÓòÒş²ØÈí¼üÅÌ£¨·½·¨2£©
-     * <p>¸ù¾İEditTextËùÔÚ×ø±êºÍÓÃ»§µã»÷µÄ×ø±êÏà¶Ô±È£¬À´ÅĞ¶ÏÊÇ·ñÒş²Ø¼üÅÌ</p>
-     * <p>ĞèÖØĞ´dispatchTouchEvent</p>
-     * <p>²ÎÕÕÒÔÏÂ×¢ÊÍ´úÂë</p>
+     * ç‚¹å‡»å±å¹•ç©ºç™½åŒºåŸŸéšè—è½¯é”®ç›˜ï¼ˆæ–¹æ³•2ï¼‰
+     * <p>æ ¹æ®EditTextæ‰€åœ¨åæ ‡å’Œç”¨æˆ·ç‚¹å‡»çš„åæ ‡ç›¸å¯¹æ¯”ï¼Œæ¥åˆ¤æ–­æ˜¯å¦éšè—é”®ç›˜</p>
+     * <p>éœ€é‡å†™dispatchTouchEvent</p>
+     * <p>å‚ç…§ä»¥ä¸‹æ³¨é‡Šä»£ç </p>
      */
     public static void clickBlankArea2HideSoftInput1() {
         Log.i("tips", "U should copy the following code.");
@@ -93,7 +93,7 @@ public class KeyboardUtils {
             return super.dispatchTouchEvent(ev);
         }
 
-        // ¸ù¾İEditTextËùÔÚ×ø±êºÍÓÃ»§µã»÷µÄ×ø±êÏà¶Ô±È£¬À´ÅĞ¶ÏÊÇ·ñÒş²Ø¼üÅÌ
+        // æ ¹æ®EditTextæ‰€åœ¨åæ ‡å’Œç”¨æˆ·ç‚¹å‡»çš„åæ ‡ç›¸å¯¹æ¯”ï¼Œæ¥åˆ¤æ–­æ˜¯å¦éšè—é”®ç›˜
         private boolean isShouldHideKeyboard(View v, MotionEvent event) {
             if (v != null && (v instanceof EditText)) {
                 int[] l = {0, 0};
@@ -108,7 +108,7 @@ public class KeyboardUtils {
             return false;
         }
 
-        // »ñÈ¡InputMethodManager£¬Òş²ØÈí¼üÅÌ
+        // è·å–InputMethodManagerï¼Œéšè—è½¯é”®ç›˜
         private void hideKeyboard(IBinder token) {
             if (token != null) {
                 InputMethodManager im = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -119,10 +119,10 @@ public class KeyboardUtils {
     }
 
     /**
-     * ¶¯Ì¬ÏÔÊ¾Èí¼üÅÌ
+     * åŠ¨æ€æ˜¾ç¤ºè½¯é”®ç›˜
      *
-     * @param context ÉÏÏÂÎÄ
-     * @param edit    ÊäÈë¿ò
+     * @param context ä¸Šä¸‹æ–‡
+     * @param edit    è¾“å…¥æ¡†
      */
     public static void showSoftInput(Context context, EditText edit) {
         edit.setFocusable(true);
@@ -134,10 +134,10 @@ public class KeyboardUtils {
     }
 
     /**
-     * ÇĞ»»¼üÅÌÏÔÊ¾Óë·ñ×´Ì¬
+     * åˆ‡æ¢é”®ç›˜æ˜¾ç¤ºä¸å¦çŠ¶æ€
      *
-     * @param context ÉÏÏÂÎÄ
-     * @param edit    ÊäÈë¿ò
+     * @param context ä¸Šä¸‹æ–‡
+     * @param edit    è¾“å…¥æ¡†
      */
     public static void toggleSoftInput(Context context, EditText edit) {
         edit.setFocusable(true);

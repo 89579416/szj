@@ -30,7 +30,7 @@ import static com.s.z.j.newUtils.ConstUtils.MB;
  *     author: Blankj
  *     blog  : http://blankj.com
  *     time  : 2016/8/11
- *     desc  : ÎÄ¼şÏà¹Ø¹¤¾ßÀà
+ *     desc  : æ–‡ä»¶ç›¸å…³å·¥å…·ç±»
  * </pre>
  */
 public class FileUtils {
@@ -40,115 +40,115 @@ public class FileUtils {
     }
 
     /**
-     * ¸ù¾İÎÄ¼şÂ·¾¶»ñÈ¡ÎÄ¼ş
+     * æ ¹æ®æ–‡ä»¶è·¯å¾„è·å–æ–‡ä»¶
      *
-     * @param filePath ÎÄ¼şÂ·¾¶
-     * @return ÎÄ¼ş
+     * @param filePath æ–‡ä»¶è·¯å¾„
+     * @return æ–‡ä»¶
      */
     public static File getFileByPath(String filePath) {
         return StringUtils.isSpace(filePath) ? null : new File(filePath);
     }
 
     /**
-     * ÅĞ¶ÏÎÄ¼şÊÇ·ñ´æÔÚ
+     * åˆ¤æ–­æ–‡ä»¶æ˜¯å¦å­˜åœ¨
      *
-     * @param filePath ÎÄ¼şÂ·¾¶
-     * @return {@code true}: ´æÔÚ<br>{@code false}: ²»´æÔÚ
+     * @param filePath æ–‡ä»¶è·¯å¾„
+     * @return {@code true}: å­˜åœ¨<br>{@code false}: ä¸å­˜åœ¨
      */
     public static boolean isFileExists(String filePath) {
         return isFileExists(getFileByPath(filePath));
     }
 
     /**
-     * ÅĞ¶ÏÎÄ¼şÊÇ·ñ´æÔÚ
+     * åˆ¤æ–­æ–‡ä»¶æ˜¯å¦å­˜åœ¨
      *
-     * @param file ÎÄ¼ş
-     * @return {@code true}: ´æÔÚ<br>{@code false}: ²»´æÔÚ
+     * @param file æ–‡ä»¶
+     * @return {@code true}: å­˜åœ¨<br>{@code false}: ä¸å­˜åœ¨
      */
     public static boolean isFileExists(File file) {
         return file != null && file.exists();
     }
 
     /**
-     * ÅĞ¶ÏÊÇ·ñÊÇÄ¿Â¼
+     * åˆ¤æ–­æ˜¯å¦æ˜¯ç›®å½•
      *
-     * @param dirPath Ä¿Â¼Â·¾¶
-     * @return {@code true}: ÊÇ<br>{@code false}: ·ñ
+     * @param dirPath ç›®å½•è·¯å¾„
+     * @return {@code true}: æ˜¯<br>{@code false}: å¦
      */
     public static boolean isDir(String dirPath) {
         return isDir(getFileByPath(dirPath));
     }
 
     /**
-     * ÅĞ¶ÏÊÇ·ñÊÇÄ¿Â¼
+     * åˆ¤æ–­æ˜¯å¦æ˜¯ç›®å½•
      *
-     * @param file ÎÄ¼ş
-     * @return {@code true}: ÊÇ<br>{@code false}: ·ñ
+     * @param file æ–‡ä»¶
+     * @return {@code true}: æ˜¯<br>{@code false}: å¦
      */
     public static boolean isDir(File file) {
         return isFileExists(file) && file.isDirectory();
     }
 
     /**
-     * ÅĞ¶ÏÊÇ·ñÊÇÎÄ¼ş
+     * åˆ¤æ–­æ˜¯å¦æ˜¯æ–‡ä»¶
      *
-     * @param filePath ÎÄ¼şÂ·¾¶
-     * @return {@code true}: ÊÇ<br>{@code false}: ·ñ
+     * @param filePath æ–‡ä»¶è·¯å¾„
+     * @return {@code true}: æ˜¯<br>{@code false}: å¦
      */
     public static boolean isFile(String filePath) {
         return isFile(getFileByPath(filePath));
     }
 
     /**
-     * ÅĞ¶ÏÊÇ·ñÊÇÎÄ¼ş
+     * åˆ¤æ–­æ˜¯å¦æ˜¯æ–‡ä»¶
      *
-     * @param file ÎÄ¼ş
-     * @return {@code true}: ÊÇ<br>{@code false}: ·ñ
+     * @param file æ–‡ä»¶
+     * @return {@code true}: æ˜¯<br>{@code false}: å¦
      */
     public static boolean isFile(File file) {
         return isFileExists(file) && file.isFile();
     }
 
     /**
-     * ÅĞ¶ÏÄ¿Â¼ÊÇ·ñ´æÔÚ£¬²»´æÔÚÔòÅĞ¶ÏÊÇ·ñ´´½¨³É¹¦
+     * åˆ¤æ–­ç›®å½•æ˜¯å¦å­˜åœ¨ï¼Œä¸å­˜åœ¨åˆ™åˆ¤æ–­æ˜¯å¦åˆ›å»ºæˆåŠŸ
      *
-     * @param dirPath ÎÄ¼şÂ·¾¶
-     * @return {@code true}: ´æÔÚ»ò´´½¨³É¹¦<br>{@code false}: ²»´æÔÚ»ò´´½¨Ê§°Ü
+     * @param dirPath æ–‡ä»¶è·¯å¾„
+     * @return {@code true}: å­˜åœ¨æˆ–åˆ›å»ºæˆåŠŸ<br>{@code false}: ä¸å­˜åœ¨æˆ–åˆ›å»ºå¤±è´¥
      */
     public static boolean createOrExistsDir(String dirPath) {
         return createOrExistsDir(getFileByPath(dirPath));
     }
 
     /**
-     * ÅĞ¶ÏÄ¿Â¼ÊÇ·ñ´æÔÚ£¬²»´æÔÚÔòÅĞ¶ÏÊÇ·ñ´´½¨³É¹¦
+     * åˆ¤æ–­ç›®å½•æ˜¯å¦å­˜åœ¨ï¼Œä¸å­˜åœ¨åˆ™åˆ¤æ–­æ˜¯å¦åˆ›å»ºæˆåŠŸ
      *
-     * @param file ÎÄ¼ş
-     * @return {@code true}: ´æÔÚ»ò´´½¨³É¹¦<br>{@code false}: ²»´æÔÚ»ò´´½¨Ê§°Ü
+     * @param file æ–‡ä»¶
+     * @return {@code true}: å­˜åœ¨æˆ–åˆ›å»ºæˆåŠŸ<br>{@code false}: ä¸å­˜åœ¨æˆ–åˆ›å»ºå¤±è´¥
      */
     public static boolean createOrExistsDir(File file) {
-        // Èç¹û´æÔÚ£¬ÊÇÄ¿Â¼Ôò·µ»Øtrue£¬ÊÇÎÄ¼şÔò·µ»Øfalse£¬²»´æÔÚÔò·µ»ØÊÇ·ñ´´½¨³É¹¦
+        // å¦‚æœå­˜åœ¨ï¼Œæ˜¯ç›®å½•åˆ™è¿”å›trueï¼Œæ˜¯æ–‡ä»¶åˆ™è¿”å›falseï¼Œä¸å­˜åœ¨åˆ™è¿”å›æ˜¯å¦åˆ›å»ºæˆåŠŸ
         return file != null && (file.exists() ? file.isDirectory() : file.mkdirs());
     }
 
     /**
-     * ÅĞ¶ÏÎÄ¼şÊÇ·ñ´æÔÚ£¬²»´æÔÚÔòÅĞ¶ÏÊÇ·ñ´´½¨³É¹¦
+     * åˆ¤æ–­æ–‡ä»¶æ˜¯å¦å­˜åœ¨ï¼Œä¸å­˜åœ¨åˆ™åˆ¤æ–­æ˜¯å¦åˆ›å»ºæˆåŠŸ
      *
-     * @param filePath ÎÄ¼şÂ·¾¶
-     * @return {@code true}: ´æÔÚ»ò´´½¨³É¹¦<br>{@code false}: ²»´æÔÚ»ò´´½¨Ê§°Ü
+     * @param filePath æ–‡ä»¶è·¯å¾„
+     * @return {@code true}: å­˜åœ¨æˆ–åˆ›å»ºæˆåŠŸ<br>{@code false}: ä¸å­˜åœ¨æˆ–åˆ›å»ºå¤±è´¥
      */
     public static boolean createOrExistsFile(String filePath) {
         return createOrExistsFile(getFileByPath(filePath));
     }
 
     /**
-     * ÅĞ¶ÏÎÄ¼şÊÇ·ñ´æÔÚ£¬²»´æÔÚÔòÅĞ¶ÏÊÇ·ñ´´½¨³É¹¦
+     * åˆ¤æ–­æ–‡ä»¶æ˜¯å¦å­˜åœ¨ï¼Œä¸å­˜åœ¨åˆ™åˆ¤æ–­æ˜¯å¦åˆ›å»ºæˆåŠŸ
      *
-     * @param file ÎÄ¼ş
-     * @return {@code true}: ´æÔÚ»ò´´½¨³É¹¦<br>{@code false}: ²»´æÔÚ»ò´´½¨Ê§°Ü
+     * @param file æ–‡ä»¶
+     * @return {@code true}: å­˜åœ¨æˆ–åˆ›å»ºæˆåŠŸ<br>{@code false}: ä¸å­˜åœ¨æˆ–åˆ›å»ºå¤±è´¥
      */
     public static boolean createOrExistsFile(File file) {
         if (file == null) return false;
-        // Èç¹û´æÔÚ£¬ÊÇÎÄ¼şÔò·µ»Øtrue£¬ÊÇÄ¿Â¼Ôò·µ»Øfalse
+        // å¦‚æœå­˜åœ¨ï¼Œæ˜¯æ–‡ä»¶åˆ™è¿”å›trueï¼Œæ˜¯ç›®å½•åˆ™è¿”å›false
         if (file.exists()) return file.isFile();
         if (!createOrExistsDir(file.getParentFile())) return false;
         try {
@@ -160,26 +160,26 @@ public class FileUtils {
     }
 
     /**
-     * ÅĞ¶ÏÎÄ¼şÊÇ·ñ´æÔÚ£¬´æÔÚÔòÔÚ´´½¨Ö®Ç°É¾³ı
+     * åˆ¤æ–­æ–‡ä»¶æ˜¯å¦å­˜åœ¨ï¼Œå­˜åœ¨åˆ™åœ¨åˆ›å»ºä¹‹å‰åˆ é™¤
      *
-     * @param filePath ÎÄ¼şÂ·¾¶
-     * @return {@code true}: ´´½¨³É¹¦<br>{@code false}: ´´½¨Ê§°Ü
+     * @param filePath æ–‡ä»¶è·¯å¾„
+     * @return {@code true}: åˆ›å»ºæˆåŠŸ<br>{@code false}: åˆ›å»ºå¤±è´¥
      */
     public static boolean createFileByDeleteOldFile(String filePath) {
         return createFileByDeleteOldFile(getFileByPath(filePath));
     }
 
     /**
-     * ÅĞ¶ÏÎÄ¼şÊÇ·ñ´æÔÚ£¬´æÔÚÔòÔÚ´´½¨Ö®Ç°É¾³ı
+     * åˆ¤æ–­æ–‡ä»¶æ˜¯å¦å­˜åœ¨ï¼Œå­˜åœ¨åˆ™åœ¨åˆ›å»ºä¹‹å‰åˆ é™¤
      *
-     * @param file ÎÄ¼ş
-     * @return {@code true}: ´´½¨³É¹¦<br>{@code false}: ´´½¨Ê§°Ü
+     * @param file æ–‡ä»¶
+     * @return {@code true}: åˆ›å»ºæˆåŠŸ<br>{@code false}: åˆ›å»ºå¤±è´¥
      */
     public static boolean createFileByDeleteOldFile(File file) {
         if (file == null) return false;
-        // ÎÄ¼ş´æÔÚ²¢ÇÒÉ¾³ıÊ§°Ü·µ»Øfalse
+        // æ–‡ä»¶å­˜åœ¨å¹¶ä¸”åˆ é™¤å¤±è´¥è¿”å›false
         if (file.exists() && file.isFile() && !file.delete()) return false;
-        // ´´½¨Ä¿Â¼Ê§°Ü·µ»Øfalse
+        // åˆ›å»ºç›®å½•å¤±è´¥è¿”å›false
         if (!createOrExistsDir(file.getParentFile())) return false;
         try {
             return file.createNewFile();
@@ -190,46 +190,46 @@ public class FileUtils {
     }
 
     /**
-     * ¸´ÖÆ»òÒÆ¶¯Ä¿Â¼
+     * å¤åˆ¶æˆ–ç§»åŠ¨ç›®å½•
      *
-     * @param srcDirPath  Ô´Ä¿Â¼Â·¾¶
-     * @param destDirPath Ä¿±êÄ¿Â¼Â·¾¶
-     * @param isMove      ÊÇ·ñÒÆ¶¯
-     * @return {@code true}: ¸´ÖÆ»òÒÆ¶¯³É¹¦<br>{@code false}: ¸´ÖÆ»òÒÆ¶¯Ê§°Ü
+     * @param srcDirPath  æºç›®å½•è·¯å¾„
+     * @param destDirPath ç›®æ ‡ç›®å½•è·¯å¾„
+     * @param isMove      æ˜¯å¦ç§»åŠ¨
+     * @return {@code true}: å¤åˆ¶æˆ–ç§»åŠ¨æˆåŠŸ<br>{@code false}: å¤åˆ¶æˆ–ç§»åŠ¨å¤±è´¥
      */
     private static boolean copyOrMoveDir(String srcDirPath, String destDirPath, boolean isMove) {
         return copyOrMoveDir(getFileByPath(srcDirPath), getFileByPath(destDirPath), isMove);
     }
 
     /**
-     * ¸´ÖÆ»òÒÆ¶¯Ä¿Â¼
+     * å¤åˆ¶æˆ–ç§»åŠ¨ç›®å½•
      *
-     * @param srcDir  Ô´Ä¿Â¼
-     * @param destDir Ä¿±êÄ¿Â¼
-     * @param isMove  ÊÇ·ñÒÆ¶¯
-     * @return {@code true}: ¸´ÖÆ»òÒÆ¶¯³É¹¦<br>{@code false}: ¸´ÖÆ»òÒÆ¶¯Ê§°Ü
+     * @param srcDir  æºç›®å½•
+     * @param destDir ç›®æ ‡ç›®å½•
+     * @param isMove  æ˜¯å¦ç§»åŠ¨
+     * @return {@code true}: å¤åˆ¶æˆ–ç§»åŠ¨æˆåŠŸ<br>{@code false}: å¤åˆ¶æˆ–ç§»åŠ¨å¤±è´¥
      */
     private static boolean copyOrMoveDir(File srcDir, File destDir, boolean isMove) {
         if (srcDir == null || destDir == null) return false;
-        // Èç¹ûÄ¿±êÄ¿Â¼ÔÚÔ´Ä¿Â¼ÖĞÔò·µ»Øfalse£¬¿´²»¶®µÄ»°ºÃºÃÏëÏëµİ¹éÔõÃ´½áÊø
+        // å¦‚æœç›®æ ‡ç›®å½•åœ¨æºç›®å½•ä¸­åˆ™è¿”å›falseï¼Œçœ‹ä¸æ‡‚çš„è¯å¥½å¥½æƒ³æƒ³é€’å½’æ€ä¹ˆç»“æŸ
         // srcPath : F:\\MyGithub\\AndroidUtilCode\\utilcode\\src\\test\\res
         // destPath: F:\\MyGithub\\AndroidUtilCode\\utilcode\\src\\test\\res1
-        // Îª·ÀÖ¹ÒÔÉÏÕâÖÖÇé¿ö³öÏÖ³öÏÖÎóÅĞ£¬Ğë·Ö±ğÔÚºóÃæ¼Ó¸öÂ·¾¶·Ö¸ô·û
+        // ä¸ºé˜²æ­¢ä»¥ä¸Šè¿™ç§æƒ…å†µå‡ºç°å‡ºç°è¯¯åˆ¤ï¼Œé¡»åˆ†åˆ«åœ¨åé¢åŠ ä¸ªè·¯å¾„åˆ†éš”ç¬¦
         String srcPath = srcDir.getPath() + File.separator;
         String destPath = destDir.getPath() + File.separator;
         if (destPath.contains(srcPath)) return false;
-        // Ô´ÎÄ¼ş²»´æÔÚ»òÕß²»ÊÇÄ¿Â¼Ôò·µ»Øfalse
+        // æºæ–‡ä»¶ä¸å­˜åœ¨æˆ–è€…ä¸æ˜¯ç›®å½•åˆ™è¿”å›false
         if (!srcDir.exists() || !srcDir.isDirectory()) return false;
-        // Ä¿±êÄ¿Â¼²»´æÔÚ·µ»Øfalse
+        // ç›®æ ‡ç›®å½•ä¸å­˜åœ¨è¿”å›false
         if (!createOrExistsDir(destDir)) return false;
         File[] files = srcDir.listFiles();
         for (File file : files) {
             File oneDestFile = new File(destPath + file.getName());
             if (file.isFile()) {
-                // Èç¹û²Ù×÷Ê§°Ü·µ»Øfalse
+                // å¦‚æœæ“ä½œå¤±è´¥è¿”å›false
                 if (!copyOrMoveFile(file, oneDestFile, isMove)) return false;
             } else if (file.isDirectory()) {
-                // Èç¹û²Ù×÷Ê§°Ü·µ»Øfalse
+                // å¦‚æœæ“ä½œå¤±è´¥è¿”å›false
                 if (!copyOrMoveDir(file, oneDestFile, isMove)) return false;
             }
         }
@@ -237,32 +237,32 @@ public class FileUtils {
     }
 
     /**
-     * ¸´ÖÆ»òÒÆ¶¯ÎÄ¼ş
+     * å¤åˆ¶æˆ–ç§»åŠ¨æ–‡ä»¶
      *
-     * @param srcFilePath  Ô´ÎÄ¼şÂ·¾¶
-     * @param destFilePath Ä¿±êÎÄ¼şÂ·¾¶
-     * @param isMove       ÊÇ·ñÒÆ¶¯
-     * @return {@code true}: ¸´ÖÆ»òÒÆ¶¯³É¹¦<br>{@code false}: ¸´ÖÆ»òÒÆ¶¯Ê§°Ü
+     * @param srcFilePath  æºæ–‡ä»¶è·¯å¾„
+     * @param destFilePath ç›®æ ‡æ–‡ä»¶è·¯å¾„
+     * @param isMove       æ˜¯å¦ç§»åŠ¨
+     * @return {@code true}: å¤åˆ¶æˆ–ç§»åŠ¨æˆåŠŸ<br>{@code false}: å¤åˆ¶æˆ–ç§»åŠ¨å¤±è´¥
      */
     private static boolean copyOrMoveFile(String srcFilePath, String destFilePath, boolean isMove) {
         return copyOrMoveFile(getFileByPath(srcFilePath), getFileByPath(destFilePath), isMove);
     }
 
     /**
-     * ¸´ÖÆ»òÒÆ¶¯ÎÄ¼ş
+     * å¤åˆ¶æˆ–ç§»åŠ¨æ–‡ä»¶
      *
-     * @param srcFile  Ô´ÎÄ¼ş
-     * @param destFile Ä¿±êÎÄ¼ş
-     * @param isMove   ÊÇ·ñÒÆ¶¯
-     * @return {@code true}: ¸´ÖÆ»òÒÆ¶¯³É¹¦<br>{@code false}: ¸´ÖÆ»òÒÆ¶¯Ê§°Ü
+     * @param srcFile  æºæ–‡ä»¶
+     * @param destFile ç›®æ ‡æ–‡ä»¶
+     * @param isMove   æ˜¯å¦ç§»åŠ¨
+     * @return {@code true}: å¤åˆ¶æˆ–ç§»åŠ¨æˆåŠŸ<br>{@code false}: å¤åˆ¶æˆ–ç§»åŠ¨å¤±è´¥
      */
     private static boolean copyOrMoveFile(File srcFile, File destFile, boolean isMove) {
         if (srcFile == null || destFile == null) return false;
-        // Ô´ÎÄ¼ş²»´æÔÚ»òÕß²»ÊÇÎÄ¼şÔò·µ»Øfalse
+        // æºæ–‡ä»¶ä¸å­˜åœ¨æˆ–è€…ä¸æ˜¯æ–‡ä»¶åˆ™è¿”å›false
         if (!srcFile.exists() || !srcFile.isFile()) return false;
-        // Ä¿±êÎÄ¼ş´æÔÚÇÒÊÇÎÄ¼şÔò·µ»Øfalse
+        // ç›®æ ‡æ–‡ä»¶å­˜åœ¨ä¸”æ˜¯æ–‡ä»¶åˆ™è¿”å›false
         if (destFile.exists() && destFile.isFile()) return false;
-        // Ä¿±êÄ¿Â¼²»´æÔÚ·µ»Øfalse
+        // ç›®æ ‡ç›®å½•ä¸å­˜åœ¨è¿”å›false
         if (!createOrExistsDir(destFile.getParentFile())) return false;
         try {
             return writeFileFromIS(destFile, new FileInputStream(srcFile), false)
@@ -274,116 +274,116 @@ public class FileUtils {
     }
 
     /**
-     * ¸´ÖÆÄ¿Â¼
+     * å¤åˆ¶ç›®å½•
      *
-     * @param srcDirPath  Ô´Ä¿Â¼Â·¾¶
-     * @param destDirPath Ä¿±êÄ¿Â¼Â·¾¶
-     * @return {@code true}: ¸´ÖÆ³É¹¦<br>{@code false}: ¸´ÖÆÊ§°Ü
+     * @param srcDirPath  æºç›®å½•è·¯å¾„
+     * @param destDirPath ç›®æ ‡ç›®å½•è·¯å¾„
+     * @return {@code true}: å¤åˆ¶æˆåŠŸ<br>{@code false}: å¤åˆ¶å¤±è´¥
      */
     public static boolean copyDir(String srcDirPath, String destDirPath) {
         return copyDir(getFileByPath(srcDirPath), getFileByPath(destDirPath));
     }
 
     /**
-     * ¸´ÖÆÄ¿Â¼
+     * å¤åˆ¶ç›®å½•
      *
-     * @param srcDir  Ô´Ä¿Â¼
-     * @param destDir Ä¿±êÄ¿Â¼
-     * @return {@code true}: ¸´ÖÆ³É¹¦<br>{@code false}: ¸´ÖÆÊ§°Ü
+     * @param srcDir  æºç›®å½•
+     * @param destDir ç›®æ ‡ç›®å½•
+     * @return {@code true}: å¤åˆ¶æˆåŠŸ<br>{@code false}: å¤åˆ¶å¤±è´¥
      */
     public static boolean copyDir(File srcDir, File destDir) {
         return copyOrMoveDir(srcDir, destDir, false);
     }
 
     /**
-     * ¸´ÖÆÎÄ¼ş
+     * å¤åˆ¶æ–‡ä»¶
      *
-     * @param srcFilePath  Ô´ÎÄ¼şÂ·¾¶
-     * @param destFilePath Ä¿±êÎÄ¼şÂ·¾¶
-     * @return {@code true}: ¸´ÖÆ³É¹¦<br>{@code false}: ¸´ÖÆÊ§°Ü
+     * @param srcFilePath  æºæ–‡ä»¶è·¯å¾„
+     * @param destFilePath ç›®æ ‡æ–‡ä»¶è·¯å¾„
+     * @return {@code true}: å¤åˆ¶æˆåŠŸ<br>{@code false}: å¤åˆ¶å¤±è´¥
      */
     public static boolean copyFile(String srcFilePath, String destFilePath) {
         return copyFile(getFileByPath(srcFilePath), getFileByPath(destFilePath));
     }
 
     /**
-     * ¸´ÖÆÎÄ¼ş
+     * å¤åˆ¶æ–‡ä»¶
      *
-     * @param srcFile  Ô´ÎÄ¼ş
-     * @param destFile Ä¿±êÎÄ¼ş
-     * @return {@code true}: ¸´ÖÆ³É¹¦<br>{@code false}: ¸´ÖÆÊ§°Ü
+     * @param srcFile  æºæ–‡ä»¶
+     * @param destFile ç›®æ ‡æ–‡ä»¶
+     * @return {@code true}: å¤åˆ¶æˆåŠŸ<br>{@code false}: å¤åˆ¶å¤±è´¥
      */
     public static boolean copyFile(File srcFile, File destFile) {
         return copyOrMoveFile(srcFile, destFile, false);
     }
 
     /**
-     * ÒÆ¶¯Ä¿Â¼
+     * ç§»åŠ¨ç›®å½•
      *
-     * @param srcDirPath  Ô´Ä¿Â¼Â·¾¶
-     * @param destDirPath Ä¿±êÄ¿Â¼Â·¾¶
-     * @return {@code true}: ÒÆ¶¯³É¹¦<br>{@code false}: ÒÆ¶¯Ê§°Ü
+     * @param srcDirPath  æºç›®å½•è·¯å¾„
+     * @param destDirPath ç›®æ ‡ç›®å½•è·¯å¾„
+     * @return {@code true}: ç§»åŠ¨æˆåŠŸ<br>{@code false}: ç§»åŠ¨å¤±è´¥
      */
     public static boolean moveDir(String srcDirPath, String destDirPath) {
         return moveDir(getFileByPath(srcDirPath), getFileByPath(destDirPath));
     }
 
     /**
-     * ÒÆ¶¯Ä¿Â¼
+     * ç§»åŠ¨ç›®å½•
      *
-     * @param srcDir  Ô´Ä¿Â¼
-     * @param destDir Ä¿±êÄ¿Â¼
-     * @return {@code true}: ÒÆ¶¯³É¹¦<br>{@code false}: ÒÆ¶¯Ê§°Ü
+     * @param srcDir  æºç›®å½•
+     * @param destDir ç›®æ ‡ç›®å½•
+     * @return {@code true}: ç§»åŠ¨æˆåŠŸ<br>{@code false}: ç§»åŠ¨å¤±è´¥
      */
     public static boolean moveDir(File srcDir, File destDir) {
         return copyOrMoveDir(srcDir, destDir, true);
     }
 
     /**
-     * ÒÆ¶¯ÎÄ¼ş
+     * ç§»åŠ¨æ–‡ä»¶
      *
-     * @param srcFilePath  Ô´ÎÄ¼şÂ·¾¶
-     * @param destFilePath Ä¿±êÎÄ¼şÂ·¾¶
-     * @return {@code true}: ÒÆ¶¯³É¹¦<br>{@code false}: ÒÆ¶¯Ê§°Ü
+     * @param srcFilePath  æºæ–‡ä»¶è·¯å¾„
+     * @param destFilePath ç›®æ ‡æ–‡ä»¶è·¯å¾„
+     * @return {@code true}: ç§»åŠ¨æˆåŠŸ<br>{@code false}: ç§»åŠ¨å¤±è´¥
      */
     public static boolean moveFile(String srcFilePath, String destFilePath) {
         return moveFile(getFileByPath(srcFilePath), getFileByPath(destFilePath));
     }
 
     /**
-     * ÒÆ¶¯ÎÄ¼ş
+     * ç§»åŠ¨æ–‡ä»¶
      *
-     * @param srcFile  Ô´ÎÄ¼ş
-     * @param destFile Ä¿±êÎÄ¼ş
-     * @return {@code true}: ÒÆ¶¯³É¹¦<br>{@code false}: ÒÆ¶¯Ê§°Ü
+     * @param srcFile  æºæ–‡ä»¶
+     * @param destFile ç›®æ ‡æ–‡ä»¶
+     * @return {@code true}: ç§»åŠ¨æˆåŠŸ<br>{@code false}: ç§»åŠ¨å¤±è´¥
      */
     public static boolean moveFile(File srcFile, File destFile) {
         return copyOrMoveFile(srcFile, destFile, true);
     }
 
     /**
-     * É¾³ıÄ¿Â¼
+     * åˆ é™¤ç›®å½•
      *
-     * @param dirPath Ä¿Â¼Â·¾¶
-     * @return {@code true}: É¾³ı³É¹¦<br>{@code false}: É¾³ıÊ§°Ü
+     * @param dirPath ç›®å½•è·¯å¾„
+     * @return {@code true}: åˆ é™¤æˆåŠŸ<br>{@code false}: åˆ é™¤å¤±è´¥
      */
     public static boolean deleteDir(String dirPath) {
         return deleteDir(getFileByPath(dirPath));
     }
 
     /**
-     * É¾³ıÄ¿Â¼
+     * åˆ é™¤ç›®å½•
      *
-     * @param dir Ä¿Â¼
-     * @return {@code true}: É¾³ı³É¹¦<br>{@code false}: É¾³ıÊ§°Ü
+     * @param dir ç›®å½•
+     * @return {@code true}: åˆ é™¤æˆåŠŸ<br>{@code false}: åˆ é™¤å¤±è´¥
      */
     public static boolean deleteDir(File dir) {
         if (dir == null) return false;
-        // Ä¿Â¼²»´æÔÚ·µ»Øtrue
+        // ç›®å½•ä¸å­˜åœ¨è¿”å›true
         if (!dir.exists()) return true;
-        // ²»ÊÇÄ¿Â¼·µ»Øfalse
+        // ä¸æ˜¯ç›®å½•è¿”å›false
         if (!dir.isDirectory()) return false;
-        // ÏÖÔÚÎÄ¼ş´æÔÚÇÒÊÇÎÄ¼ş¼Ğ
+        // ç°åœ¨æ–‡ä»¶å­˜åœ¨ä¸”æ˜¯æ–‡ä»¶å¤¹
         File[] files = dir.listFiles();
         for (File file : files) {
             if (file.isFile()) {
@@ -396,42 +396,42 @@ public class FileUtils {
     }
 
     /**
-     * É¾³ıÎÄ¼ş
+     * åˆ é™¤æ–‡ä»¶
      *
-     * @param srcFilePath ÎÄ¼şÂ·¾¶
-     * @return {@code true}: É¾³ı³É¹¦<br>{@code false}: É¾³ıÊ§°Ü
+     * @param srcFilePath æ–‡ä»¶è·¯å¾„
+     * @return {@code true}: åˆ é™¤æˆåŠŸ<br>{@code false}: åˆ é™¤å¤±è´¥
      */
     public static boolean deleteFile(String srcFilePath) {
         return deleteFile(getFileByPath(srcFilePath));
     }
 
     /**
-     * É¾³ıÎÄ¼ş
+     * åˆ é™¤æ–‡ä»¶
      *
-     * @param file ÎÄ¼ş
-     * @return {@code true}: É¾³ı³É¹¦<br>{@code false}: É¾³ıÊ§°Ü
+     * @param file æ–‡ä»¶
+     * @return {@code true}: åˆ é™¤æˆåŠŸ<br>{@code false}: åˆ é™¤å¤±è´¥
      */
     public static boolean deleteFile(File file) {
         return file != null && (!file.exists() || file.isFile() && file.delete());
     }
 
     /**
-     * »ñÈ¡Ä¿Â¼ÏÂËùÓĞÎÄ¼ş
+     * è·å–ç›®å½•ä¸‹æ‰€æœ‰æ–‡ä»¶
      *
-     * @param dirPath     Ä¿Â¼Â·¾¶
-     * @param isRecursive ÊÇ·ñµİ¹é½ø×ÓÄ¿Â¼
-     * @return ÎÄ¼şÁ´±í
+     * @param dirPath     ç›®å½•è·¯å¾„
+     * @param isRecursive æ˜¯å¦é€’å½’è¿›å­ç›®å½•
+     * @return æ–‡ä»¶é“¾è¡¨
      */
     public static List<File> listFilesInDir(String dirPath, boolean isRecursive) {
         return listFilesInDir(getFileByPath(dirPath), isRecursive);
     }
 
     /**
-     * »ñÈ¡Ä¿Â¼ÏÂËùÓĞÎÄ¼ş
+     * è·å–ç›®å½•ä¸‹æ‰€æœ‰æ–‡ä»¶
      *
-     * @param dir         Ä¿Â¼
-     * @param isRecursive ÊÇ·ñµİ¹é½ø×ÓÄ¿Â¼
-     * @return ÎÄ¼şÁ´±í
+     * @param dir         ç›®å½•
+     * @param isRecursive æ˜¯å¦é€’å½’è¿›å­ç›®å½•
+     * @return æ–‡ä»¶é“¾è¡¨
      */
     public static List<File> listFilesInDir(File dir, boolean isRecursive) {
         if (isRecursive) return listFilesInDir(dir);
@@ -443,10 +443,10 @@ public class FileUtils {
     }
 
     /**
-     * »ñÈ¡Ä¿Â¼ÏÂËùÓĞÎÄ¼ş°üÀ¨×ÓÄ¿Â¼
+     * è·å–ç›®å½•ä¸‹æ‰€æœ‰æ–‡ä»¶åŒ…æ‹¬å­ç›®å½•
      *
-     * @param dir Ä¿Â¼
-     * @return ÎÄ¼şÁ´±í
+     * @param dir ç›®å½•
+     * @return æ–‡ä»¶é“¾è¡¨
      */
     public static List<File> listFilesInDir(File dir) {
         if (dir == null || !isDir(dir)) return null;
@@ -462,24 +462,24 @@ public class FileUtils {
     }
 
     /**
-     * »ñÈ¡Ä¿Â¼ÏÂËùÓĞºó×ºÃûÎªsuffixµÄÎÄ¼ş
-     * <p>´óĞ¡Ğ´ºöÂÔ</p>
+     * è·å–ç›®å½•ä¸‹æ‰€æœ‰åç¼€åä¸ºsuffixçš„æ–‡ä»¶
+     * <p>å¤§å°å†™å¿½ç•¥</p>
      *
-     * @param dirPath     Ä¿Â¼Â·¾¶
-     * @param isRecursive ÊÇ·ñµİ¹é½ø×ÓÄ¿Â¼
-     * @return ÎÄ¼şÁ´±í
+     * @param dirPath     ç›®å½•è·¯å¾„
+     * @param isRecursive æ˜¯å¦é€’å½’è¿›å­ç›®å½•
+     * @return æ–‡ä»¶é“¾è¡¨
      */
     public static List<File> listFilesInDirWithFilter(String dirPath, String suffix, boolean isRecursive) {
         return listFilesInDirWithFilter(getFileByPath(dirPath), suffix, isRecursive);
     }
 
     /**
-     * »ñÈ¡Ä¿Â¼ÏÂËùÓĞºó×ºÃûÎªsuffixµÄÎÄ¼ş
-     * <p>´óĞ¡Ğ´ºöÂÔ</p>
+     * è·å–ç›®å½•ä¸‹æ‰€æœ‰åç¼€åä¸ºsuffixçš„æ–‡ä»¶
+     * <p>å¤§å°å†™å¿½ç•¥</p>
      *
-     * @param dir         Ä¿Â¼
-     * @param isRecursive ÊÇ·ñµİ¹é½ø×ÓÄ¿Â¼
-     * @return ÎÄ¼şÁ´±í
+     * @param dir         ç›®å½•
+     * @param isRecursive æ˜¯å¦é€’å½’è¿›å­ç›®å½•
+     * @return æ–‡ä»¶é“¾è¡¨
      */
     public static List<File> listFilesInDirWithFilter(File dir, String suffix, boolean isRecursive) {
         if (isRecursive) return listFilesInDirWithFilter(dir, suffix);
@@ -495,22 +495,22 @@ public class FileUtils {
     }
 
     /**
-     * »ñÈ¡Ä¿Â¼ÏÂËùÓĞºó×ºÃûÎªsuffixµÄÎÄ¼ş°üÀ¨×ÓÄ¿Â¼
-     * <p>´óĞ¡Ğ´ºöÂÔ</p>
+     * è·å–ç›®å½•ä¸‹æ‰€æœ‰åç¼€åä¸ºsuffixçš„æ–‡ä»¶åŒ…æ‹¬å­ç›®å½•
+     * <p>å¤§å°å†™å¿½ç•¥</p>
      *
-     * @param dirPath Ä¿Â¼Â·¾¶
-     * @return ÎÄ¼şÁ´±í
+     * @param dirPath ç›®å½•è·¯å¾„
+     * @return æ–‡ä»¶é“¾è¡¨
      */
     public static List<File> listFilesInDirWithFilter(String dirPath, String suffix) {
         return listFilesInDirWithFilter(getFileByPath(dirPath), suffix);
     }
 
     /**
-     * »ñÈ¡Ä¿Â¼ÏÂËùÓĞºó×ºÃûÎªsuffixµÄÎÄ¼ş°üÀ¨×ÓÄ¿Â¼
-     * <p>´óĞ¡Ğ´ºöÂÔ</p>
+     * è·å–ç›®å½•ä¸‹æ‰€æœ‰åç¼€åä¸ºsuffixçš„æ–‡ä»¶åŒ…æ‹¬å­ç›®å½•
+     * <p>å¤§å°å†™å¿½ç•¥</p>
      *
-     * @param dir Ä¿Â¼
-     * @return ÎÄ¼şÁ´±í
+     * @param dir ç›®å½•
+     * @return æ–‡ä»¶é“¾è¡¨
      */
     public static List<File> listFilesInDirWithFilter(File dir, String suffix) {
         if (dir == null || !isDir(dir)) return null;
@@ -528,22 +528,22 @@ public class FileUtils {
     }
 
     /**
-     * »ñÈ¡Ä¿Â¼ÏÂËùÓĞ·ûºÏfilterµÄÎÄ¼ş
+     * è·å–ç›®å½•ä¸‹æ‰€æœ‰ç¬¦åˆfilterçš„æ–‡ä»¶
      *
-     * @param dirPath     Ä¿Â¼Â·¾¶
-     * @param isRecursive ÊÇ·ñµİ¹é½ø×ÓÄ¿Â¼
-     * @return ÎÄ¼şÁ´±í
+     * @param dirPath     ç›®å½•è·¯å¾„
+     * @param isRecursive æ˜¯å¦é€’å½’è¿›å­ç›®å½•
+     * @return æ–‡ä»¶é“¾è¡¨
      */
     public static List<File> listFilesInDirWithFilter(String dirPath, FilenameFilter filter, boolean isRecursive) {
         return listFilesInDirWithFilter(getFileByPath(dirPath), filter, isRecursive);
     }
 
     /**
-     * »ñÈ¡Ä¿Â¼ÏÂËùÓĞ·ûºÏfilterµÄÎÄ¼ş
+     * è·å–ç›®å½•ä¸‹æ‰€æœ‰ç¬¦åˆfilterçš„æ–‡ä»¶
      *
-     * @param dir         Ä¿Â¼
-     * @param isRecursive ÊÇ·ñµİ¹é½ø×ÓÄ¿Â¼
-     * @return ÎÄ¼şÁ´±í
+     * @param dir         ç›®å½•
+     * @param isRecursive æ˜¯å¦é€’å½’è¿›å­ç›®å½•
+     * @return æ–‡ä»¶é“¾è¡¨
      */
     public static List<File> listFilesInDirWithFilter(File dir, FilenameFilter filter, boolean isRecursive) {
         if (isRecursive) return listFilesInDirWithFilter(dir, filter);
@@ -559,20 +559,20 @@ public class FileUtils {
     }
 
     /**
-     * »ñÈ¡Ä¿Â¼ÏÂËùÓĞ·ûºÏfilterµÄÎÄ¼ş°üÀ¨×ÓÄ¿Â¼
+     * è·å–ç›®å½•ä¸‹æ‰€æœ‰ç¬¦åˆfilterçš„æ–‡ä»¶åŒ…æ‹¬å­ç›®å½•
      *
-     * @param dirPath Ä¿Â¼Â·¾¶
-     * @return ÎÄ¼şÁ´±í
+     * @param dirPath ç›®å½•è·¯å¾„
+     * @return æ–‡ä»¶é“¾è¡¨
      */
     public static List<File> listFilesInDirWithFilter(String dirPath, FilenameFilter filter) {
         return listFilesInDirWithFilter(getFileByPath(dirPath), filter);
     }
 
     /**
-     * »ñÈ¡Ä¿Â¼ÏÂËùÓĞ·ûºÏfilterµÄÎÄ¼ş°üÀ¨×ÓÄ¿Â¼
+     * è·å–ç›®å½•ä¸‹æ‰€æœ‰ç¬¦åˆfilterçš„æ–‡ä»¶åŒ…æ‹¬å­ç›®å½•
      *
-     * @param dir Ä¿Â¼
-     * @return ÎÄ¼şÁ´±í
+     * @param dir ç›®å½•
+     * @return æ–‡ä»¶é“¾è¡¨
      */
     public static List<File> listFilesInDirWithFilter(File dir, FilenameFilter filter) {
         if (dir == null || !isDir(dir)) return null;
@@ -590,22 +590,22 @@ public class FileUtils {
     }
 
     /**
-     * »ñÈ¡Ä¿Â¼ÏÂÖ¸¶¨ÎÄ¼şÃûµÄÎÄ¼ş°üÀ¨×ÓÄ¿Â¼
-     * <p>´óĞ¡Ğ´ºöÂÔ</p>
+     * è·å–ç›®å½•ä¸‹æŒ‡å®šæ–‡ä»¶åçš„æ–‡ä»¶åŒ…æ‹¬å­ç›®å½•
+     * <p>å¤§å°å†™å¿½ç•¥</p>
      *
-     * @param dirPath Ä¿Â¼Â·¾¶
-     * @return ÎÄ¼şÁ´±í
+     * @param dirPath ç›®å½•è·¯å¾„
+     * @return æ–‡ä»¶é“¾è¡¨
      */
     public static List<File> searchFileInDir(String dirPath, String fileName) {
         return searchFileInDir(getFileByPath(dirPath), fileName);
     }
 
     /**
-     * »ñÈ¡Ä¿Â¼ÏÂÖ¸¶¨ÎÄ¼şÃûµÄÎÄ¼ş°üÀ¨×ÓÄ¿Â¼
-     * <p>´óĞ¡Ğ´ºöÂÔ</p>
+     * è·å–ç›®å½•ä¸‹æŒ‡å®šæ–‡ä»¶åçš„æ–‡ä»¶åŒ…æ‹¬å­ç›®å½•
+     * <p>å¤§å°å†™å¿½ç•¥</p>
      *
-     * @param dir Ä¿Â¼
-     * @return ÎÄ¼şÁ´±í
+     * @param dir ç›®å½•
+     * @return æ–‡ä»¶é“¾è¡¨
      */
     public static List<File> searchFileInDir(File dir, String fileName) {
         if (dir == null || !isDir(dir)) return null;
@@ -623,24 +623,24 @@ public class FileUtils {
     }
 
     /**
-     * ½«ÊäÈëÁ÷Ğ´ÈëÎÄ¼ş
+     * å°†è¾“å…¥æµå†™å…¥æ–‡ä»¶
      *
-     * @param filePath Â·¾¶
-     * @param is       ÊäÈëÁ÷
-     * @param append   ÊÇ·ñ×·¼ÓÔÚÎÄ¼şÄ©
-     * @return {@code true}: Ğ´Èë³É¹¦<br>{@code false}: Ğ´ÈëÊ§°Ü
+     * @param filePath è·¯å¾„
+     * @param is       è¾“å…¥æµ
+     * @param append   æ˜¯å¦è¿½åŠ åœ¨æ–‡ä»¶æœ«
+     * @return {@code true}: å†™å…¥æˆåŠŸ<br>{@code false}: å†™å…¥å¤±è´¥
      */
     public static boolean writeFileFromIS(String filePath, InputStream is, boolean append) {
         return writeFileFromIS(getFileByPath(filePath), is, append);
     }
 
     /**
-     * ½«ÊäÈëÁ÷Ğ´ÈëÎÄ¼ş
+     * å°†è¾“å…¥æµå†™å…¥æ–‡ä»¶
      *
-     * @param file   ÎÄ¼ş
-     * @param is     ÊäÈëÁ÷
-     * @param append ÊÇ·ñ×·¼ÓÔÚÎÄ¼şÄ©
-     * @return {@code true}: Ğ´Èë³É¹¦<br>{@code false}: Ğ´ÈëÊ§°Ü
+     * @param file   æ–‡ä»¶
+     * @param is     è¾“å…¥æµ
+     * @param append æ˜¯å¦è¿½åŠ åœ¨æ–‡ä»¶æœ«
+     * @return {@code true}: å†™å…¥æˆåŠŸ<br>{@code false}: å†™å…¥å¤±è´¥
      */
     public static boolean writeFileFromIS(File file, InputStream is, boolean append) {
         if (file == null || is == null) return false;
@@ -664,24 +664,24 @@ public class FileUtils {
     }
 
     /**
-     * ½«×Ö·û´®Ğ´ÈëÎÄ¼ş
+     * å°†å­—ç¬¦ä¸²å†™å…¥æ–‡ä»¶
      *
-     * @param filePath ÎÄ¼şÂ·¾¶
-     * @param content  Ğ´ÈëÄÚÈİ
-     * @param append   ÊÇ·ñ×·¼ÓÔÚÎÄ¼şÄ©
-     * @return {@code true}: Ğ´Èë³É¹¦<br>{@code false}: Ğ´ÈëÊ§°Ü
+     * @param filePath æ–‡ä»¶è·¯å¾„
+     * @param content  å†™å…¥å†…å®¹
+     * @param append   æ˜¯å¦è¿½åŠ åœ¨æ–‡ä»¶æœ«
+     * @return {@code true}: å†™å…¥æˆåŠŸ<br>{@code false}: å†™å…¥å¤±è´¥
      */
     public static boolean writeFileFromString(String filePath, String content, boolean append) {
         return writeFileFromString(getFileByPath(filePath), content, append);
     }
 
     /**
-     * ½«×Ö·û´®Ğ´ÈëÎÄ¼ş
+     * å°†å­—ç¬¦ä¸²å†™å…¥æ–‡ä»¶
      *
-     * @param file    ÎÄ¼ş
-     * @param content Ğ´ÈëÄÚÈİ
-     * @param append  ÊÇ·ñ×·¼ÓÔÚÎÄ¼şÄ©
-     * @return {@code true}: Ğ´Èë³É¹¦<br>{@code false}: Ğ´ÈëÊ§°Ü
+     * @param file    æ–‡ä»¶
+     * @param content å†™å…¥å†…å®¹
+     * @param append  æ˜¯å¦è¿½åŠ åœ¨æ–‡ä»¶æœ«
+     * @return {@code true}: å†™å…¥æˆåŠŸ<br>{@code false}: å†™å…¥å¤±è´¥
      */
     public static boolean writeFileFromString(File file, String content, boolean append) {
         if (file == null || content == null) return false;
@@ -700,20 +700,20 @@ public class FileUtils {
     }
 
     /**
-     * ¼òµ¥»ñÈ¡ÎÄ¼ş±àÂë¸ñÊ½
+     * ç®€å•è·å–æ–‡ä»¶ç¼–ç æ ¼å¼
      *
-     * @param filePath ÎÄ¼şÂ·¾¶
-     * @return ÎÄ¼ş±àÂë
+     * @param filePath æ–‡ä»¶è·¯å¾„
+     * @return æ–‡ä»¶ç¼–ç 
      */
     public static String getFileCharsetSimple(String filePath) {
         return getFileCharsetSimple(getFileByPath(filePath));
     }
 
     /**
-     * ¼òµ¥»ñÈ¡ÎÄ¼ş±àÂë¸ñÊ½
+     * ç®€å•è·å–æ–‡ä»¶ç¼–ç æ ¼å¼
      *
-     * @param file ÎÄ¼ş
-     * @return ÎÄ¼ş±àÂë
+     * @param file æ–‡ä»¶
+     * @return æ–‡ä»¶ç¼–ç 
      */
     public static String getFileCharsetSimple(File file) {
         int p = 0;
@@ -739,20 +739,20 @@ public class FileUtils {
     }
 
     /**
-     * »ñÈ¡ÎÄ¼şĞĞÊı
+     * è·å–æ–‡ä»¶è¡Œæ•°
      *
-     * @param filePath ÎÄ¼şÂ·¾¶
-     * @return ÎÄ¼şĞĞÊı
+     * @param filePath æ–‡ä»¶è·¯å¾„
+     * @return æ–‡ä»¶è¡Œæ•°
      */
     public static int getFileLines(String filePath) {
         return getFileLines(getFileByPath(filePath));
     }
 
     /**
-     * »ñÈ¡ÎÄ¼şĞĞÊı
+     * è·å–æ–‡ä»¶è¡Œæ•°
      *
-     * @param file ÎÄ¼ş
-     * @return ÎÄ¼şĞĞÊı
+     * @param file æ–‡ä»¶
+     * @return æ–‡ä»¶è¡Œæ•°
      */
     public static int getFileLines(File file) {
         int count = 1;
@@ -775,35 +775,35 @@ public class FileUtils {
     }
 
     /**
-     * Ö¸¶¨±àÂë°´ĞĞ¶ÁÈ¡ÎÄ¼şµ½List
+     * æŒ‡å®šç¼–ç æŒ‰è¡Œè¯»å–æ–‡ä»¶åˆ°List
      *
-     * @param filePath    ÎÄ¼şÂ·¾¶
-     * @param charsetName ±àÂë¸ñÊ½
-     * @return ÎÄ¼şĞĞÁ´±í
+     * @param filePath    æ–‡ä»¶è·¯å¾„
+     * @param charsetName ç¼–ç æ ¼å¼
+     * @return æ–‡ä»¶è¡Œé“¾è¡¨
      */
     public static List<String> readFile2List(String filePath, String charsetName) {
         return readFile2List(getFileByPath(filePath), charsetName);
     }
 
     /**
-     * Ö¸¶¨±àÂë°´ĞĞ¶ÁÈ¡ÎÄ¼şµ½List
+     * æŒ‡å®šç¼–ç æŒ‰è¡Œè¯»å–æ–‡ä»¶åˆ°List
      *
-     * @param file        ÎÄ¼ş
-     * @param charsetName ±àÂë¸ñÊ½
-     * @return ÎÄ¼şĞĞÁ´±í
+     * @param file        æ–‡ä»¶
+     * @param charsetName ç¼–ç æ ¼å¼
+     * @return æ–‡ä»¶è¡Œé“¾è¡¨
      */
     public static List<String> readFile2List(File file, String charsetName) {
         return readFile2List(file, 0, 0x7FFFFFFF, charsetName);
     }
 
     /**
-     * Ö¸¶¨±àÂë°´ĞĞ¶ÁÈ¡ÎÄ¼şµ½List
+     * æŒ‡å®šç¼–ç æŒ‰è¡Œè¯»å–æ–‡ä»¶åˆ°List
      *
-     * @param filePath    ÎÄ¼şÂ·¾¶
-     * @param st          ĞèÒª¶ÁÈ¡µÄ¿ªÊ¼ĞĞÊı
-     * @param end         ĞèÒª¶ÁÈ¡µÄ½áÊøĞĞÊı
-     * @param charsetName ±àÂë¸ñÊ½
-     * @return °üº¬ÖÆ¶¨ĞĞµÄlist
+     * @param filePath    æ–‡ä»¶è·¯å¾„
+     * @param st          éœ€è¦è¯»å–çš„å¼€å§‹è¡Œæ•°
+     * @param end         éœ€è¦è¯»å–çš„ç»“æŸè¡Œæ•°
+     * @param charsetName ç¼–ç æ ¼å¼
+     * @return åŒ…å«åˆ¶å®šè¡Œçš„list
      */
     public static List<String> readFile2List(String filePath, int st, int end, String
             charsetName) {
@@ -811,13 +811,13 @@ public class FileUtils {
     }
 
     /**
-     * Ö¸¶¨±àÂë°´ĞĞ¶ÁÈ¡ÎÄ¼şµ½List
+     * æŒ‡å®šç¼–ç æŒ‰è¡Œè¯»å–æ–‡ä»¶åˆ°List
      *
-     * @param file        ÎÄ¼ş
-     * @param st          ĞèÒª¶ÁÈ¡µÄ¿ªÊ¼ĞĞÊı
-     * @param end         ĞèÒª¶ÁÈ¡µÄ½áÊøĞĞÊı
-     * @param charsetName ±àÂë¸ñÊ½
-     * @return °üº¬´ÓstartĞĞµ½endĞĞµÄlist
+     * @param file        æ–‡ä»¶
+     * @param st          éœ€è¦è¯»å–çš„å¼€å§‹è¡Œæ•°
+     * @param end         éœ€è¦è¯»å–çš„ç»“æŸè¡Œæ•°
+     * @param charsetName ç¼–ç æ ¼å¼
+     * @return åŒ…å«ä»startè¡Œåˆ°endè¡Œçš„list
      */
     public static List<String> readFile2List(File file, int st, int end, String charsetName) {
         if (file == null) return null;
@@ -847,22 +847,22 @@ public class FileUtils {
     }
 
     /**
-     * Ö¸¶¨±àÂë°´ĞĞ¶ÁÈ¡ÎÄ¼şµ½×Ö·û´®ÖĞ
+     * æŒ‡å®šç¼–ç æŒ‰è¡Œè¯»å–æ–‡ä»¶åˆ°å­—ç¬¦ä¸²ä¸­
      *
-     * @param filePath    ÎÄ¼şÂ·¾¶
-     * @param charsetName ±àÂë¸ñÊ½
-     * @return ×Ö·û´®
+     * @param filePath    æ–‡ä»¶è·¯å¾„
+     * @param charsetName ç¼–ç æ ¼å¼
+     * @return å­—ç¬¦ä¸²
      */
     public static String readFile2String(String filePath, String charsetName) {
         return readFile2String(getFileByPath(filePath), charsetName);
     }
 
     /**
-     * Ö¸¶¨±àÂë°´ĞĞ¶ÁÈ¡ÎÄ¼şµ½×Ö·û´®ÖĞ
+     * æŒ‡å®šç¼–ç æŒ‰è¡Œè¯»å–æ–‡ä»¶åˆ°å­—ç¬¦ä¸²ä¸­
      *
-     * @param file        ÎÄ¼ş
-     * @param charsetName ±àÂë¸ñÊ½
-     * @return ×Ö·û´®
+     * @param file        æ–‡ä»¶
+     * @param charsetName ç¼–ç æ ¼å¼
+     * @return å­—ç¬¦ä¸²
      */
     public static String readFile2String(File file, String charsetName) {
         if (file == null) return null;
@@ -875,20 +875,20 @@ public class FileUtils {
     }
 
     /**
-     * Ö¸¶¨±àÂë°´ĞĞ¶ÁÈ¡ÎÄ¼şµ½×Ö·û´®ÖĞ
+     * æŒ‡å®šç¼–ç æŒ‰è¡Œè¯»å–æ–‡ä»¶åˆ°å­—ç¬¦ä¸²ä¸­
      *
-     * @param filePath ÎÄ¼şÂ·¾¶
-     * @return StringBuilder¶ÔÏó
+     * @param filePath æ–‡ä»¶è·¯å¾„
+     * @return StringBuilderå¯¹è±¡
      */
     public static byte[] readFile2Bytes(String filePath) {
         return readFile2Bytes(getFileByPath(filePath));
     }
 
     /**
-     * Ö¸¶¨±àÂë°´ĞĞ¶ÁÈ¡ÎÄ¼şµ½×Ö·û´®ÖĞ
+     * æŒ‡å®šç¼–ç æŒ‰è¡Œè¯»å–æ–‡ä»¶åˆ°å­—ç¬¦ä¸²ä¸­
      *
-     * @param file ÎÄ¼ş
-     * @return StringBuilder¶ÔÏó
+     * @param file æ–‡ä»¶
+     * @return StringBuilderå¯¹è±¡
      */
     public static byte[] readFile2Bytes(File file) {
         if (file == null) return null;
@@ -901,16 +901,16 @@ public class FileUtils {
     }
 
     /**
-     * byteµ¥Î»×ª»»£¨µ¥Î»£ºunit£©
+     * byteå•ä½è½¬æ¢ï¼ˆå•ä½ï¼šunitï¼‰
      *
-     * @param size ´óĞ¡
+     * @param size å¤§å°
      * @param unit <ul>
-     *             <li>{@link MemoryUnit#BYTE}: ×Ö½Ú</li>
-     *             <li>{@link MemoryUnit#KB}  : Ç§×Ö½Ú</li>
-     *             <li>{@link MemoryUnit#MB}  : Õ×</li>
+     *             <li>{@link MemoryUnit#BYTE}: å­—èŠ‚</li>
+     *             <li>{@link MemoryUnit#KB}  : åƒå­—èŠ‚</li>
+     *             <li>{@link MemoryUnit#MB}  : å…†</li>
      *             <li>{@link MemoryUnit#GB}  : GB</li>
      *             </ul>
-     * @return ´óĞ¡ÒÔunitÎªµ¥Î»
+     * @return å¤§å°ä»¥unitä¸ºå•ä½
      */
     public static double byte2Unit(long size, MemoryUnit unit) {
         switch (unit) {
@@ -927,34 +927,34 @@ public class FileUtils {
     }
 
     /**
-     * »ñÈ¡ÎÄ¼ş´óĞ¡
-     * <p>ÀıÈç£ºgetFileSize(filePath, ConstUtils.MB); ·µ»ØÎÄ¼ş´óĞ¡µ¥Î»ÎªMB</p>
+     * è·å–æ–‡ä»¶å¤§å°
+     * <p>ä¾‹å¦‚ï¼šgetFileSize(filePath, ConstUtils.MB); è¿”å›æ–‡ä»¶å¤§å°å•ä½ä¸ºMB</p>
      *
-     * @param filePath ÎÄ¼şÂ·¾¶
+     * @param filePath æ–‡ä»¶è·¯å¾„
      * @param unit     <ul>
-     *                 <li>{@link MemoryUnit#BYTE}: ×Ö½Ú</li>
-     *                 <li>{@link MemoryUnit#KB}  : Ç§×Ö½Ú</li>
-     *                 <li>{@link MemoryUnit#MB}  : Õ×</li>
+     *                 <li>{@link MemoryUnit#BYTE}: å­—èŠ‚</li>
+     *                 <li>{@link MemoryUnit#KB}  : åƒå­—èŠ‚</li>
+     *                 <li>{@link MemoryUnit#MB}  : å…†</li>
      *                 <li>{@link MemoryUnit#GB}  : GB</li>
      *                 </ul>
-     * @return ÎÄ¼ş´óĞ¡ÒÔunitÎªµ¥Î»
+     * @return æ–‡ä»¶å¤§å°ä»¥unitä¸ºå•ä½
      */
     public static double getFileSize(String filePath, MemoryUnit unit) {
         return getFileSize(getFileByPath(filePath), unit);
     }
 
     /**
-     * »ñÈ¡ÎÄ¼ş´óĞ¡
-     * <p>ÀıÈç£ºgetFileSize(file, ConstUtils.MB); ·µ»ØÎÄ¼ş´óĞ¡µ¥Î»ÎªMB</p>
+     * è·å–æ–‡ä»¶å¤§å°
+     * <p>ä¾‹å¦‚ï¼šgetFileSize(file, ConstUtils.MB); è¿”å›æ–‡ä»¶å¤§å°å•ä½ä¸ºMB</p>
      *
-     * @param file ÎÄ¼ş
+     * @param file æ–‡ä»¶
      * @param unit <ul>
-     *             <li>{@link MemoryUnit#BYTE}: ×Ö½Ú</li>
-     *             <li>{@link MemoryUnit#KB}  : Ç§×Ö½Ú</li>
-     *             <li>{@link MemoryUnit#MB}  : Õ×</li>
+     *             <li>{@link MemoryUnit#BYTE}: å­—èŠ‚</li>
+     *             <li>{@link MemoryUnit#KB}  : åƒå­—èŠ‚</li>
+     *             <li>{@link MemoryUnit#MB}  : å…†</li>
      *             <li>{@link MemoryUnit#GB}  : GB</li>
      *             </ul>
-     * @return ÎÄ¼ş´óĞ¡ÒÔunitÎªµ¥Î»
+     * @return æ–‡ä»¶å¤§å°ä»¥unitä¸ºå•ä½
      */
     public static double getFileSize(File file, MemoryUnit unit) {
         if (!isFileExists(file)) return -1;
@@ -962,7 +962,7 @@ public class FileUtils {
     }
 
     /**
-     * ¹Ø±ÕIO
+     * å…³é—­IO
      *
      * @param closeable closeable
      */
@@ -976,10 +976,10 @@ public class FileUtils {
     }
 
     /**
-     * »ñÈ¡È«Â·¾¶ÖĞµÄ×î³¤Ä¿Â¼
+     * è·å–å…¨è·¯å¾„ä¸­çš„æœ€é•¿ç›®å½•
      *
-     * @param file ÎÄ¼ş
-     * @return filePath×î³¤Ä¿Â¼
+     * @param file æ–‡ä»¶
+     * @return filePathæœ€é•¿ç›®å½•
      */
     public static String getDirName(File file) {
         if (!isFileExists(file)) return "";
@@ -987,10 +987,10 @@ public class FileUtils {
     }
 
     /**
-     * »ñÈ¡È«Â·¾¶ÖĞµÄ×î³¤Ä¿Â¼
+     * è·å–å…¨è·¯å¾„ä¸­çš„æœ€é•¿ç›®å½•
      *
-     * @param filePath ÎÄ¼şÂ·¾¶
-     * @return filePath×î³¤Ä¿Â¼
+     * @param filePath æ–‡ä»¶è·¯å¾„
+     * @return filePathæœ€é•¿ç›®å½•
      */
     public static String getDirName(String filePath) {
         if (StringUtils.isSpace(filePath)) return filePath;
@@ -999,10 +999,10 @@ public class FileUtils {
     }
 
     /**
-     * »ñÈ¡È«Â·¾¶ÖĞµÄÎÄ¼şÃû
+     * è·å–å…¨è·¯å¾„ä¸­çš„æ–‡ä»¶å
      *
-     * @param file ÎÄ¼ş
-     * @return ÎÄ¼şÃû
+     * @param file æ–‡ä»¶
+     * @return æ–‡ä»¶å
      */
     public static String getFileName(File file) {
         if (!isFileExists(file)) return "";
@@ -1010,10 +1010,10 @@ public class FileUtils {
     }
 
     /**
-     * »ñÈ¡È«Â·¾¶ÖĞµÄÎÄ¼şÃû
+     * è·å–å…¨è·¯å¾„ä¸­çš„æ–‡ä»¶å
      *
-     * @param filePath ÎÄ¼şÂ·¾¶
-     * @return ÎÄ¼şÃû
+     * @param filePath æ–‡ä»¶è·¯å¾„
+     * @return æ–‡ä»¶å
      */
     public static String getFileName(String filePath) {
         if (StringUtils.isSpace(filePath)) return filePath;
@@ -1022,10 +1022,10 @@ public class FileUtils {
     }
 
     /**
-     * »ñÈ¡È«Â·¾¶ÖĞµÄ²»´øÍØÕ¹ÃûµÄÎÄ¼şÃû
+     * è·å–å…¨è·¯å¾„ä¸­çš„ä¸å¸¦æ‹“å±•åçš„æ–‡ä»¶å
      *
-     * @param file ÎÄ¼ş
-     * @return ²»´øÍØÕ¹ÃûµÄÎÄ¼şÃû
+     * @param file æ–‡ä»¶
+     * @return ä¸å¸¦æ‹“å±•åçš„æ–‡ä»¶å
      */
     public static String getFileNameNoExtension(File file) {
         if (!isFileExists(file)) return "";
@@ -1033,10 +1033,10 @@ public class FileUtils {
     }
 
     /**
-     * »ñÈ¡È«Â·¾¶ÖĞµÄ²»´øÍØÕ¹ÃûµÄÎÄ¼şÃû
+     * è·å–å…¨è·¯å¾„ä¸­çš„ä¸å¸¦æ‹“å±•åçš„æ–‡ä»¶å
      *
-     * @param filePath ÎÄ¼şÂ·¾¶
-     * @return ²»´øÍØÕ¹ÃûµÄÎÄ¼şÃû
+     * @param filePath æ–‡ä»¶è·¯å¾„
+     * @return ä¸å¸¦æ‹“å±•åçš„æ–‡ä»¶å
      */
     public static String getFileNameNoExtension(String filePath) {
         if (StringUtils.isSpace(filePath)) return filePath;
@@ -1053,10 +1053,10 @@ public class FileUtils {
 
 
     /**
-     * »ñÈ¡È«Â·¾¶ÖĞµÄÎÄ¼şÍØÕ¹Ãû
+     * è·å–å…¨è·¯å¾„ä¸­çš„æ–‡ä»¶æ‹“å±•å
      *
-     * @param file ÎÄ¼ş
-     * @return ÎÄ¼şÍØÕ¹Ãû
+     * @param file æ–‡ä»¶
+     * @return æ–‡ä»¶æ‹“å±•å
      */
     public static String getFileExtension(File file) {
         if (!isFileExists(file)) return "";
@@ -1064,10 +1064,10 @@ public class FileUtils {
     }
 
     /**
-     * »ñÈ¡È«Â·¾¶ÖĞµÄÎÄ¼şÍØÕ¹Ãû
+     * è·å–å…¨è·¯å¾„ä¸­çš„æ–‡ä»¶æ‹“å±•å
      *
-     * @param filePath ÎÄ¼şÂ·¾¶
-     * @return ÎÄ¼şÍØÕ¹Ãû
+     * @param filePath æ–‡ä»¶è·¯å¾„
+     * @return æ–‡ä»¶æ‹“å±•å
      */
     public static String getFileExtension(String filePath) {
         if (StringUtils.isSpace(filePath)) return filePath;
