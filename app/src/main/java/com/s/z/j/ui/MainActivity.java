@@ -39,6 +39,7 @@ import com.s.z.j.html.HtmlActivity;
 import com.s.z.j.newUtils.AppUtils;
 import com.s.z.j.photo_wall_falls_demo.PhotoWallFallsActivity;
 import com.s.z.j.service.TopWindowService;
+import com.s.z.j.test.TestMyEdittextActivity;
 import com.s.z.j.ui.apppackage.SystemAppPackageNameActivity;
 import com.s.z.j.ui.device.DeviceInfoActivity;
 import com.s.z.j.ui.dialog.DialogActivity;
@@ -174,6 +175,7 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
         commentdata.add(new Menu(31,"播放视频时发送弹幕"));
         commentdata.add(new Menu(32,"图片瀑布流查看"));
         commentdata.add(new Menu(33,"修改头像"));
+        commentdata.add(new Menu(34,"自定义Edittext测试"));
 
         mLayoutInflater = LayoutInflater.from(context);
         adapter = new MyAdapter();
@@ -383,6 +385,9 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
                 break;
             case 33:
                 startActivity(new Intent(context, PhotographActivity.class));
+                break;
+            case 34:
+                startActivity(new Intent(context, TestMyEdittextActivity.class));
                 break;
             default:
                 break;

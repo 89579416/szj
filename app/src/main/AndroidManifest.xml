@@ -160,7 +160,10 @@
         <!-- 图片详情查看 -->
         <activity android:name=".photo_wall_falls_demo.ImageDetailsActivity"></activity>
 
+        <!-- 测试自定义Edittext -->
+        <activity android:name=".test.TestMyEdittextActivity"/>
 
+        <!-- 浮动窗口实现  -->
         <service android:name=".service.TopWindowService" />
     </application>
 
