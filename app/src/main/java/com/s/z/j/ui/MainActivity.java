@@ -30,6 +30,7 @@ import android.widget.TextView;
 
 import com.s.z.j.R;
 import com.s.z.j.abcde.navigationdrawer.ui.NavigationdrawerActivity;
+import com.s.z.j.calculator.CalculatorActivity;
 import com.s.z.j.choose_images.imageloader.ChooseImageMainActivity;
 import com.s.z.j.danmu.DanMuActivity;
 import com.s.z.j.entity.Menu;
@@ -176,6 +177,7 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
         commentdata.add(new Menu(32,"图片瀑布流查看"));
         commentdata.add(new Menu(33,"修改头像"));
         commentdata.add(new Menu(34,"自定义Edittext测试"));
+        commentdata.add(new Menu(35,"简单计算器"));
 
         mLayoutInflater = LayoutInflater.from(context);
         adapter = new MyAdapter();
@@ -388,6 +390,9 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
                 break;
             case 34:
                 startActivity(new Intent(context, TestMyEdittextActivity.class));
+                break;
+            case 35:
+                startActivity(new Intent(context, CalculatorActivity.class));
                 break;
             default:
                 break;

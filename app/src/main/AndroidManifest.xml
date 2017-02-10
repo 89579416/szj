@@ -163,6 +163,8 @@
         <!-- 测试自定义Edittext -->
         <activity android:name=".test.TestMyEdittextActivity"/>
 
+        <!-- 简单计算器 -->
+        <activity android:name=".calculator.CalculatorActivity"></activity>
         <!-- 浮动窗口实现  -->
         <service android:name=".service.TopWindowService" />
     </application>
