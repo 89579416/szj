@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.s.z.j.photo_wall_falls_demo.ZoomImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/zoom_image_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000" >
+
+</com.s.z.j.photo_wall_falls_demo.ZoomImageView>

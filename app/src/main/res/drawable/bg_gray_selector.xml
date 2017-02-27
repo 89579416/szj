@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding= "UTF-8"?>
+<selector android:constantSize ="true"
+xmlns:android= "http://schemas.android.com/apk/res/android" >
+<item android:state_pressed= "true">
+    <shape android:shape= "rectangle">
+        <gradient android:startColor="@color/clr_gray_pressed" android:endColor="@color/clr_gray_pressed" android:angle="270.0" />
+        <!--             <stroke android:width="1.0px" android:color="@color/more_pressed_end" /> -->
+        <corners android:bottomLeftRadius= "0.0dip" android:bottomRightRadius ="0.0dip" android:topLeftRadius="0.0dip" android:topRightRadius="0.0dip" />
+
+    </shape>
+</item>
+
+
+<item>
+    <shape android:shape= "rectangle">
+        <gradient android:startColor="@color/clr_gray_normal" android:centerColor="@color/clr_gray_normal" android:endColor="@color/clr_gray_normal" android:angle="270.0" />
+        <!--             <stroke android:width="1.0px" android:color="@color/more_pressed_end" /> -->
+        <corners android:bottomLeftRadius= "0.0dip" android:bottomRightRadius ="0.0dip" android:topLeftRadius="0.0dip" android:topRightRadius="0.0dip" />
+
+    </shape>
+</item>
+</selector>

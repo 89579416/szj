@@ -4,4 +4,8 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="shadow_width">15dp</dimen>
     <dimen name="slidingmenu_offset">80dp</dimen>
+    <dimen name="margin_12">12.0dip</dimen>
+    <dimen name="vi_margin">15.0dip</dimen>
+    <dimen name="margin_8">8dip</dimen>
+
 </resources>

@@ -36,5 +36,12 @@
     <!--亮海蓝色 -->
     <color name="black">#000000</color>
     <!-- 黑色 -->
+    <color name="gray_bg">#fff0f0f0</color>
+    <color name="base_text">#000000</color>
+
+    <color name="clr_gray_normal">#20252B</color>
+    <color name="clr_gray_pressed">#2B2B2B</color>
+    <color name="clr_blue_normal">#242943</color>
+    <color name="clr_blue_pressed">#2F3243</color>
 
 </resources>

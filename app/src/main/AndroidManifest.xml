@@ -37,6 +37,13 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <!--  浮动窗口权限  -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.GET_TASKS"/>
+
+    <!-- 在 屏幕最顶部显示addview-->
+    <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />
+
+    <uses-permission android:name="android.permission.TYPE_SYSTEM_ERROR"/>
+
 
     <!--屏幕自适应配置信息-->
     <supports-screens
@@ -76,7 +83,7 @@
         <activity android:name=".ui.mediaplayer.MediaPlayerActivity"></activity>
 
         <!-- 播放视频测试-->
-        <activity android:name=".ui.test.MediaPlayerTestActivity"></activity>
+        <!--<activity android:name=".ui.test.MediaPlayerTestActivity"></activity>-->
 
         <!-- 二维码生成与扫描 -->
         <activity android:name=".ui.qrcode.QrCodeActivity"></activity>
@@ -112,7 +119,7 @@
         </activity>
 
         <!-- 分屏播放视频和网页  -->
-        <activity android:name=".fenping.ui.FenPingActivity"></activity>
+        <activity android:name=".fenping.FenPingActivity"></activity>
 
 
         <!-- 拍照 -->
@@ -129,10 +136,51 @@
         <activity android:name=".fragment.weixin.WeiXinFragmentActivity"></activity>
 
         <!-- 播放assets下的mp4 -->
-        <activity android:name=".ui.myassets.PlayAssetsFileActivity"></activity>
+        <activity android:name=".ui.videoplay.PlayActivity"></activity>
 
+        <!-- 仿360卫士实现悬浮窗口显示当前使用内存-->
+        <activity android:name=".xuanfuchuang_360.Xuanfu360MainActivity"></activity>
+        <service android:name=".xuanfuchuang_360.FloatWindow360Service"/>
+
+        <!-- QQ手机管家小火箭效果实现 -->
+        <activity android:name=".xuanfuchuang_qq.XuanFuQqMainActivity"></activity>
+        <service android:name=".xuanfuchuang_qq.FloatWindowQqService"/>
+
+        <!-- wifi热点打开关闭监测 -->
         <service android:name=".ui.wifihost.WiFiAPService"></service>
-        
+
+        <!-- 图片左右滑动 -->
+        <activity android:name=".tupianhuadong.MainActivity"></activity>
+
+        <!-- webView加载html并播放视频 -->
+        <activity android:name=".html.HtmlActivity"></activity>
+
+        <!-- 模仿微信从相册选择图片 -->
+        <activity android:name=".choose_images.imageloader.ChooseImageMainActivity"></activity>
+
+        <!-- 弹幕实现 -->
+        <activity android:name=".danmu.DanMuActivity"></activity>
+
+        <!-- Android照片墙加强版，使用ViewPager实现画廊效果Demo -->
+        <activity android:name=".photo_wall_falls_demo.PhotoWallFallsActivity"></activity>
+
+        <!-- 图片详情查看 -->
+        <activity android:name=".photo_wall_falls_demo.ImageDetailsActivity"></activity>
+
+        <!-- 测试自定义Edittext -->
+        <activity android:name=".test.TestMyEdittextActivity"/>
+
+        <!-- 简单计算器 -->
+        <activity android:name=".calculator.CalculatorActivity"></activity>
+        <!-- 浮动窗口实现  -->
+        <service android:name=".service.TopWindowService" />
+
+        <!-- 播放视频-->
+        <activity android:name=".shuangping.SPMainActivity"></activity>
+        <!-- 在副屏播放视频 -->
+        <service android:name=".shuangping.ShuangPingService"/>
     </application>
+
+
 
 </manifest>

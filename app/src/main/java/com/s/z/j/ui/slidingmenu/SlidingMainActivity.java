@@ -14,6 +14,7 @@ import com.s.z.j.fragment.slidingmenu.LeftFragment;
 import com.s.z.j.fragment.slidingmenu.TodayFragment;
 
 /**
+ * 测滑菜单
  * Created by Administrator on 2016-10-19.
  */
 public class SlidingMainActivity extends SlidingFragmentActivity implements View.OnClickListener {

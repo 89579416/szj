@@ -19,6 +19,8 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
 import java.io.BufferedWriter;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FileInputStream;
@@ -26,6 +28,8 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -37,12 +41,14 @@ import java.util.List;
  * 解析XML文件
  * 创建文件夹
  * 获取并删除7天前的文件
+ * 序列化和反序列化
  * Created by szj on 2015/10/13.
  */
 public class FileUtil {
     private static String TAG = "FileUtil";
     private static String defaultUrl = "";
-
+    long startTime = 0l;
+    long endTime = 0l;
 
     /**
      * 精简版：利用dom4j-1.6.1.jar 解析
@@ -540,7 +546,7 @@ public class FileUtil {
     public  static ArrayList <String> data;
 
     /**
-     * 获取MP4文件
+     * 获取一个路径下的所有MP4文件，包括子文件夹里面的
      * @param root
      * @return
      */
@@ -574,4 +580,69 @@ public class FileUtil {
         }
     }
 
+    /**
+     * 序列化对象
+     * @param person
+     * @return
+     * @throws IOException
+     */
+    private String serialize(Person person) throws IOException {
+        startTime = System.currentTimeMillis();
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(
+                byteArrayOutputStream);
+        objectOutputStream.writeObject(person);
+        String serStr = byteArrayOutputStream.toString("ISO-8859-1");
+        serStr = java.net.URLEncoder.encode(serStr, "UTF-8");
+        objectOutputStream.close();
+        byteArrayOutputStream.close();
+        Log.d("serial", "serialize str =" + serStr);
+        endTime = System.currentTimeMillis();
+        Log.d("serial", "序列化耗时为:" + (endTime - startTime));
+        return serStr;
+    }
+
+    /**
+     * 反序列化对象
+     *
+     * @param str
+     * @return
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+    private Person deSerialization(String str) throws IOException,
+            ClassNotFoundException {
+        startTime = System.currentTimeMillis();
+        String redStr = java.net.URLDecoder.decode(str, "UTF-8");
+        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(
+                redStr.getBytes("ISO-8859-1"));
+        ObjectInputStream objectInputStream = new ObjectInputStream(
+                byteArrayInputStream);
+        Person person = (Person) objectInputStream.readObject();
+        objectInputStream.close();
+        byteArrayInputStream.close();
+        endTime = System.currentTimeMillis();
+        Log.d("serial", "反序列化耗时为:" + (endTime - startTime));
+        return person;
+    }
+
+    /**
+     * 获取一个路径下的所有文件 放入一个列表
+     * @param path
+     * @return
+     */
+    public static List<String> getPaths(String path) {
+        List<String> paths = new ArrayList<>();
+        File file = new File(path);
+        File[] fs = null;
+        if (file.exists() && file != null && file.isDirectory()) {
+            fs = file.listFiles();
+        }
+        if (fs != null && fs.length > 0) {
+            for (int i = 0; i < fs.length; i++) {
+                paths.add(fs[i].getAbsoluteFile().toString());
+            }
+        }
+        return paths;
+    }
 }
