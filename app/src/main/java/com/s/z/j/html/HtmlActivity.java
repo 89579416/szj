@@ -37,7 +37,7 @@ public class HtmlActivity extends BaseActivity {
     private View myView = null;
     private WebChromeClient.CustomViewCallback myCallBack = null;
 
-    private String url = Environment.getExternalStorageDirectory() + "/facsimilemedia/Resources";
+    private String url = Environment.getExternalStorageDirectory() + "";
     @Override
     public void initialize(Bundle savedInstanceState) {
         frameLayout = (FrameLayout)findViewById(R.id.framelayout);
@@ -55,7 +55,7 @@ public class HtmlActivity extends BaseActivity {
         webView.getSettings().setSupportZoom(false);
         webView.getSettings().setPluginState(WebSettings.PluginState.ON);
         webView.getSettings().setLoadWithOverviewMode(true);
-        webView.loadUrl("file:///" + url + "/html/a2.html");
+        webView.loadUrl("file:///" + url + "/sss/update.html");
         if(savedInstanceState != null){
 
             webView.restoreState(savedInstanceState);

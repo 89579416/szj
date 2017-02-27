@@ -40,6 +40,8 @@ import com.s.z.j.html.HtmlActivity;
 import com.s.z.j.newUtils.AppUtils;
 import com.s.z.j.photo_wall_falls_demo.PhotoWallFallsActivity;
 import com.s.z.j.service.TopWindowService;
+import com.s.z.j.shuangping.SPMainActivity;
+import com.s.z.j.shuangping.ShuangPingService;
 import com.s.z.j.test.TestMyEdittextActivity;
 import com.s.z.j.ui.apppackage.SystemAppPackageNameActivity;
 import com.s.z.j.ui.device.DeviceInfoActivity;
@@ -57,6 +59,7 @@ import com.s.z.j.utils.HttpUtils;
 import com.s.z.j.utils.L;
 import com.s.z.j.utils.SpeedUtil;
 import com.s.z.j.utils.VibratorUtil;
+import com.s.z.j.xuanfuchuang_360.FloatWindow360Service;
 import com.s.z.j.xuanfuchuang_360.Xuanfu360MainActivity;
 import com.s.z.j.xuanfuchuang_qq.XuanFuQqMainActivity;
 import com.squareup.picasso.Picasso;
@@ -178,6 +181,7 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
         commentdata.add(new Menu(33,"修改头像"));
         commentdata.add(new Menu(34,"自定义Edittext测试"));
         commentdata.add(new Menu(35,"简单计算器"));
+        commentdata.add(new Menu(36,"双屏显示"));
 
         mLayoutInflater = LayoutInflater.from(context);
         adapter = new MyAdapter();
@@ -361,7 +365,7 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
                 startActivity(new Intent(context,FenPingActivity.class));
                 break;
             case 25:
-                startActivity(new Intent(context,WeiXinFragmentActivity.class));
+                startActivity(new Intent(context, WeiXinFragmentActivity.class));
                 break;
             case 26:
                 AppUtils.shareAppInfo(context, "这是分享测试内容");
@@ -394,93 +398,13 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
             case 35:
                 startActivity(new Intent(context, CalculatorActivity.class));
                 break;
+            case 36:
+                Intent intent = new Intent(context, SPMainActivity.class);
+                startActivity(intent);
+//                startService(intent);
+                break;
             default:
                 break;
-        }
-    }
-    /**
-     * 获取外网的IP(要访问Url，要放到后台线程里处理)
-     *
-     * @Title: GetNetIp
-     * @Description:
-     * @param @return
-     * @return String
-     * @throws
-     */
-    String GetNetIp(String ipaddr){
-        URL infoUrl = null;
-        InputStream inStream = null;
-        try {
-            infoUrl = new URL(ipaddr);
-            URLConnection connection = infoUrl.openConnection();
-            HttpURLConnection httpConnection = (HttpURLConnection)connection;
-            int responseCode = httpConnection.getResponseCode();
-            if(responseCode == HttpURLConnection.HTTP_OK)
-            {
-                inStream = httpConnection.getInputStream();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(inStream,"utf-8"));
-                StringBuilder strber = new StringBuilder();
-                String line = null;
-                while ((line = reader.readLine()) != null)
-                    strber.append(line + "\n");
-                inStream.close();
-                return strber.toString();
-            }
-        } catch (MalformedURLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return "";
-    }
-    /**
-     * 通过包名获取类名
-     * 然后跳转到另一个APP
-     * @param packagename
-     */
-    private void doStartApplicationWithPackageName(String packagename) {
-
-        // 通过包名获取此APP详细信息，包括Activities、services、versioncode、name等等
-        PackageInfo packageinfo = null;
-        try {
-            packageinfo = getPackageManager().getPackageInfo(packagename, 0);
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
-        if (packageinfo == null) {
-            return;
-        }
-
-        // 创建一个类别为CATEGORY_LAUNCHER的该包名的Intent
-        Intent resolveIntent = new Intent(Intent.ACTION_MAIN, null);
-        resolveIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-        resolveIntent.setPackage(packageinfo.packageName);
-
-        // 通过getPackageManager()的queryIntentActivities方法遍历
-        List<ResolveInfo> resolveinfoList = getPackageManager()
-                .queryIntentActivities(resolveIntent, 0);
-
-        ResolveInfo resolveinfo = resolveinfoList.iterator().next();
-        if (resolveinfo != null) {
-            // packagename = 参数packname
-            String packageName = resolveinfo.activityInfo.packageName;
-            // 这个就是我们要找的该APP的LAUNCHER的Activity[组织形式：packagename.mainActivityname]
-            String className = resolveinfo.activityInfo.name;
-            // LAUNCHER Intent
-            Intent intent = new Intent(Intent.ACTION_MAIN);
-            intent.addCategory(Intent.CATEGORY_LAUNCHER);
-
-            // 设置ComponentName参数1:packagename参数2:MainActivity路径
-            ComponentName cn = new ComponentName(packageName, className);
-            L.i("className"+className);
-            intent.setComponent(cn);
-            if (intent != null) {
-                startActivityForResult(intent, 111);
-            } else {
-                T.s(context,"打开快收银失败，有可能是没有安装快收银");
-            }
         }
     }
 

@@ -38,6 +38,13 @@
     <!--  浮动窗口权限  -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.GET_TASKS"/>
+
+    <!-- 在 屏幕最顶部显示addview-->
+    <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />
+
+    <uses-permission android:name="android.permission.TYPE_SYSTEM_ERROR"/>
+
+
     <!--屏幕自适应配置信息-->
     <supports-screens
         android:anyDensity="true"
@@ -167,6 +174,11 @@
         <activity android:name=".calculator.CalculatorActivity"></activity>
         <!-- 浮动窗口实现  -->
         <service android:name=".service.TopWindowService" />
+
+        <!-- 播放视频-->
+        <activity android:name=".shuangping.SPMainActivity"></activity>
+        <!-- 在副屏播放视频 -->
+        <service android:name=".shuangping.ShuangPingService"/>
     </application>
 
 

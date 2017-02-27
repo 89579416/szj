@@ -626,4 +626,23 @@ public class FileUtil {
         return person;
     }
 
+    /**
+     * 获取一个路径下的所有文件 放入一个列表
+     * @param path
+     * @return
+     */
+    public static List<String> getPaths(String path) {
+        List<String> paths = new ArrayList<>();
+        File file = new File(path);
+        File[] fs = null;
+        if (file.exists() && file != null && file.isDirectory()) {
+            fs = file.listFiles();
+        }
+        if (fs != null && fs.length > 0) {
+            for (int i = 0; i < fs.length; i++) {
+                paths.add(fs[i].getAbsoluteFile().toString());
+            }
+        }
+        return paths;
+    }
 }
