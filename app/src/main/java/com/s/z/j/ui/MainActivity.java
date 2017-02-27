@@ -26,7 +26,6 @@ import com.s.z.j.ui.apppackage.SystemAppPackageNameActivity;
 import com.s.z.j.ui.device.DeviceInfoActivity;
 import com.s.z.j.ui.dialog.DialogActivity;
 import com.s.z.j.ui.mediaplayer.MediaPlayerActivity;
-import com.s.z.j.ui.myassets.PlayAssetsFileActivity;
 import com.s.z.j.ui.nav.NavigationActivity;
 import com.s.z.j.ui.photo.PhotographActivity;
 import com.s.z.j.ui.qrcode.QrCodeActivity;
@@ -391,7 +390,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 startActivity(new Intent(context,WeiXinFragmentActivity.class));
                 break;
             case R.id.main_play_assets_btn:
-                startActivity(new Intent(context,PlayAssetsFileActivity.class));
+
                 break;
             default:
                 break;
