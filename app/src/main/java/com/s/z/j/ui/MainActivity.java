@@ -1,5 +1,6 @@
 package com.s.z.j.ui;
 
+import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.ComponentName;
 import android.content.Intent;
@@ -37,6 +38,7 @@ import com.s.z.j.entity.Menu;
 import com.s.z.j.fenping.FenPingActivity;
 import com.s.z.j.fragment.weixin.WeiXinFragmentActivity;
 import com.s.z.j.html.HtmlActivity;
+import com.s.z.j.huadongshanchu.HuaDongShanChuActivity;
 import com.s.z.j.newUtils.AppUtils;
 import com.s.z.j.photo_wall_falls_demo.PhotoWallFallsActivity;
 import com.s.z.j.service.TopWindowService;
@@ -62,6 +64,7 @@ import com.s.z.j.utils.VibratorUtil;
 import com.s.z.j.xuanfuchuang_360.FloatWindow360Service;
 import com.s.z.j.xuanfuchuang_360.Xuanfu360MainActivity;
 import com.s.z.j.xuanfuchuang_qq.XuanFuQqMainActivity;
+import com.s.z.j.zidingyijindutiao.JinDuTiaoActivity;
 import com.squareup.picasso.Picasso;
 import com.szj.library.ui.BaseActivity;
 import com.szj.library.utils.T;
@@ -142,9 +145,12 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
     private String net_ip = "";//公网IP
     private boolean isSpeed;//是否在获取网速
 
+    private Activity activity;
+
     @Override
     public void initialize(Bundle savedInstanceState) {
         createFile();
+        activity = this;
         speedUtil = new SpeedUtil(this, speedHandler, new Timer());
         commentdata.add(new Menu(1, "获取设备信息"));
         commentdata.add(new Menu(2,"获取网络类型"));
@@ -182,6 +188,8 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
         commentdata.add(new Menu(34,"自定义Edittext测试"));
         commentdata.add(new Menu(35,"简单计算器"));
         commentdata.add(new Menu(36,"双屏显示"));
+        commentdata.add(new Menu(37,"Android自定义进度条样式"));
+        commentdata.add(new Menu(38," 高仿微信对话列表滑动删除效果"));
 
         mLayoutInflater = LayoutInflater.from(context);
         adapter = new MyAdapter();
@@ -402,6 +410,12 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
                 Intent intent = new Intent(context, SPMainActivity.class);
                 startActivity(intent);
 //                startService(intent);
+                break;
+            case 37:
+                startActivity(new Intent(context, JinDuTiaoActivity.class));
+                break;
+            case 38:
+                startActivity(new Intent(context,HuaDongShanChuActivity.class));
                 break;
             default:
                 break;

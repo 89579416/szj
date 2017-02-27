@@ -172,13 +172,23 @@
 
         <!-- 简单计算器 -->
         <activity android:name=".calculator.CalculatorActivity"></activity>
-        <!-- 浮动窗口实现  -->
-        <service android:name=".service.TopWindowService" />
 
         <!-- 播放视频-->
         <activity android:name=".shuangping.SPMainActivity"></activity>
+
+        <!-- 自定义进度条-->
+        <activity android:name=".zidingyijindutiao.JinDuTiaoActivity"></activity>
+
+        <!-- 滑动删除 -->
+        <activity android:name=".huadongshanchu.HuaDongShanChuActivity"></activity>
+
+
+        <!-- 浮动窗口实现  -->
+        <service android:name=".service.TopWindowService" />
+
         <!-- 在副屏播放视频 -->
         <service android:name=".shuangping.ShuangPingService"/>
+
     </application>
 
 
