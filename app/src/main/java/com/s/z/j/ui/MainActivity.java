@@ -1,14 +1,8 @@
 package com.s.z.j.ui;
 
 import android.app.Activity;
-import android.app.ActivityManager;
-import android.content.ComponentName;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
-import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -18,12 +12,9 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -43,7 +34,6 @@ import com.s.z.j.newUtils.AppUtils;
 import com.s.z.j.photo_wall_falls_demo.PhotoWallFallsActivity;
 import com.s.z.j.service.TopWindowService;
 import com.s.z.j.shuangping.SPMainActivity;
-import com.s.z.j.shuangping.ShuangPingService;
 import com.s.z.j.test.TestMyEdittextActivity;
 import com.s.z.j.ui.apppackage.SystemAppPackageNameActivity;
 import com.s.z.j.ui.device.DeviceInfoActivity;
@@ -61,7 +51,6 @@ import com.s.z.j.utils.HttpUtils;
 import com.s.z.j.utils.L;
 import com.s.z.j.utils.SpeedUtil;
 import com.s.z.j.utils.VibratorUtil;
-import com.s.z.j.xuanfuchuang_360.FloatWindow360Service;
 import com.s.z.j.xuanfuchuang_360.Xuanfu360MainActivity;
 import com.s.z.j.xuanfuchuang_qq.XuanFuQqMainActivity;
 import com.s.z.j.zidingyijindutiao.JinDuTiaoActivity;
@@ -72,25 +61,15 @@ import com.szj.library.widget.recyclerview.MTFEndlessRecyclerOnScrollListener;
 import com.szj.library.widget.recyclerview.MTFLoadingFooter;
 import com.szj.library.widget.recyclerview.MTFRecyclerViewAdapterWrapper;
 import com.szj.library.widget.recyclerview.MTFRecyclerViewStateUtils;
-import com.szj.library.widget.recyclerview.MTFRecyclerViewUtils;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 import java.util.Timer;
 
@@ -444,9 +423,12 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
                 try {
                     //下载文件，参数：第一个URL，第二个存放路径
                     HttpUtils.down_file(loadHandler, "http://dl.facsimilemedia.com/pos/android/newbeemall_pos_1.0.2.apk", Environment.getExternalStorageDirectory() + File.separator + "/ceshi/");
+                    /**测试下载种子，结果失败了  异常：java.net.MalformedURLException: Unknown protocol: magnet */
+//                    HttpUtils.down_file(loadHandler,"magnet:?xt=urn:btih:d3208b59f6b0aeb9d47e1ebe4a118cd241f92a82",Environment.getExternalStorageDirectory() + File.separator + "/ceshi/");
                 } catch (Exception e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
+                    L.i("异常："+e.toString());
                 }
             }
         }.start();
@@ -587,16 +569,22 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
             if (!Thread.currentThread().isInterrupted()) {
                 switch (msg.what) {
                     case 0:
+                        L.i("case 0----"+msg.arg2);
                         loadProgressBar.setMax(msg.arg2);
                     case 1:
+                        if(msg.arg1 != 0 && msg.arg2 != 0) {
+                            L.i("case 1----" + (msg.arg1 / msg.arg2) + "%");
+                        }
                         loadProgressBar.setVisibility(View.VISIBLE);
                         loadProgressBar.setProgress(msg.arg1);
                         break;
                     case 2:
+                        L.i("case 2----"+msg.arg1);
                         T.s(context, "文件下载完成");
                         loadProgressBar.setVisibility(View.GONE);
                         break;
                     case -1:
+                        L.i("case -1");
                         T.s(context, msg.getData().getString("error"));
                         break;
                 }
