@@ -13,7 +13,6 @@ import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 
 import com.s.z.j.R;
-import com.s.z.j.entity.BaseEntity;
 import com.szj.library.ui.BaseActivity;
 
 import org.xutils.view.annotation.ContentView;
@@ -99,7 +98,7 @@ public class HtmlActivity extends BaseActivity {
             // TODO Auto-generated method stub
             super.onPageFinished(view, url);
             Log.d("dream", "***on page finished");
-            webView.loadUrl("javascript:myFunction()");
+            webView.loadUrl("javascript:startPlay()");
         }
 
     }
