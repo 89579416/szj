@@ -34,6 +34,7 @@ import com.s.z.j.newUtils.AppUtils;
 import com.s.z.j.photo_wall_falls_demo.PhotoWallFallsActivity;
 import com.s.z.j.service.TopWindowService;
 import com.s.z.j.shuangping.SPMainActivity;
+import com.s.z.j.teamviewer.TeamViewerActivity;
 import com.s.z.j.test.TestMyEdittextActivity;
 import com.s.z.j.ui.apppackage.SystemAppPackageNameActivity;
 import com.s.z.j.ui.device.DeviceInfoActivity;
@@ -168,7 +169,8 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
         commentdata.add(new Menu(35,"简单计算器"));
         commentdata.add(new Menu(36,"双屏显示"));
         commentdata.add(new Menu(37,"Android自定义进度条样式"));
-        commentdata.add(new Menu(38," 高仿微信对话列表滑动删除效果"));
+        commentdata.add(new Menu(38,"高仿微信对话列表滑动删除效果"));
+        commentdata.add(new Menu(39,"teamviewerAPI测试"));
 
         mLayoutInflater = LayoutInflater.from(context);
         adapter = new MyAdapter();
@@ -395,6 +397,9 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
                 break;
             case 38:
                 startActivity(new Intent(context,HuaDongShanChuActivity.class));
+                break;
+            case 39:
+                startActivity(new Intent(context, TeamViewerActivity.class));
                 break;
             default:
                 break;

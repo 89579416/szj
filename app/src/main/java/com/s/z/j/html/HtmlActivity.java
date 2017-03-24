@@ -50,11 +50,12 @@ public class HtmlActivity extends BaseActivity {
         webView.setHorizontalScrollBarEnabled(false);
         webView.setVerticalScrollBarEnabled(false);
         final String USER_AGENT_STRING = webView.getSettings().getUserAgentString() + " Rong/2.0";
-        webView.getSettings().setUserAgentString( USER_AGENT_STRING );
+        webView.getSettings().setUserAgentString(USER_AGENT_STRING);
         webView.getSettings().setSupportZoom(false);
         webView.getSettings().setPluginState(WebSettings.PluginState.ON);
         webView.getSettings().setLoadWithOverviewMode(true);
-        webView.loadUrl("file:///" + url + "/sss/update.html");
+//        webView.loadUrl("file:///" + url + "/sss/update.html");// 测试播放本地html里面的视频
+        webView.loadUrl("http://dl.facsimilemedia.com/campaigns/65/910/p7nOkIe2Q6U6jUEX6TaOqDyUvmWj0feL.html");// 测试播放html里面的视频
         if(savedInstanceState != null){
 
             webView.restoreState(savedInstanceState);

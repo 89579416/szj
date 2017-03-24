@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.s.z.j"
     android:versionCode="1"
-    android:versionName="1.0.1"
-    >
-
+    android:versionName="1.0.1">
     <uses-sdk
         android:minSdkVersion="15"
         android:targetSdkVersion="19" />
@@ -43,6 +42,8 @@
     <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />
 
     <uses-permission android:name="android.permission.TYPE_SYSTEM_ERROR"/>
+
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" tools:remove="android:maxSdkVersion" />
 
 
     <!--屏幕自适应配置信息-->
@@ -182,12 +183,16 @@
         <!-- 滑动删除 -->
         <activity android:name=".huadongshanchu.HuaDongShanChuActivity"></activity>
 
+        <!-- teamviewerAPI test -->
+        <activity android:name=".teamviewer.TeamViewerActivity"></activity>
 
         <!-- 浮动窗口实现  -->
         <service android:name=".service.TopWindowService" />
 
         <!-- 在副屏播放视频 -->
         <service android:name=".shuangping.ShuangPingService"/>
+
+
 
     </application>
 
