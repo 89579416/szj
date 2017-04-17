@@ -24,8 +24,10 @@ import com.s.z.j.R;
 import com.s.z.j.abcde.navigationdrawer.ui.NavigationdrawerActivity;
 import com.s.z.j.calculator.CalculatorActivity;
 import com.s.z.j.choose_images.imageloader.ChooseImageMainActivity;
+import com.s.z.j.connectwifi.ConnWifiMainActivity;
 import com.s.z.j.danmu.DanMuActivity;
 import com.s.z.j.entity.Menu;
+import com.s.z.j.exoplayer.MyExoPlayerActivity;
 import com.s.z.j.fenping.FenPingActivity;
 import com.s.z.j.fragment.weixin.WeiXinFragmentActivity;
 import com.s.z.j.html.HtmlActivity;
@@ -33,7 +35,7 @@ import com.s.z.j.huadongshanchu.HuaDongShanChuActivity;
 import com.s.z.j.newUtils.AppUtils;
 import com.s.z.j.photo_wall_falls_demo.PhotoWallFallsActivity;
 import com.s.z.j.service.TopWindowService;
-import com.s.z.j.shuangping.SPMainActivity;
+import com.s.z.j.shuangping.ShuangPingService;
 import com.s.z.j.teamviewer.TeamViewerActivity;
 import com.s.z.j.test.TestMyEdittextActivity;
 import com.s.z.j.ui.apppackage.SystemAppPackageNameActivity;
@@ -170,7 +172,9 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
         commentdata.add(new Menu(36,"双屏显示"));
         commentdata.add(new Menu(37,"Android自定义进度条样式"));
         commentdata.add(new Menu(38,"高仿微信对话列表滑动删除效果"));
-        commentdata.add(new Menu(39,"teamviewerAPI测试"));
+        commentdata.add(new Menu(39,"teamviewerAPI测试--已暂停"));
+        commentdata.add(new Menu(40,"ExoPlayer播放本地视频"));
+        commentdata.add(new Menu(41,"连接wifi"));
 
         mLayoutInflater = LayoutInflater.from(context);
         adapter = new MyAdapter();
@@ -388,9 +392,10 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
                 startActivity(new Intent(context, CalculatorActivity.class));
                 break;
             case 36:
-                Intent intent = new Intent(context, SPMainActivity.class);
-                startActivity(intent);
-//                startService(intent);
+//                Intent intent = new Intent(context, SPMainActivity.class);
+//                startActivity(intent);//开启双屏显示
+                Intent i = new Intent(context, ShuangPingService.class);
+                startService(i);//只显示副屏
                 break;
             case 37:
                 startActivity(new Intent(context, JinDuTiaoActivity.class));
@@ -400,6 +405,12 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
                 break;
             case 39:
                 startActivity(new Intent(context, TeamViewerActivity.class));
+                break;
+            case 40:
+                startActivity(new Intent(context, MyExoPlayerActivity.class));
+                break;
+            case 41:
+                startActivity(new Intent(context, ConnWifiMainActivity.class));
                 break;
             default:
                 break;

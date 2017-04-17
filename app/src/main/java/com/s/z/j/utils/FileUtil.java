@@ -49,7 +49,6 @@ public class FileUtil {
     private static String defaultUrl = "";
     long startTime = 0l;
     long endTime = 0l;
-
     /**
      * 精简版：利用dom4j-1.6.1.jar 解析
      * 示例XML文件在项目根目录  updates.xml
@@ -645,4 +644,5 @@ public class FileUtil {
         }
         return paths;
     }
+
 }

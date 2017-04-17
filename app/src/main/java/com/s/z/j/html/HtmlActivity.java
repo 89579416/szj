@@ -54,8 +54,11 @@ public class HtmlActivity extends BaseActivity {
         webView.getSettings().setSupportZoom(false);
         webView.getSettings().setPluginState(WebSettings.PluginState.ON);
         webView.getSettings().setLoadWithOverviewMode(true);
-//        webView.loadUrl("file:///" + url + "/sss/update.html");// 测试播放本地html里面的视频
-        webView.loadUrl("http://dl.facsimilemedia.com/campaigns/65/910/p7nOkIe2Q6U6jUEX6TaOqDyUvmWj0feL.html");// 测试播放html里面的视频
+        webView.loadUrl("file:///" + url + "/html/index.html");// 测试播放本地html里面的视频
+//        webView.loadUrl("http://dl.facsimilemedia.com/campaigns/kgyjnbZ8tlIQ6U08fTdDn7LHUPEyt70T.html");// 测试播放html里面的视频
+//        webView.loadUrl("http://dl-facsimile.oss-cn-hangzhou.aliyuncs.com/campaigns/pU8QWagTLHBcrjcKexQaVoAAaCChcduB.html");
+//        webView.loadUrl("http://dl.facsimilemedia.com/campaigns/SLH7DH3HIFw3bHpGbFickn98iG77BMnn.html");
+//        webView.loadUrl("http://192.168.3.13:8080/itel/html/aa.html");
         if(savedInstanceState != null){
 
             webView.restoreState(savedInstanceState);

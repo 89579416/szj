@@ -45,7 +45,6 @@
 
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" tools:remove="android:maxSdkVersion" />
 
-
     <!--屏幕自适应配置信息-->
     <supports-screens
         android:anyDensity="true"
@@ -58,6 +57,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:hardwareAccelerated="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
 
@@ -186,11 +186,20 @@
         <!-- teamviewerAPI test -->
         <activity android:name=".teamviewer.TeamViewerActivity"></activity>
 
+        <!-- 使用exoPlayer 播放视频 -->
+        <activity android:name=".exoplayer.MyExoPlayerActivity"></activity>
+
+        <!-- 连接wifi  -->
+        <activity android:name=".connectwifi.ConnWifiMainActivity"></activity>
+
         <!-- 浮动窗口实现  -->
         <service android:name=".service.TopWindowService" />
 
         <!-- 在副屏播放视频 -->
         <service android:name=".shuangping.ShuangPingService"/>
+
+        <!-- 连接wifi -->
+        <service android:name=".connectwifi.WifiService"></service>
 
 
 
