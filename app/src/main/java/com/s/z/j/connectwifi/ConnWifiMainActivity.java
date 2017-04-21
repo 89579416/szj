@@ -6,163 +6,208 @@ package com.s.z.j.connectwifi;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.wifi.ScanResult;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.s.z.j.R;
+import com.s.z.j.utils.L;
 
 import java.util.List;
-import java.util.Map;
 
 public class ConnWifiMainActivity extends Activity {
 
-    private Button msearchBtn;
-    private Button mopenBtn;
-    private Button mcloseBtn;
-    private static  ListView msearchList;
-    private static ProgressDialog dialog;
-    private static LinearLayout openView;
-    static List<Map<String,String>>mlist;
 
-    private Button button1,button2;
+    private Button getWifiBtn;
+    private CustomPopWindow mListPopWindow;
+    private WifiAdmin mwifiAdmin;
+    private WifiManager wifiManager;
+    List<ScanResult> list;
+    private String ssid;
+    public ConnectivityManager connectManager;
+    public int level;
+    private Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wifi_main);
-        msearchList = (ListView) findViewById(R.id.wifi_main_listview);
-        button1 = (Button) findViewById(R.id.conn_wifi_button1);
-        button1.setOnClickListener(new OnClickListener() {
+        context = this;
+        getWifiBtn = (Button) findViewById(R.id.conn_wifi_button1);
+        getWifiBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent openWifiIntent = new Intent(ConnWifiMainActivity.this,WifiService.class);
-                Bundle openBundle = new Bundle();
-                openBundle.putInt("status",0);
-                openWifiIntent.putExtras(openBundle);
-                startService(openWifiIntent);
-
-                dialog = ProgressDialog.show(ConnWifiMainActivity.this,"正在打开wifi","正在搜索wifi...");
+                L.i("点击按钮");
+                showwifiList();
             }
         });
-        button2 = (Button) findViewById(R.id.conn_wifi_button2);
-        button2.setOnClickListener(new OnClickListener() {
+
+    }
+    /**
+     * wifiList
+     */
+    private void showwifiList() {
+        L.i("准备显示列表");
+        View contentView = LayoutInflater.from(context).inflate(R.layout.item_wifi_list, null);
+        L.i("获取到VIEW");
+        //处理popWindow 显示内容
+        WifihandleListView(contentView);
+        //创建并显示popWindow
+//        mListPopWindow = new CustomPopWindow.PopupWindowBuilder(context).setView(contentView) .create().showAsDropDown(getWifiBtn, 0, 20);
+
+        mListPopWindow = new CustomPopWindow.PopupWindowBuilder(this)
+                .setView(contentView)//显示的布局，还可以通过设置一个View
+                .size(600, 400) //设置显示的大小，不设置就默认包裹内容
+                .setFocusable(true)//是否获取焦点，默认为ture
+                .setOutsideTouchable(true)//是否PopupWindow 以外触摸dissmiss
+                .create()//创建PopupWindow
+                .showAsDropDown(getWifiBtn, 0, 10);//显示PopupWindow
+
+
+    }
+
+    /**
+     * WIFIListpop
+     */
+    private void WifihandleListView(View contentView) {
+        mwifiAdmin = new WifiAdmin(ConnWifiMainActivity.this);
+        wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+        list = wifiManager.getScanResults();
+        ListView listView = (ListView) contentView.findViewById(R.id.ListView);
+        connectManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        IntentFilter filter = new IntentFilter(WifiManager.NETWORK_STATE_CHANGED_ACTION);
+        registerReceiver(mReceiver, filter);
+        if (list == null) {
+            Toast.makeText(this, "wifi未打开！", Toast.LENGTH_LONG).show();
+        } else {
+            listView.setAdapter(new MyWifiAdapter(ConnWifiMainActivity.this, list));
+        }
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent closeWifiIntent = new Intent(ConnWifiMainActivity.this,WifiService.class);
-                Bundle closeBundle = new Bundle();
-                closeBundle.putInt("status",1);
-                closeWifiIntent.putExtras(closeBundle);
-                startService(closeWifiIntent);
-            }
-        });
-        msearchList.setOnItemClickListener(new OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> adapter, View view, int position,
-                                    long arg3) {
-                // TODO Auto-generated method stub
-                WifiService service = new WifiService();
-
-                Map<String, String> map = mlist.get(position);//得到对应的list中的map
-                final String ssid = map.get("wifi_name");//得到点击的热点的ssid，即wifi名称
-                int wifiItemId = service.isConfigured("\"" + ssid + "\"");//判断是否已经存储该热点的信息,返回bssid
-                if (service.ConnectWifi(wifiItemId)) {
-                    view.setBackgroundResource(R.color.green);
-                } else {//弹出对话框，输入密码
-
-                    View inflater = LayoutInflater.from(ConnWifiMainActivity.this).inflate(R.layout.item_conn_wifi, null);
-                    final AlertDialog alertDialog = new AlertDialog.Builder(ConnWifiMainActivity.this).setTitle("请输入密码").setView(inflater).create();
-                    alertDialog.show();
-                    final EditText passEdit = (EditText) inflater.findViewById(R.id.conn_wifi_edittext);
-                    Button connBtn = (Button) inflater.findViewById(R.id.conn_wifi_button);
-                    connBtn.setOnClickListener(new OnClickListener() {
-
-                        @Override
-                        public void onClick(View arg0) {
-                            // TODO Auto-generated method stub
-                            String pass = passEdit.getText().toString();
-                            if (null == pass || "".equals(pass)) {
-                                Toast.makeText(ConnWifiMainActivity.this, "请输入密码", Toast.LENGTH_SHORT).show();
-                                return;
-                            }
-                            Intent connectIntent = new Intent(ConnWifiMainActivity.this, WifiService.class);
-                            Bundle bundle = new Bundle();
-                            bundle.putInt("status", 2);
-                            connectIntent.putExtras(bundle);
-                            connectIntent.putExtra("ssid", ssid);
-                            connectIntent.putExtra("pass", pass);
-                            startService(connectIntent);
-                            alertDialog.dismiss();
-                            dialog = ProgressDialog.show(ConnWifiMainActivity.this, "", "正在链接" + ssid);
-
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(ConnWifiMainActivity.this);
+                ssid = list.get(position).SSID;
+                alert.setTitle(ssid);
+                alert.setMessage("输入密码");
+                final EditText et_password = new EditText(ConnWifiMainActivity.this);
+                final SharedPreferences preferences = getSharedPreferences("wifi_password", Context.MODE_PRIVATE);
+                et_password.setText(preferences.getString(ssid, ""));
+                alert.setView(et_password);
+                alert.setPositiveButton("连接", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String pw = et_password.getText().toString();
+                        if (null == pw || pw.length() < 8) {
+                            Toast.makeText(ConnWifiMainActivity.this, "密码至少8位", Toast.LENGTH_SHORT).show();
+                            return;
                         }
-                    });
-                }
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.putString(ssid, pw);
+                        editor.commit();
+                        mwifiAdmin.addNetwork(mwifiAdmin.CreateWifiInfo(ssid, et_password.getText().toString(), 3));
+                    }
+                });
+                alert.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+                alert.create();
+                alert.show();
             }
         });
+
     }
 
+    /**
+     * WIFIListAdapter
+     */
+    public class MyWifiAdapter extends BaseAdapter {
+        LayoutInflater inflater;
+        List<ScanResult> list;
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // TODO Auto-generated method stub
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    public static class WifiReceiver extends BroadcastReceiver {
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if (intent.getAction().equals("com.androidwifi.opensuccess")) {
-                @SuppressWarnings("unchecked")
-                List<Map<String, String>>list = (List<Map<String, String>>) intent.getSerializableExtra("result");
-                mlist = list;
-                dialog.dismiss();
-                //				ArrayAdapter<String>adapter = new ArrayAdapter<String>(context,android.R.layout.simple_list_item_1,scanResult);
-                SimpleAdapter adapter = new SimpleAdapter(context, mlist, R.layout.searchlist_item,new String[]{"wifi_name","wifi_bssid"},new int[]{R.id.wifi_name,R.id.wifi_bssid});
-
-                msearchList.setAdapter(adapter);
-
-            }
-
+        public MyWifiAdapter(Context context, List<ScanResult> list) {
+            // TODO Auto-generated constructor stub
+            this.inflater = LayoutInflater.from(context);
+            this.list = list;
         }
 
-    }
-
-    public static class WifiResultReceiver extends BroadcastReceiver {
         @Override
-        public void onReceive(Context context, Intent intent) {
-            if (dialog.isShowing()) {
-                dialog.dismiss();
+        public int getCount() {
+            return list.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return position;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        /**
+         * scanResult  扫描结果
+         */
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            View view = null;
+            view = inflater.inflate(R.layout.item_wifi_info, null);
+            ScanResult scanResult = list.get(position);
+            TextView textView = (TextView) view.findViewById(R.id.textView);
+            textView.setText(scanResult.SSID);
+            ImageView imageView = (ImageView) view.findViewById(R.id.imageView);
+            level = WifiManager.calculateSignalLevel(scanResult.level, 5);
+            if (scanResult.capabilities.contains("WEP") || scanResult.capabilities.contains("PSK") ||
+                    scanResult.capabilities.contains("EAP")) {
+                imageView.setImageResource(R.drawable.wifi_signal_lock);
+            } else {
+                imageView.setImageResource(R.drawable.wifi_signal_open);
             }
-            // TODO Auto-generated method stub
-            if (intent.getAction().equals("com.androidwifi.result")) {
-                int result = intent.getIntExtra("result",0);
-                String ssid = intent.getStringExtra("ssid");
-                if (result == -1) {
-                    Toast.makeText(context,"链接"+ssid+"失败",Toast.LENGTH_SHORT).show();
-                }
-                if (result == 1) {
-                    Toast.makeText(context,"已链接到"+ssid,Toast.LENGTH_SHORT).show();
-                }
-            }
+            imageView.setImageLevel(level);
+            return view;
         }
     }
+
+    //监听wifi状态变化
+    private BroadcastReceiver mReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+            NetworkInfo wifiInfo = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+            if (wifiInfo.isConnected()) {
+                WifiManager wifiManager = (WifiManager) context
+                        .getSystemService(Context.WIFI_SERVICE);
+                String wifiSSID = wifiManager.getConnectionInfo()
+                        .getSSID();
+                Toast.makeText(context, wifiSSID + "连接成功", Toast.LENGTH_SHORT).show();
+            }
+        }
+    };
+
+
+
 
 }
 

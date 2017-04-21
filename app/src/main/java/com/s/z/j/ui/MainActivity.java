@@ -174,7 +174,7 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
         commentdata.add(new Menu(38,"高仿微信对话列表滑动删除效果"));
         commentdata.add(new Menu(39,"teamviewerAPI测试--已暂停"));
         commentdata.add(new Menu(40,"ExoPlayer播放本地视频"));
-        commentdata.add(new Menu(41,"连接wifi"));
+        commentdata.add(new Menu(41,"获取wifi列表"));
 
         mLayoutInflater = LayoutInflater.from(context);
         adapter = new MyAdapter();
