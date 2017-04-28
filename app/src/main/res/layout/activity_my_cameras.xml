@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <SurfaceView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/camera_surface"/>
+    <Button
+        android:id="@+id/camera_back"
+        android:layout_width="wrap_content"
+        android:text="返回"
+        android:layout_height="wrap_content" />
+<Button
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/camera_position"
+    android:gravity="right"
+    android:layout_alignParentRight="true"
+    android:text="切换"
+    />
+    <Button
+        android:id="@+id/camera_shutter"
+        android:text="拍照"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

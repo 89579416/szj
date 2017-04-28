@@ -23,6 +23,8 @@ import android.widget.TextView;
 import com.s.z.j.R;
 import com.s.z.j.abcde.navigationdrawer.ui.NavigationdrawerActivity;
 import com.s.z.j.calculator.CalculatorActivity;
+import com.s.z.j.cameras.CameraMainActivity;
+import com.s.z.j.cameras.MyCameraActivity;
 import com.s.z.j.choose_images.imageloader.ChooseImageMainActivity;
 import com.s.z.j.connectwifi.ConnWifiMainActivity;
 import com.s.z.j.danmu.DanMuActivity;
@@ -175,6 +177,8 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
         commentdata.add(new Menu(39,"teamviewerAPI测试--已暂停"));
         commentdata.add(new Menu(40,"ExoPlayer播放本地视频"));
         commentdata.add(new Menu(41,"获取wifi列表"));
+        commentdata.add(new Menu(42,"闪光灯操作"));
+        commentdata.add(new Menu(43,"Android自定义照相机 预览拍照 切换前后置摄像头"));
 
         mLayoutInflater = LayoutInflater.from(context);
         adapter = new MyAdapter();
@@ -411,6 +415,12 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
                 break;
             case 41:
                 startActivity(new Intent(context, ConnWifiMainActivity.class));
+                break;
+            case 42:
+                startActivity(new Intent(context, CameraMainActivity.class));
+                break;
+            case 43:
+                startActivity(new Intent(context, MyCameraActivity.class));
                 break;
             default:
                 break;

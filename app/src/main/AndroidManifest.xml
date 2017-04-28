@@ -189,6 +189,13 @@
         <!-- 连接wifi  -->
         <activity android:name=".connectwifi.ConnWifiMainActivity"></activity>
 
+
+        <!-- 打开关闭闪光灯  -->
+        <activity android:name=".cameras.CameraMainActivity"></activity>
+
+        <!--  Android自定义照相机 预览拍照 切换前后置摄像头  -->
+        <activity android:name=".cameras.MyCameraActivity"></activity>
+
         <!-- 浮动窗口实现  -->
         <service android:name=".service.TopWindowService" />
 
