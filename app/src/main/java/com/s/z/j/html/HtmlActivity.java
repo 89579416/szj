@@ -1,9 +1,11 @@
 package com.s.z.j.html;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.webkit.ConsoleMessage;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceResponse;
@@ -40,6 +42,17 @@ public class HtmlActivity extends BaseActivity {
     @Override
     public void initialize(Bundle savedInstanceState) {
         frameLayout = (FrameLayout)findViewById(R.id.framelayout);
+        /**
+         * 有很多设备开发时只有声音，没有画面，这个时候在androidmanifest.xml中添加应用程序application中设置硬件渲染为true,在Oncreate函数中启用硬件渲染即可。说的有点含糊。
+         1、androidmanifest.xml文件设置如下属性：
+         android:hardwareAccelerated="true"
+         2、OnCreate中添加：
+         getWindow().addFlags(
+         WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
+         做网页视频只有声音没画面，一般这样可以解决。并不是所有机型都可以，也有特例，比较少。
+         */
+        getWindow().addFlags( WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
+
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
         webView.setWebViewClient(new MyWebviewCient());
@@ -54,8 +67,18 @@ public class HtmlActivity extends BaseActivity {
         webView.getSettings().setSupportZoom(false);
         webView.getSettings().setPluginState(WebSettings.PluginState.ON);
         webView.getSettings().setLoadWithOverviewMode(true);
-//        webView.loadUrl("file:///" + url + "/sss/update.html");// 测试播放本地html里面的视频
-        webView.loadUrl("http://dl.facsimilemedia.com/campaigns/65/910/p7nOkIe2Q6U6jUEX6TaOqDyUvmWj0feL.html");// 测试播放html里面的视频
+        webView.loadUrl("file:///" + url + "/html/index.html");// 测试播放本地html里面的视频
+        /**
+         * 4.0以上的系统我们开启硬件加速后，WebView渲染页面更加快速，拖动也更加顺滑。但有个副作用就是，当WebView视图被整体遮住一块，然后突然恢复时（比如使用SlideMenu将WebView从侧边滑出来时），这个过渡期会出现白块同时界面闪烁。解决这个问题的方法是在过渡期前将WebView的硬件加速临时关闭，过渡期后再开启，代码如下：
+         * */
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+        }
+
+//        webView.loadUrl("http://dl.facsimilemedia.com/campaigns/kgyjnbZ8tlIQ6U08fTdDn7LHUPEyt70T.html");// 测试播放html里面的视频
+//        webView.loadUrl("http://dl-facsimile.oss-cn-hangzhou.aliyuncs.com/campaigns/pU8QWagTLHBcrjcKexQaVoAAaCChcduB.html");
+//        webView.loadUrl("http://dl.facsimilemedia.com/campaigns/SLH7DH3HIFw3bHpGbFickn98iG77BMnn.html");
+//        webView.loadUrl("http://192.168.3.13:8080/itel/html/aa.html");
         if(savedInstanceState != null){
 
             webView.restoreState(savedInstanceState);

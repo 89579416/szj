@@ -10,7 +10,6 @@
 
     <!-- 改变wifi状态 -->
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"></uses-permission>
 
     <!-- 一种锁的机制, 只要有人拿着这个锁,系统就无法进入休眠，-->
@@ -40,11 +39,8 @@
 
     <!-- 在 屏幕最顶部显示addview-->
     <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />
-
     <uses-permission android:name="android.permission.TYPE_SYSTEM_ERROR"/>
-
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" tools:remove="android:maxSdkVersion" />
-
 
     <!--屏幕自适应配置信息-->
     <supports-screens
@@ -58,6 +54,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:hardwareAccelerated="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
 
@@ -186,12 +183,17 @@
         <!-- teamviewerAPI test -->
         <activity android:name=".teamviewer.TeamViewerActivity"></activity>
 
+        <!-- 使用exoPlayer 播放视频 -->
+        <activity android:name=".exoplayer.MyExoPlayerActivity"></activity>
+
+        <!-- 连接wifi  -->
+        <activity android:name=".connectwifi.ConnWifiMainActivity"></activity>
+
         <!-- 浮动窗口实现  -->
         <service android:name=".service.TopWindowService" />
 
         <!-- 在副屏播放视频 -->
         <service android:name=".shuangping.ShuangPingService"/>
-
 
 
     </application>

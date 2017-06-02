@@ -30,7 +30,7 @@ public class FileUtil {
                         vecFile.add(new Resource(subFile[iFileLength].getPath(),"image",5));
                     } else if (filename.trim().toLowerCase().endsWith(".mp4") || filename.trim().toLowerCase().endsWith(".mov")|| filename.trim().toLowerCase().endsWith(".m4v")) {
                         L.i(""+filename+"是一个视频文件，添加到列表");
-                        vecFile.add(new Resource( subFile[iFileLength].getPath(),"video", 30));
+                        vecFile.add(new Resource( subFile[iFileLength].getPath(),"video", 10));
                     } else {
 
                     }
