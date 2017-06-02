@@ -34,7 +34,6 @@ import com.s.z.j.newUtils.AppUtils;
 import com.s.z.j.photo_wall_falls_demo.PhotoWallFallsActivity;
 import com.s.z.j.service.TopWindowService;
 import com.s.z.j.shuangping.SPMainActivity;
-import com.s.z.j.teamviewer.TeamViewerActivity;
 import com.s.z.j.test.TestMyEdittextActivity;
 import com.s.z.j.ui.apppackage.SystemAppPackageNameActivity;
 import com.s.z.j.ui.device.DeviceInfoActivity;
@@ -399,7 +398,7 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
                 startActivity(new Intent(context,HuaDongShanChuActivity.class));
                 break;
             case 39:
-                startActivity(new Intent(context, TeamViewerActivity.class));
+
                 break;
             default:
                 break;
