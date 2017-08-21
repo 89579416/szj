@@ -36,10 +36,14 @@ import com.s.z.j.html.HtmlActivity;
 import com.s.z.j.huadongshanchu.HuaDongShanChuActivity;
 import com.s.z.j.newUtils.AppUtils;
 import com.s.z.j.photo_wall_falls_demo.PhotoWallFallsActivity;
+import com.s.z.j.rtsp.RtspActivity;
+import com.s.z.j.rxjava.RxJavaActivity;
 import com.s.z.j.service.TopWindowService;
 import com.s.z.j.shuangping.ShuangPingService;
+import com.s.z.j.smil.SmilActivity;
 import com.s.z.j.teamviewer.TeamViewerActivity;
 import com.s.z.j.test.TestMyEdittextActivity;
+import com.s.z.j.toast.MyToastActivity;
 import com.s.z.j.ui.apppackage.SystemAppPackageNameActivity;
 import com.s.z.j.ui.device.DeviceInfoActivity;
 import com.s.z.j.ui.dialog.DialogActivity;
@@ -179,6 +183,13 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
         commentdata.add(new Menu(41,"获取wifi列表"));
         commentdata.add(new Menu(42,"闪光灯操作"));
         commentdata.add(new Menu(43,"Android自定义照相机 预览拍照 切换前后置摄像头"));
+        commentdata.add(new Menu(44,"图片点击切换"));
+        commentdata.add(new Menu(45,"RTSP播放"));
+        commentdata.add(new Menu(46,"RXjava测试"));
+        commentdata.add(new Menu(47,"自定义吐丝"));
+        commentdata.add(new Menu(48,"smil解析"));
+
+
 
         mLayoutInflater = LayoutInflater.from(context);
         adapter = new MyAdapter();
@@ -421,6 +432,21 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
                 break;
             case 43:
                 startActivity(new Intent(context, MyCameraActivity.class));
+                break;
+            case 44:
+//                startActivity(new Intent(context, HandlerActivity.class));
+                break;
+            case 45:
+                startActivity(new Intent(context, RtspActivity.class));
+                break;
+            case 46:
+                startActivity(new Intent(context, RxJavaActivity.class));
+                break;
+            case 47:
+                startActivity(new Intent(context, MyToastActivity.class));
+                break;
+            case 48:
+                startActivity(new Intent(context, SmilActivity.class));
                 break;
             default:
                 break;

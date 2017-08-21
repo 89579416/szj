@@ -3,8 +3,6 @@ package com.s.z.j.ui.sdcard;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.res.AssetFileDescriptor;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -255,7 +253,11 @@ public class SdcardUrlActivity extends BaseActivity {
 
     @Override
     protected void onDestroy() {
-        myVideoPlayer.stopPlay();
+        if(myVideoPlayer != null) {
+           try {
+               myVideoPlayer.stopPlay();
+           }catch (Exception e){}
+        }
         super.onDestroy();
 
     }

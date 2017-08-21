@@ -33,10 +33,33 @@ import java.net.URLConnection;
  * 下载文件
  * 获取网络类型
  * 显示网络图片
+ * 访问网络获取 XML文件流
  */
 public class HttpUtils {
 
-
+    /**
+     * 访问网络获取 XML文件流
+     * @param urlstr
+     * @return
+     */
+    public static InputStream getInputStreamFromURL(String urlstr){
+        HttpURLConnection connection;
+        URL url;
+        InputStream stream=null;
+        try{
+            url=new URL(urlstr);
+            connection =(HttpURLConnection)url.openConnection();
+            connection.connect();
+            stream = connection.getInputStream();
+        }catch(MalformedURLException e){
+            e.printStackTrace();
+            return null;
+        }catch(IOException e1){
+            e1.printStackTrace();
+            return null;
+        }
+        return stream;
+    }
     /**
      * 从服务器取图片
      *http://bbs.3gstdy.com

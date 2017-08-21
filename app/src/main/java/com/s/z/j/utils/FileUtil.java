@@ -376,9 +376,11 @@ public class FileUtil {
     public static void  createFile() {
         defaultUrl = Environment.getExternalStorageDirectory() + "";
         /**创建我们软件的专用文件夹*/
-        makeRootDirectory(defaultUrl + "/xiaofei");
+        makeRootDirectory(defaultUrl + "/abcde");
         /**创建存放日志的文件夹*/
-        makeRootDirectory(defaultUrl + "/xiaofei/Logs");
+        makeRootDirectory(defaultUrl + "/abcde/Logs");
+
+        makeRootDirectory(defaultUrl + "/html");
     }
     /**
      * create file

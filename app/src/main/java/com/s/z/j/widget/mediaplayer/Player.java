@@ -3,7 +3,6 @@ package com.s.z.j.widget.mediaplayer;
 import android.widget.FrameLayout;
 
 /**
- * 作者：王强
  * 日期： 2015/10/19
  * 版本： V1.0
  * 说明：播放控件的接口

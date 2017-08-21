@@ -1,15 +1,14 @@
 package com.s.z.j.html;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.webkit.ConsoleMessage;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceResponse;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
@@ -19,6 +18,9 @@ import com.szj.library.ui.BaseActivity;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
+
+import java.io.InputStreamReader;
+import java.io.LineNumberReader;
 
 /**
  * webView显示SD卡里面的html网页
@@ -39,6 +41,8 @@ public class HtmlActivity extends BaseActivity {
     private WebChromeClient.CustomViewCallback myCallBack = null;
 
     private String url = Environment.getExternalStorageDirectory() + "";
+
+    private MyWebView myWebView;
     @Override
     public void initialize(Bundle savedInstanceState) {
         frameLayout = (FrameLayout)findViewById(R.id.framelayout);
@@ -51,41 +55,45 @@ public class HtmlActivity extends BaseActivity {
          WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
          做网页视频只有声音没画面，一般这样可以解决。并不是所有机型都可以，也有特例，比较少。
          */
+        
         getWindow().addFlags( WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
-
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
-        webView.setWebViewClient(new MyWebviewCient());
-        chromeClient = new MyChromeClient();
-        webView.setWebChromeClient(chromeClient);
-        webView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
-        webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
-        webView.setHorizontalScrollBarEnabled(false);
-        webView.setVerticalScrollBarEnabled(false);
-        final String USER_AGENT_STRING = webView.getSettings().getUserAgentString() + " Rong/2.0";
-        webView.getSettings().setUserAgentString(USER_AGENT_STRING);
-        webView.getSettings().setSupportZoom(false);
-        webView.getSettings().setPluginState(WebSettings.PluginState.ON);
-        webView.getSettings().setLoadWithOverviewMode(true);
-        webView.loadUrl("file:///" + url + "/html/index.html");// 测试播放本地html里面的视频
-        /**
-         * 4.0以上的系统我们开启硬件加速后，WebView渲染页面更加快速，拖动也更加顺滑。但有个副作用就是，当WebView视图被整体遮住一块，然后突然恢复时（比如使用SlideMenu将WebView从侧边滑出来时），这个过渡期会出现白块同时界面闪烁。解决这个问题的方法是在过渡期前将WebView的硬件加速临时关闭，过渡期后再开启，代码如下：
-         * */
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
-        }
-
-//        webView.loadUrl("http://dl.facsimilemedia.com/campaigns/kgyjnbZ8tlIQ6U08fTdDn7LHUPEyt70T.html");// 测试播放html里面的视频
-//        webView.loadUrl("http://dl-facsimile.oss-cn-hangzhou.aliyuncs.com/campaigns/pU8QWagTLHBcrjcKexQaVoAAaCChcduB.html");
-//        webView.loadUrl("http://dl.facsimilemedia.com/campaigns/SLH7DH3HIFw3bHpGbFickn98iG77BMnn.html");
-//        webView.loadUrl("http://192.168.3.13:8080/itel/html/aa.html");
-        if(savedInstanceState != null){
-
-            webView.restoreState(savedInstanceState);
-        }
-        if(savedInstanceState != null){
-            webView.restoreState(savedInstanceState);
-        }
+        FrameLayout.LayoutParams tparams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        myWebView = new MyWebView(HtmlActivity.this,tparams,"http://dl-facsimile.oss-cn-hangzhou.aliyuncs.com/campaigns/pU8QWagTLHBcrjcKexQaVoAAaCChcduB.html");
+        myWebView.startPlay();
+        frameLayout.addView(myWebView);
+//        webView.getSettings().setJavaScriptEnabled(true);
+//        webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+//        webView.setWebViewClient(new MyWebviewCient());
+//        chromeClient = new MyChromeClient();
+//        webView.setWebChromeClient(chromeClient);
+//        webView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
+//        webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
+//        webView.setHorizontalScrollBarEnabled(false);
+//        webView.setVerticalScrollBarEnabled(false);
+//        final String USER_AGENT_STRING = webView.getSettings().getUserAgentString() + " Rong/2.0";
+//        webView.getSettings().setUserAgentString(USER_AGENT_STRING);
+//        webView.getSettings().setSupportZoom(false);
+//        webView.getSettings().setPluginState(WebSettings.PluginState.ON);
+//        webView.getSettings().setLoadWithOverviewMode(true);
+//        webView.loadUrl("file:///" + url + "/html/demo.html");// 测试播放本地html里面的视频
+//        /**
+//         * 4.0以上的系统我们开启硬件加速后，WebView渲染页面更加快速，拖动也更加顺滑。但有个副作用就是，当WebView视图被整体遮住一块，然后突然恢复时（比如使用SlideMenu将WebView从侧边滑出来时），这个过渡期会出现白块同时界面闪烁。解决这个问题的方法是在过渡期前将WebView的硬件加速临时关闭，过渡期后再开启，代码如下：
+//         * */
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+//            webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+//        }
+//
+////        webView.loadUrl("http://dl.facsimilemedia.com/campaigns/kgyjnbZ8tlIQ6U08fTdDn7LHUPEyt70T.html");// 测试播放html里面的视频
+////        webView.loadUrl("http://dl-facsimile.oss-cn-hangzhou.aliyuncs.com/campaigns/pU8QWagTLHBcrjcKexQaVoAAaCChcduB.html");
+////        webView.loadUrl("http://dl.facsimilemedia.com/campaigns/SLH7DH3HIFw3bHpGbFickn98iG77BMnn.html");
+////        webView.loadUrl("http://192.168.3.13:8080/itel/html/aa.html");
+//        if(savedInstanceState != null){
+//
+//            webView.restoreState(savedInstanceState);
+//        }
+//        if(savedInstanceState != null){
+//            webView.restoreState(savedInstanceState);
+//        }
     }
 
     @Override
@@ -157,5 +165,36 @@ public class HtmlActivity extends BaseActivity {
             // TODO Auto-generated method stub
             return super.onConsoleMessage(consoleMessage);
         }
+    }
+
+    public static String getCPUSerial() {
+        String str = "", strCPU = "", cpuAddress = "0000000000000000";
+        try {
+            //读取CPU信息
+            Process pp = Runtime.getRuntime().exec("cat /proc/cpuinfo");
+            InputStreamReader ir = new InputStreamReader(pp.getInputStream());
+            LineNumberReader input = new LineNumberReader(ir);
+            //查找CPU序列号
+            for (int i = 1; i < 100; i++) {
+                str = input.readLine();
+                if (str != null) {
+                    //查找到序列号所在行
+                    if (str.indexOf("Serial") > -1) {
+                        //提取序列号
+                        strCPU = str.substring(str.indexOf(":") + 1, str.length());
+                        //去空格
+                        cpuAddress = strCPU.trim();
+                        break;
+                    }
+                } else {
+                    //文件结尾
+                    break;
+                }
+            }
+        } catch (Exception ex) {
+            //赋予默认值
+            ex.printStackTrace();
+        }
+        return cpuAddress;
     }
 }
