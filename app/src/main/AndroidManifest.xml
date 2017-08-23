@@ -211,18 +211,10 @@
         <activity android:name=".toast.MyToastActivity" />
 
         <!-- 解析SMIL -->
-        <activity android:name=".smil.SmilActivity"/>
+        <activity android:name=".smil.SmilActivity" />
 
-
-
-
-
-
-
-
-
-
-
+        <!-- 白板-->
+        <activity android:name=".baiban.BaiBanActivity" />
 
 
         <!-- 浮动窗口实现  -->
