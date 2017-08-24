@@ -22,7 +22,6 @@ import android.widget.TextView;
 
 import com.s.z.j.R;
 import com.s.z.j.abcde.navigationdrawer.ui.NavigationdrawerActivity;
-import com.s.z.j.baiban.BaiBanActivity;
 import com.s.z.j.calculator.CalculatorActivity;
 import com.s.z.j.cameras.CameraMainActivity;
 import com.s.z.j.cameras.MyCameraActivity;
@@ -189,7 +188,6 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
         commentdata.add(new Menu(46,"RXjava测试"));
         commentdata.add(new Menu(47,"自定义吐丝"));
         commentdata.add(new Menu(48,"smil解析"));
-        commentdata.add(new Menu(49,"白板"));
 
 
         mLayoutInflater = LayoutInflater.from(context);
@@ -450,7 +448,7 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
                 startActivity(new Intent(context, SmilActivity.class));
                 break;
             case 49:
-                startActivity(new Intent(context, BaiBanActivity.class));
+
                 break;
             default:
                 break;
