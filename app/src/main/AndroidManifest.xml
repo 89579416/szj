@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.s.z.j"
     android:versionCode="1"
-    android:versionName="1.0.1">
+    android:versionName="1.0.1" >
 
     <uses-sdk
         android:minSdkVersion="15"
@@ -11,11 +11,10 @@
 
     <!-- 改变wifi状态 -->
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
 
-    <!-- 一种锁的机制, 只要有人拿着这个锁,系统就无法进入休眠，-->
-    <uses-permission android:name="android.permission.WAKE_LOCK"></uses-permission>
-
+    <!-- 一种锁的机制, 只要有人拿着这个锁,系统就无法进入休眠， -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <!-- 允许访问振动设备 -->
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -29,29 +28,37 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- 获取网络类型权限 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <!--允许程序获取当前WiFi接入的状态以及WLAN热点的信息-->
+    <!-- 允许程序获取当前WiFi接入的状态以及WLAN热点的信息 -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <!-- 在SDCard中创建与删除文件权限 -->
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <!-- 操作sd卡权限 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <!--  浮动窗口权限  -->
+    <!-- 浮动窗口权限 -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.GET_TASKS" />
 
-    <!-- 在 屏幕最顶部显示addview-->
+    <!-- 在 屏幕最顶部显示addview -->
     <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />
     <uses-permission android:name="android.permission.TYPE_SYSTEM_ERROR" />
     <uses-permission
         android:name="android.permission.SYSTEM_ALERT_WINDOW"
         tools:remove="android:maxSdkVersion" />
 
-    <!--屏幕自适应配置信息-->
+    <!-- 屏幕自适应配置信息 -->
     <supports-screens
         android:anyDensity="true"
         android:largeScreens="true"
         android:normalScreens="true"
         android:smallScreens="true" />
+
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
+    <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <android:uses-permission android:name="android.permission.READ_CALL_LOG" />
 
     <application
         android:name=".SzjApplication"
@@ -60,146 +67,149 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
 
         <!-- 程序主入口 -->
-        <activity android:name=".ui.MainActivity">
+        <activity android:name=".ui.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
         <!-- 引导页 -->
-        <activity android:name=".ui.nav.NavigationActivity"></activity>
+        <activity android:name=".ui.nav.NavigationActivity" />
 
         <!-- 侧划菜单 -->
-        <activity android:name=".ui.slidingmenu.SlidingMainActivity"></activity>
+        <activity android:name=".ui.slidingmenu.SlidingMainActivity" />
 
         <!-- 广播的使用 -->
-        <activity android:name=".ui.BroadCastActivity"></activity>
+        <activity android:name=".ui.BroadCastActivity" />
 
-        <!-- 播放视频-->
-        <activity android:name=".ui.mediaplayer.MediaPlayerActivity"></activity>
+        <!-- 播放视频 -->
+        <activity android:name=".ui.mediaplayer.MediaPlayerActivity" />
 
-        <!-- 播放视频测试-->
-        <!--<activity android:name=".ui.test.MediaPlayerTestActivity"></activity>-->
+        <!-- 播放视频测试 -->
+        <!-- <activity android:name=".ui.test.MediaPlayerTestActivity"></activity> -->
+
 
         <!-- 二维码生成与扫描 -->
-        <activity android:name=".ui.qrcode.QrCodeActivity"></activity>
+        <activity android:name=".ui.qrcode.QrCodeActivity" />
 
         <!-- 二维码扫描 -->
         <activity
             android:name="zxing.CaptureActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
 
         <!-- 拍照和从相册选择 -->
-        <activity android:name=".ui.photo.PhotographActivity"></activity>
+        <activity android:name=".ui.photo.PhotographActivity" />
 
         <!-- 设置 wifi热点 -->
-        <activity android:name=".ui.wifihost.SetWifiHostActivity"></activity>
+        <activity android:name=".ui.wifihost.SetWifiHostActivity" />
 
-        <!-- 获取SD卡路径-->
-        <activity android:name=".ui.sdcard.SdcardUrlActivity"></activity>
+        <!-- 获取SD卡路径 -->
+        <activity android:name=".ui.sdcard.SdcardUrlActivity" />
 
         <!-- 获取设备信息 -->
-        <activity android:name=".ui.device.DeviceInfoActivity"></activity>
+        <activity android:name=".ui.device.DeviceInfoActivity" />
 
         <!-- 获取系统里安装的所有程序包名 -->
-        <activity android:name=".ui.apppackage.SystemAppPackageNameActivity"></activity>
+        <activity android:name=".ui.apppackage.SystemAppPackageNameActivity" />
 
         <!-- 各种dialog -->
-        <activity android:name=".ui.dialog.DialogActivity"></activity>
+        <activity android:name=".ui.dialog.DialogActivity" />
 
         <!-- 示完成的抽屉式菜单 -->
-        <activity android:name=".abcde.navigationdrawer.ui.NavigationdrawerActivity">
+        <activity android:name=".abcde.navigationdrawer.ui.NavigationdrawerActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.MainActivity" />
         </activity>
 
-        <!-- 分屏播放视频和网页  -->
-        <activity android:name=".fenping.FenPingActivity"></activity>
-
+        <!-- 分屏播放视频和网页 -->
+        <activity android:name=".fenping.FenPingActivity" />
 
         <!-- 拍照 -->
         <activity
             android:name="com.szj.library.camera.CropImageActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
 
         <!-- 从相册选择 -->
         <activity
             android:name="com.szj.library.camera.MultiImageSelectorActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
 
-        <!-- 仿微信布局-->
-        <activity android:name=".fragment.weixin.WeiXinFragmentActivity"></activity>
+        <!-- 仿微信布局 -->
+        <activity android:name=".fragment.weixin.WeiXinFragmentActivity" />
 
         <!-- 播放assets下的mp4 -->
-        <activity android:name=".ui.videoplay.PlayActivity"></activity>
+        <activity android:name=".ui.videoplay.PlayActivity" />
 
-        <!-- 仿360卫士实现悬浮窗口显示当前使用内存-->
-        <activity android:name=".xuanfuchuang_360.Xuanfu360MainActivity"></activity>
+        <!-- 仿360卫士实现悬浮窗口显示当前使用内存 -->
+        <activity android:name=".xuanfuchuang_360.Xuanfu360MainActivity" />
+
         <service android:name=".xuanfuchuang_360.FloatWindow360Service" />
 
         <!-- QQ手机管家小火箭效果实现 -->
-        <activity android:name=".xuanfuchuang_qq.XuanFuQqMainActivity"></activity>
+        <activity android:name=".xuanfuchuang_qq.XuanFuQqMainActivity" />
+
         <service android:name=".xuanfuchuang_qq.FloatWindowQqService" />
 
         <!-- wifi热点打开关闭监测 -->
-        <service android:name=".ui.wifihost.WiFiAPService"></service>
+        <service android:name=".ui.wifihost.WiFiAPService" />
 
         <!-- 图片左右滑动 -->
-        <activity android:name=".tupianhuadong.MainActivity"></activity>
+        <activity android:name=".tupianhuadong.MainActivity" />
 
         <!-- webView加载html并播放视频 -->
-        <activity android:name=".html.HtmlActivity"></activity>
+        <activity android:name=".html.HtmlActivity" />
 
         <!-- 模仿微信从相册选择图片 -->
-        <activity android:name=".choose_images.imageloader.ChooseImageMainActivity"></activity>
+        <activity android:name=".choose_images.imageloader.ChooseImageMainActivity" />
 
         <!-- 弹幕实现 -->
-        <activity android:name=".danmu.DanMuActivity"></activity>
+        <activity android:name=".danmu.DanMuActivity" />
 
         <!-- Android照片墙加强版，使用ViewPager实现画廊效果Demo -->
-        <activity android:name=".photo_wall_falls_demo.PhotoWallFallsActivity"></activity>
+        <activity android:name=".photo_wall_falls_demo.PhotoWallFallsActivity" />
 
         <!-- 图片详情查看 -->
-        <activity android:name=".photo_wall_falls_demo.ImageDetailsActivity"></activity>
+        <activity android:name=".photo_wall_falls_demo.ImageDetailsActivity" />
 
         <!-- 测试自定义Edittext -->
         <activity android:name=".test.TestMyEdittextActivity" />
 
         <!-- 简单计算器 -->
-        <activity android:name=".calculator.CalculatorActivity"></activity>
+        <activity android:name=".calculator.CalculatorActivity" />
 
-        <!-- 播放视频-->
-        <activity android:name=".shuangping.SPMainActivity"></activity>
+        <!-- 播放视频 -->
+        <activity android:name=".shuangping.SPMainActivity" />
 
-        <!-- 自定义进度条-->
-        <activity android:name=".zidingyijindutiao.JinDuTiaoActivity"></activity>
+        <!-- 自定义进度条 -->
+        <activity android:name=".zidingyijindutiao.JinDuTiaoActivity" />
 
         <!-- 滑动删除 -->
-        <activity android:name=".huadongshanchu.HuaDongShanChuActivity"></activity>
+        <activity android:name=".huadongshanchu.HuaDongShanChuActivity" />
 
         <!-- teamviewerAPI test -->
-        <activity android:name=".teamviewer.TeamViewerActivity"></activity>
+        <activity android:name=".teamviewer.TeamViewerActivity" />
 
         <!-- 使用exoPlayer 播放视频 -->
-        <activity android:name=".exoplayer.MyExoPlayerActivity"></activity>
+        <activity android:name=".exoplayer.MyExoPlayerActivity" />
 
-        <!-- 连接wifi  -->
-        <activity android:name=".connectwifi.ConnWifiMainActivity"></activity>
+        <!-- 连接wifi -->
+        <activity android:name=".connectwifi.ConnWifiMainActivity" />
 
+        <!-- 打开关闭闪光灯 -->
+        <activity android:name=".cameras.CameraMainActivity" />
 
-        <!-- 打开关闭闪光灯  -->
-        <activity android:name=".cameras.CameraMainActivity"></activity>
+        <!-- Android自定义照相机 预览拍照 切换前后置摄像头 -->
+        <activity android:name=".cameras.MyCameraActivity" />
 
-        <!--  Android自定义照相机 预览拍照 切换前后置摄像头  -->
-        <activity android:name=".cameras.MyCameraActivity"></activity>
+        <!-- 图片轮播，点击后切换 -->
+        <!-- <activity android:name=".change_image.HandlerActivity"/> -->
 
-        <!-- 图片轮播，点击后切换  -->
-        <!--<activity android:name=".change_image.HandlerActivity"/>-->
 
         <!-- 安卓播放RTSP推流 -->
         <activity android:name=".rtsp.RtspActivity" />
@@ -207,24 +217,21 @@
         <!-- RX java 测试 -->
         <activity android:name=".rxjava.RxJavaActivity" />
 
-        <!-- 自定义吐丝  -->
+        <!-- 自定义吐丝 -->
         <activity android:name=".toast.MyToastActivity" />
 
         <!-- 解析SMIL -->
         <activity android:name=".smil.SmilActivity" />
 
-        <!-- 白板-->
+        <!-- 白板 -->
         <activity android:name=".baiban.BaiBanActivity" />
 
-
-        <!-- 浮动窗口实现  -->
+        <!-- 浮动窗口实现 -->
         <service android:name=".service.TopWindowService" />
 
         <!-- 在副屏播放视频 -->
         <service android:name=".shuangping.ShuangPingService" />
 
-
     </application>
-
 
 </manifest>
