@@ -28,4 +28,9 @@
         android:id="@+id/rxjava_msg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/rxjava_serch_edit"
+        android:hint="输入搜索内容"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </LinearLayout>

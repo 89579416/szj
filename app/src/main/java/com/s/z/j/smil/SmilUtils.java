@@ -160,6 +160,10 @@ public class SmilUtils {
             } catch (Exception e) {
             }
 
+
+            L.i("我从这里开始做测试啦");
+
+            L.i("测试结束啦");
             /**     seq-->par  同时显示其包含的资源  文字+视频+图片集合 */
             L.i("开始解析 seq-->par里面的内容");
             List<Element> parList = par.elements();

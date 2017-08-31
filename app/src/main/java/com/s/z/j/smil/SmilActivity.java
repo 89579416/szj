@@ -111,7 +111,9 @@ public class SmilActivity extends Activity {
         mySeq = smil.getSeq();
         mySeq.getDur();//整个文件播放时间
         mySeq.getRepeatCount();//文件布局方式
+        frameLayout.removeAllViews();
         frameLayout.addView(view);
+        L.i("图片数量："+mySeq.getImgList());
     }
 
 }
